@@ -1,0 +1,69 @@
+import {conector} from '../database/conexion.js';
+
+const bdd = await conector();
+
+export const menu_afi = (pet, resp)=>{
+    resp.render('menu_afi')
+}
+
+export const alta_afi = (pet, resp)=>{
+    resp.render('alta_afi')
+}
+
+export const baja_afi = (pet, resp)=>{
+    resp.render('baja_afi')
+}
+
+export const mod_afi = (pet, resp)=>{
+    resp.render('mod_afi')
+}
+
+export const busc_afi = (pet, resp)=>{
+    resp.render('busc_afi')
+}
+
+/*
+export const mos_afi = (pet, resp)=>{
+    resp.render('mos_afi')
+}
+    */
+
+export const nuevo_afi = async (pet, resp) => {
+
+    let id, nombre, apellido, telCel, telFijo, plan;
+
+    id = pet.body.clave;
+    nombre = pet.body.nombre;
+    apellido = pet.body.apellido;
+    telCel = pet.body.telCelular;
+    telFijo = pet.body.telFijo;
+    plan = pet.body.tipo;
+
+    try {
+
+        let altasql = "INSERT INTO afiliado (ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan) VALUES ('" + id + "', '" + nombre + "', '" + apellido + "', '" + telCel + "', '" + telFijo + "', '" + plan + "');";
+
+        const [registro] = await bdd.query(altasql);
+        console.log(registro)
+        resp.render('alta_afi')
+    } catch (Error) {
+        console.log('Error, en la sentencia INSERT');
+        console.log(Error)
+        resp.render('alta_afi', {
+            codigoerror: true,
+            msj: "esto es una prueba"
+        })
+    }
+}
+
+
+export const mos_afi = async (pet, resp) => {
+    try {
+        let mostrarsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado ORDER BY ci_afiliado;";
+        const [registros] = await bdd.query(mostrarsql);
+        console.log(registros);
+        resp.render('mos_afi', { registros });
+    } catch (error) {
+        console.log("No puede mostrar los afiliados");
+    }
+}

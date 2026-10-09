@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="icon" href="img/favicon.webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Secure Dental - Servicios</title>
+</head>
+
+<body>
+<%- include('header') %>
+
+    <main>
+        <h1>SERVICIOS</h1>
+
+        <div class="contenedor-botones">
+            <a href="/servicio/alta" class="tarjeta">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Altas</span>
+            </a>
+            <a href="/servicio/bajas" class="tarjeta">
+                <i class="fa-solid fa-user-minus"></i>
+                <span>Bajas</span>
+            </a>
+            <a href="/servicio/modificar" class="tarjeta">
+                <i class="fa-solid fa-user-pen"></i>
+                <span>Modificar</span>
+            </a>
+            <a href="/servicio/buscar" class="tarjeta">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Buscar</span>
+            </a>
+            <a href="/servicio/mostrar" class="tarjeta">
+                <i class="fa-solid fa-list"></i>
+                <span>Mostrar</span>
+            </a>
+        </div>
+    </main>
+
+<%- include('footer') %>
+
+</body>
+</html>
