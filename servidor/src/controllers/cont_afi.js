@@ -41,17 +41,24 @@ export const nuevo_afi = async (pet, resp) => {
 
     try {
 
-        let altasql = "INSERT INTO afiliado (ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan) VALUES ('" + id + "', '" + nombre + "', '" + apellido + "', '" + telCel + "', '" + telFijo + "', '" + plan + "');";
-
+       let altasql = "INSERT INTO afiliado (ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan) VALUES ('" + id + "', '" + nombre + "', '" + apellido + "', '" + telCel + "', '" + telFijo + "', '" + plan + "');";
+ 
         const [registro] = await bdd.query(altasql);
         console.log(registro)
-        resp.render('alta_afi')
+        resp.render('alta_afi', {
+            guardado: true, 
+            icono: "success",
+            posicion: "top-end",
+            msj: "Afiliado Guardado",
+            tiempo: 1500, 
+            botonConfirma: false
+        })
     } catch (Error) {
         console.log('Error, en la sentencia INSERT');
-        console.log(Error)
+        let msjError = Error;
         resp.render('alta_afi', {
-            codigoerror: true,
-            msj: "esto es una prueba"
+            guardado: 'Error',
+            msj: msjError
         })
     }
 }
