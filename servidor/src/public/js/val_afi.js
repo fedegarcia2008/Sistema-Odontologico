@@ -1,14 +1,25 @@
 let nombre = document.querySelector('[name="nombre"]');
-    let apellido = document.querySelector('[name="apellido"]');
+let apellido = document.querySelector('[name="apellido"]');
 
     nombre.addEventListener("input", function () {
-        this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]/g, "");
+        this.value = this.value
+            .replace(/[^a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]/g, "")
+            .replace(/\s{2,}/g, " ")
+            .toLowerCase()
+            .replace(/(^|\s)\S/g, function (letra) {
+                return letra.toUpperCase();
+            });
     });
 
     apellido.addEventListener("input", function () {
-        this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]/g, "");
+        this.value = this.value
+            .replace(/[^a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]/g, "")
+            .replace(/\s{2,}/g, " ")
+            .toLowerCase()
+            .replace(/(^|\s)\S/g, function (letra) {
+                return letra.toUpperCase();
+            });
     });
-
 
     let clave = document.querySelector('[name="clave"]');
 
