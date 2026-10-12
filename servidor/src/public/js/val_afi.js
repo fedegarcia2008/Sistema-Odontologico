@@ -1,0 +1,52 @@
+let nombre = document.querySelector('[name="nombre"]');
+    let apellido = document.querySelector('[name="apellido"]');
+
+    nombre.addEventListener("input", function () {
+        this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]/g, "");
+    });
+
+    apellido.addEventListener("input", function () {
+        this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]/g, "");
+    });
+
+
+    let clave = document.querySelector('[name="clave"]');
+
+    clave.addEventListener("input", function () {
+        let numeros = this.value.replace(/\D/g, "");
+        if (numeros.length > 2) {
+            this.value = numeros.slice(0, -2) + " " + numeros.slice(-2);
+        } else {
+            this.value = numeros;
+        }
+    });
+
+    
+let telefonoFijo = document.querySelector('[name="telFijo"]');
+
+telefonoFijo.addEventListener("input", function () {
+    let numeros = this.value.replace(/\D/g, "").slice(0, 8);
+
+    if (numeros.length > 4) {
+        this.value = numeros.slice(0, 4) + "-" + numeros.slice(4);
+    } else {
+        this.value = numeros;
+    }
+});
+
+let telefonoCelular = document.querySelector('[name="telCelular"]');
+
+telefonoCelular.addEventListener("input", function () {
+    let numeros = this.value.replace(/\D/g, "");
+    let formato = numeros.slice(0, 2);
+
+    if (numeros.length > 2) {
+        formato += " " + numeros.slice(2, 6);
+    }
+
+    if (numeros.length > 6) {
+        formato += "-" + numeros.slice(6, 12);
+    }
+
+    this.value = formato;
+});
