@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/sucursales.css">
+    <link rel="icon" href="img/favicon.webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Secure Dental - Sucursales</title>
+</head>
+
+<body>
+    <%- include('header') %>
+
+    <main>
+        <section class="sucursalinfo">
+            <div class="sucursal-datos">
+                <h1>Sucursal Avellaneda</h1>
+
+                <p>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Av. Bartolomé Mitre 850, Avellaneda</span>
+                </p>
+                <p>
+                    <i class="fa-solid fa-phone"></i>
+                    <span>11 4201-5555</span>
+                </p>
+                <p>
+                    <i class="fa-solid fa-clock"></i>
+                    <span>
+                        Lunes a Viernes: 08:00 h a 20:00 h<br>
+                        Sábados: 09:00 h a 13:00 h
+                    </span>
+                </p>
+            </div>
+
+            <div class="sucursal-mapa">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.821033903823!2d-58.3684128!3d-34.6617181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a3334e2c0e81a3%3A0x6b1df36d2c18d18d!2sAv.%20Bartolom%C3%A9%20Mitre%20850%2C%20B1870%20Avellaneda%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1710000000000!5m2!1ses!2sar"
+                    title="Mapa de la sucursal Avellaneda"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+    </main>
+
+    <%- include('footer') %>
+</body>
+</html>

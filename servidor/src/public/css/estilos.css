@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+:root {
+    --azul: #233b76;
+    --celeste: #5b9cb1;
+    --celeste-oscuro: #1d6479;
+    --texto: #3a3a3a;
+    --fondo: #f4f7fa;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background-color: var(--fondo);
+    color: var(--texto);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2 {
+    color: var(--azul);
+    text-align: center;
+    font-family: 'Cinzel', serif;
+}
+
+/* ===== Barra superior ===== */
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 40px;
+    background-color: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 20px rgba(35, 59, 118, 0.08);
+    margin-bottom: 40px;
+}
+
+.logo img {
+    display: block;
+    width: 170px;
+    height: auto;
+}
+
+/* ===== Navegación ===== */
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+nav a {
+    display: block;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--texto);
+    padding: 10px 16px;
+    border-radius: 999px;
+    transition: background-color 0.25s, color 0.25s;
+}
+
+nav a:hover,
+.combo:hover > a {
+    background-color: rgba(91, 156, 177, 0.15);
+    color: var(--celeste-oscuro);
+}
+
+.flecha {
+    font-size: 12px;
+    margin-left: 2px;
+    display: inline-block;
+    transition: transform 0.25s;
+}
+
+.combo:hover .flecha,
+.combo:focus-within .flecha {
+    transform: rotate(180deg);
+}
+
+/* ===== Submenú ===== */
+.combo {
+    position: relative;
+}
+
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 210px;
+    flex-direction: column;
+    gap: 2px;
+    align-items: stretch;
+    padding: 8px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(35, 59, 118, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+}
+
+.combo:hover .submenu,
+.combo:focus-within .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.submenu a {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 14px;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+.submenu a:hover {
+    background-color: var(--celeste);
+    color: white;
+}
+
+/* ===== Botón hamburguesa (oculto en escritorio) ===== */
+.menu-toggle,
+.hamburguesa {
+    display: none;
+}
+
+/* ===== Footer ===== */
+footer {
+    margin-top: auto;
+    background: linear-gradient(135deg, var(--azul), var(--celeste-oscuro));
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.footer-contenido {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px 24px 18px;
+}
+
+.footerinfo h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: white;
+    margin-bottom: 8px;
+}
+
+.footerinfo h4 {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.footerinfo p {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 6px;
+}
+
+/* La primera columna es solo texto, sin íconos */
+.footerinfo:first-child p {
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.footerinfo i {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    transition: background-color 0.25s, transform 0.25s;
+}
+
+.footerinfo p:hover i {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.footerinfo span {
+    padding-top: 3px;
+}
+
+.footercopy {
+    text-align: center;
+    padding: 8px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(0, 0, 0, 0.18);
+}
+
+/* ===== Celular / tablet ===== */
+@media (max-width: 900px) {
+    .topbar {
+        flex-wrap: wrap;
+        padding: 12px 20px;
+    }
+
+    .hamburguesa {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 8px;
+    }
+
+    .hamburguesa span {
+        width: 26px;
+        height: 3px;
+        background-color: var(--azul);
+        border-radius: 2px;
+    }
+
+    nav {
+        display: none;
+        width: 100%;
+        margin-top: 12px;
+    }
+
+    .menu-toggle:checked ~ nav {
+        display: block;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .submenu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        padding: 0 0 0 16px;
+    }
+
+    .footer-contenido {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 22px 20px 14px;
+    }
+}

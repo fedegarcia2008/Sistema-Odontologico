@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="icon" href="/img/favicon.webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Alta Afiliado - Secure Dental</title>
+</head>
+
+<body>
+<%- include('header') %>
+
+<h1>ALTA AFILIADO</h1>
+
+<!--
+maxlenght limite de caracteres igual a la bdd
+size tamaño de la caja de texto-->
+
+    <main class="formulario">
+        <form action="/afiliado/nuevoalta" method="POST">
+        <div class="campo">
+            <label>Clave de Identificación*</label>
+            <input type="text" name="clave"  maxlength="10" required>
+        </div>
+
+        <div class="campo">
+            <label>Nombre*</label>
+            <input type="text" name="nombre" maxlength="20" required>
+        </div>
+
+        <div class="campo">
+            <label>Apellido*</label>
+            <input type="text" name="apellido" maxlength="20" required>
+        </div>
+
+        <div class="campo">
+            <label>Teléfono celular</label>
+            <input type="text" name="telCelular" maxlength="10">
+        </div>
+
+        <div class="campo">
+            <label>Teléfono fijo</label>
+            <input type="text" name="telFijo" maxlength="10">
+        </div>
+
+        <div class="campo">
+            <label>Tipo de plan*</label>
+            <select name="tipo" required>
+                <option value="#">Seleccione un plan</option>
+                <option value="Individual">Individual</option>
+                <option value="Grupal">Grupal</option>
+            </select>
+        </div>
+        <div class="boton">
+        <input type="submit" value="INGRESAR">
+        </div>
+    </form>
+  </main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+    <% if ( codigoerror ) { %>
+    <script>
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "algo " + '<%= msj %>',
+    
+            });    
+    </script>
+            <%  } %>
+
+
+  
+<%- include('footer') %>
+</body>
+</html>

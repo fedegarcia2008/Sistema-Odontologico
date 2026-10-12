@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="icon" href="/img/favicon.webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Alta Consultorio - Secure Dental</title>
+</head>
+
+<body>
+<%- include('header') %>
+
+<h1>ALTA CONSULTORIO</h1>
+
+    <main class="formulario">
+        <form action="/consultorio/nuevoalta" method="POST">
+        <div class="campo">
+            <label>id</label>
+            <input type="text" name="clave">
+        </div>
+
+        <div class="campo">
+            <label>Nro. consultorio:</label>
+            <input type="text" name="nCons">
+        </div>
+        
+        <div class="campo">
+            <label>ID local:</label>
+            <input type="text" name="idLocal">
+        </div>
+
+        <input type="submit" value="INGRESAR">
+        
+    </form>
+    </main>
+    
+<%- include('footer') %>
+</body>
+</html>
