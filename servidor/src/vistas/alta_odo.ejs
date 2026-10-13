@@ -16,49 +16,42 @@
 
     <main class="formulario">
         <form action="/odontologo/nuevoalta" method="POST">
-            <label>Clave de identificación:</label>
-            <input type="text" name="clave">
+      <div class="campo">
+            <label>Clave de identificación <span class="asterisco">*</span></label>
+            <input type="text" name="clave" maxlength="3" required>
         </div>
 
         <div class="campo">
-            <label>Nombre:</label>
-            <input type="text" name="nombre">
+            <label>Nombre <span class="asterisco">*</span></label>
+            <input type="text" name="nombre" maxlength="20" required>
         </div>
 
         <div class="campo">
-            <label>Apellido:</label>
-            <input type="text" name="apellido">
+            <label>Apellido <span class="asterisco">*</span></label>
+            <input type="text" name="apellido" maxlength="20" required>
         </div>
-        
 
-        <div class="campo">
-            <label>Tipo de Especialidad:</label>
-            <select id="especialidad">
-                <option value="">Seleccione una especialidad</option>
-                <option value="">Individual</option>
-                <option value="">Grupal</option>
-            </select>
-        </div>
-                <!-- o un buscador   
-                    <li><a href="#">Ortodoncia</a></li>
-                    <li><a href="#">Implantes</a></li>
-                    <li><a href="#">Protesis</a></li>
-                    <li><a href="#">Limpieza Dental</a></li>
-                    <li><a href="#">Restauraciones</a></li>
-                    <li><a href="#">Radiografias Dentales</a></li>
-                    <li><a href="#">Blanqueamieno Dental</a></li>
-                    <li><a href="#">Tratamiento de Conducto</a></li>
-                -->
 <div class="campo">
-            <label>Nro. de consultorio:</label>
-            <input type="number" name="IdCons">
+    <label>Tipo de Especialidad <span class="asterisco">*</span></label>
+
+    <input type="text" name="especialidad" autocomplete="off" required>
+
+    <div id="listaEspecialidades" class="lista-especialidades"></div>
+</div>
+
+<div class="campo">
+            <label>Nro. de consultorio <span class="asterisco">*</span></label>
+            <input type="text" name="idCons" maxlength="3" required>
         </div>
          
+        <div class="boton">
         <input type="submit" value="INGRESAR">
+        </div>
         
     </form>
     </main>
 <%- include('footer') %>
 
+<script src="/js/val_odo.js"></script>
 </body>
 </html>

@@ -19,25 +19,30 @@
         <form action="/convenio/nuevoalta" method="POST">
         <div class="campo">
 
-            <label>Identificador único:</label>
-            <input type="text" name="clave">
+            <label>Identificador Único <span class="asterisco">*</span></label>
+            <input type="text" name="clave" maxlength="2" required>
         </div>
 
         <div class="campo">
-            <label>Nombre:</label>
-            <input type="text" name="nombre">
+            <label>Nombre <span class="asterisco">*</span></label>
+            <input type="text" name="nombre" maxlength="50" required>
         </div>
         
         <div class="campo">
-            <label>Rebaja:</label>
-            <input type="text" name="rebaja">
+            <label>Rebaja <span class="asterisco">*</span></label>
+            <input type="text" name="rebaja" maxlength="6" required>
         </div>
 
 
+        <div class="boton">
         <input type="submit" value="INGRESAR">
+        </div>
        
     </form>
     </main>
+
+    <script src="/js/val_con.js"></script>
+
 <%- include('footer') %>
  
 </body>

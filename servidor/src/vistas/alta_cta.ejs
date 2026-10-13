@@ -17,24 +17,28 @@
     <main class="formulario">
         <form action="/cuentacorriente/nuevoalta" method="POST"> <!--dps cambiar ruteo en este-->
         <div class="campo">
-            <label>C.I. Afiliado:</label>
-            <input type="text" name="clave">
+            <label>C.I. Afiliado <span class="asterisco">*</span></label>
+            <input type="text" name="clave" maxlength="10" required>
         </div>
 
         <div class="campo">
-            <label>Saldo:</label>
-            <input type="text" name="saldo">
+            <label>Saldo <span class="asterisco">*</span></label>
+            <input type="text" name="saldo" maxlength="10" required>
         </div>
         
         <div class="campo">
-            <label>ID Tratamiento:</label>
-            <input type="text" name="idTrat">
+            <label>ID Historia Clínica <span class="asterisco">*</span></label>
+            <input type="text" name="idTrat" required>
         </div>
 
- <input type="submit" value="INGRESAR">
+        <div class="boton">
+        <input type="submit" value="INGRESAR">
+        </div>
         
     </form>
     </main>
 <%- include('footer') %>
+
+<script src="/js/val_cta.js"></script>
 </body>
 </html>

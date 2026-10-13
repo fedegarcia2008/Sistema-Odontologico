@@ -22,17 +22,17 @@ size tamaño de la caja de texto-->
     <main class="formulario">
         <form action="/afiliado/nuevoalta" method="POST">
         <div class="campo">
-            <label>Clave de Identificación*</label>
+            <label>Clave de Identificación<span class="asterisco">*</span></label>
             <input type="text" name="clave"  maxlength="10" required>
         </div>
 
         <div class="campo">
-            <label>Nombre*</label>
+            <label>Nombre <span class="asterisco">*</span></label>
             <input type="text" name="nombre" maxlength="20" required>
         </div>
 
         <div class="campo">
-            <label>Apellido*</label>
+            <label>Apellido <span class="asterisco">*</span></label>
             <input type="text" name="apellido" maxlength="20" required>
         </div>
 
@@ -42,12 +42,12 @@ size tamaño de la caja de texto-->
         </div>
 
         <div class="campo">
-            <label>Teléfono fijo</label>
+            <label>Teléfono fijo </label>
             <input type="text" name="telFijo" maxlength="9">
         </div>
 
         <div class="campo">
-            <label>Tipo de plan*</label>
+            <label>Tipo de plan <span class="asterisco">*</span></label>
             <select name="tipo" required>
                 <option value="#">Seleccione un plan</option>
                 <option value="Individual">Individual</option>

@@ -16,26 +16,28 @@
 
     <main class="formulario">
         <form action="/consultorio/nuevoalta" method="POST">
-        <div class="campo">
-            <label>id</label>
-            <input type="text" name="clave">
-        </div>
 
         <div class="campo">
-            <label>Nro. consultorio:</label>
-            <input type="text" name="nCons">
+            <label>Identificador Único <span class="asterisco">*</span></label>
+            <input type="text" name="clave" maxlength="3" required>
         </div>
         
         <div class="campo">
-            <label>ID local:</label>
-            <input type="text" name="idLocal">
+            <label>Nro. de consultorio <span class="asterisco">*</span></label>
+            <input type="text" name="nCons" maxlength="3" required>
         </div>
-
+        
+        <div class="boton">
         <input type="submit" value="INGRESAR">
+        </div>
         
     </form>
     </main>
     
+
+
 <%- include('footer') %>
+
+<script src="/js/val_con.js"></script>
 </body>
 </html>
