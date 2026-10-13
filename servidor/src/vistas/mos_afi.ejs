@@ -36,8 +36,8 @@
                         <td><%= afi.ci_afiliado %></td>
                         <td><%= afi.nombre %></td>
                         <td><%= afi.apellido %></td>
-                        <td><%= afi.tel_cel %></td>
-                        <td><%= afi.tel_fijo %></td>
+                        <td><%= afi.tel_cel ? afi.tel_cel : "Sin teléfono" %></td>
+                        <td><%= afi.tel_fijo ? afi.tel_fijo : "Sin teléfono" %></td>
                         <td><%= afi.tipo_plan %></td>
                     </tr>
                 <% });

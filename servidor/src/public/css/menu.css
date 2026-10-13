@@ -145,7 +145,7 @@ footer {
 
 
 
-.lista-especialidades {
+.lista-especialidades, .lista-servicios {
     display: none;
     background: white;
     border: 1px solid #ddd;
@@ -155,13 +155,13 @@ footer {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.opcion-especialidad {
+.opcion-especialidad, .opcion-servicio {
     padding: 12px 15px;
     cursor: pointer;
     transition: 0.2s;
 }
 
-.opcion-especialidad:hover {
+.opcion-especialidad:hover, .opcion-servicio:hover {
     background: #233b76;
     color: white;
 }

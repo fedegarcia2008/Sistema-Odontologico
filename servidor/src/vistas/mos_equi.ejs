@@ -34,7 +34,7 @@
                     <tr>
                         <td><%= equi.nroserie %></td>
                         <td><%= equi.tipo %></td>
-                        <td><%= equi.fecha_mantenimiento %></td>  
+                        <td><%= equi.fecha_mantenimiento ? new Date(equi.fecha_mantenimiento).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) : "Sin fecha" %></td>
                         <td><%= equi.consultorio_idconsultorio %></td>                                        
                     </tr>                    
                 <% }); %>

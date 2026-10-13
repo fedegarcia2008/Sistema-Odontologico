@@ -18,29 +18,36 @@
         <form action="/servicio/nuevoalta" method="POST">
         <div class="campo">
 
-            <label>Id:</label>
-            <input type="text" name="clave">
+            <label>Id <span class="asterisco">*</span></label>
+            <input type="text" name="clave" maxlength="2" required>
         </div>
         
+<div class="campo">
+    <label>Tipo de Servicio <span class="asterisco">*</span></label>
+
+    <input type="text" name="nombre" autocomplete="off" required>
+
+    <div id="listaServicios" class="lista-servicios"></div>
+</div>
+
         <div class="campo">
-            <label>Nombre:</label>
-            <input type="text" name="nombre">
+            <label>Costo <span class="asterisco">*</span></label>
+            <input type="text" name="costo" maxlength="8" required>
         </div>
 
         <div class="campo">
-            <label>Costo:</label>
-            <input type="number" name="costo">
-        </div>
-
-        <div class="campo">
-            <label>id odo:</label>
-            <input type="text" name="idOdo">
+            <label>id Odontólogo <span class="asterisco">*</span></label>
+            <input type="text" name="idOdo" maxlength="3" required>
         </div>
          
+        <div class="boton">
         <input type="submit" value="INGRESAR">
-        
+        </div>
+
     </form>
     </main>
 <%- include('footer') %>
+
+<script src="/js/val_ser.js"></script>
 </body>
 </html>

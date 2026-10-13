@@ -16,21 +16,35 @@
 
     <main class="formulario">
         <form action="/consulta/nuevoalta" method="POST">
+
         <div class="campo">
-            <label>Fecha:</label>
-            <input type="date" name="fecha">
+            <label>Fecha <span class="asterisco">*</span></label>
+            <input type="date" name="fecha" required>
         </div>
         
         <div class="campo">
-            <label>Hora:</label>
-            <input type="time" name="hora">
+            <label>Hora <span class="asterisco">*</span></label>
+            <input type="time" name="hora" required>
         </div>
         
-        <!-- revisar la parte del horario, filtrar odontologos y si el id es autoincrement idOdo idAfi-->
+        <div class="campo">
+            <label>id Odontólogo <span class="asterisco">*</span></label>
+            <input type="text" name="idOdo" maxlength="3" required>
+        </div>
+
+         <div class="campo">
+            <label>id afiliado<span class="asterisco">*</span></label>
+            <input type="text" name="idAfi"  maxlength="10" required>
+        </div>
+        
+        <div class="boton">
         <input type="submit" value="INGRESAR">
-        
+        </div>
+
     </form>
     </main>
 <%- include('footer') %>
+
+<script src="/js/val_ser.js"></script>
 </body>
 </html>
