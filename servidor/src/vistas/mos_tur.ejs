@@ -36,7 +36,7 @@
                 registros.forEach(tur => { %>
                     <tr>
                         <td><%= tur.idconsulta %></td>
-                        <td><%= tur.fecha %></td>
+                        <td><%= new Date(tur.fecha).toLocaleDateString("es-AR", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }) %></td>
                         <td><%= tur.horario %></td>  
                         <td><%= tur.odontologo_idodontologo %></td>  
                         <td><%= tur.afilido_ci_afiliado %></td> 
