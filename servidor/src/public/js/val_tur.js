@@ -4,7 +4,7 @@ let idOdo = document.querySelector('[name="idOdo"]');
         this.value = this.value.replace(/\D/g, "");
     });
 
-let idAfi = document.querySelector('[name="idafi"]');
+let idAfi = document.querySelector('[name="idAfi"]');
 
     idAfi.addEventListener("input", function () {
         this.value = this.value.replace(/\D/g, "");

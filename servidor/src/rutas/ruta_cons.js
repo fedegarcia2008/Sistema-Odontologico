@@ -11,5 +11,5 @@ rConsultorio.get('/consultorio/buscar', busc_cons)
 rConsultorio.get('/consultorio/mostrar', mos_cons)
 
 
-rConsultorio.post('/consulta/nuevoalta', nuevo_cons)
+rConsultorio.post('/consultorio/nuevoalta', nuevo_cons)
 export {rConsultorio}
