@@ -36,9 +36,10 @@
                 registros.forEach(tur => { %>
                     <tr>
                         <td><%= tur.idconsulta %></td>
-                        <td><%= new Date(equi.fecha_mantenimiento).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %></td>
+                        <td><%= new Date(tur.fecha).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %></td>
+                        <td><%= tur.horario %></td>
                         <td><%= tur.odontologo_idodontologo %></td>  
-                        <td><%= tur.afilido_ci_afiliado %></td> 
+                        <td><%= tur.afiliado_ci_afiliado %></td> 
                     </tr>   
                 <% }); %>
             <% }

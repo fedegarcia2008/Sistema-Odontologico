@@ -14,3 +14,9 @@ let clave = document.querySelector('[name="clave"]');
             this.value = numeros;
         }
     });
+
+let idLocal = document.querySelector('[name="idLocal"]');
+
+    idLocal.addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, "");
+    });

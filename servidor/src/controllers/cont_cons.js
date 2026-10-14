@@ -24,16 +24,15 @@ export const busc_cons = (pet, resp)=>{
 
 
 export const nuevo_cons = async (pet, resp) => {
-
-    let id, nro, idlocal;
-
+  console.log(pet.body);
+    let id, nro, local;
     id = pet.body.clave;
     nro = pet.body.nCons;
-    idlocal = pet.body.idLocal;
+    local = pet.body.idLocal;
 
     try {
 
-        let altasql = "INSERT INTO consultorio (idconsultorio, numero, local_idlocal) VALUES ('" + id + "', '" + nro + "', '" + idlocal + "');";
+        let altasql = "INSERT INTO consultorio (idconsultorio, numero, local_idlocal) VALUES ('" + id + "', '" + nro + "', '" + local + "');";
 
         const [registro] = await bdd.query(altasql);
         console.log(registro)
