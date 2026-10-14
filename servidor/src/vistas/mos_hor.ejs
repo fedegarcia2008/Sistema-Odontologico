@@ -36,8 +36,8 @@
                     <tr>
                         <td><%= hor.idhorario %></td>
                         <td><%= hor.dia %></td>
-                        <td><%= hor.horario_comienzo %></td>  
-                        <td><%= hor.horario_final%></td> 
+                        <td><%= hor.horario_comienzo.slice(0, 5) %></td>
+                        <td><%= hor.horario_final.slice(0, 5) %></td>
                         <td><%= hor.odontologo_idodontologo %></td> 
                     </tr>   
                 <% }); %>

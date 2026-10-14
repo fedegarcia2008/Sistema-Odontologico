@@ -31,7 +31,7 @@
                 registros.forEach(cta => { %>
                     <tr>
                         <td><%= cta.afiliado_ci_afiliado %></td>
-                        <td><%= cta.saldo %></td>
+                        <td><%= "$" %><%= cta.saldo %></td>
                         <td><%= cta.tratamiento_realizado_idtratamiento_realizado %></td>                                         
                     </tr>                    
                 <% }); %>
