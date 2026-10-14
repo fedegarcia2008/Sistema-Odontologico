@@ -35,33 +35,38 @@ export const nuevo_afi = async (pet, resp) => {
     id = pet.body.clave;
     nombre = pet.body.nombre;
     apellido = pet.body.apellido;
-    telCel = pet.body.telCelular;
-    telFijo = pet.body.telFijo;
+
+
+    telCel = parseInt(pet.body.telCelular);
+    telCel = isNaN(telCel) ? 'NULL' : telCel;
+
+    telFijo = parseInt(pet.body.telFijo);
+    telFijo = isNaN(telFijo) ? 'NULL' : telFijo;
+
+    
     plan = pet.body.tipo;
 
     try {
 
-       let altasql = "INSERT INTO afiliado (ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan) VALUES ('" + id + "', '" + nombre + "', '" + apellido + "', '" + telCel + "', '" + telFijo + "', '" + plan + "');";
+       let altasql = "INSERT INTO afiliado (ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan) VALUES ('" + id + "', '" + nombre + "', '" + apellido + "', " + telCel + ", " + telFijo + ", '" + plan + "');";
  
         const [registro] = await bdd.query(altasql);
         console.log(registro)
         resp.render('alta_afi', {
-            guardado: true, 
-            icono: "success",
-            posicion: "top-end",
-            msj: "Afiliado Guardado",
-            tiempo: 1500, 
+            guardado: true,
+            posicion: 'top-end',
+            msj: 'Afiliado Guardado',
+            tiempo: 1500,
             botonConfirma: false
-        })
-    } catch (Error) {
-        console.log('Error, en la sentencia INSERT');
-        let msjError = Error;
+        });
+    } catch (error) {
+        console.error('Error en la sentencia INSERT:', error);
         resp.render('alta_afi', {
             guardado: 'Error',
-            msj: msjError
-        })
+            msj: 'No se pudo guardar el afiliado.'
+        });
     }
-}
+};
 
 
 export const mos_afi = async (pet, resp) => {

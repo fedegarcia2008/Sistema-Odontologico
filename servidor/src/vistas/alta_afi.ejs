@@ -49,7 +49,7 @@ size tamaño de la caja de texto-->
         <div class="campo">
             <label>Tipo de plan <span class="asterisco">*</span></label>
             <select name="tipo" required>
-                <option value="#">Seleccione un plan</option>
+                <option value="">Seleccione un plan</option>
                 <option value="Individual">Individual</option>
                 <option value="Grupal">Grupal</option>
             </select>
@@ -66,22 +66,23 @@ size tamaño de la caja de texto-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-<% if (typeof guardado !== 'undefined' && guardado == true) { %>
+
+<% if (locals.guardado === true) { %>
     <script>
         Swal.fire({
             position: '<%= posicion %>',
-            icon: "success",
-            title: "<%= msj %>",
-            showConfirmButton: '<%= botonConfirma %>'
+            icon: 'success',
+            title: '<%= msj %>',
+            showConfirmButton: '<%= botonConfirma %>',
+            timer: '<%= tiempo %>'
         });
     </script>
-
-<% } else if (typeof guardado !== 'undefined' && guardado == 'Error') { %>
+<% } else if (locals.guardado === 'Error') { %>
     <script>
         Swal.fire({
-            icon: "error",
-            title: "Error al intentar guardar",
-            text: "<%= msj %>"
+            icon: 'error',
+            title: 'Error al intentar guardar',
+            text: '<%= msj %>'
         });
     </script>
 <% } %>
