@@ -36,14 +36,14 @@ export const nuevo_afi = async (pet, resp) => {
     nombre = pet.body.nombre;
     apellido = pet.body.apellido;
 
-
+    // pasar los telefonos a nvarchar
     telCel = parseInt(pet.body.telCelular);
     telCel = isNaN(telCel) ? 'NULL' : telCel;
 
     telFijo = parseInt(pet.body.telFijo);
     telFijo = isNaN(telFijo) ? 'NULL' : telFijo;
 
-    
+
     plan = pet.body.tipo;
 
     try {
@@ -54,7 +54,6 @@ export const nuevo_afi = async (pet, resp) => {
         console.log(registro)
         resp.render('alta_afi', {
             guardado: true,
-            posicion: 'top-end',
             msj: 'Afiliado Guardado',
             tiempo: 1500,
             botonConfirma: false
