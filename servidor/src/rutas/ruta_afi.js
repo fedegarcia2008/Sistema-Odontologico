@@ -12,4 +12,8 @@ rAfiliado.get('/afiliado/mostrar', mos_afi)
 
 rAfiliado.post('/afiliado/nuevoalta', nuevo_afi)
 
+rAfiliado.get('/afiliado/buscarxdni/:id', fun1)
+
+// rAfiliado.get('/afiliado/buscarxdni/:apehtml/:nomhtml', fun1)
+
 export {rAfiliado}
