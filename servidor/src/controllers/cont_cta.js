@@ -19,7 +19,7 @@ export const mod_cta = (pet, resp)=>{
 }
 
 export const busc_cta = (pet, resp)=>{
-    resp.render('busc_cta')
+    resp.render('busc_cta', {federico: false})
 }
 
 
@@ -54,5 +54,18 @@ export const mos_cta = async (pet, resp) => {
         resp.render('mos_cta', { registros });
     } catch (error) {
         console.log("No puede mostrar las cta cte");
+    }
+}
+
+
+export const buscta_id = async (pet, resp)=>{
+      let id = pet.params.clave;
+      try {
+        let buscarsql = "SELECT afiliado_ci_afiliado, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte WHERE afiliado_ci_afiliado = '"+ id +"'";
+        const [busc_registros] = await bdd.query(buscarsql);
+        console.log(busc_registros)
+    resp.render('busc_cta', { busc_registros, federico: true });
+    }     catch (error) {
+        console.error('Error al buscar la cuenta corriente:', error);
     }
 }

@@ -11,4 +11,6 @@ rCtaCte.get('/cuentacorriente/buscar', busc_cta)
 rCtaCte.get('/cuentacorriente/mostrar', mos_cta)
 
 rCtaCte.post('/cuentacorriente/nuevoalta', nuevo_cta)
+
+rCtaCte.get('/cuentacorriente/buscarid/:clave', buscta_id)
 export {rCtaCte}
