@@ -19,7 +19,7 @@ export const mod_equi = (pet, resp)=>{
 }
 
 export const busc_equi = (pet, resp)=>{
-    resp.render('busc_equi')
+    resp.render('busc_equi' , {federico: false})
 }
 
 
@@ -54,5 +54,18 @@ export const mos_equi = async (pet, resp) => {
         resp.render('mos_equi', { registros });
     } catch (error) {
         console.log("No puede mostrar los equipamientos");
+    }
+}
+
+
+export const buscequi_id = async (pet, resp)=>{
+      let id = pet.params.clave;
+      try {
+        let buscarsql = "SELECT nroserie, tipo, fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE nroserie= '"+ id +"'";
+        const [busc_registros] = await bdd.query(buscarsql);
+        console.log(busc_registros)
+    resp.render('busc_equi', { busc_registros, federico: true });
+    }     catch (error) {
+        console.error('Error al buscar el equipamiento:', error);
     }
 }

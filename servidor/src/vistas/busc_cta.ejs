@@ -34,10 +34,20 @@
     function busc_form(event) {
         event.preventDefault();
         let idejs = document.getElementById('clave').value;
-        window.location.href = `/convenio/buscarid/${idejs}`;
+        window.location.href = `/cuentacorriente/buscarid/${idejs}`;
         document.getElementById('clave').value = "";        
     }
+    let form_eliminar = document.getElementById('form_eliminar');
 
+    form_eliminar.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        let idhtml = '<%= baja_registros[0].ci_afiliado %>';
+
+        if (confirm('¿Estás seguro de que querés eliminar este afiliado?')) {
+            window.location.href = `/afiliado/eliminar/${encodeURIComponent(idhtml)}`;
+        }
+    });
     
 </script>
 
@@ -47,7 +57,7 @@
 <% if (federico) { %>
         <% if (busc_registros.length > 0) { %>
       
-                <p>Clave:  <%= busc_registros[0].afiliado_ci_afiliado %></p>
+                <p>Id Afiliado:  <%= busc_registros[0].afiliado_ci_afiliado %></p>
                 <p>Saldo:  <%= busc_registros[0].saldo%></p>
                 <p>ID Tratamiento Realizado:  <%= busc_registros[0].tratamiento_realizado_idtratamiento_realizado %></p>
       
