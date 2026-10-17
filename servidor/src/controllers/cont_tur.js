@@ -19,7 +19,7 @@ export const mod_tur = (pet, resp)=>{
 }
 
 export const busc_tur = (pet, resp)=>{
-    resp.render('busc_tur')
+    resp.render('busc_tur', {federico: false})
 }
 
 
@@ -55,5 +55,17 @@ export const mos_tur = async (pet, resp) => {
         resp.render('mos_tur', { registros });
     } catch (error) {
         console.log("No puede mostrar las consultas");
+    }
+}
+
+export const busctur_id = async (pet, resp)=>{
+      let id = pet.params.clave;
+      try {
+        let buscarsql = "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE idconsulta = '"+ id +"'";
+        const [busc_registros] = await bdd.query(buscarsql);
+        console.log(busc_registros)
+    resp.render('busc_tur', { busc_registros, federico: true });
+    }     catch (error) {
+        console.error('Error al buscar el turno:', error);
     }
 }
