@@ -6,14 +6,14 @@
     <link rel="stylesheet" href="/css/menu.css">
     <link rel="icon" href="/img/favicon.webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Buscar Afiliado - Secure Dental</title>
+    <title>Buscar Servicio - Secure Dental</title>
 </head>
 
 <body>
  <%- include('header') %>
 
 
-    <h1>BUSCAR AFILIADO</h1>
+    <h1>BUSCAR SERVICIO</h1>
 
         <main class="formulario">
 
@@ -34,7 +34,7 @@
     function busc_form(event) {
         event.preventDefault();
         let idejs = document.getElementById('clave').value;
-        window.location.href = `/afiliado/buscarid/${idejs}`;
+        window.location.href = `/servicio/buscarid/${idejs}`;
         document.getElementById('clave').value = "";        
     }
 
