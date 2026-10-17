@@ -62,13 +62,13 @@ export const mos_his = async (pet, resp) => {
 }
 
 
-export const buscafi_id = async (pet, resp)=>{
+export const buschis_id = async (pet, resp)=>{
       let id = pet.params.clave;
       try {
         let buscarsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado ORDER BY idtratamiento_realizado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_afi', { busc_registros, federico: true });
+    resp.render('busc_his', { busc_registros, federico: true });
     }     catch (error) {
         console.error('Error al buscar historia clinica:', error);
     }
