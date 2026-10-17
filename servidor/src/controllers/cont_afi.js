@@ -115,7 +115,7 @@ let id = pet.params.clave;
         let eliminarsql = "DELETE FROM afiliado WHERE ci_afiliado = '"+ id +"'";
         const [eliminar_registros] = await bdd.query(eliminarsql);
         console.log(eliminar_registros)
-    resp.render('baja_afi', { eliminar_registros, federico: true});
+    resp.render('baja_afi', { eliminado: false, federico: true});
     }     catch (error) {
         console.error('Error al buscar afiliado:', error);
     }

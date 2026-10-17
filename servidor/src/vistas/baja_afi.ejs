@@ -45,15 +45,23 @@
                 <p>Teléfono fijo:  <%= baja_registros[0].tel_fijo %></p>
                 <p>Plan: <%= baja_registros[0].tipo_plan %></p>
       
+<form id="form_eliminar">
+    <button type="submit" class="confirmar">
+        ELIMINAR
+    </button>
+</form>
+
             <% } else { %>
 
                     <p> No hay datos para mostrar</p>
 
             <% } %>
 
-    <button style="width: 50px;">ELIMINAR</button>
+
 
  <% } %>
+
+ 
 <%- include('footer') %>
 
 </body>
