@@ -1,5 +1,5 @@
 import express from 'express';
-import { menu_hor, alta_hor, baja_hor, mod_hor, busc_hor, mos_hor, nuevo_hor } from '../controllers/cont_hor.js';
+import { menu_hor, alta_hor, baja_hor, mod_hor, busc_hor, mos_hor, nuevo_hor, buschor_id } from '../controllers/cont_hor.js';
 
 const rHorario = express.Router();
 
@@ -11,4 +11,7 @@ rHorario.get('/horario/buscar', busc_hor)
 rHorario.get('/horario/mostrar', mos_hor)
 
 rHorario.post('/horario/nuevoalta', nuevo_hor)
+
+rHorario.get('/horario/buscarid/:clave', buschor_id)
+
 export {rHorario}

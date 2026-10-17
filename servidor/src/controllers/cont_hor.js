@@ -19,7 +19,7 @@ export const mod_hor = (pet, resp)=>{
 }
 
 export const busc_hor = (pet, resp)=>{
-    resp.render('busc_hor')
+    resp.render('busc_hor', {federico: false})
 }
 
 
@@ -55,5 +55,17 @@ export const mos_hor = async (pet, resp) => {
         resp.render('mos_hor', { registros });
     } catch (error) {
         console.log("No puede mostrar los horario");
+    }
+}
+
+export const buschor_id = async (pet, resp)=>{
+      let id = pet.params.clave;
+      try {
+        let buscarsql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM horario WHERE idhorario = '"+ id +"'";
+        const [busc_registros] = await bdd.query(buscarsql);
+        console.log(busc_registros)
+    resp.render('busc_hor', { busc_registros, federico: true });
+    }     catch (error) {
+        console.error('Error al buscar horario:', error);
     }
 }
