@@ -61,7 +61,19 @@
 
  <% } %>
 
- 
+ <script>
+    let form_eliminar = document.getElementById('form_eliminar');
+
+    form_eliminar.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        let idhtml = '<%= baja_registros[0].ci_afiliado %>';
+
+        if (confirm('¿Estás seguro de que querés eliminar este afiliado?')) {
+            window.location.href = `/afiliado/eliminar/${encodeURIComponent(idhtml)}`;
+        }
+    });
+</script>
 <%- include('footer') %>
 
 </body>
