@@ -19,7 +19,7 @@ export const mod_cons = (pet, resp)=>{
 }
 
 export const busc_cons = (pet, resp)=>{
-    resp.render('busc_cons')
+    resp.render('busc_cons, {federico: false}')
 }
 
 
@@ -52,5 +52,17 @@ export const mos_cons = async (pet, resp) => {
         resp.render('mos_cons', { registros });
     } catch (error) {
         console.log("No puede mostrar los Consultorios");
+    }
+}
+
+export const buscons_id = async (pet, resp)=>{
+      let id = pet.params.clave;
+      try {
+        let buscarsql = "SELECT idconsultorio, numero, local_idlocal FROM consultorio WHERE idconsultorio = '"+ id +"'";
+        const [busc_registros] = await bdd.query(buscarsql);
+        console.log(busc_registros)
+    resp.render('busc_cons', { busc_registros, federico: true });
+    }     catch (error) {
+        console.error('Error al buscar consultorio:', error);
     }
 }
