@@ -19,7 +19,7 @@ export const mod_odo = (pet, resp)=>{
 }
 
 export const busc_odo = (pet, resp)=>{
-    resp.render('busc_odo')
+    resp.render('busc_odo' , {federico: false})
 }
 
 
@@ -57,5 +57,18 @@ export const mos_odo = async (pet, resp) => {
         resp.render('mos_odo', { registros });
     } catch (error) {
         console.log("No puede mostrar los odontologos");
+    }
+}
+
+
+export const buscodo_id = async (pet, resp)=>{
+      let id = pet.params.clave;
+      try {
+        let buscarsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE idodontologo = '"+ id +"'";
+        const [busc_registros] = await bdd.query(buscarsql);
+        console.log(busc_registros)
+    resp.render('busc_odo', { busc_registros, federico: true });
+    }     catch (error) {
+        console.error('Error al buscar el odontologo:', error);
     }
 }
