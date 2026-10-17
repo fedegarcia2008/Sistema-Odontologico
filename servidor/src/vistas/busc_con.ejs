@@ -13,28 +13,51 @@
  <%- include('header') %>
 
 
-    <h1>BUSCAR CONVENIOS</h1>
+    <h1>BUSCAR CONVENIO</h1>
 
-    <main class="formulario">
+        <main class="formulario">
+
+    <form onsubmit="busc_form(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave">
+            <input type="text" id="clave" name="clave"  >
         </div>
-
-        <div class="campo">
-            <label>Nombre:</label>
-            <input type="text" id="nombre">
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
         </div>
+        
 
-        <div class="campo">
-            <label>Apellido:</label>
-            <input type="text" id="apellido">
-        </div>
+</form>
 
-        <button class="confirmar">Confirmar</button>
+<script>
+    function busc_form(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('clave').value;
+        window.location.href = `/convenio/buscarid/${idejs}`;
+        document.getElementById('clave').value = "";        
+    }
 
-        <div id="resultado"></div>
+    
+</script>
+
+
     </main>
+
+<% if (federico) { %>
+        <% if (busc_registros.length > 0) { %>
+      
+                <p>Clave:  <%= busc_registros[0].idconvenio %></p>
+                <p>Nombre:  <%= busc_registros[0].nombre %></p>
+                <p>Apellido:  <%= busc_registros[0].rebaja %></p>
+      
+            <% } else { %>
+
+                    <p> No hay datos para mostrar</p>
+
+            <% } %>
+ <% } %>
+
 <%- include('footer') %>
 
 </body>

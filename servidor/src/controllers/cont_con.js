@@ -19,7 +19,7 @@ export const mod_con = (pet, resp)=>{
 }
 
 export const busc_con = (pet, resp)=>{
-    resp.render('busc_con')
+    resp.render('busc_con', {federico: false})
 }
 
 
@@ -54,3 +54,17 @@ export const mos_con = async (pet, resp) => {
         console.log("No puede mostrar los convenios");
     }
 }
+
+
+export const buscon_id = async (pet, resp)=>{
+      let id = pet.params.clave;
+      try {
+        let buscarsql = "SELECT idconvenio, nombre, rebaja FROM convenio WHERE idconvenio = '"+ id +"'";
+        const [busc_registros] = await bdd.query(buscarsql);
+        console.log(busc_registros)
+    resp.render('busc_con', { busc_registros, federico: true });
+    }     catch (error) {
+        console.error('Error al buscar la consulta:', error);
+    }
+}
+
