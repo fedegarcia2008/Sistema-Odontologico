@@ -11,4 +11,6 @@ rEquipamiento.get('/equipamiento/buscar', busc_equi)
 rEquipamiento.get('/equipamiento/mostrar', mos_equi)
 
 rEquipamiento.post('/equipamiento/nuevoalta', nuevo_equi)
+
+rEquipamiento.get('/equipamiento/buscarid/:clave', buscequi_id)
 export {rEquipamiento}
