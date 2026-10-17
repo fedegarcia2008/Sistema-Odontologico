@@ -61,7 +61,7 @@ export const nuevo_afi = async (pet, resp) => {
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
         resp.render('alta_afi', {
-            guardado: 'Error',
+            guardado: false,
             z: true,
             msj: 'No se pudo guardar el afiliado.'
         });
