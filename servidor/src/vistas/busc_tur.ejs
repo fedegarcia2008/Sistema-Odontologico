@@ -48,8 +48,8 @@
         <% if (busc_registros.length > 0) { %>
       
                 <p>Clave:  <%= busc_registros[0].idconsulta %></p>
-                <p>Fecha:  <%= busc_registros[0].fecha %></p>
-                <p>Horario:  <%= busc_registros[0].horario %></p>
+                <p>Fecha:  <%= busc_registros[0].new Date(fecha).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %></p>
+                <p>Horario:  <%= busc_registros[0].horario.slice(0,5) %></p>
                 <p>Id Odonotologo:  <%= busc_registros[0].odontologo_idodontologo %></p>
                 <p>Id Afiliado:  <%= busc_registros[0].afiliado_ci_afiliado %></p>
                 

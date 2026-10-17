@@ -49,8 +49,8 @@
       
                 <p>Clave:  <%= busc_registros[0].idhorario %></p>
                 <p>Dia:  <%= busc_registros[0].dia %></p>
-                <p>Horario comienzo:  <%= busc_registros[0].horario_comienzo %></p>
-                <p>horario final:  <%= busc_registros[0].horario_final %></p>
+                <p>Horario comienzo:  <%= busc_registros[0].horario_comienzo.slice(0, 5) %></p>
+                <p>horario final:  <%= busc_registros[0].horario_final.slice(0, 5) %></p>
                 <p>id odontologo:  <%= busc_registros[0].odontologo_idodontologo %></p>
       
             <% } else { %>
