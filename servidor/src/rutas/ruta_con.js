@@ -1,5 +1,5 @@
 import express from 'express';
-import { menu_con, alta_con, baja_con, mod_con, busc_con, mos_con, nuevo_con } from '../controllers/cont_con.js';
+import { menu_con, alta_con, baja_con, mod_con, busc_con, mos_con, nuevo_con, buscon_id } from '../controllers/cont_con.js';
 
 const rConvenio = express.Router();
 
@@ -11,5 +11,7 @@ rConvenio.get('/convenio/buscar', busc_con)
 rConvenio.get('/convenio/mostrar', mos_con)
 
 rConvenio.post('/convenio/nuevoalta', nuevo_con)
+
+rConvenio.get('/convenio/buscarid/:clave', buscon_id)
 
 export {rConvenio}
