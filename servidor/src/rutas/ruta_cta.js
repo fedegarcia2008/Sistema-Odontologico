@@ -1,5 +1,9 @@
 import express from 'express';
+<<<<<<< HEAD
 import { menu_cta, alta_cta, baja_cta, mod_cta, busc_cta, mos_cta, nuevo_cta, buscta_id } from '../controllers/cont_cta.js';
+=======
+import { menu_cta, alta_cta, baja_cta, mod_cta, busc_cta, mos_cta, nuevo_cta, buscta_id} from '../controllers/cont_cta.js';
+>>>>>>> 4a14be9fceaeb0af515c3ba7ceda7f7a26ff1008
 
 const rCtaCte = express.Router();
 
