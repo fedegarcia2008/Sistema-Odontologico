@@ -19,7 +19,7 @@ export const mod_cons = (pet, resp)=>{
 }
 
 export const busc_cons = (pet, resp)=>{
-    resp.render('busc_cons, {federico: false}')
+    resp.render('busc_cons', {federico: false})
 }
 
 
