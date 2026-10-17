@@ -13,27 +13,47 @@
  <%- include('header') %>
 
     <h1>BAJA AFILIADO</h1>
+<main>
 
-    <main class="formulario">
+    <form onsubmit="baja_form(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave">
+            <input type="text" id="clave" name="clave"  >
         </div>
+        
+        <input type="submit" class="confirmar" value="Confirmar">
+</form>
 
-        <div class="campo">
-            <label>Nombre:</label>
-            <input type="text" id="nombre">
-        </div>
-
-        <div class="campo">
-            <label>Apellido:</label>
-            <input type="text" id="apellido">
-        </div>
-
-        <button class="confirmar">Confirmar</button>
-
-        <div id="resultado"></div>
+<script>
+    function baja_form(event) {
+        event.preventDefault();
+        let idhtml = document.getElementById('clave').value;
+        window.location.href = `/afiliado/bajaxid/${idhtml}`;
+        document.getElementById('clave').value = "";        
+    }
+</script>
     </main>
+
+    
+<% if (federico) { %>
+        <% if (baja_registros.length > 0) { %>
+      
+                <p>Clave:  <%= baja_registros[0].ci_afiliado %></p>
+                <p>Nombre:  <%= baja_registros[0].nombre %></p>
+                <p>Apellido:  <%= baja_registros[0].apellido %></p>
+                <p>Celular:  <%= baja_registros[0].tel_cel %></p>
+                <p>Teléfono fijo:  <%= baja_registros[0].tel_fijo %></p>
+                <p>Plan: <%= baja_registros[0].tipo_plan %></p>
+      
+            <% } else { %>
+
+                    <p> No hay datos para mostrar</p>
+
+            <% } %>
+
+    <button style="width: 50px;">ELIMINAR</button>
+
+ <% } %>
 <%- include('footer') %>
 
 </body>

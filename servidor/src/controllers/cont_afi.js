@@ -11,15 +11,15 @@ export const alta_afi = (pet, resp)=>{
 }
 
 export const baja_afi = (pet, resp)=>{
-    resp.render('baja_afi')
+    resp.render('baja_afi', {federico: false})
 }
 
 export const mod_afi = (pet, resp)=>{
-    resp.render('mod_afi')
+    resp.render('mod_afi' )
 }
 
 export const busc_afi = (pet, resp)=>{
-    resp.render('busc_afi')
+    resp.render('busc_afi', {federico: false})
 }
 
 /*
@@ -80,9 +80,46 @@ export const mos_afi = async (pet, resp) => {
     }
 }
 
-/*
-export const fun1 = (pet, resp)=>{
-    let id1 = pet.params.id;
-    selecgt id,nom,ape from clientes where id = id1
+
+export const buscafi_id = async (pet, resp)=>{
+      let id = pet.params.clave;
+      try {
+        let buscarsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE ci_afiliado = '"+ id +"'";
+        const [busc_registros] = await bdd.query(buscarsql);
+        console.log(busc_registros)
+    resp.render('busc_afi', { busc_registros, federico: true });
+    }     catch (error) {
+        console.error('Error al buscar afiliado:', error);
+    }
 }
-    */
+
+
+
+
+// para borrar
+export const  bajafi_id = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let bajasql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE ci_afiliado = '"+ id +"'";
+        const [baja_registros] = await bdd.query(bajasql);
+        console.log(baja_registros)
+    resp.render('baja_afi', { baja_registros, federico: true });
+    }     catch (error) {
+        console.error('Error al buscar afiliado:', error);
+    }
+}
+
+export const eliminar_afi = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let eliminarsql = "DELETE FROM afiliado WHERE ci_afiliado = '"+ id +"'";
+        const [eliminar_registros] = await bdd.query(eliminarsql);
+        console.log(eliminar_registros)
+    resp.render('baja_afi', { eliminar_registros, federico: true});
+    }     catch (error) {
+        console.error('Error al buscar afiliado:', error);
+    }
+}
+
+// // va todo tu select para buscar el afiliado que queres borrar
+// // DELETE FROM afiliado WHERE ci_afiliado = '"+ clave +"';
