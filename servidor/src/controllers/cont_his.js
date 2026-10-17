@@ -19,7 +19,7 @@ export const mod_his = (pet, resp)=>{
 }
 
 export const busc_his = (pet, resp)=>{
-    resp.render('busc_his')
+    resp.render('busc_his', {federico: false})
 }
 
 
@@ -58,5 +58,18 @@ export const mos_his = async (pet, resp) => {
         resp.render('mos_his', { registros });
     } catch (error) {
         console.log("No puede mostrar las historias clinicas");
+    }
+}
+
+
+export const buscafi_id = async (pet, resp)=>{
+      let id = pet.params.clave;
+      try {
+        let buscarsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado ORDER BY idtratamiento_realizado = '"+ id +"'";
+        const [busc_registros] = await bdd.query(buscarsql);
+        console.log(busc_registros)
+    resp.render('busc_afi', { busc_registros, federico: true });
+    }     catch (error) {
+        console.error('Error al buscar historia clinica:', error);
     }
 }
