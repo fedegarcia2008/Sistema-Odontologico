@@ -20,7 +20,7 @@
     <form onsubmit="busc_form(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave"  >
+            <input type="text" id="clave" name="clave" maxlength="2">
         </div>
         
        <div class="boton">
@@ -29,17 +29,6 @@
         
 
 </form>
-
-<script>
-    function busc_form(event) {
-        event.preventDefault();
-        let idejs = document.getElementById('clave').value;
-        window.location.href = `/convenio/buscarid/${idejs}`;
-        document.getElementById('clave').value = "";        
-    }
-
-    
-</script>
 
 
     </main>
@@ -60,5 +49,7 @@
 
 <%- include('footer') %>
 
+
+<script src="/js/val_buscar.js"></script>
 </body>
 </html>
