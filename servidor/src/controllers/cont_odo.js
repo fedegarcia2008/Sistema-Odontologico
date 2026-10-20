@@ -7,7 +7,7 @@ export const menu_odo = (pet, resp)=>{
 }
 
 export const alta_odo = (pet, resp)=>{
-    resp.render('alta_odo')
+    resp.render('alta_odo', {alert: false})
 }
 
 export const baja_odo = (pet, resp)=>{

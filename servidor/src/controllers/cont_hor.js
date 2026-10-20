@@ -7,7 +7,7 @@ export const menu_hor = (pet, resp)=>{
 }
 
 export const alta_hor = (pet, resp)=>{
-    resp.render('alta_hor')
+    resp.render('alta_hor', {alert: false})
 }
 
 export const baja_hor = (pet, resp)=>{

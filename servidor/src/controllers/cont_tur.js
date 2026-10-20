@@ -7,7 +7,7 @@ export const menu_tur = (pet, resp)=>{
 }
 
 export const alta_tur = (pet, resp)=>{
-    resp.render('alta_tur')
+    resp.render('alta_tur', {alert: false})
 }
 
 export const baja_tur = (pet, resp)=>{

@@ -7,7 +7,7 @@ export const menu_his = (pet, resp)=>{
 }
 
 export const alta_his = (pet, resp)=>{
-    resp.render('alta_his')
+    resp.render('alta_his', {alert: false})
 }
 
 export const baja_his = (pet, resp)=>{

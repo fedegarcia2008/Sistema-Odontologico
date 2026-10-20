@@ -7,7 +7,7 @@ export const menu_cta = (pet, resp)=>{
 }
 
 export const alta_cta = (pet, resp)=>{
-    resp.render('alta_cta')
+    resp.render('alta_cta', {alert: false})
 }
 
 export const baja_cta = (pet, resp)=>{

@@ -7,7 +7,7 @@ export const menu_equi = (pet, resp)=>{
 }
 
 export const alta_equi = (pet, resp)=>{
-    resp.render('alta_equi')
+    resp.render('alta_equi', {alert: false})
 }
 
 export const baja_equi = (pet, resp)=>{
