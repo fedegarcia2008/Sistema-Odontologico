@@ -30,16 +30,6 @@
 
 </form>
 
-<script>
-    function busc_form(event) {
-        event.preventDefault();
-        let idejs = document.getElementById('clave').value;
-        window.location.href = `/servicio/buscarid/${idejs}`;
-        document.getElementById('clave').value = "";        
-    }
-
-    
-</script>
 
 
     </main>
@@ -60,6 +50,6 @@
  <% } %>
 
 <%- include('footer') %>
-
+<script src="/js/val_buser.js"></script>
 </body>
 </html>

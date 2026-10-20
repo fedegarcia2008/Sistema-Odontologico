@@ -31,12 +31,6 @@
 </form>
 
 <script>
-    function busc_form(event) {
-        event.preventDefault();
-        let idejs = document.getElementById('clave').value;
-        window.location.href = `/cuentacorriente/buscarid/${idejs}`;
-        document.getElementById('clave').value = "";        
-    }
     let form_eliminar = document.getElementById('form_eliminar');
 
     form_eliminar.addEventListener('submit', function(event) {
@@ -69,6 +63,8 @@
  <% } %>
 
 <%- include('footer') %>
+
+<script src="/js/val_buscta.js"></script>
 
 </body>
 </html>
