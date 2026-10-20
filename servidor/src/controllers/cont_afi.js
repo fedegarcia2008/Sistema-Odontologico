@@ -15,7 +15,7 @@ export const baja_afi = (pet, resp)=>{
 }
 
 export const mod_afi = (pet, resp)=>{
-    resp.render('mod_afi',  {alert: false, federico: false} )
+    resp.render('mod_afi',  {alert: false, cargado: false} )
 }
 
 export const busc_afi = (pet, resp)=>{
@@ -100,7 +100,7 @@ let id = pet.params.clave;
         let buscsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE ci_afiliado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_afi', { busc_registros, federico: true, alert: false });
+resp.render('mod_afi', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
     }
@@ -119,7 +119,7 @@ export const modificar_afi = async (pet, resp)=>{
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
  resp.render('mod_afi', {
-            federico: false,
+            cargado: false,
             alert: true,
             guardado: true,
             msj: 'Afiliado Modificado',
@@ -129,7 +129,7 @@ export const modificar_afi = async (pet, resp)=>{
     } catch (error) {
         console.error('Error al modificar afiliado:', error);
         resp.render('mod_afi', {
-            federico: false,
+            cargado: false,
             alert: true,
             guardado: false,
             msj: 'No se pudo modificar el afiliado.'
