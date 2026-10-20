@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="icon" href="/img/favicon.webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Modificar Consultorio - Secure Dental</title>
+</head>
+
+<body>
+   <%- include('header') %>
+
+
+   <h1>MODIFICAR CONSULTORIO</h1>
+
+        <main class="formulario">
+
+    <form onsubmit="busc_form(event)" method="GET">
+        <div class="campo">
+            <label>Clave de identificación:</label>
+            <input type="text" id="clave" name="clave">
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
+
+</form>
+
+    </main>
+
+
+
+
+<% if (cargado) { %>
+<% if (busc_registros.length > 0) { %>
+
+<form onsubmit="mod_form(event)" method="POST">
+
+<div class="campo">
+            <label>Identificador Único</label>
+            <input type="text" name="clave" readonly
+                            value="<%= busc_registros[0].idconsultario %>">
+        </div>
+        
+        <div class="campo">
+            <label>Nro. de consultorio</label>
+            <input type="text" name="nCons" maxlength="3"
+                            value="<%= busc_registros[0].numero %>">
+        </div>
+
+                <div class="campo">
+            <label>ID Local</label>
+            <input type="text" name="idLocal" readonly 
+                            value="<%= busc_registros[0].local_idlocal %>">
+        </div>
+
+        <div class="boton">
+            <input type="submit" value="GUARDAR CAMBIOS">
+        </div>
+
+    </form>
+
+<% } else { %>
+
+    <p>No hay datos para mostrar.</p>
+
+<% } %>
+ <% } %>
+
+
+
+        <script>
+        function busc_form(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('clave').value;
+        window.location.href = `/consultorio/modificarid/${idejs}`;
+        document.getElementById('clave').value = "";   
+        }
+
+    function mod_form(event) {
+        event.preventDefault();
+
+        let formulario = event.target;
+        let idejs = formulario.querySelector('[name="clave"]').value;
+
+        formulario.action = `/consultorio/modificar/${idejs}`;
+        formulario.submit();
+    }
+        </script>
+
+
+
+
+
+ <%- include('sweet_modificar') %>
+
+
+            <%- include('footer') %>
+ 
+</body>
+</html>
