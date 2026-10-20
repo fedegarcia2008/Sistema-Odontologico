@@ -7,7 +7,7 @@ export const menu_con = (pet, resp)=>{
 }
 
 export const alta_con = (pet, resp)=>{
-    resp.render('alta_con')
+    resp.render('alta_con', {alert: false})
 }
 
 export const baja_con = (pet, resp)=>{
@@ -36,12 +36,22 @@ export const nuevo_con = async (pet, resp) => {
 
         const [registro] = await bdd.query(altasql);
         console.log(registro)
-        resp.render('alta_con')
-    } catch (Error) {
-        console.log('Error, en la sentencia INSERT');
-        console.log(Error)
+        resp.render('alta_con', {
+            guardado: true,
+            alert: true,
+            msj: 'Convenio Guardado',
+            tiempo: 1500,
+            botonConfirma: false
+        });
+    } catch (error) {
+        console.error('Error en la sentencia INSERT:', error);
+        resp.render('alta_con', {
+            guardado: false,
+            z: true,
+            msj: 'No se pudo guardar el convenio.'
+        });
     }
-}
+};
 
 
 export const mos_con = async (pet, resp) => {

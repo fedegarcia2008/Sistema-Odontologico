@@ -7,7 +7,7 @@ export const menu_afi = (pet, resp)=>{
 }
 
 export const alta_afi = (pet, resp)=>{
-    resp.render('alta_afi', {z: false})
+    resp.render('alta_afi', {alert: false})
 }
 
 export const baja_afi = (pet, resp)=>{
@@ -53,7 +53,7 @@ export const nuevo_afi = async (pet, resp) => {
         console.log(registro)
         resp.render('alta_afi', {
             guardado: true,
-            z: true,
+            alert: true,
             msj: 'Afiliado Guardado',
             tiempo: 1500,
             botonConfirma: false
