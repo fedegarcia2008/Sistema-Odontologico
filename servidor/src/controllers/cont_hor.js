@@ -37,14 +37,24 @@ export const nuevo_hor = async (pet, resp) => {
 
         let altasql = "INSERT INTO horario (dia, horario_comienzo, horario_final, odontologo_idodontologo) VALUES ('" + dia + "', '" + inicio + "', '" + final + "',  '" + odo + "');";
 
-        const [registro] = await bdd.query(altasql);
+       const [registro] = await bdd.query(altasql);
         console.log(registro)
-        resp.render('alta_hor')
-    } catch (Error) {
-        console.log('Error, en la sentencia INSERT');
-        console.log(Error)
+        resp.render('alta_hor', {
+            guardado: true,
+            alert: true,
+            msj: 'Horario Guardado',
+            tiempo: 1500,
+            botonConfirma: false
+        });
+    } catch (error) {
+        console.error('Error en la sentencia INSERT:', error);
+        resp.render('alta_hor', {
+            guardado: false,
+            alert: true,
+            msj: 'No se pudo guardar el horario.'
+        });
     }
-}
+};
 
 
 export const mos_hor = async (pet, resp) => {

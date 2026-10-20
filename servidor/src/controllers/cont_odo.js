@@ -41,12 +41,22 @@ export const nuevo_odo = async (pet, resp) => {
 
         const [registro] = await bdd.query(altasql);
         console.log(registro)
-        resp.render('alta_odo')
-    } catch (Error) {
-        console.log('Error, en la sentencia INSERT');
-        console.log(Error)
+        resp.render('alta_odo', {
+            guardado: true,
+            alert: true,
+            msj: 'Odontologo Guardado',
+            tiempo: 1500,
+            botonConfirma: false
+        });
+    } catch (error) {
+        console.error('Error en la sentencia INSERT:', error);
+        resp.render('alta_odo', {
+            guardado: false,
+            alert: true,
+            msj: 'No se pudo guardar el odontologo.'
+        });
     }
-}
+};
 
 
 export const mos_odo = async (pet, resp) => {

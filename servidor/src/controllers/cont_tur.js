@@ -39,12 +39,22 @@ export const nuevo_tur = async (pet, resp) => {
 
         const [registro] = await bdd.query(altasql);
         console.log(registro)
-        resp.render('alta_tur')
-    } catch (Error) {
-        console.log('Error, en la sentencia INSERT');
-        console.log(Error)
+        resp.render('alta_tur', {
+            guardado: true,
+            alert: true,
+            msj: 'Turno Guardado',
+            tiempo: 1500,
+            botonConfirma: false
+        });
+    } catch (error) {
+        console.error('Error en la sentencia INSERT:', error);
+        resp.render('alta_tur', {
+            guardado: false,
+            alert: true,
+            msj: 'No se pudo guardar el turno.'
+        });
     }
-}
+};
 
 
 export const mos_tur = async (pet, resp) => {

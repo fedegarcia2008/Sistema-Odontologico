@@ -38,12 +38,22 @@ export const nuevo_equi = async (pet, resp) => {
 
         const [registro] = await bdd.query(altasql);
         console.log(registro)
-        resp.render('alta_equi')
-    } catch (Error) {
-        console.log('Error, en la sentencia INSERT');
-        console.log(Error)
+        resp.render('alta_equi', {
+            guardado: true,
+            alert: true,
+            msj: 'Equipamiento Guardado',
+            tiempo: 1500,
+            botonConfirma: false
+        });
+    } catch (error) {
+        console.error('Error en la sentencia INSERT:', error);
+        resp.render('alta_equi', {
+            guardado: false,
+            alert: true,
+            msj: 'No se pudo guardar el equipamiento.'
+        });
     }
-}
+};
 
 
 export const mos_equi = async (pet, resp) => {
