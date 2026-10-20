@@ -1,4 +1,4 @@
-    function busc_form(event) {
+        function busc_form(event) {
         event.preventDefault();
         let idejs = document.getElementById('clave').value;
         window.location.href = `/afiliado/buscarid/${idejs}`;

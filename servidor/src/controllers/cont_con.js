@@ -47,7 +47,7 @@ export const nuevo_con = async (pet, resp) => {
         console.error('Error en la sentencia INSERT:', error);
         resp.render('alta_con', {
             guardado: false,
-            z: true,
+            alert: true,
             msj: 'No se pudo guardar el convenio.'
         });
     }
