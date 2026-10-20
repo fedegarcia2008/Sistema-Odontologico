@@ -15,7 +15,7 @@ export const baja_cons = (pet, resp)=>{
 }
 
 export const mod_cons = (pet, resp)=>{
-    resp.render('mod_cons')
+    resp.render('mod_cons', {alert: false, cargado: false})
 }
 
 export const busc_cons = (pet, resp)=>{
@@ -76,3 +76,48 @@ export const buscons_id = async (pet, resp)=>{
         console.error('Error al buscar consultorio:', error);
     }
 }
+
+
+// para modificar
+export const  modcons_id = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let buscsql = "SELECT idconsultorio, numero, local_idlocal FROM consultorio WHERE idconsultorio = '"+ id +"'";
+        const [busc_registros] = await bdd.query(buscsql);
+        console.log(busc_registros)
+resp.render('mod_cons', { busc_registros, cargado: true, alert: false });
+    } catch (error) {
+        console.error('Error al buscar el consultorio:', error);
+    }
+};
+
+export const modificar_cons = async (pet, resp)=>{
+       let id, nro, local;
+    id = pet.body.clave;
+    nro = pet.body.nCons;
+    local = pet.body.idLocal;
+
+      try {
+        let modificarsql = "UPDATE consultorio SET numero = '"+ nro +"' WHERE idconsultorio = '"+ id +"'";
+        const [modificar_registros] = await bdd.query(modificarsql);
+        console.log(modificar_registros)
+ resp.render('mod_cons', {
+            cargado: false,
+            alert: true,
+            guardado: true,
+            msj: 'Consultorio Modificado',
+            tiempo: 1500,
+            botonConfirma: false
+        });
+    } catch (error) {
+        console.error('Error al modificar consultorio:', error);
+        resp.render('mod_cons', {
+            cargado: false,
+            alert: true,
+            guardado: false,
+            msj: 'No se pudo modificar el consultorio'
+        });
+    }
+};
+
+  

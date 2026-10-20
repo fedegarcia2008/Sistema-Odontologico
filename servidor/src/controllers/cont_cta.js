@@ -15,7 +15,7 @@ export const baja_cta = (pet, resp)=>{
 }
 
 export const mod_cta = (pet, resp)=>{
-    resp.render('mod_cta')
+    resp.render('mod_cta', {alert: false, cargado: false})
 }
 
 export const busc_cta = (pet, resp)=>{
@@ -79,3 +79,48 @@ export const buscta_id = async (pet, resp)=>{
         console.error('Error al buscar la cuenta corriente:', error);
     }
 }
+
+
+// para modificar
+export const  modcta_id = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let buscsql = "SELECT afiliado_ci_afiliado, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte WHERE afiliado_ci_afiliado = '"+ id +"'";
+        const [busc_registros] = await bdd.query(buscsql);
+        console.log(busc_registros)
+resp.render('mod_cta', { busc_registros, cargado: true, alert: false });
+    } catch (error) {
+        console.error('Error al buscar la cuenta corriente:', error);
+    }
+};
+
+export const modificar_cta = async (pet, resp)=>{
+     
+    let id, saldo, trat;
+
+    id = pet.body.clave;
+    saldo = pet.body.saldo;
+    trat = pet.body.idTrat;
+
+      try {
+        let modificarsql = "UPDATE cta_cte SET saldo = '"+ saldo +"' WHERE afiliado_ci_afiliado = '"+ id +"'";
+        const [modificar_registros] = await bdd.query(modificarsql);
+        console.log(modificar_registros)
+ resp.render('mod_cta', {
+            cargado: false,
+            alert: true,
+            guardado: true,
+            msj: 'Cuenta Corriente Modificada',
+            tiempo: 1500,
+            botonConfirma: false
+        });
+    } catch (error) {
+        console.error('Error al modificar la cuenta:', error);
+        resp.render('mod_cta', {
+            cargado: false,
+            alert: true,
+            guardado: false,
+            msj: 'No se pudo modificar la cuenta'
+        });
+    }
+};

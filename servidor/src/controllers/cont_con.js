@@ -15,7 +15,7 @@ export const baja_con = (pet, resp)=>{
 }
 
 export const mod_con = (pet, resp)=>{
-    resp.render('mod_con')
+    resp.render('mod_con', {alert: false, cargado: false} )
 }
 
 export const busc_con = (pet, resp)=>{
@@ -78,3 +78,47 @@ export const buscon_id = async (pet, resp)=>{
     }
 }
 
+
+
+// para modificar
+export const  modcon_id = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let buscsql = "SELECT idconvenio, nombre, rebaja FROM convenio WHERE idconvenio = '"+ id +"'";
+        const [busc_registros] = await bdd.query(buscsql);
+        console.log(busc_registros)
+resp.render('mod_con', { busc_registros, cargado: true, alert: false });
+    } catch (error) {
+        console.error('Error al buscar el convenio:', error);
+    }
+};
+
+export const modificar_con = async (pet, resp)=>{
+     let id, nombre, rebaja;
+
+    id = pet.body.clave;
+    nombre = pet.body.nombre;
+    rebaja = pet.body.rebaja;
+
+      try {
+        let modificarsql = "UPDATE convenio SET nombre = '"+ nombre +"', rebaja = '"+ rebaja+"' WHERE idconvenio = '"+ id +"'";
+        const [modificar_registros] = await bdd.query(modificarsql);
+        console.log(modificar_registros)
+ resp.render('mod_con', {
+            cargado: false,
+            alert: true,
+            guardado: true,
+            msj: 'Convenio Modificado',
+            tiempo: 1500,
+            botonConfirma: false
+        });
+    } catch (error) {
+        console.error('Error al modificar convenio:', error);
+        resp.render('mod_con', {
+            cargado: false,
+            alert: true,
+            guardado: false,
+            msj: 'No se pudo modificar el convenio'
+        });
+    }
+};
