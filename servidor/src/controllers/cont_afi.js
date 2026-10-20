@@ -15,7 +15,7 @@ export const baja_afi = (pet, resp)=>{
 }
 
 export const mod_afi = (pet, resp)=>{
-    resp.render('mod_afi' )
+    resp.render('mod_afi',  {alert: false, federico: false} )
 }
 
 export const busc_afi = (pet, resp)=>{
@@ -93,7 +93,49 @@ export const buscafi_id = async (pet, resp)=>{
     }
 }
 
+// para modificar
+export const  modafi_id = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let buscsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE ci_afiliado = '"+ id +"'";
+        const [busc_registros] = await bdd.query(buscsql);
+        console.log(busc_registros)
+resp.render('mod_afi', { busc_registros, federico: true, alert: false });
+    } catch (error) {
+        console.error('Error al buscar afiliado:', error);
+    }
+};
 
+export const modificar_afi = async (pet, resp)=>{
+    let id, nombre, apellido, telCel, telFijo, plan;
+    id = pet.body.clave;
+    nombre = pet.body.nombre;
+    apellido = pet.body.apellido;
+    telCel = pet.body.telCelular;
+    telFijo = pet.body.telFijo;
+    plan = pet.body.tipo;
+      try {
+        let modificarsql = "UPDATE afiliado SET nombre = '"+ nombre +"', apellido = '"+ apellido +"', tel_cel = '"+ telCel +"', tel_fijo = '"+ telFijo +"', tipo_plan = '"+ plan +"' WHERE ci_afiliado = '"+ id +"'";
+        const [modificar_registros] = await bdd.query(modificarsql);
+        console.log(modificar_registros)
+ resp.render('mod_afi', {
+            federico: false,
+            alert: true,
+            guardado: true,
+            msj: 'Afiliado Modificado',
+            tiempo: 1500,
+            botonConfirma: false
+        });
+    } catch (error) {
+        console.error('Error al modificar afiliado:', error);
+        resp.render('mod_afi', {
+            federico: false,
+            alert: true,
+            guardado: false,
+            msj: 'No se pudo modificar el afiliado.'
+        });
+    }
+};
 
 
 // para borrar
@@ -117,7 +159,7 @@ let id = pet.params.clave;
         console.log(eliminar_registros)
     resp.render('baja_afi', { eliminado: false, federico: true});
     }     catch (error) {
-        console.error('Error al buscar afiliado:', error);
+        console.error('Error al eliminbar afiliado:', error);
     }
 }
 

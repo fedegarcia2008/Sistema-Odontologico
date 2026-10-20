@@ -14,29 +14,109 @@
    <%- include('header') %>
 
 
-    <h1>MODIFICAR AFILIADO</h1>
+   <h1>MODIFICAR AFILIADO</h1>
 
-    <main class="formulario">
+        <main class="formulario">
+
+    <form onsubmit="busc_form(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave">
+            <input type="text" id="clave" name="clave" maxlength="10">
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
         </div>
 
+</form>
+
+    </main>
+
+
+
+
+<% if (federico) { %>
+<% if (busc_registros.length > 0) { %>
+
+<form onsubmit="mod_form(event)" method="POST">
+
+          <div class="campo">
+            <label>Clave Identificario:</label>
+        <input type="name" id="clave" name="clave" readonly value="<%= busc_registros[0].ci_afiliado %>">
+</div>
         <div class="campo">
             <label>Nombre:</label>
-            <input type="text" id="nombre">
+            <input type="text" name="nombre"
+                   value="<%= busc_registros[0].nombre %>" required>
         </div>
 
         <div class="campo">
             <label>Apellido:</label>
-            <input type="text" id="apellido">
+            <input type="text" name="apellido"
+                   value="<%= busc_registros[0].apellido %>" required>
         </div>
 
-        <button class="confirmar">Confirmar</button>
+        <div class="campo">
+            <label>Celular:</label>
+            <input type="text" name="telCelular"
+                   value="<%= busc_registros[0].tel_cel %>">
+        </div>
 
-        <div id="resultado"></div>
-    </main>
-<%- include('footer') %>
+        <div class="campo">
+            <label>Teléfono fijo:</label>
+            <input type="text" name="telFijo"
+                   value="<%= busc_registros[0].tel_fijo %>">
+        </div>
+
+        <div class="campo">
+            <label>Tipo de plan</label>
+            <input type="text" name="tipo" required value="<%= busc_registros[0].tipo_plan %>" >
+            </select>
+
+        </div>
+
+        <div class="boton">
+            <input type="submit" value="GUARDAR CAMBIOS">
+        </div>
+
+    </form>
+
+<% } else { %>
+
+    <p>No hay datos para mostrar.</p>
+
+<% } %>
+ <% } %>
+
+
+
+        <script>
+        function busc_form(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('clave').value;
+        window.location.href = `/afiliado/modificarid/${idejs}`;
+        document.getElementById('clave').value = "";   
+        }
+
+    function mod_form(event) {
+        event.preventDefault();
+
+        let formulario = event.target;
+        let idejs = formulario.querySelector('[name="clave"]').value;
+
+        formulario.action = `/afiliado/modificar/${idejs}`;
+        formulario.submit();
+    }
+        </script>
+
+
+
+
+
+ <%- include('sweet_modificar') %>
+
+
+            <%- include('footer') %>
  
 </body>
 </html>
