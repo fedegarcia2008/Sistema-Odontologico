@@ -15,7 +15,7 @@ export const baja_tur = (pet, resp)=>{
 }
 
 export const mod_tur = (pet, resp)=>{
-    resp.render('mod_tur')
+    resp.render('mod_tur', {alert: false, cargado: false})
 }
 
 export const busc_tur = (pet, resp)=>{
@@ -79,3 +79,48 @@ export const busctur_id = async (pet, resp)=>{
         console.error('Error al buscar el turno:', error);
     }
 }
+
+// para modificar
+export const  modtur_id = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let buscsql = "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE idconsulta = '"+ id +"'";
+        const [busc_registros] = await bdd.query(buscsql);
+        console.log(busc_registros)
+resp.render('mod_tur', { busc_registros, cargado: true, alert: false });
+    } catch (error) {
+        console.error('Error al buscar la consulta:', error);
+    }
+};
+
+export const modificar_tur = async (pet, resp)=>{
+    
+    let fecha, hora, odo, afi;
+
+    fecha = pet.body.fecha;
+    hora = pet.body.hora;
+    odo = pet.body.idOdo;
+    afi = pet.body.idAfi;
+
+      try {
+        let modificarsql = "UPDATE consulta SET fecha = '"+ fecha +"', horario = '"+ hora+"' WHERE idconsulta = '"+ id +"'";
+        const [modificar_registros] = await bdd.query(modificarsql);
+        console.log(modificar_registros)
+ resp.render('mod_tur', {
+            cargado: false,
+            alert: true,
+            guardado: true,
+            msj: 'Consulta Modificada',
+            tiempo: 1500,
+            botonConfirma: false
+        });
+    } catch (error) {
+        console.error('Error al modificar consulta:', error);
+        resp.render('mod_con', {
+            cargado: false,
+            alert: true,
+            guardado: false,
+            msj: 'No se pudo modificar la consulta'
+        });
+    }
+};

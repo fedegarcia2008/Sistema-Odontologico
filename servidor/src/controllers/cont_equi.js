@@ -15,7 +15,7 @@ export const baja_equi = (pet, resp)=>{
 }
 
 export const mod_equi = (pet, resp)=>{
-    resp.render('mod_equi')
+    resp.render('mod_equi' , {alert: false, cargado: false})
 }
 
 export const busc_equi = (pet, resp)=>{
@@ -79,3 +79,49 @@ export const buscequi_id = async (pet, resp)=>{
         console.error('Error al buscar el equipamiento:', error);
     }
 }
+
+
+// para modificar
+export const  modequi_id = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let buscsql = "SELECT nroserie, tipo, fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE nroserie= '"+ id +"'";
+        const [busc_registros] = await bdd.query(buscsql);
+        console.log(busc_registros)
+resp.render('mod_equi', { busc_registros, cargado: true, alert: false });
+    } catch (error) {
+        console.error('Error al buscar el equipamiento:', error);
+    }
+};
+
+export const modificar_equi = async (pet, resp)=>{
+    
+      let id, tipo, fecha, cons;
+
+    id = pet.body.clave;
+    tipo = pet.body.tipo;
+    fecha = pet.body.fecha;
+    cons = pet.body.idCons;
+
+      try {
+        let modificarsql = "UPDATE equipamiento SET tipo = '"+ tipo +"', fecha_mantenimiento = '"+ fecha+"' WHERE nroserie = '"+ id +"'";
+        const [modificar_registros] = await bdd.query(modificarsql);
+        console.log(modificar_registros)
+ resp.render('mod_equi', {
+            cargado: false,
+            alert: true,
+            guardado: true,
+            msj: 'Equipamiento Modificado',
+            tiempo: 1500,
+            botonConfirma: false
+        });
+    } catch (error) {
+        console.error('Error al modificar el equipamiento:', error);
+        resp.render('mod_equi', {
+            cargado: false,
+            alert: true,
+            guardado: false,
+            msj: 'No se pudo modificar el equipamiento'
+        });
+    }
+};

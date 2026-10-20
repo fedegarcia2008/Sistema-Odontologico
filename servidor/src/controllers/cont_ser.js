@@ -15,7 +15,7 @@ export const baja_ser = (pet, resp)=>{
 }
 
 export const mod_ser = (pet, resp)=>{
-    resp.render('mod_ser')
+    resp.render('mod_ser', {alert: false, cargado: false})
 }
 
 export const busc_ser = (pet, resp)=>{
@@ -79,3 +79,48 @@ export const buscser_id = async (pet, resp)=>{
         console.error('Error al buscar el servicio:', error);
     }
 }
+
+
+// para modificar
+export const  modser_id = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let buscsql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento WHERE idtratamiento = '"+ id +"'";
+        const [busc_registros] = await bdd.query(buscsql);
+        console.log(busc_registros)
+resp.render('mod_ser', { busc_registros, cargado: true, alert: false });
+    } catch (error) {
+        console.error('Error al buscar el servicio:', error);
+    }
+};
+
+export const modificar_ser = async (pet, resp)=>{
+      let id, nombre, costo, odo;
+
+    id = pet.body.clave;
+    nombre = pet.body.nombre;
+    costo = pet.body.costo;
+    odo = pet.body.idOdo;
+
+      try {
+        let modificarsql = "UPDATE tratamiento SET nombre = '"+ nombre +"', costo = '"+ costo+"' WHERE idtratamiento = '"+ id +"'";
+        const [modificar_registros] = await bdd.query(modificarsql);
+        console.log(modificar_registros)
+ resp.render('mod_ser', {
+            cargado: false,
+            alert: true,
+            guardado: true,
+            msj: 'Servicio Modificado',
+            tiempo: 1500,
+            botonConfirma: false
+        });
+    } catch (error) {
+        console.error('Error al modificar servicio:', error);
+        resp.render('mod_ser', {
+            cargado: false,
+            alert: true,
+            guardado: false,
+            msj: 'No se pudo modificar el servicio'
+        });
+    }
+};
