@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="icon" href="/img/favicon.webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Modificar Horario - Secure Dental</title>
+</head>
+
+<body>
+   <%- include('header') %>
+
+
+   <h1>MODIFICAR HORARIO</h1>
+
+        <main class="formulario">
+
+    <form onsubmit="busc_form(event)" method="GET">
+        <div class="campo">
+            <label>Clave de identificación:</label>
+            <input type="text" id="clave" name="clave">
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
+
+</form>
+
+    </main>
+
+
+
+
+<% if (cargado) { %>
+<% if (busc_registros.length > 0) { %>
+
+<form onsubmit="mod_form(event)" method="POST">
+
+<div class="campo">
+
+            <label>Identificador Único</label>
+            <input type="text" name="clave" readonly
+                            value="<%= busc_registros[0].idhorario %>">
+        </div>
+
+        <div class="campo">
+            <label>Día </label>
+            <select name="dia"
+                            value="<%= busc_registros[0].dia %>">
+                <option value="#">Seleccione un día</option>
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miércoles">Miércoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Viernes">Viernes</option>
+                <option value="Sábado">Sábado</option>
+            </select>
+        </div>
+        
+        <div class="campo">
+            <label>Hora inicio</label>
+            <input type="time" name="horaIn"
+                            value="<%= busc_registros[0].horario_comienzo %>">
+        </div>
+
+        <div class="campo">
+            <label>Hora final </label>
+            <input type="time" name="horaFi" readonly
+                            value="<%= busc_registros[0].horario_final %>">
+        </div>
+
+        <div class="campo">
+            <label>ID Odontólogo</label>
+            <input type="text" name="idOdo" readonly
+                            value="<%= busc_registros[0].odontologo_idodontologo %>">
+        </div>
+
+        <div class="boton">
+            <input type="submit" value="GUARDAR CAMBIOS">
+        </div>
+
+    </form>
+
+<% } else { %>
+
+    <p>No hay datos para mostrar.</p>
+
+<% } %>
+ <% } %>
+
+
+
+        <script>
+        function busc_form(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('clave').value;
+        window.location.href = `/horario/modificarid/${idejs}`;
+        document.getElementById('clave').value = "";   
+        }
+
+    function mod_form(event) {
+        event.preventDefault();
+
+        let formulario = event.target;
+        let idejs = formulario.querySelector('[name="clave"]').value;
+
+        formulario.action = `/horario/modificar/${idejs}`;
+        formulario.submit();
+    }
+        </script>
+
+
+
+
+
+ <%- include('sweet_modificar') %>
+
+
+            <%- include('footer') %>
+ 
+</body>
+</html>
