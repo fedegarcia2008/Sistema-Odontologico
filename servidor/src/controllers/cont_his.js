@@ -88,7 +88,7 @@ export const buschis_id = async (pet, resp)=>{
 
 
 // para modificar
-export const  modchis_id = async (pet, resp)=>{
+export const  modhis_id = async (pet, resp)=>{
 let id = pet.params.clave;
       try {
         let buscsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE idtratamiento_realizado = '"+ id +"'";

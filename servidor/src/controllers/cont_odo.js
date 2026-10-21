@@ -97,7 +97,7 @@ resp.render('mod_odo', { busc_registros, cargado: true, alert: false });
     }
 };
 
-export const modificar_hor = async (pet, resp)=>{
+export const modificar_odo = async (pet, resp)=>{
   let id, nombre, apellido, esp, cons;
 
     id = pet.body.clave;
