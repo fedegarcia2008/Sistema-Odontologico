@@ -83,7 +83,7 @@
         function busc_form(event) {
         event.preventDefault();
         let idejs = document.getElementById('clave').value;
-        window.location.href = `/convenio/modificarid/${idejs}`;
+        window.location.href = `/equipamiento/modificarid/${idejs}`;
         document.getElementById('clave').value = "";   
         }
 
@@ -93,7 +93,7 @@
         let formulario = event.target;
         let idejs = formulario.querySelector('[name="clave"]').value;
 
-        formulario.action = `/convenio/modificar/${idejs}`;
+        formulario.action = `/equipamiento/modificar/${idejs}`;
         formulario.submit();
     }
         </script>
