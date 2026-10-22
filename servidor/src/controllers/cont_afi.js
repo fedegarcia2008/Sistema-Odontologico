@@ -89,7 +89,8 @@ export const buscafi_id = async (pet, resp)=>{
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
  resp.render('busc_afi', {
-            cargado: false,
+            busc_registros,
+            cargado: true,
             alert: true,
             guardado: true,
             msj: 'Afiliado Encontrado',
@@ -99,7 +100,8 @@ export const buscafi_id = async (pet, resp)=>{
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
         resp.render('busc_afi', {
-            cargado: true,
+            busc_registros,
+            cargado: false,
             alert: true,
             guardado: false,
             msj: 'No se pudo buscar el afiliado.'
