@@ -19,7 +19,7 @@ export const mod_his = (pet, resp)=>{
 }
 
 export const busc_his = (pet, resp)=>{
-    resp.render('busc_his', {federico: false})
+    resp.render('busc_his', {cargado: false})
 }
 
 
@@ -78,12 +78,25 @@ export const buschis_id = async (pet, resp)=>{
         let buscarsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE idtratamiento_realizado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_his', { busc_registros, federico: true });
+    resp.render('busc_his', { busc_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar historia clinica:', error);
     }
 }
 
+
+    export const buschis_fecha = async (pet, resp)=>{
+          let fecha = pet.params.fecha;
+          
+          try {
+            let buscarsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento,  afiliado_ci_afiliado , odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE fecha = '"+ fecha +"'" ;
+            const [busc_registros] = await bdd.query(buscarsql);
+            console.log(busc_registros)
+        resp.render('busc_his', { busc_registros, cargado: true });
+        }     catch (error) {
+            console.error('Error al buscar turno:', error);
+        }
+    }
 
 
 

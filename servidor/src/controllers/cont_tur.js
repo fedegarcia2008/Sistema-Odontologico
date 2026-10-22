@@ -92,6 +92,7 @@ export const busctur_id = async (pet, resp)=>{
             console.error('Error al buscar turno:', error);
         }
     }
+    
 // para modificar
 export const  modtur_id = async (pet, resp)=>{
 let id = pet.params.clave;
