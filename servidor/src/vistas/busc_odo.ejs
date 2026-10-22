@@ -43,7 +43,7 @@
 
     </main>
 
-<% if (federico) { %>
+<% if (cargado) { %>
         <% if (busc_registros.length > 0) { %>
       
                 <p>Clave:  <%= busc_registros[0].idodontologo %></p>
@@ -62,7 +62,7 @@
  <% } %>
 
  
-<% if (federico) { %>
+<% if (cargado) { %>
 <div class="tabla-contenedor">
     <table class="tabla-datos">
         <thead>
@@ -82,7 +82,7 @@
                         <td><%= odo.nombre %></td>
                         <td><%= odo.apellido %></td>
                         <td><%= odo.especialidad %></td>
-                        <td><%= odo.consultorio_idconsultorio" %></td>
+                        <td><%= odo.consultorio_idconsultorio %></td>
                     </tr>
                 <% });
             } else { %>

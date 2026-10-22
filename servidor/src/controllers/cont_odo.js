@@ -19,7 +19,7 @@ export const mod_odo = (pet, resp)=>{
 }
 
 export const busc_odo = (pet, resp)=>{
-    resp.render('busc_odo' , {federico: false})
+    resp.render('busc_odo' , {cargado: false})
 }
 
 
@@ -77,7 +77,7 @@ export const buscodo_id = async (pet, resp)=>{
         let buscarsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE idodontologo = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_odo', { busc_registros, federico: true });
+    resp.render('busc_odo', { busc_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar el odontologo:', error);
     }
@@ -91,7 +91,7 @@ export const buscodo_nom = async (pet, resp)=>{
         let buscarsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_odo', { busc_registros, federico: true });
+    resp.render('busc_odo', { busc_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar odontologo:', error);
     }
