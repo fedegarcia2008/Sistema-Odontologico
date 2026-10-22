@@ -19,7 +19,7 @@ export const mod_afi = (pet, resp)=>{
 }
 
 export const busc_afi = (pet, resp)=>{
-    resp.render('busc_afi', {federico: false})
+    resp.render('busc_afi', {cargado: false})
 }
 
 /*
@@ -88,7 +88,7 @@ export const buscafi_id = async (pet, resp)=>{
         let buscarsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE ci_afiliado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_afi', { busc_registros, federico: true });
+    resp.render('busc_afi', { busc_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar afiliado:', error);
     }
@@ -101,7 +101,7 @@ export const buscafi_nom = async (pet, resp)=>{
         let buscarsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_afi', { busc_registros, federico: true });
+    resp.render('busc_afi', { busc_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar afiliado:', error);
     }
