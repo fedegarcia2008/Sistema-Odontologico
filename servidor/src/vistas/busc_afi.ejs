@@ -17,49 +17,90 @@
 
         <main class="formulario">
 
-    <form onsubmit="busc_form(event)" method="GET">
+    <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
             <input type="text" id="clave" name="clave" minlength="10" maxlength="10">
         </div>
         
        <div class="boton">
-        <input type="submit" value="BUSCAR">
+        <input type="submit" value="BUSCAR POR CI">
         </div>
+</form>
+
         
 
+    <form onsubmit="busc_nom(event)" method="GET">
+        <div class="campo">
+            <label>Apellido y Nombre:</label>
+            <input type="text" id="nombre" name="nombre">
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR POR NOMBRE">
+        </div>
 </form>
 
     </main>
 
-<% if (federico) { %>
-    <section class="resultados">
+<% if (cargado) { %>
         <% if (busc_registros.length > 0) { %>
-            <% const afiliado = busc_registros[0]; %>
+      
+                <p>Clave:  <%= busc_registros[0].ci_afiliado %></p>
+                <p>Nombre:  <%= busc_registros[0].nombre %></p>
+                <p>Apellido:  <%= busc_registros[0].apellido %></p>
+                <p>Celular:  <%= busc_registros[0].tel_cel %></p>
+                <p>Teléfono fijo:  <%= busc_registros[0].tel_fijo %></p>
+                <p>Plan: <%= busc_registros[0].tipo_plan %></p>
+      
+            <% } else { %>
 
-            <div class="ficha">
-                <p class="clave">
-                    Clave: <span><%= afiliado.ci_afiliado %></span>
-                </p>
+                    <p> No hay datos para mostrar</p>
 
-                <h2><%= afiliado.nombre %> <%= afiliado.apellido %></h2>
+            <% } %>
+ <% } %>
 
-                <p>Plan: <strong><%= afiliado.tipo_plan %></strong></p>
-                <p>Celular: <strong><%= afiliado.tel_cel %></strong></p>
-                <p>Teléfono fijo: <strong><%= afiliado.tel_fijo %></strong></p>
-            </div>
+<% if (cargado) { %>
+<div class="tabla-contenedor">
+    <table class="tabla-datos">
+        <thead>
+            <tr>
+                <th>C.I.</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Teléfono Celular</th>
+                <th>Teléfono Fijo</th>
+                <th>Tipo de Plan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (busc_registros.length > 0) {
+                busc_registros.forEach(afi => { %>
+                    <tr>
+                        <td><%= afi.ci_afiliado %></td>
+                        <td><%= afi.nombre %></td>
+                        <td><%= afi.apellido %></td>
+                        <td><%= afi.tel_cel ? afi.tel_cel : "Sin teléfono" %></td>
+                        <td><%= afi.tel_fijo ? afi.tel_fijo : "Sin teléfono" %></td>
+                        <td><%= afi.tipo_plan %></td>
+                    </tr>
+                <% });
+            } else { %>
+                <tr>
+                    <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                </tr>
+            <% } %>
+                      <% } %>
+        </tbody>
+    </table>
+</div>
 
-        <% } else { %>
-            <p class="sin-resultados">No se encontró ningún afiliado con esa clave</p>
-        <% } %>
 
-    </section>
-<% } %>
+
 
 <%- include('footer') %>
 
 <script src="/js/val_buscafi.js"></script>
-
 
 </body>
 </html>
