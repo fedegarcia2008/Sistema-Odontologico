@@ -1,5 +1,5 @@
 import express from 'express';
-import { menu_afi, alta_afi, baja_afi, mod_afi, busc_afi, mos_afi, nuevo_afi, modafi_id, modificar_afi, buscafi_id, bajafi_id, eliminar_afi} from '../controllers/cont_afi.js';
+import { menu_afi, alta_afi, baja_afi, mod_afi, busc_afi, mos_afi, nuevo_afi, modafi_id, modificar_afi, buscafi_id, buscafi_nom, bajafi_id, eliminar_afi} from '../controllers/cont_afi.js';
 
 const rAfiliado = express.Router();
 
@@ -12,7 +12,9 @@ rAfiliado.get('/afiliado/mostrar', mos_afi)
 
 rAfiliado.post('/afiliado/nuevoalta', nuevo_afi)
 
+// para buscar
 rAfiliado.get('/afiliado/buscarid/:clave', buscafi_id)
+rAfiliado.get('/afiliado/buscarnombre/:clave', buscafi_nom)
 
 // rAfiliado.get('/afiliado/buscarxdni/:apehtml/:nomhtml', fun1)
 

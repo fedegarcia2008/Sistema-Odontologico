@@ -1,9 +1,17 @@
-        function busc_form(event) {
+        function busc_id(event) {
         event.preventDefault();
         let idejs = document.getElementById('clave').value;
         window.location.href = `/afiliado/buscarid/${idejs}`;
         document.getElementById('clave').value = "";        
     }
+
+        function busc_nom(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('').value;
+        window.location.href = `/afiliado/buscarnombre/${idejs}`;
+        document.getElementById('').value = "";        
+    }
+
 
 let clave = document.querySelector('[name="clave"]');
 

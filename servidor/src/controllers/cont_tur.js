@@ -95,12 +95,11 @@ resp.render('mod_tur', { busc_registros, cargado: true, alert: false });
 
 export const modificar_tur = async (pet, resp)=>{
     
-    let fecha, hora, odo, afi;
+    let fecha, hora;
 
     fecha = pet.body.fecha;
     hora = pet.body.hora;
-    odo = pet.body.idOdo;
-    afi = pet.body.idAfi;
+
 
       try {
         let modificarsql = "UPDATE consulta SET fecha = '"+ fecha +"', horario = '"+ hora+"' WHERE idconsulta = '"+ id +"'";
@@ -110,13 +109,13 @@ export const modificar_tur = async (pet, resp)=>{
             cargado: false,
             alert: true,
             guardado: true,
-            msj: 'Consulta Modificada',
+            msj: 'Turno Modificado',
             tiempo: 1500,
             botonConfirma: false
         });
     } catch (error) {
         console.error('Error al modificar consulta:', error);
-        resp.render('mod_con', {
+        resp.render('mod_tur', {
             cargado: false,
             alert: true,
             guardado: false,
