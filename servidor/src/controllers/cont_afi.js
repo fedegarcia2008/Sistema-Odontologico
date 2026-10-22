@@ -19,7 +19,7 @@ export const mod_afi = (pet, resp)=>{
 }
 
 export const busc_afi = (pet, resp)=>{
-    resp.render('busc_afi', {cargado: false})
+    resp.render('busc_afi', {alert: false, cargado: false})
 }
 
 /*
@@ -88,11 +88,24 @@ export const buscafi_id = async (pet, resp)=>{
         let buscarsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE ci_afiliado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_afi', { busc_registros, cargado: true });
-    }     catch (error) {
+ resp.render('busc_afi', {
+            cargado: false,
+            alert: true,
+            guardado: true,
+            msj: 'Afiliado Encontrado',
+            tiempo: 1500,
+            botonConfirma: false
+        });
+    } catch (error) {
         console.error('Error al buscar afiliado:', error);
+        resp.render('busc_afi', {
+            cargado: true,
+            alert: true,
+            guardado: false,
+            msj: 'No se pudo buscar el afiliado.'
+        });
     }
-}
+};
 
 export const buscafi_nom = async (pet, resp)=>{
       let nom_completo = pet.params.nombre;
@@ -101,11 +114,24 @@ export const buscafi_nom = async (pet, resp)=>{
         let buscarsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_afi', { busc_registros, cargado: true });
-    }     catch (error) {
+ resp.render('busc_afi', {
+            cargado: true,
+            alert: true,
+            guardado: true,
+            msj: 'Afiliado Encontrado',
+            tiempo: 1500,
+            botonConfirma: false
+        });
+    } catch (error) {
         console.error('Error al buscar afiliado:', error);
+        resp.render('busc_afi', {
+            cargado: true,
+            alert: true,
+            guardado: false,
+            msj: 'No se pudo buscar el afiliado.'
+        });
     }
-}
+};
 
 
 
