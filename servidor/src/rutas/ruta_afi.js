@@ -14,7 +14,7 @@ rAfiliado.post('/afiliado/nuevoalta', nuevo_afi)
 
 // para buscar
 rAfiliado.get('/afiliado/buscarid/:clave', buscafi_id)
-rAfiliado.get('/afiliado/buscarnombre/:clave', buscafi_nom)
+rAfiliado.get('/afiliado/buscarnombre/:nombre', buscafi_nom)
 
 // rAfiliado.get('/afiliado/buscarxdni/:apehtml/:nomhtml', fun1)
 
