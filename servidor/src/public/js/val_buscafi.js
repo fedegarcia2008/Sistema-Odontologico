@@ -7,9 +7,9 @@
 
         function busc_nom(event) {
         event.preventDefault();
-        let idejs = document.getElementById('').value;
+        let idejs = document.getElementById('nombre').value;
         window.location.href = `/afiliado/buscarnombre/${idejs}`;
-        document.getElementById('').value = "";        
+        document.getElementById('nombre').value = "";        
     }
 
 

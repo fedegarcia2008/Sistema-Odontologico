@@ -95,10 +95,10 @@ export const buscafi_id = async (pet, resp)=>{
 }
 
 export const buscafi_nom = async (pet, resp)=>{
-      let nom = pet.params.nombre;
-      let ape = pet.params.apellido;
+      let nom_completo = pet.params.nombre;
+      
       try {
-        let buscarsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE ci_afiliado = '"+ id +"'";
+        let buscarsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
     resp.render('busc_afi', { busc_registros, federico: true });
