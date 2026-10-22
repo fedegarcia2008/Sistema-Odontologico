@@ -166,7 +166,11 @@ footer {
     color: white;
 }
 
-/* ===== Resultados dentro de la tarjeta ===== */
+/* ===== Resultados de búsqueda (dentro de la tarjeta) ===== */
+.formulario form + form {
+    margin-top: 10px;
+}
+
 .resultados {
     margin-top: 28px;
     padding-top: 22px;
@@ -184,12 +188,12 @@ footer {
 .ficha p {
     font-size: 15px;
     line-height: 1.7;
-    color: var(--texto);
+    color: #3a3a3a;
     margin: 0;
 }
 
 .ficha strong {
-    color: var(--azul);
+    color: #233b76;
     font-weight: 600;
 }
 
