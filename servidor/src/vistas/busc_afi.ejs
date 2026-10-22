@@ -10,100 +10,54 @@
 </head>
 
 <body>
-    <%- include('header') %>
+ <%- include('header') %>
+
 
     <h1>BUSCAR AFILIADO</h1>
 
-    <main class="formulario">
+        <main class="formulario">
 
-        <form onsubmit="busc_id(event)" method="GET">
-            <div class="campo">
-                <label>Clave de identificación:</label>
-                <input type="text" id="clave" name="clave" minlength="10" maxlength="10">
+    <form onsubmit="busc_form(event)" method="GET">
+        <div class="campo">
+            <label>Clave de identificación:</label>
+            <input type="text" id="clave" name="clave" minlength="10" maxlength="10">
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
+        
+
+</form>
+
+    </main>
+
+<% if (federico) { %>
+    <section class="resultados">
+        <% if (busc_registros.length > 0) { %>
+            <% const afiliado = busc_registros[0]; %>
+
+            <div class="ficha">
+                <p class="clave">
+                    Clave: <span><%= afiliado.ci_afiliado %></span>
+                </p>
+
+                <h2><%= afiliado.nombre %> <%= afiliado.apellido %></h2>
+
+                <p>Plan: <strong><%= afiliado.tipo_plan %></strong></p>
+                <p>Celular: <strong><%= afiliado.tel_cel %></strong></p>
+                <p>Teléfono fijo: <strong><%= afiliado.tel_fijo %></strong></p>
             </div>
 
-            <div class="boton">
-                <input type="submit" value="BUSCAR POR CI">
-            </div>
-        </form>
-
-        <form onsubmit="busc_nom(event)" method="GET">
-            <div class="campo">
-                <label>Apellido y Nombre:</label>
-                <input type="text" id="nombre" name="nombre" maxlength="50">
-            </div>
-
-            <div class="boton">
-                <input type="submit" value="BUSCAR POR NOMBRE">
-            </div>
-        </form>
-  </main>
-        <% if (cargado) { %>
-            <div class="resultados">
-                <% if (busc_registros.length > 0) { %>
-                    <% busc_registros.forEach(afi => { %>
-                        <div class="ficha">
-                            <p><strong>Clave:</strong> <%= afi.ci_afiliado %></p>
-                            <p><strong>Nombre:</strong> <%= afi.nombre %></p>
-                            <p><strong>Apellido:</strong> <%= afi.apellido %></p>
-                            <p><strong>Celular:</strong> <%= afi.tel_cel ? afi.tel_cel : "Sin teléfono" %></p>
-                            <p><strong>Teléfono fijo:</strong> <%= afi.tel_fijo ? afi.tel_fijo : "Sin teléfono" %></p>
-                            <p><strong>Plan:</strong> <%= afi.tipo_plan %></p>
-                        </div>
-                    <% }); %>
-                <% } else { %>
-                    <p class="sin-resultados">No hay datos para mostrar</p>
-                <% } %>
-            </div>
+        <% } else { %>
+            <p class="sin-resultados">No se encontró ningún afiliado con esa clave</p>
         <% } %>
-
-  
-
-
-
-<% if (cargado) { %>
-<div class="tabla-contenedor">
-    <table class="tabla-datos">
-        <thead>
-            <tr>
-                <th>C.I.</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Teléfono Celular</th>
-                <th>Teléfono Fijo</th>
-                <th>Tipo de Plan</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% if (busc_registros.length > 0) {
-                busc_registros.forEach(afi => { %>
-                    <tr>
-                        <td><%= afi.ci_afiliado %></td>
-                        <td><%= afi.nombre %></td>
-                        <td><%= afi.apellido %></td>
-                        <td><%= afi.tel_cel ? afi.tel_cel : "Sin teléfono" %></td>
-                        <td><%= afi.tel_fijo ? afi.tel_fijo : "Sin teléfono" %></td>
-                        <td><%= afi.tipo_plan %></td>
-                    </tr>
-                <% });
-            } else { %>
-                <tr>
-                    <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
-                </tr>
-            <% } %>
-                      <% } %>
-        </tbody>
-    </table>
-</div>
-
-
-
+    </section>
+<% } %>
 
 <%- include('footer') %>
 
 <script src="/js/val_buscafi.js"></script>
-
-    <%- include('footer') %>
 
 </body>
 </html>
