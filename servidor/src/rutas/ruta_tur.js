@@ -13,7 +13,7 @@ rTurno.get('/turno/mostrar', mos_tur)
 rTurno.post('/turno/nuevoalta', nuevo_tur)
 
 rTurno.get('/turno/buscarid/:clave', busctur_id)
-rTurno.get('/turno/buscarfecha/:clave', busctur_fecha)
+rTurno.get('/turno/buscarfecha/:fecha', busctur_fecha)
 
 //para modificar
 rTurno.get('/turno/modificarid/:clave', modtur_id)

@@ -81,7 +81,7 @@ export const busctur_id = async (pet, resp)=>{
 }
 
     export const busctur_fecha = async (pet, resp)=>{
-          let fecha = pet.params.nombre;
+          let fecha = pet.params.fecha;
           
           try {
             let buscarsql = "SELECT idconsulta, fecha, horario, odontologo_idodontologo,  afiliado_ci_afiliado FROM consulta WHERE fecha = '"+ fecha +"'" ;
