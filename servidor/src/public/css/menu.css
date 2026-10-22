@@ -172,6 +172,7 @@ footer {
 }
 
 .resultados {
+    text-align: center;
     margin-top: 28px;
     padding-top: 22px;
     border-top: 1px solid #e5eaf0;
@@ -186,6 +187,7 @@ footer {
 }
 
 .ficha p {
+    text-align: center;
     font-size: 15px;
     line-height: 1.7;
     color: #3a3a3a;
