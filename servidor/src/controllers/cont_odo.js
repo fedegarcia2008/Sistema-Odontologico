@@ -84,6 +84,20 @@ export const buscodo_id = async (pet, resp)=>{
 }
 
 
+export const buscodo_nom = async (pet, resp)=>{
+      let nom_completo = pet.params.nombre;
+      
+      try {
+        let buscarsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";
+        const [busc_registros] = await bdd.query(buscarsql);
+        console.log(busc_registros)
+    resp.render('busc_odo', { busc_registros, federico: true });
+    }     catch (error) {
+        console.error('Error al buscar odontologo:', error);
+    }
+}
+
+
 // para modificar
 export const  mododo_id = async (pet, resp)=>{
 let id = pet.params.clave;

@@ -26,11 +26,19 @@
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
-        
-
 </form>
 
+    
+        <form onsubmit="busc_nom(event)" method="GET">
+            <div class="campo">
+                <label>Apellido y Nombre:</label>
+                <input type="text" id="nombre" name="nombre" maxlength="50">
+            </div>
 
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR NOMBRE">
+            </div>
+        </form>
 
 
     </main>
@@ -52,6 +60,40 @@
 
             <% } %>
  <% } %>
+
+ 
+<% if (federico) { %>
+<div class="tabla-contenedor">
+    <table class="tabla-datos">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Especialidad</th>
+                <th>Id Consultorio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (busc_registros.length > 0) {
+                busc_registros.forEach(odo => { %>
+                    <tr>
+                        <td><%= odo.idodontologo %></td>
+                        <td><%= odo.nombre %></td>
+                        <td><%= odo.apellido %></td>
+                        <td><%= odo.especialidad %></td>
+                        <td><%= odo.consultorio_idconsultorio" %></td>
+                    </tr>
+                <% });
+            } else { %>
+                <tr>
+                    <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                </tr>
+            <% } %>
+                      <% } %>
+        </tbody>
+    </table>
+</div>
 
 <%- include('footer') %>
 <script src="/js/val_buscodo.js"></script>
