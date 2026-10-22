@@ -10,61 +10,57 @@
 </head>
 
 <body>
- <%- include('header') %>
-
+    <%- include('header') %>
 
     <h1>BUSCAR AFILIADO</h1>
 
-        <main class="formulario">
+    <main class="formulario">
 
-    <form onsubmit="busc_id(event)" method="GET">
-        <div class="campo">
-            <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" minlength="10" maxlength="10">
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR POR CI">
-        </div>
-</form>
+        <form onsubmit="busc_id(event)" method="GET">
+            <div class="campo">
+                <label>Clave de identificación:</label>
+                <input type="text" id="clave" name="clave" minlength="10" maxlength="10">
+            </div>
 
-        
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR CI">
+            </div>
+        </form>
 
-    <form onsubmit="busc_nom(event)" method="GET">
-        <div class="campo">
-            <label>Apellido y Nombre:</label>
-            <input type="text" id="clave" name="clave" minlength="10" maxlength="10">
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR POR NOMBRE">
-        </div>
-</form>
+        <form onsubmit="busc_nom(event)" method="GET">
+            <div class="campo">
+                <label>Apellido y Nombre:</label>
+                <input type="text" id="nombre" name="nombre" maxlength="50">
+            </div>
+
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR NOMBRE">
+            </div>
+        </form>
+
+        <% if (federico) { %>
+            <div class="resultados">
+                <% if (busc_registros.length > 0) { %>
+                    <% busc_registros.forEach(afi => { %>
+                        <div class="ficha">
+                            <p><strong>Clave:</strong> <%= afi.ci_afiliado %></p>
+                            <p><strong>Nombre:</strong> <%= afi.nombre %></p>
+                            <p><strong>Apellido:</strong> <%= afi.apellido %></p>
+                            <p><strong>Celular:</strong> <%= afi.tel_cel ? afi.tel_cel : "Sin teléfono" %></p>
+                            <p><strong>Teléfono fijo:</strong> <%= afi.tel_fijo ? afi.tel_fijo : "Sin teléfono" %></p>
+                            <p><strong>Plan:</strong> <%= afi.tipo_plan %></p>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    <p class="sin-resultados">No hay datos para mostrar</p>
+                <% } %>
+            </div>
+        <% } %>
 
     </main>
 
-<% if (federico) { %>
-     <div class="resultados">
-        <% if (busc_registros.length > 0) { %>
-      <div class="ficha">
-                <p>Clave:  <%= busc_registros[0].ci_afiliado %></p>
-                <p>Nombre:  <%= busc_registros[0].nombre %></p>
-                <p>Apellido:  <%= busc_registros[0].apellido %></p>
-                <p>Celular:  <%= busc_registros[0].tel_cel %></p>
-                <p>Teléfono fijo:  <%= busc_registros[0].tel_fijo %></p>
-                <p>Plan: <%= busc_registros[0].tipo_plan %></p>
-      </div>
-            <% } else { %>
+    <%- include('footer') %>
 
-                    <p class="sin-resultados">No hay datos para mostrar</p>
-
-            <% } %>
-            </div>
- <% } %>
-
-<%- include('footer') %>
-
-<script src="/js/val_buscafi.js"></script>
-
+    <script src="/js/val_buscafi.js"></script>
 </body>
 </html>
