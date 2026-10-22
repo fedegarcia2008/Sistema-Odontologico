@@ -38,7 +38,7 @@
 <% if (cargado) { %>
 <% if (busc_registros.length > 0) { %>
 
-<form class="formulario_resultado" onsubmit="mod_form(event)" method="POST">
+<form class="formulario resultado" onsubmit="mod_form(event)" method="POST">
 
           <div class="campo">
             <label>Clave de Identificacion:</label>
@@ -92,9 +92,10 @@
     </form>
 
 <% } else { %>
-
+    <div class="formulario vacio">
+    <i class="fa-solid fa-user-slash"></i>
     <p>No hay datos para mostrar.</p>
-
+</div>
 <% } %>
  <% } %>
 
