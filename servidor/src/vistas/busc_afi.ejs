@@ -33,20 +33,22 @@
     </main>
 
 <% if (federico) { %>
+     <div class="resultados">
         <% if (busc_registros.length > 0) { %>
-      
+      <div class="ficha">
                 <p>Clave:  <%= busc_registros[0].ci_afiliado %></p>
                 <p>Nombre:  <%= busc_registros[0].nombre %></p>
                 <p>Apellido:  <%= busc_registros[0].apellido %></p>
                 <p>Celular:  <%= busc_registros[0].tel_cel %></p>
                 <p>Teléfono fijo:  <%= busc_registros[0].tel_fijo %></p>
                 <p>Plan: <%= busc_registros[0].tipo_plan %></p>
-      
+      </div>
             <% } else { %>
 
-                    <p> No hay datos para mostrar</p>
+                    <p class="sin-resultados">No hay datos para mostrar</p>
 
             <% } %>
+            </div>
  <% } %>
 
 <%- include('footer') %>

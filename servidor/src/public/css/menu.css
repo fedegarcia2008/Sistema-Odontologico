@@ -165,3 +165,36 @@ footer {
     background: #233b76;
     color: white;
 }
+
+/* ===== Resultados dentro de la tarjeta ===== */
+.resultados {
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid #e5eaf0;
+}
+
+.ficha {
+    padding: 14px 0;
+}
+
+.ficha + .ficha {
+    border-top: 1px dashed #d9e0e7;
+}
+
+.ficha p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--texto);
+    margin: 0;
+}
+
+.ficha strong {
+    color: var(--azul);
+    font-weight: 600;
+}
+
+.sin-resultados {
+    text-align: center;
+    color: #6b7280;
+    font-size: 15px;
+}
