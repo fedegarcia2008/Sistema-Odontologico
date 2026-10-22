@@ -17,17 +17,28 @@
 
         <main class="formulario">
 
-    <form onsubmit="busc_form(event)" method="GET">
+    <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
             <input type="text" id="clave" name="clave" minlength="10" maxlength="10">
         </div>
         
        <div class="boton">
-        <input type="submit" value="BUSCAR">
+        <input type="submit" value="BUSCAR POR CI">
         </div>
+</form>
+
         
 
+    <form onsubmit="busc_nom(event)" method="GET">
+        <div class="campo">
+            <label>Apellido y Nombre:</label>
+            <input type="text" id="clave" name="clave" minlength="10" maxlength="10">
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR POR NOMBRE">
+        </div>
 </form>
 
     </main>
