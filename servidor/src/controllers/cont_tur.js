@@ -19,7 +19,7 @@ export const mod_tur = (pet, resp)=>{
 }
 
 export const busc_tur = (pet, resp)=>{
-    resp.render('busc_tur', {federico: false})
+    resp.render('busc_tur', {cargado: false})
 }
 
 
@@ -74,12 +74,24 @@ export const busctur_id = async (pet, resp)=>{
         let buscarsql = "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE idconsulta = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_tur', { busc_registros, federico: true });
+    resp.render('busc_tur', { busc_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar el turno:', error);
     }
 }
 
+    export const busctur_fecha = async (pet, resp)=>{
+          let fecha = pet.params.nombre;
+          
+          try {
+            let buscarsql = "SELECT idconsulta, fecha, horario, odontologo_idodontologo,  afiliado_ci_afiliado FROM consulta WHERE fecha = '"+ fecha +"'" ;
+            const [busc_registros] = await bdd.query(buscarsql);
+            console.log(busc_registros)
+        resp.render('busc_tur', { busc_registros, cargado: true });
+        }     catch (error) {
+            console.error('Error al buscar turno:', error);
+        }
+    }
 // para modificar
 export const  modtur_id = async (pet, resp)=>{
 let id = pet.params.clave;
