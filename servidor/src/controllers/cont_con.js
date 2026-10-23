@@ -79,7 +79,7 @@ export const buscon_id = async (pet, resp)=>{
 }
 
 export const buscon_nom = async (pet, resp)=>{
-      let nom = pet.params.nom;
+      let nom = pet.params.nombre;
       try {
         let buscarsql = "SELECT idconvenio, nombre, rebaja FROM convenio WHERE nombre = '"+ nom +"'";
         const [busc_registros] = await bdd.query(buscarsql);
