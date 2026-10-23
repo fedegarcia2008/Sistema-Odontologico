@@ -10,6 +10,14 @@
         window.location.href = `/historiaclinica/buscarfecha/${idejs}`;
         document.getElementById('fecha').value = "";        
     }
+
+    
+    function busc_afi(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('idAfi').value;
+        window.location.href = `/historiaclinica/buscarafiliado/${idejs}`;
+        document.getElementById('idAfi').value = "";        
+    }
 let idSer = document.querySelector('[name="idSer"]');
 
     idSer.addEventListener("input", function () {
