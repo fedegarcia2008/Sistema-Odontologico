@@ -111,7 +111,7 @@ export const buscequi_id = async (pet, resp)=>{
 export const  modequi_id = async (pet, resp)=>{
 let id = pet.params.clave;
       try {
-        let buscsql = "SELECT nroserie, tipo, fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE nroserie= '"+ id +"'";
+        let buscsql = "SELECT nroserie, tipo, DATE_FORMAT(fecha_mantenimiento, '%Y-%m-%d') AS fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE nroserie= '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
 resp.render('mod_equi', { busc_registros, cargado: true, alert: false });
