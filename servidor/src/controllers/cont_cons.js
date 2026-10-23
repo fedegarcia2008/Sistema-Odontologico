@@ -11,7 +11,7 @@ export const alta_cons = (pet, resp)=>{
 }
 
 export const baja_cons = (pet, resp)=>{
-    resp.render('baja_cons')
+    resp.render('baja_cons', {cargado: false})
 }
 
 export const mod_cons = (pet, resp)=>{
@@ -133,4 +133,29 @@ export const modificar_cons = async (pet, resp)=>{
     }
 };
 
+
+// para borrar
+export const  bajacons_id = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let bajasql = "SELECT idconsultorio, numero, local_idlocal FROM consultorio WHERE idconsultorio = '"+ id +"'";
+        const [baja_registros] = await bdd.query(bajasql);
+        console.log(baja_registros)
+    resp.render('baja_cons', { baja_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar el consultorio:', error);
+    }
+}
+
+export const eliminar_cons = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let eliminarsql = "DELETE FROM consultorio WHERE idconsultorio = '"+ id +"'";
+        const [baja_registros] = await bdd.query(eliminarsql);
+        console.log(baja_registros)
+    resp.render('baja_cons', { baja_registros, cargado: true});
+    }     catch (error) {
+        console.error('Error al eliminar consultorio:', error);
+    }
+}
   
