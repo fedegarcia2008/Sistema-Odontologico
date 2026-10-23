@@ -107,7 +107,7 @@
                     <tr>
                         <td><%= his.idtratamiento_realizado %></td>
                         <td><%= new Date(his.fecha_inicio).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %></td>
-                        <td><%= his.tratamiento_finalizado %></td>
+                        <td><%= his.tratamiento_finalizado ? "Finalizado" : "En curso" %></td>
                         <td><%= his.tratamiento_idtratamiento %></td>
                         <td><%= his.afiliado_ci_afiliado %></td>
                         <td><%= his.odontologo_idodontologo %></td>
