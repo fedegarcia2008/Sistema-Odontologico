@@ -68,6 +68,8 @@ export const mos_ser = async (pet, resp) => {
     }
 }
 
+
+// para modificar
 export const buscser_id = async (pet, resp)=>{
       let id = pet.params.clave;
       try {
@@ -77,6 +79,18 @@ export const buscser_id = async (pet, resp)=>{
     resp.render('busc_ser', { busc_registros, federico: true });
     }     catch (error) {
         console.error('Error al buscar el servicio:', error);
+    }
+}
+
+export const buscser_nom = async (pet, resp)=>{
+      let nombre = pet.params.nom;
+      try {
+        let buscarsql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento WHERE nombre = '"+ nombre +"'";
+        const [busc_registros] = await bdd.query(buscarsql);
+        console.log(busc_registros)
+    resp.render('busc_ser', { busc_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar el nombre del servicio:', error);
     }
 }
 

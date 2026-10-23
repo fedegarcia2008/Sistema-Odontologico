@@ -27,14 +27,24 @@
         <input type="submit" value="BUSCAR">
         </div>
         
+    </form>
 
-</form>
-
+    <form onsubmit="busc_nom(event)" method="GET">
+        <div class="campo">
+            <label>Nombre del Servicio</label>
+            <input type="text" id="nom" name="nom"  >
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
+        
+    </form>
 
 
     </main>
 
-<% if (federico) { %>
+<% if (cargado) { %>
         <% if (busc_registros.length > 0) { %>
       
                 <p>Clave:  <%= busc_registros[0].idtratamiento %></p>
@@ -48,6 +58,37 @@
 
             <% } %>
  <% } %>
+
+ <% if (cargado) { %>
+<div class="tabla-contenedor">
+    <table class="tabla-datos">
+        <thead>
+            <tr>
+                <th>C.I.</th>
+                <th>Nombre</th>
+                <th>costo</th>
+                <th>Id odontologo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (busc_registros.length > 0) {
+                busc_registros.forEach(ser => { %>
+                    <tr>
+                        <td><%= ser.idtratamiento %></td>
+                        <td><%= ser.nombre %></td>
+                        <td><%= ser.costo %></td>
+                        <td><%= ser.odontologo_idodontologo %></td>
+                    </tr>
+                <% });
+            } else { %>
+                <tr>
+                    <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                </tr>
+            <% } %>
+                      <% } %>
+        </tbody>
+    </table>
+</div>
 
 <%- include('footer') %>
 <script src="/js/val_buser.js"></script>
