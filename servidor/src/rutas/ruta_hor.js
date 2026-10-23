@@ -1,5 +1,5 @@
 import express from 'express';
-import { menu_hor, alta_hor, baja_hor, mod_hor, busc_hor, mos_hor, nuevo_hor, buschor_id, modhor_id, modificar_hor } from '../controllers/cont_hor.js';
+import { menu_hor, alta_hor, baja_hor, mod_hor, busc_hor, mos_hor, nuevo_hor, buschor_id, buschor_odo, modhor_id, modificar_hor } from '../controllers/cont_hor.js';
 
 const rHorario = express.Router();
 
@@ -13,6 +13,7 @@ rHorario.get('/horario/mostrar', mos_hor)
 rHorario.post('/horario/nuevoalta', nuevo_hor)
 
 rHorario.get('/horario/buscarid/:clave', buschor_id)
+rHorario.get('/horario/buscarodontologo/:odontologo', buschor_odo)
 
 //para modificar
 rHorario.get('/horario/modificarid/:clave', modhor_id)
