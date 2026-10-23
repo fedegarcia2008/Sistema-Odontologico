@@ -26,15 +26,24 @@
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
-        
-
+    
 </form>
 
+    
+        <form onsubmit="busc_fecha(event)" method="GET">
+            <div class="campo">
+                <label>Fecha:</label>
+                <input type="date" id="fecha" name="fecha">
+            </div>
 
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR FECHA">
+            </div>
+        </form>
 
     </main>
 
-<% if (federico) { %>
+<% if (cargado) { %>
         <% if (busc_registros.length > 0) { %>
       
                 <p>Numero de Serie:  <%= busc_registros[0].nroserie %></p>
@@ -50,6 +59,39 @@
             <% } %>
  <% } %>
 
+ 
+<% if (cargado) { %>
+<div class="tabla-contenedor">
+    <table class="tabla-datos">
+        <thead>
+            <tr>
+                <th>Numero de serie</th>
+                <th>Tipo</th>
+                <th>Fecha de Mantenimiento</th>
+                <th>Id Consultorio</th>
+               
+
+            </tr>
+        </thead>
+        <tbody>
+            <% if (busc_registros.length > 0) {
+                busc_registros.forEach(equi => { %>
+                    <tr>
+                        <td><%= equi.nroserie %></td> 
+                        <td><%= equi.tipo %></td>
+                        <td><%= new Date(equi.fecha_mantenimiento).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %></td>
+                        <td><%= equi.consultorio_idconsultorio %></td>
+                    </tr>
+                <% });
+            } else { %>
+                <tr>
+                    <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                </tr>
+            <% } %>
+<% } %>
+        </tbody>
+    </table>
+</div>
 <%- include('footer') %>
 <script src="/js/val_buscequi.js"></script>
 </body>

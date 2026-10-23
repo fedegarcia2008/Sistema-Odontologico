@@ -19,7 +19,7 @@ export const mod_equi = (pet, resp)=>{
 }
 
 export const busc_equi = (pet, resp)=>{
-    resp.render('busc_equi' , {federico: false})
+    resp.render('busc_equi' , {cargado: false})
 }
 
 
@@ -74,12 +74,25 @@ export const buscequi_id = async (pet, resp)=>{
         let buscarsql = "SELECT nroserie, tipo, fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE nroserie= '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_equi', { busc_registros, federico: true });
+    resp.render('busc_equi', { busc_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar el equipamiento:', error);
     }
 }
 
+
+    export const buscequi_fecha = async (pet, resp)=>{
+          let fecha = pet.params.fecha;
+          
+          try {
+            let buscarsql = "SELECT nroserie, tipo, fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE fecha_mantenimiento = '"+ fecha +"'" ;
+            const [busc_registros] = await bdd.query(buscarsql);
+            console.log(busc_registros)
+        resp.render('busc_equi', { busc_registros, cargado: true });
+        }     catch (error) {
+            console.error('Error al buscar equipamiento:', error);
+        }
+    }
 
 // para modificar
 export const  modequi_id = async (pet, resp)=>{
