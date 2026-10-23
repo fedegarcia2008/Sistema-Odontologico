@@ -55,7 +55,9 @@
 
                 <div class="campo">
             <label>Tratamiento finalizado </label>
-            <select name="idTrat" id="idTrat" value= <%= busc_registros[0].tratamiento_realizado %>">
+            <select name="idTrat" 
+                            value="<%= busc_registros[0].tratamiento_realizado %>">
+                <option value="">Seleccione una opción</option>
                 <option value= 1>Finalizado</option>
                 <option value= 0>En curso</option>
             </select>
