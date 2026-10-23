@@ -26,16 +26,31 @@
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
-        
-
 </form>
 
+<form onsubmit="busc_plan(event)" method="GET">
 
+  <div class="campo">
+            <label>Tipo de plan</label>
+            <select name="dia" id="dia" >
+                <option value="">Seleccione un dia</option>
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miercoles">Miercoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Viernes">Viernes</option>
+                <option value="Sabado">Sabado</option>
+            </select>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR POR DIA">
+        </div>
+</form>
 
 
     </main>
 
-<% if (federico) { %>
+<% if (cargado) { %>
         <% if (busc_registros.length > 0) { %>
       
                 <p>Clave:  <%= busc_registros[0].idhorario %></p>

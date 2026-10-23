@@ -4,6 +4,15 @@
         window.location.href = `/horario/buscarid/${idejs}`;
         document.getElementById('clave').value = "";        
     }
+
+    function busc_dia(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('dia').value;
+        window.location.href = `/horario/buscardia/${idejs}`;
+        document.getElementById('dia').value = "";        
+    }
+
+
 let idOdo = document.querySelector('[name="idOdo"]');
 
     idOdo.addEventListener("input", function () {
