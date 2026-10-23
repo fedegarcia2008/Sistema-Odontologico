@@ -11,7 +11,7 @@ export const alta_con = (pet, resp)=>{
 }
 
 export const baja_con = (pet, resp)=>{
-    resp.render('baja_con')
+    resp.render('baja_con', {cargado: false})
 }
 
 export const mod_con = (pet, resp)=>{
@@ -134,3 +134,29 @@ export const modificar_con = async (pet, resp)=>{
         });
     }
 };
+
+
+// para borrar
+export const  bajacon_id = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let bajasql = "SELECT idconvenio, nombre, rebaja FROM convenio WHERE idconvenio = '"+ id +"'";
+        const [baja_registros] = await bdd.query(bajasql);
+        console.log(baja_registros)
+    resp.render('baja_con', { baja_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar convenio:', error);
+    }
+}
+
+export const eliminar_con = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let eliminarsql = "DELETE FROM convenio WHERE idconvenio = '"+ id +"'";
+        const [baja_registros] = await bdd.query(eliminarsql);
+        console.log(baja_registros)
+    resp.render('baja_con', { baja_registros, cargado: true});
+    }     catch (error) {
+        console.error('Error al eliminar convenio:', error);
+    }
+}
