@@ -15,7 +15,7 @@
     <h1>BAJA AFILIADO</h1>
  <main class="formulario">
 
-    <form onsubmit="busc_form(event)" method="GET">
+    <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
             <input type="text" id="clave" name="clave" maxlength="10">
@@ -99,7 +99,7 @@
 </main>
 
         <script>
-        function busc_form(event) {
+        function busc_id(event) {
         event.preventDefault();
         let idejs = document.getElementById('clave').value;
         window.location.href = `/afiliado/bajaxid/${idejs}`;
@@ -109,7 +109,7 @@
     function baja_form(event) {
         event.preventDefault();
 
-        let formulario = event.target;
+        let formulario = event.target; // guarda en la variable formulario lo que esta dentro de <form>
         let idejs = formulario.querySelector('[name="clave"]').value;
 
         formulario.action = `/afiliado/eliminar/${idejs}`;
