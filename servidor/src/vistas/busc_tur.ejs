@@ -41,6 +41,20 @@
             </div>
         </form>
 
+        <form onsubmit="busc_fechas(event)" method="GET">
+            <div class="campo">
+                <label>Desde:</label>
+                <input type="date" id="fecha1" name="fecha1">
+                <label>Hasta:</label>
+                <input type="date" id="fecha2" name="fecha2">
+            </div>
+
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR PERIODO">
+            </div>
+        </form>
+
+
         <form onsubmit="busc_odo(event)" method="GET">
             <div class="campo">
                 <label>ID odontólogo:</label>
@@ -115,11 +129,11 @@
                     <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
                 </tr>
             <% } %>
-<% } %>
+
         </tbody>
     </table>
 </div>
-
+<% } %>
 <%- include('footer') %>
 <script src="/js/val_busctur.js"></script>
 </body>

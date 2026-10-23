@@ -13,6 +13,15 @@
         document.getElementById('fecha').value = "";        
     }
 
+    function busc_fechas(event) {
+        event.preventDefault();
+        let idejs1 = document.getElementById('fecha1').value;
+        let idejs2 = document.getElementById('fecha2').value;
+        window.location.href = `/turno/buscarperiodo/${idejs1}/${idejs2}`;
+        document.getElementById('fecha1').value = "";
+        document.getElementById('fecha2').value = "";    
+    }
+
     function busc_odo(event) {
         event.preventDefault();
         let idejs = document.getElementById('idOdo').value;

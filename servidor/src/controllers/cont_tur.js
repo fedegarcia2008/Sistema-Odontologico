@@ -93,6 +93,20 @@ export const busctur_id = async (pet, resp)=>{
             console.error('Error al buscar turno:', error);
         }
     }
+
+    export const busctur_fechas = async (pet, resp)=>{
+          let fecha1 = pet.params.fecha1;
+          let fecha2 = pet.params.fecha2;
+          
+          try {
+           let buscarsql =  "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE fecha BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' ORDER BY fecha, horario";
+            const [busc_registros] = await bdd.query(buscarsql);
+            console.log(busc_registros)
+        resp.render('busc_tur', { busc_registros, cargado: true });
+        }     catch (error) {
+            console.error('Error al buscar turno:', error);
+        }
+    }
     
 export const busctur_odo = async (pet, resp)=>{
       let odo = pet.params.idOdo;
@@ -102,19 +116,19 @@ export const busctur_odo = async (pet, resp)=>{
         console.log(busc_registros)
     resp.render('busc_tur', { busc_registros, cargado: true });
     }     catch (error) {
-        console.error('Error al buscar el odontólogo:', error);
+        console.error('Error al buscar el turno:', error);
     }
 }
 
 export const busctur_afi = async (pet, resp)=>{
       let afi = pet.params.idAfi;
       try {
-        let buscarsql = "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE afiliado_ci_afiliado = '"+ id +"'";
+        let buscarsql = "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE afiliado_ci_afiliado = '"+ afi +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
     resp.render('busc_tur', { busc_registros, cargado: true });
     }     catch (error) {
-        console.error('Error al buscar el afiliado:', error);
+        console.error('Error al buscar el turno:', error);
     }
 }
 
