@@ -41,6 +41,17 @@
             </div>
         </form>
 
+        <form onsubmit="busc_cons(event)" method="GET">
+            <div class="campo">
+                <label>Consultorio:</label>
+                <input type="text" id="idCons" name="idCons">
+            </div>
+
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR CONSULTORIO">
+            </div>
+        </form>
+
     </main>
 
 <% if (cargado) { %>

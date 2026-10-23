@@ -1,5 +1,5 @@
 import express from 'express';
-import { menu_equi, alta_equi, baja_equi, mod_equi, busc_equi, mos_equi, nuevo_equi, buscequi_id, buscequi_fecha, modequi_id, modificar_equi} from '../controllers/cont_equi.js';
+import { menu_equi, alta_equi, baja_equi, mod_equi, busc_equi, mos_equi, nuevo_equi, buscequi_id, buscequi_fecha, buscequi_cons, modequi_id, modificar_equi} from '../controllers/cont_equi.js';
 
 const rEquipamiento= express.Router();
 
@@ -14,6 +14,7 @@ rEquipamiento.post('/equipamiento/nuevoalta', nuevo_equi)
 
 rEquipamiento.get('/equipamiento/buscarid/:clave', buscequi_id)
 rEquipamiento.get('/equipamiento/buscarfecha/:fecha', buscequi_fecha)
+rEquipamiento.get('/equipamiento/buscarconsultorio/:idCons', buscequi_cons)
 
 //para modificar
 rEquipamiento.get('/equipamiento/modificarid/:clave', modequi_id)

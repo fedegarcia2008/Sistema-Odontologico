@@ -94,6 +94,19 @@ export const buscequi_id = async (pet, resp)=>{
         }
     }
 
+     export const buscequi_cons = async (pet, resp)=>{
+          let cons = pet.params.idCons;
+          
+          try {
+            let buscarsql = "SELECT nroserie, tipo, fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE consultorio_idconsultorio = '"+ cons +"'" ;
+            const [busc_registros] = await bdd.query(buscarsql);
+            console.log(busc_registros)
+        resp.render('busc_equi', { busc_registros, cargado: true });
+        }     catch (error) {
+            console.error('Error al buscar equipamiento:', error);
+        }
+    }
+
 // para modificar
 export const  modequi_id = async (pet, resp)=>{
 let id = pet.params.clave;
