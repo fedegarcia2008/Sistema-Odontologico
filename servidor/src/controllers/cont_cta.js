@@ -11,7 +11,7 @@ export const alta_cta = (pet, resp)=>{
 }
 
 export const baja_cta = (pet, resp)=>{
-    resp.render('baja_cta')
+    resp.render('baja_cta', {cargado: false})
 }
 
 export const mod_cta = (pet, resp)=>{
@@ -124,3 +124,30 @@ export const modificar_cta = async (pet, resp)=>{
         });
     }
 };
+
+
+
+// para borrar
+export const  bajacta_id = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let bajasql = "SELECT afiliado_ci_afiliado, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte WHERE afiliado_ci_afiliado = '"+ id +"'";
+        const [baja_registros] = await bdd.query(bajasql);
+        console.log(baja_registros)
+    resp.render('baja_cta', { baja_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar la cuenta corriente:', error);
+    }
+}
+
+export const eliminar_cta = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let eliminarsql = "DELETE FROM cta_cte WHERE afiliado_ci_afiliado = '"+ id +"'";
+        const [baja_registros] = await bdd.query(eliminarsql);
+        console.log(baja_registros)
+    resp.render('baja_cta', { baja_registros, cargado: true});
+    }     catch (error) {
+        console.error('Error al eliminar cuenta corriente:', error);
+    }
+}
