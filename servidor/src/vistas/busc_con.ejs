@@ -56,6 +56,35 @@
             <% } %>
  <% } %>
 
+<% if (cargado) { %>
+<div class="tabla-contenedor">
+    <table class="tabla-datos">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>nombre</th>
+                <th>rebaja</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (busc_registros.length > 0) {
+                busc_registros.forEach(cons => { %>
+                    <tr>
+                        <td><%= con.idconvenio %></td>
+                        <td><%= con.nombre %></td>
+                        <td><%= con.rebaja %></td>
+                    </tr>
+                <% });
+            } else { %>
+                <tr>
+                    <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                </tr>
+            <% } %>
+                      <% } %>
+        </tbody>
+    </table>
+</div>
+
 <%- include('footer') %>
 
 <script src="/js/val_buscon.js"></script>

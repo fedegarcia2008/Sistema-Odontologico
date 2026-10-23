@@ -12,6 +12,7 @@ rConvenio.get('/convenio/mostrar', mos_con)
 
 rConvenio.post('/convenio/nuevoalta', nuevo_con)
 
+//para buscar
 rConvenio.get('/convenio/buscarid/:clave', buscon_id)
 rConvenio.get('/convenio/buscarnombre/:nombre', buscon_nom)
 
