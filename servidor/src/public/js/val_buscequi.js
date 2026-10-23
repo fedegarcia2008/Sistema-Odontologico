@@ -10,6 +10,13 @@ function busc_id(event) {
         window.location.href = `/equipamiento/buscarfecha/${idejs}`;
         document.getElementById('fecha').value = "";        
     }
+
+    function busc_cons(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('idCons').value;
+        window.location.href = `/equipamiento/buscarconsultorio/${idejs}`;
+        document.getElementById('idCons').value = "";        
+    }
     let clave = document.querySelector('[name="clave"]');
 
  

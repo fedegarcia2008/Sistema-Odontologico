@@ -33,12 +33,6 @@
         document.getElementById('trat_rea').value = "";        
     }
 
-     function busc_cons(event) {
-        event.preventDefault();
-        let idejs = document.getElementById('idCons').value;
-        window.location.href = `/equipamiento/buscarconsultorio/${idejs}`;
-        document.getElementById('idCons').value = "";        
-    }
 let idSer = document.querySelector('[name="idSer"]');
 
     idSer.addEventListener("input", function () {
