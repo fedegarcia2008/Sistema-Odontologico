@@ -12,6 +12,13 @@
         document.getElementById('nombre').value = "";        
     }
 
+    function busc_plan(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('plan').value;
+        window.location.href = `/afiliado/buscartipoplan/${idejs}`;
+        document.getElementById('plan').value = "";        
+    }
+
 
 let clave = document.querySelector('[name="clave"]');
 
