@@ -37,11 +37,12 @@
         <input type="submit" value="BUSCAR">
         </div>
 
+        
 </form>
 
 </main>
 
-<% if (federico) { %>
+<% if (cargado) { %>
         <% if (busc_registros.length > 0) { %>
       
                 <p>Clave:  <%= busc_registros[0].idconsultorio %></p>
@@ -55,6 +56,37 @@
             <% } %>
  <% } %>
 
+<% if (cargado) { %>
+ <div class="tabla-contenedor">
+    <table class="tabla-datos">
+        <thead>
+            <tr>
+            <th >Id</th>
+            <th >Numero</th>
+            <th >id Local</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <% if (registros.length > 0) {
+                registros.forEach(cons => { %>
+                    <tr>
+                        <td><%= cons.idconsultorio %></td>
+                        <td><%= cons.numero %></td>
+                        <td><%= cons.local_idlocal %></td>                                         
+                    </tr>                    
+                <% }); %>
+            <% }
+            else{ %>
+                <p>No hay datos para mostrar </p>
+            <% } %>
+
+            
+        </tbody>
+        </table>
+
+    </div>
+<% } %>
 <%- include('footer') %>
 
 <script src="/js/val_buscons.js"></script>
