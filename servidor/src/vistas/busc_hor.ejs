@@ -17,7 +17,7 @@
 
         <main class="formulario">
 
-    <form onsubmit="busc_form(event)" method="GET">
+    <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
             <input type="text" id="clave" name="clave"  >
@@ -47,6 +47,19 @@
         </div>
 </form>
 
+        <form onsubmit="busc_odo(event)" method="GET">
+            <div class="campo">
+                <label>ID odontólogo:</label>
+                <input type="text" id="idOdo" name="idOdo">
+            </div>
+
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR ID ODONTÓLOGO">
+            </div>
+        </form>
+
+
+
 
     </main>
 
@@ -66,6 +79,42 @@
             <% } %>
  <% } %>
 
+
+                
+<% if (cargado) { %>
+<div class="tabla-contenedor">
+    <table class="tabla-datos">
+        <thead>
+            <tr>
+                <th >Id Horario</th>
+            <th >Dia</th>
+            <th >Hora inicio</th>
+            <th >Hora Final</th>
+            <th >Id Odontologo</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <% if (busc_registros.length > 0) {
+                busc_registros.forEach(hor => { %>
+                    <tr>
+                        <td><%= hor.idhorario %></td>
+                        <td><%= hor.dia %></td>
+                        <td><%= hor.horario_comienzo.slice(0, 5) %></td>
+                        <td><%= hor.horario_final.slice(0, 5) %></td>
+                        <td><%= hor.odontologo_idodontologo %></td>
+                    </tr>
+                <% });
+            } else { %>
+                <tr>
+                    <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                </tr>
+            <% } %>
+
+        </tbody>
+    </table>
+</div>
+<% } %>
 <%- include('footer') %>
 <script src="/js/val_buschor.js"></script>
 </body>

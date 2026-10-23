@@ -41,6 +41,43 @@
             </div>
         </form>
 
+        
+        <form onsubmit="busc_afi(event)" method="GET">
+            <div class="campo">
+                <label>ID Afiliado:</label>
+                <input type="text" id="idAfi" name="idAfi">
+            </div>
+
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR ID AFILIADO">
+            </div>
+        </form>
+
+        <form onsubmit="busc_odo(event)" method="GET">
+            <div class="campo">
+                <label>ID odontólogo:</label>
+                <input type="text" id="idOdo" name="idOdo">
+            </div>
+
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR ID ODONTÓLOGO">
+            </div>
+        </form>
+
+        
+    <form onsubmit="busc_trat(event)" method="GET">
+
+  <div class="campo">
+            <label>Tipo de Tratamiento <span class="asterisco">*</span></label>
+            <select name="trat_rea" id="trat_rea" >
+                <option value="">Seleccione su estado de tratamiento</option>
+                <option value="Finalizado">Finalizado</option>
+                <option value="En curso">En Curso</option>
+            </select>
+       <div class="boton">
+        <input type="submit" value="BUSCAR POR ESTADO DE TRATAMIENTO">
+        </div>
+</form>
 
 
     </main>
@@ -50,7 +87,7 @@
       
                 <p>Clave:  <%= busc_registros[0].idtratamiento_realizado %></p>
                 <p>Fecha de inicio:  <%= new Date(busc_registros[0].fecha_inicio).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %></p>
-                <p>Tratamiento finalizado:  <%= busc_registros[0].tratamiento_finalizado %></p>
+                <p>Tratamiento finalizado:  <%= busc_registros[0].tratamiento_finalizado ? "Finalizado" : "En curso" %></p>
                 <p>Tratamiento:  <%= busc_registros[0].tratamiento_idtratamiento %></p>
                 <p>Id del afiliado:  <%= busc_registros[0].afiliado_ci_afiliado %></p>
                 <p>Id del odontologo: <%= busc_registros[0].odontologo_idodontologo %></p>
@@ -84,7 +121,7 @@
                     <tr>
                         <td><%= his.idtratamiento_realizado %></td>
                         <td><%= new Date(his.fecha_inicio).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %></td>
-                        <td><%= his.tratamiento_finalizado %></td>
+                        <td><%= his.tratamiento_finalizado ? "Finalizado" : "En curso" %></td>
                         <td><%= his.tratamiento_idtratamiento %></td>
                         <td><%= his.afiliado_ci_afiliado %></td>
                         <td><%= his.odontologo_idodontologo %></td>

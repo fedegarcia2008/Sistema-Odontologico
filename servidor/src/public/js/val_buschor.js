@@ -1,9 +1,10 @@
- function busc_form(event) {
+ function busc_id(event) {
         event.preventDefault();
         let idejs = document.getElementById('clave').value;
         window.location.href = `/horario/buscarid/${idejs}`;
         document.getElementById('clave').value = "";        
     }
+
 
     function busc_dia(event) {
         event.preventDefault();
@@ -12,6 +13,12 @@
         document.getElementById('dia').value = "";        
     }
 
+    function busc_odo(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('idOdo').value;
+        window.location.href = `/horario/buscarodontologo/${idejs}`;
+        document.getElementById('idOdo').value = "";        
+    }
 
 let idOdo = document.querySelector('[name="idOdo"]');
 
