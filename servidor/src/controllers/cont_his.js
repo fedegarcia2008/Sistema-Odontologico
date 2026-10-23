@@ -111,6 +111,19 @@ export const buschis_id = async (pet, resp)=>{
             }
         }
 
+        
+        export const buschis_odo = async (pet, resp)=>{
+              let odo = pet.params.idOdo;
+              try {
+                let buscarsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE odontologo_idodontologo = '"+ odo +"'";
+                const [busc_registros] = await bdd.query(buscarsql);
+                console.log(busc_registros)
+            resp.render('busc_his', { busc_registros, cargado: true });
+            }     catch (error) {
+                console.error('Error al buscar la consulta:', error);
+            }
+        }
+
 
 // para modificar
 export const  modhis_id = async (pet, resp)=>{
