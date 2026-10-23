@@ -13,68 +13,114 @@
  <%- include('header') %>
 
     <h1>BAJA AFILIADO</h1>
-<main>
+ <main class="formulario">
 
-    <form onsubmit="baja_form(event)" method="GET">
+    <form onsubmit="busc_form(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave"  >
+            <input type="text" id="clave" name="clave" maxlength="10">
         </div>
         
-        <input type="submit" class="confirmar" value="Confirmar">
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
+
 </form>
-
-<script>
-    function baja_form(event) {
-        event.preventDefault();
-        let idhtml = document.getElementById('clave').value;
-        window.location.href = `/afiliado/bajaxid/${idhtml}`;
-        document.getElementById('clave').value = "";        
-    }
-
-        let form_eliminar = document.getElementById('form_eliminar');
-
-    form_eliminar.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        let idhtml = '<%= baja_registros[0].ci_afiliado %>';
-
-        if (confirm('¿Estás seguro de que querés eliminar este afiliado?')) {
-            window.location.href = `/afiliado/eliminar/${encodeURIComponent(idhtml)}`;
-        }
-    });
-</script>
-    </main>
 
     
-<% if (federico) { %>
-        <% if (baja_registros.length > 0) { %>
-      
-                <p>Clave:  <%= baja_registros[0].ci_afiliado %></p>
-                <p>Nombre:  <%= baja_registros[0].nombre %></p>
-                <p>Apellido:  <%= baja_registros[0].apellido %></p>
-                <p>Celular:  <%= baja_registros[0].tel_cel %></p>
-                <p>Teléfono fijo:  <%= baja_registros[0].tel_fijo %></p>
-                <p>Plan: <%= baja_registros[0].tipo_plan %></p>
-      
-<form id="form_eliminar">
-    <button type="submit" class="confirmar">
-        ELIMINAR
-    </button>
-</form>
-
-            <% } else { %>
-
-                    <p> No hay datos para mostrar</p>
-
-            <% } %>
 
 
 
+
+<% if (cargado) { %>
+<% if (baja_registros.length > 0) { %>
+
+<form class="formulario resultado" onsubmit="baja_form(event)" method="POST">
+
+          <div class="campo">
+            <label>Clave de Identificacion:</label>
+        <input type="name" id="clave" name="clave" readonly value="<%= baja_registros[0].ci_afiliado %>">
+</div>
+
+    <div class="fila">
+        <div class="campo">
+            <label>Nombre:</label>
+            <input type="text" name="nombre"
+                   value="<%= baja_registros[0].nombre %>" required>
+            </div>
+        </div>
+
+
+        <div class="fila">
+        <div class="campo">
+
+            <label>Apellido:</label>
+            <input type="text" name="apellido"
+                   value="<%= baja_registros[0].apellido %>" required>
+        </div>
+
+        <div class="fila">
+        <div class="campo">
+            <label>Celular:</label>
+            <input type="text" name="telCelular"
+                   value="<%= baja_registros[0].tel_cel %>">
+        </div>
+    </div>
+
+        <div class="campo">
+            <label>Teléfono fijo:</label>
+            <input type="text" name="telFijo"
+                   value="<%= baja_registros[0].tel_fijo %>">
+        </div>
+
+        <div class="fila">
+        <div class="campo">
+            <label>Tipo de plan</label>
+            <input type="text" name="tipo" required value="<%= baja_registros[0].tipo_plan %>" >
+
+        </div>
+</div>
+
+
+        <div class="boton">
+            <input type="submit" value="ELIMINAR">
+        </div>
+
+    </form>
+
+<% } else { %>
+    <div class="formulario vacio">
+    <i class="fa-solid fa-user-slash"></i>
+    <p>No hay datos para mostrar.</p>
+</div>
+<% } %>
  <% } %>
 
- 
-<%- include('footer') %>
+</main>
 
+        <script>
+        function busc_form(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('clave').value;
+        window.location.href = `/afiliado/bajaxid/${idejs}`;
+        document.getElementById('clave').value = "";   
+        }
+
+    function baja_form(event) {
+        event.preventDefault();
+
+        let formulario = event.target;
+        let idejs = formulario.querySelector('[name="clave"]').value;
+
+        formulario.action = `/afiliado/eliminar/${idejs}`;
+        formulario.submit();
+    }
+        </script>
+
+ <%- include('sweet_modificar') %>
+
+
+            <%- include('footer') %>
+ 
 </body>
 </html>
