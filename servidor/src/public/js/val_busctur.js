@@ -20,6 +20,13 @@
         document.getElementById('idOdo').value = "";        
     }
 
+    function busc_afi(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('idAfi').value;
+        window.location.href = `/turno/buscarafiliado/${idejs}`;
+        document.getElementById('idAfi').value = "";        
+    }
+
 
 
 let idOdo = document.querySelector('[name="idOdo"]');

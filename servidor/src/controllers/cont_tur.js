@@ -106,6 +106,18 @@ export const busctur_odo = async (pet, resp)=>{
     }
 }
 
+export const busctur_afi = async (pet, resp)=>{
+      let afi = pet.params.idAfi;
+      try {
+        let buscarsql = "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE afiliado_ci_afiliado = '"+ id +"'";
+        const [busc_registros] = await bdd.query(buscarsql);
+        console.log(busc_registros)
+    resp.render('busc_tur', { busc_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar el afiliado:', error);
+    }
+}
+
 // para modificar
 export const  modtur_id = async (pet, resp)=>{
 let id = pet.params.clave;
