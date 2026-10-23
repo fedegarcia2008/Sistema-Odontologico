@@ -46,7 +46,7 @@
         <div class="campo">
             <label>Nombre:</label>
             <input type="text" name="nombre"
-                   value="<%= baja_registros[0].nombre %>" required>
+                   readonly value="<%= baja_registros[0].nombre %>" >
             </div>
         </div>
 
@@ -56,27 +56,27 @@
 
             <label>Apellido:</label>
             <input type="text" name="apellido"
-                   value="<%= baja_registros[0].apellido %>" required>
+                   readonly value="<%= baja_registros[0].apellido %>">
         </div>
 
         <div class="fila">
         <div class="campo">
             <label>Celular:</label>
             <input type="text" name="telCelular"
-                   value="<%= baja_registros[0].tel_cel %>">
+                   readonly value="<%= baja_registros[0].tel_cel %>">
         </div>
     </div>
 
         <div class="campo">
             <label>Teléfono fijo:</label>
             <input type="text" name="telFijo"
-                   value="<%= baja_registros[0].tel_fijo %>">
+                   readonly value="<%= baja_registros[0].tel_fijo %>">
         </div>
 
         <div class="fila">
         <div class="campo">
             <label>Tipo de plan</label>
-            <input type="text" name="tipo" required value="<%= baja_registros[0].tipo_plan %>" >
+            <input type="text" name="tipo" readonly value="<%= baja_registros[0].tipo_plan %>" >
 
         </div>
 </div>
