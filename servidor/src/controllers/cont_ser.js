@@ -19,7 +19,7 @@ export const mod_ser = (pet, resp)=>{
 }
 
 export const busc_ser = (pet, resp)=>{
-    resp.render('busc_ser', {federico: false })
+    resp.render('busc_ser', {cargado: false })
 }
 
 
