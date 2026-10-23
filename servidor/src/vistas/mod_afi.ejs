@@ -112,11 +112,11 @@
     function mod_form(event) {
         event.preventDefault();
 
-        let formulario = event.target;
+        let formulario = event.target;  // guarda en la variable formulario lo que esta dentro de <form>
         let idejs = formulario.querySelector('[name="clave"]').value;
 
-        formulario.action = `/afiliado/modificar/${idejs}`;
-        formulario.submit();
+        formulario.action = `/afiliado/modificar/${idejs}`;  // ruta
+        formulario.submit();  // envio de datos
     }
         </script>
 
