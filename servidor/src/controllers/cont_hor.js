@@ -105,7 +105,6 @@ export const buschor_dia = async (pet, resp)=>{
     }
 }
 
-
 // para modificar
 export const  modhor_id = async (pet, resp)=>{
 let id = pet.params.clave;
