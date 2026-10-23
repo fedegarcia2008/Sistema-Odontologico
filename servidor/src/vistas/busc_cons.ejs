@@ -27,6 +27,7 @@
         <input type="submit" value="BUSCAR">
         </div>
         
+        </form>
         <form onsubmit="busc_num(event)" method="GET">
         <div class="campo">
             <label>Numero de Consultorio:</label>
@@ -34,7 +35,7 @@
         </div>
         
        <div class="boton">
-        <input type="submit" value="BUSCAR">
+        <input type="submit" value="BUSCAR por nro">
         </div>
 
         
@@ -56,37 +57,36 @@
             <% } %>
  <% } %>
 
+
 <% if (cargado) { %>
- <div class="tabla-contenedor">
+<div class="tabla-contenedor">
     <table class="tabla-datos">
         <thead>
             <tr>
-            <th >Id</th>
-            <th >Numero</th>
-            <th >id Local</th>
+                <th>id.</th>
+                <th>numero</th>
+                <th>id local</th>
             </tr>
         </thead>
         <tbody>
-
-            <% if (registros.length > 0) {
-                registros.forEach(cons => { %>
+            <% if (busc_registros.length > 0) {
+                busc_registros.forEach(cons => { %>
                     <tr>
                         <td><%= cons.idconsultorio %></td>
                         <td><%= cons.numero %></td>
-                        <td><%= cons.local_idlocal %></td>                                         
-                    </tr>                    
-                <% }); %>
-            <% }
-            else{ %>
-                <p>No hay datos para mostrar </p>
+                        <td><%= cons.local_idlocal %></td>
+                    </tr>
+                <% });
+            } else { %>
+                <tr>
+                    <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                </tr>
             <% } %>
-
-            
+                      <% } %>
         </tbody>
-        </table>
+    </table>
+</div>
 
-    </div>
-<% } %>
 <%- include('footer') %>
 
 <script src="/js/val_buscons.js"></script>
