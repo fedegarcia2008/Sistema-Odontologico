@@ -94,7 +94,7 @@ export const buscser_nom = async (pet, resp)=>{
     }
 }
 
-export const bucser_odo = async (pet, resp)=>{
+export const buscser_odo = async (pet, resp)=>{
       let odo = pet.params.odo;
       try {
         let buscarsql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento WHERE odontologo_idodontologo = '"+ odo +"'";
