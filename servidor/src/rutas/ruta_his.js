@@ -16,7 +16,7 @@ rHistoria.get('/historiaclinica/buscarid/:clave', buschis_id)
 rHistoria.get('/historiaclinica/buscarfecha/:fecha', buschis_fecha)
 rHistoria.get('/historiaclinica/buscarafiliado/:idAfi', buschis_afi)
 rHistoria.get('/historiaclinica/buscarodontologo/:idOdo', buschis_odo)
-rHistoria.get('/historiaclinica/buscartratamientorealizado/:plan', buschis_trat)
+rHistoria.get('/historiaclinica/buscartratamientorealizado/:trat_rea', buschis_trat)
 
 //para modificar
 rHistoria.get('/historiaclinica/modificarid/:clave', modhis_id)
