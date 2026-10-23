@@ -17,7 +17,7 @@
 
         <main class="formulario">
 
-    <form onsubmit="busc_form(event)" method="GET">
+    <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
             <input type="text" id="clave" name="clave"  >
@@ -29,15 +29,15 @@
         
     </form>
 
-    
+
     <form onsubmit="busc_nom(event)" method="GET">
         <div class="campo">
             <label>Nombre del Servicio</label>
-            <input type="text" id="nom" name="nom"  >
+            <input type="text" id="nom" name="nom">
         </div>
         
        <div class="boton">
-        <input type="submit" value="BUSCAR">
+        <input type="submit" value="BUSCAR POR SERVICIO">
         </div>
         
     </form>
@@ -76,7 +76,7 @@
                 busc_registros.forEach(ser => { %>
                     <tr>
                         <td><%= ser.idtratamiento %></td>
-                        <td><%= ser.noombre %></td>
+                        <td><%= ser.nombre %></td>
                         <td><%= ser.costo %></td>
                         <td><%= ser.odntologo_idodontologo %></td>
                     </tr>
