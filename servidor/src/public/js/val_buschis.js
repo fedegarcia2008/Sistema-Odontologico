@@ -26,11 +26,11 @@
     }
 
     
-    function busc_plan(event) {
+    function busc_trat(event) {
         event.preventDefault();
-        let idejs = document.getElementById('plan').value;
-        window.location.href = `/historiaclinica/buscartipoplan/${idejs}`;
-        document.getElementById('plan').value = "";        
+        let idejs = document.getElementById('trat_rea').value;
+        window.location.href = `/historiaclinica/buscartratamientorealizado/${idejs}`;
+        document.getElementById('trat_rea').value = "";        
     }
 let idSer = document.querySelector('[name="idSer"]');
 
