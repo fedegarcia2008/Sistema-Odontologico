@@ -11,6 +11,13 @@
         document.getElementById('nombre').value = "";        
     }
 
+    function busc_cons(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('cons').value;
+        window.location.href = `/odontologo/buscarconsultorio/${idejs}`;
+        document.getElementById('cons').value = "";        
+    }
+
     let clave = document.querySelector('[name="clave"]');
 
     clave.addEventListener("input", function () {

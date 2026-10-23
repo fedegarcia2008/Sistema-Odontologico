@@ -97,6 +97,19 @@ export const buscodo_nom = async (pet, resp)=>{
     }
 }
 
+export const buscodo_cons = async (pet, resp)=>{
+      let cons = pet.params.cons;
+      
+      try {
+        let buscarsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE consultorio_idconsultorio = '"+ cons +"'";
+        const [busc_registros] = await bdd.query(buscarsql);
+        console.log(busc_registros)
+    resp.render('busc_odo', { busc_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar consultorio:', error);
+    }
+}
+
 
 // para modificar
 export const  mododo_id = async (pet, resp)=>{

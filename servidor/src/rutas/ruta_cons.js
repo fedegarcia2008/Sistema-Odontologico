@@ -19,6 +19,7 @@ rConsultorio.get('/consultorio/buscarid/:clave', buscons_id)
 rConsultorio.get('/consultorio/buscarconsultorio/:cons', buscons_nrocons)
 
 
+
 //para modificar
 rConsultorio.get('/consultorio/modificarid/:clave', modcons_id)
 rConsultorio.post('/consultorio/modificar/:clave', modificar_cons)

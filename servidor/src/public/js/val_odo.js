@@ -1,3 +1,7 @@
+
+
+
+
 let clave = document.querySelector('[name="clave"]');
 
     clave.addEventListener("input", function () {
