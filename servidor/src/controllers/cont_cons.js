@@ -65,6 +65,8 @@ export const mos_cons = async (pet, resp) => {
     }
 }
 
+
+//para buscar
 export const buscons_id = async (pet, resp)=>{
       let id = pet.params.clave;
       try {
@@ -77,6 +79,17 @@ export const buscons_id = async (pet, resp)=>{
     }
 }
 
+export const buscons_nrocons = async (pet, resp)=>{
+      let nro = pet.params.nro;
+      try {
+        let buscarsql = "SELECT idconsultorio, numero, local_idlocal FROM consultorio WHERE numero = '"+ nro +"'";
+        const [busc_registros] = await bdd.query(buscarsql);
+        console.log(busc_registros)
+    resp.render('busc_cons', { busc_registros, federico: true });
+    }     catch (error) {
+        console.error('Error al buscar consultorio:', error);
+    }
+}
 
 // para modificar
 export const  modcons_id = async (pet, resp)=>{

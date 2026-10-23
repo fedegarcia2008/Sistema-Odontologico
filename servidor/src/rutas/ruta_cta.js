@@ -14,6 +14,8 @@ rCtaCte.get('/cuentacorriente/mostrar', mos_cta)
 rCtaCte.post('/cuentacorriente/nuevoalta', nuevo_cta)
 
 rCtaCte.get('/cuentacorriente/buscarid/:clave', buscta_id)
+rCtaCte.get('/cuentacorriente/buscaridafiliado/:claveafi', buscta_id)
+
 
 //para modificar
 rCtaCte.get('/cuentacorriente/modificarid/:clave', modcta_id)
