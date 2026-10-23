@@ -24,6 +24,14 @@
         window.location.href = `/historiaclinica/buscarodontologo/${idejs}`;
         document.getElementById('idOdo').value = "";        
     }
+
+    
+    function busc_plan(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('plan').value;
+        window.location.href = `/historiaclinica/buscartipoplan/${idejs}`;
+        document.getElementById('plan').value = "";        
+    }
 let idSer = document.querySelector('[name="idSer"]');
 
     idSer.addEventListener("input", function () {
