@@ -11,7 +11,7 @@ export const alta_afi = (pet, resp)=>{
 }
 
 export const baja_afi = (pet, resp)=>{
-    resp.render('baja_afi', {federico: false})
+    resp.render('baja_afi', {cargado: false})
 }
 
 export const mod_afi = (pet, resp)=>{
@@ -247,7 +247,7 @@ let id = pet.params.clave;
         let bajasql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE ci_afiliado = '"+ id +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('baja_afi', { baja_registros, federico: true });
+    resp.render('baja_afi', { baja_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar afiliado:', error);
     }
@@ -257,11 +257,11 @@ export const eliminar_afi = async (pet, resp)=>{
 let id = pet.params.clave;
       try {
         let eliminarsql = "DELETE FROM afiliado WHERE ci_afiliado = '"+ id +"'";
-        const [eliminar_registros] = await bdd.query(eliminarsql);
-        console.log(eliminar_registros)
-    resp.render('baja_afi', { eliminado: false, federico: true});
+        const [baja_registros] = await bdd.query(eliminarsql);
+        console.log(baja_registros)
+    resp.render('baja_afi', { baja_registros, cargado: true});
     }     catch (error) {
-        console.error('Error al eliminbar afiliado:', error);
+        console.error('Error al eliminar afiliado:', error);
     }
 }
 

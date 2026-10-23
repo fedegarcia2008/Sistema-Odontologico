@@ -136,7 +136,7 @@ export const busctur_afi = async (pet, resp)=>{
 export const  modtur_id = async (pet, resp)=>{
 let id = pet.params.clave;
       try {
-        let buscsql = "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE idconsulta = '"+ id +"'";
+        let buscsql = "SELECT idconsulta, DATE_FORMAT(fecha, '%Y-%m-%d') AS fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE idconsulta = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
 resp.render('mod_tur', { busc_registros, cargado: true, alert: false });

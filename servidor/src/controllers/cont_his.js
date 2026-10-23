@@ -143,7 +143,7 @@ export const buschis_id = async (pet, resp)=>{
 export const  modhis_id = async (pet, resp)=>{
 let id = pet.params.clave;
       try {
-        let buscsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE idtratamiento_realizado = '"+ id +"'";
+        let buscsql = "SELECT idtratamiento_realizado, DATE_FORMAT(fecha_inicio, '%Y-%m-%d') AS fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE idtratamiento_realizado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
 resp.render('mod_his', { busc_registros, cargado: true, alert: false });

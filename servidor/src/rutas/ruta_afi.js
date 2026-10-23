@@ -25,7 +25,7 @@ rAfiliado.post('/afiliado/modificar/:clave', modificar_afi)
 
 // para borrar
 rAfiliado.get('/afiliado/bajaxid/:clave', bajafi_id)
-rAfiliado.get('/afiliado/eliminar/:clave', eliminar_afi)
+rAfiliado.post('/afiliado/eliminar/:clave', eliminar_afi)
 
 
 export {rAfiliado}
