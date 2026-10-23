@@ -35,13 +35,13 @@
 
           <div class="campo">
             <label>Clave de Identificacion:</label>
-        <input type="name" id="clave"  readonly value="<%= baja_registros[0].idconsultorio %>">
+        <input type="text" id="clave" name="clave" readonly value="<%= baja_registros[0].idconsultorio %>">
 </div>
 
     <div class="fila">
         <div class="campo">
             <label>Numero:</label>
-            <input type="text" 
+            <input type="text" name="numero"
                    readonly value="<%= baja_registros[0].numero %>" >
             </div>
         </div>
@@ -51,7 +51,7 @@
         <div class="campo">
 
             <label>Id Local:</label>
-            <input type="text" 
+            <input type="text" name="idLocal"
                    readonly value="<%= baja_registros[0].local_idlocal %>">
         </div>
 
