@@ -121,13 +121,13 @@ resp.render('mod_equi', { busc_registros, cargado: true, alert: false });
 };
 
 export const modificar_equi = async (pet, resp)=>{
-    
-      let id, tipo, fecha, cons;
+
+      let id, tipo, fecha;
 
     id = pet.body.clave;
     tipo = pet.body.tipo;
     fecha = pet.body.fecha;
-    cons = pet.body.idCons;
+   
 
       try {
         let modificarsql = "UPDATE equipamiento SET tipo = '"+ tipo +"', fecha_mantenimiento = '"+ fecha+"' WHERE nroserie = '"+ id +"'";
