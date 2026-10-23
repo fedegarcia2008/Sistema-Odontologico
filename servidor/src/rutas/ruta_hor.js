@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { menu_hor, alta_hor, baja_hor, mod_hor, busc_hor, mos_hor, nuevo_hor, buschor_id, buschor_odo, buschor_dia, modhor_id, buschor_horas, modificar_hor } from '../controllers/cont_hor.js';
+import { menu_hor, alta_hor, baja_hor, mod_hor, busc_hor, mos_hor, nuevo_hor, buschor_id, buschor_odo, buschor_dia, modhor_id, modificar_hor } from '../controllers/cont_hor.js';
 
 const rHorario = express.Router();
 
