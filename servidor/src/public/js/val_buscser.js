@@ -12,6 +12,13 @@
         document.getElementById('nom').value = "";        
     }
 
+    function busc_odo(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('odo').value;
+        window.location.href = `/servicio/buscaridodo/${idejs}`;
+        document.getElementById('odo').value = "";        
+    }
+
 let clave = document.querySelector('[name="clave"]');
 
     clave.addEventListener("input", function () {
