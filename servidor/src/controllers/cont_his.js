@@ -89,7 +89,7 @@ export const buschis_id = async (pet, resp)=>{
           let fecha = pet.params.fecha;
           
           try {
-            let buscarsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento,  afiliado_ci_afiliado , odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE fecha = '"+ fecha +"'" ;
+            let buscarsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento,  afiliado_ci_afiliado , odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE fecha_inicio = '"+ fecha +"'" ;
             const [busc_registros] = await bdd.query(buscarsql);
             console.log(busc_registros)
         resp.render('busc_his', { busc_registros, cargado: true });
