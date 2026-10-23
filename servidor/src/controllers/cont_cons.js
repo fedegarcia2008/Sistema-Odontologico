@@ -80,7 +80,7 @@ export const buscons_id = async (pet, resp)=>{
 }
 
 export const buscons_nrocons = async (pet, resp)=>{
-      let nro = pet.params.nro;
+      let nro = pet.params.cons;
       try {
         let buscarsql = "SELECT idconsultorio, numero, local_idlocal FROM consultorio WHERE numero = '"+ nro +"'";
         const [busc_registros] = await bdd.query(buscarsql);
