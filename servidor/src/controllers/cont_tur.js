@@ -68,6 +68,7 @@ export const mos_tur = async (pet, resp) => {
     }
 }
 
+// para buscar
 export const busctur_id = async (pet, resp)=>{
       let id = pet.params.clave;
       try {
@@ -93,6 +94,18 @@ export const busctur_id = async (pet, resp)=>{
         }
     }
     
+export const busctur_odo = async (pet, resp)=>{
+      let odo = pet.params.idOdo;
+      try {
+        let buscarsql = "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE odontologo_idodontologo = '"+ odo +"'";
+        const [busc_registros] = await bdd.query(buscarsql);
+        console.log(busc_registros)
+    resp.render('busc_tur', { busc_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar el odontólogo:', error);
+    }
+}
+
 // para modificar
 export const  modtur_id = async (pet, resp)=>{
 let id = pet.params.clave;

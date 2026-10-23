@@ -115,8 +115,9 @@ resp.render('mod_his', { busc_registros, cargado: true, alert: false });
 
 export const modificar_his = async (pet, resp)=>{
     
-    let fecha, trat, ser, afi, odo, tur;
+    let id, fecha, trat, ser, afi, odo, tur;
 
+    id = pet.body.clave;
     fecha = pet.body.fecha;
     trat = pet.body.idTrat;
     ser = pet.body.idSer;
@@ -125,7 +126,7 @@ export const modificar_his = async (pet, resp)=>{
     tur = pet.body.idTur;
 
       try {
-        let modificarsql = "UPDATE  tratamiento_realizado SET fecha_inicio = '"+ fecha +"', tratamiento_finalizado = '"+ trat+"' WHERE idtratamiento_realizado = '"+ id +"'";
+        let modificarsql = "UPDATE tratamiento_realizado SET fecha_inicio = '"+ fecha +"', tratamiento_finalizado = '"+ trat+"' WHERE idtratamiento_realizado = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
  resp.render('mod_his', {

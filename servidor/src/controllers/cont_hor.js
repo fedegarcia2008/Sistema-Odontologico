@@ -95,8 +95,9 @@ resp.render('mod_hor', { busc_registros, cargado: true, alert: false });
 };
 
 export const modificar_hor = async (pet, resp)=>{
-     let dia , inicio, final, odo;
+     let id, dia , inicio, final, odo;
 
+     id = pet.body.clave;
     dia = pet.body.dia;
     inicio = pet.body.horaIn;
     final = pet.body.horaFi;

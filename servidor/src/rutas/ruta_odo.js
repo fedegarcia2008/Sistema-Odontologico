@@ -12,6 +12,7 @@ rOdontologo.get('/odontologo/mostrar', mos_odo)
 
 rOdontologo.post('/odontologo/nuevoalta', nuevo_odo)
 
+// para buscar
 rOdontologo.get('/odontologo/buscarid/:clave', buscodo_id)
 rOdontologo.get('/odontologo/buscarnombre/:nombre', buscodo_nom)
 

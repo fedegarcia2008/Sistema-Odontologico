@@ -12,6 +12,16 @@
         window.location.href = `/turno/buscarfecha/${idejs}`;
         document.getElementById('fecha').value = "";        
     }
+
+    function busc_odo(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('idOdo').value;
+        window.location.href = `/turno/buscarodontologo/${idejs}`;
+        document.getElementById('idOdo').value = "";        
+    }
+
+
+
 let idOdo = document.querySelector('[name="idOdo"]');
 
     idOdo.addEventListener("input", function () {

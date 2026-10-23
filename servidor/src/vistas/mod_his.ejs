@@ -49,7 +49,7 @@
 
 <div class="campo">
             <label>Fecha de inicio </label>
-            <input type="date" name="fecha" readonly
+            <input type="date" name="fecha" 
                             value="<%= busc_registros[0].fecha_inicio %>">
         </div>
 
@@ -85,7 +85,10 @@
             <input type="text" name="idTur" readonly
                             value="<%= busc_registros[0].consulta_idconsulta %>"> 
         </div><!--maxlenght? pq es AI-->
-
+        
+        <div class="boton">
+            <input type="submit" value="GUARDAR CAMBIOS">
+        </div>
     </form>
 
 <% } else { %>
