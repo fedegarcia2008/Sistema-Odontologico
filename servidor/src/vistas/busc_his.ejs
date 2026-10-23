@@ -17,7 +17,7 @@
 
         <main class="formulario">
 
-    <form onsubmit="busc_form(event)" method="GET">
+    <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
             <input type="text" id="clave" name="clave"  >
@@ -26,15 +26,26 @@
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
-        
-
+    
 </form>
+
+    
+        <form onsubmit="busc_fecha(event)" method="GET">
+            <div class="campo">
+                <label>Fecha:</label>
+                <input type="date" id="fecha" name="fecha">
+            </div>
+
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR FECHA">
+            </div>
+        </form>
 
 
 
     </main>
 
-<% if (federico) { %>
+<% if (cargado) { %>
         <% if (busc_registros.length > 0) { %>
       
                 <p>Clave:  <%= busc_registros[0].idtratamiento_realizado %></p>
@@ -50,6 +61,43 @@
 
             <% } %>
  <% } %>
+
+<% if (cargado) { %>
+<div class="tabla-contenedor">
+    <table class="tabla-datos">
+        <thead>
+            <tr>
+            <th >Id Tratamiento</th>
+            <th >Fecha</th>
+            <th >Tratamiento Realizado</th>
+            <th >Tipo de Tratamiento</th>
+            <th >id Afiliado</th>
+            <th >id Odontologo</th>
+            <th >id Turno</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <% if (busc_registros.length > 0) {
+                busc_registros.forEach(his => { %>
+                    <tr>
+                        <td><%= his.idtratamiento_realizado %></td>
+                        <td><%= new Date(his.fecha_inicio).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %></td>
+                        <td><%= his.tratamiento_finalizado %></td>
+                        <td><%= his.tratamiento_idtratamiento %></td>
+                        <td><%= his.afiliado_ci_afiliado %></td>
+                        <td><%= his.odontologo_idodontologo %></td>
+                    </tr>
+                <% });
+            } else { %>
+                <tr>
+                    <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                </tr>
+            <% } %>
+<% } %>
+        </tbody>
+    </table>
+</div>
 
 <%- include('footer') %>
 <script src="/js/val_buschis.js"></script>
