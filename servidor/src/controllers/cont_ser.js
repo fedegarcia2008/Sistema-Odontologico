@@ -69,14 +69,14 @@ export const mos_ser = async (pet, resp) => {
 }
 
 
-// para modificar
+// para buscar
 export const buscser_id = async (pet, resp)=>{
       let id = pet.params.clave;
       try {
         let buscarsql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento WHERE idtratamiento = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_ser', { busc_registros, federico: true });
+    resp.render('busc_ser', { busc_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar el servicio:', error);
     }
