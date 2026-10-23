@@ -13,7 +13,7 @@ rHorario.get('/horario/mostrar', mos_hor)
 rHorario.post('/horario/nuevoalta', nuevo_hor)
 
 rHorario.get('/horario/buscarid/:clave', buschor_id)
-rHorario.get('/horario/buscarodontologo/:odontologo', buschor_odo)
+rHorario.get('/horario/buscarodontologo/:idOdo', buschor_odo)
 
 //para modificar
 rHorario.get('/horario/modificarid/:clave', modhor_id)
