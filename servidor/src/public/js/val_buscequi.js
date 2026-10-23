@@ -12,6 +12,4 @@ function busc_id(event) {
     }
     let clave = document.querySelector('[name="clave"]');
 
-    clave.addEventListener("input", function () {
-        this.value = this.value.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
-});
+ 

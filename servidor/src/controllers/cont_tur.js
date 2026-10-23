@@ -108,14 +108,16 @@ resp.render('mod_tur', { busc_registros, cargado: true, alert: false });
 
 export const modificar_tur = async (pet, resp)=>{
     
-    let fecha, hora;
-
+    let id, fecha, hora, odo, afi;
+id = pet.body.clave;
     fecha = pet.body.fecha;
     hora = pet.body.hora;
+    odo = pet.body.idOdo;
+    afi = pet.body.idAfi;
 
 
       try {
-        let modificarsql = "UPDATE consulta SET fecha = '"+ fecha +"', horario = '"+ hora+"' WHERE idconsulta = '"+ id +"'";
+        let modificarsql = "UPDATE consulta SET fecha = '"+ fecha +"', horario = '"+ hora+"', odontologo_idodontologo = '"+ odo +"', afiliado_ci_afiliado = '"+ afi +"'  WHERE idconsulta = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
  resp.render('mod_tur', {

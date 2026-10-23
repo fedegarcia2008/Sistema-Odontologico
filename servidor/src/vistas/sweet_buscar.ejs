@@ -1,6 +1,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<% if (alert == true) { %>
-    <% if (guardado === true) { %>
+<% if (alert) { %>
+    <% if (guardado) { %>
         <script>
             Swal.fire({
                 icon: 'success',
@@ -9,11 +9,11 @@
                 timer: '<%= tiempo %>'
             });
         </script>
-    <% } else if (guardado === false) { %>
+    <% } else { %>
         <script>
             Swal.fire({
                 icon: 'error',
-                title: 'Error al intentar buscar',
+                title: 'No se encontraron resultados',
                 text: '<%= msj %>'
             });
         </script>

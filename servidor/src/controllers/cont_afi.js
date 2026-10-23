@@ -88,20 +88,29 @@ export const buscafi_id = async (pet, resp)=>{
         let buscarsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE ci_afiliado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
- resp.render('busc_afi', {
-            busc_registros,
-            cargado: true,
-            alert: true,
-            guardado: true,
-            msj: 'Afiliado Encontrado',
-            tiempo: 1500,
-            botonConfirma: false
-        });
+        if (busc_registros.length > 0) {
+            resp.render('busc_afi', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                guardado: true,
+                msj: 'Afiliado encontrado',
+                tiempo: 1500,
+                botonConfirma: false
+            });
+        } else {
+            resp.render('busc_afi', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                guardado: false,
+                msj: 'No se encontró ningún afiliado con ese id.'
+            });
+        }
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
         resp.render('busc_afi', {
-            busc_registros,
-            cargado: false,
+            cargado: true,
             alert: true,
             guardado: false,
             msj: 'No se pudo buscar el afiliado.'
@@ -116,14 +125,25 @@ export const buscafi_nom = async (pet, resp)=>{
         let buscarsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
- resp.render('busc_afi', {
-            cargado: true,
-            alert: true,
-            guardado: true,
-            msj: 'Afiliado Encontrado',
-            tiempo: 1500,
-            botonConfirma: false
-        });
+        if (busc_registros.length > 0) {
+            resp.render('busc_afi', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                guardado: true,
+                msj: 'Afiliado encontrado',
+                tiempo: 1500,
+                botonConfirma: false
+            });
+        } else {
+            resp.render('busc_afi', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                guardado: false,
+                msj: 'No se encontró ningún afiliado con ese nombre.'
+            });
+        }
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
         resp.render('busc_afi', {
