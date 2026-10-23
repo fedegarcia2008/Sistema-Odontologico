@@ -72,7 +72,7 @@ export const buscon_id = async (pet, resp)=>{
         let buscarsql = "SELECT idconvenio, nombre, rebaja FROM convenio WHERE idconvenio = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_con', { busc_registros, federico: true });
+    resp.render('busc_con', { busc_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar la consulta:', error);
     }
@@ -84,7 +84,7 @@ export const buscon_nom = async (pet, resp)=>{
         let buscarsql = "SELECT idconvenio, nombre, rebaja FROM convenio WHERE nombre = '"+ nom +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_con', { busc_registros, federico: true });
+    resp.render('busc_con', { busc_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar la consulta:', error);
     }
