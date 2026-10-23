@@ -11,7 +11,7 @@ export const alta_equi = (pet, resp)=>{
 }
 
 export const baja_equi = (pet, resp)=>{
-    resp.render('baja_equi')
+    resp.render('baja_equi', {cargado: false})
 }
 
 export const mod_equi = (pet, resp)=>{
@@ -151,3 +151,29 @@ export const modificar_equi = async (pet, resp)=>{
         });
     }
 };
+
+
+// para borrar
+export const  bajaequi_id = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let bajasql = "SELECT nroserie, tipo, fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE nroserie= '"+ id +"'";
+        const [baja_registros] = await bdd.query(bajasql);
+        console.log(baja_registros)
+    resp.render('baja_equi', { baja_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar equipamiento:', error);
+    }
+}
+
+export const eliminar_equi = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let eliminarsql = "DELETE FROM equipamiento WHERE nroserie = '"+ id +"'";
+        const [baja_registros] = await bdd.query(eliminarsql);
+        console.log(baja_registros)
+    resp.render('baja_equi', { baja_registros, cargado: true});
+    }     catch (error) {
+        console.error('Error al eliminar equipaiento:', error);
+    }
+}
