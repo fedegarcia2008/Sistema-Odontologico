@@ -83,7 +83,7 @@ export const buschor_id = async (pet, resp)=>{
 export const buschor_odo = async (pet, resp)=>{
       let odo = pet.params.idOdo;
       try {
-        let buscarsql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologoo FROM consulta WHERE odontologo_idodontologo = '"+ odo +"'";
+        let buscarsql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM consulta WHERE odontologo_idodontologo = '"+ odo +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
     resp.render('busc_hor', { busc_registros, cargado: true });
