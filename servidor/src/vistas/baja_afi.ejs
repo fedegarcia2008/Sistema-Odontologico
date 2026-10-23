@@ -28,10 +28,6 @@
 </form>
 
     
-
-
-
-
 <% if (cargado) { %>
 <% if (baja_registros.length > 0) { %>
 
@@ -102,7 +98,7 @@
         function busc_id(event) {
         event.preventDefault();
         let idejs = document.getElementById('clave').value;
-        window.location.href = `/afiliado/bajaxid/${idejs}`;
+        window.location.href = `/afiliado/bajaid/${idejs}`;
         document.getElementById('clave').value = "";   
         }
 
@@ -112,13 +108,10 @@
         let formulario = event.target; // guarda en la variable formulario lo que esta dentro de <form>
         let idejs = formulario.querySelector('[name="clave"]').value;
 
-        formulario.action = `/afiliado/eliminar/${idejs}`;
+        formulario.action = `/afiliado/baja/${idejs}`;
         formulario.submit();
     }
         </script>
-
-
-
 
             <%- include('footer') %>
  
