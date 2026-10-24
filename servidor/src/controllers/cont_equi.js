@@ -34,7 +34,7 @@ export const nuevo_equi = async (pet, resp) => {
     cons = pet.body.idCons;
     try {
 
-        let altasql = "INSERT INTO equipamineto (inroserie, tipo, fecha_mantenimiento, consultorio_idconsultorio) VALUES ('" + id + "', '" + tipo + "', '" + fecha + "', '" + cons + "');";
+        let altasql = "INSERT INTO equipamiento (nroserie, tipo, fecha_mantenimiento, consultorio_idconsultorio) VALUES ('" + id + "', '" + tipo + "', '" + fecha + "', '" + cons + "');";
 
         const [registro] = await bdd.query(altasql);
         console.log(registro)

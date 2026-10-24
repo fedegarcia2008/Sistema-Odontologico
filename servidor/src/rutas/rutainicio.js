@@ -12,6 +12,8 @@ import { rEquipamiento } from './ruta_equi.js';
 import { rServicio } from './ruta_ser.js';
 import { rHistoria } from './ruta_his.js';
 
+import { rConsulta } from './rutaconsulta.js';
+
 
 const rInicio = express.Router();
 
@@ -30,5 +32,7 @@ rInicio.use(rConsultorio)
 rInicio.use(rEquipamiento)
 rInicio.use(rServicio)
 rInicio.use(rHistoria)
+
+rInicio.use(rConsulta)
 
 export {rInicio}
