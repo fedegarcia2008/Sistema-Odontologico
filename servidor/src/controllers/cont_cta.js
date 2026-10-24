@@ -81,7 +81,7 @@ export const buscta_id = async (pet, resp)=>{
 }
 
 export const busc_idhis = async (pet, resp)=>{
-      let idhis = pet.params.idhis;
+      let idhis = pet.params.clavehis;
       try {
         let buscarsql = "SELECT afiliado_ci_afiliado, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte WHERE tratamiento_realizado_idtratamiento_realizado = '"+ idhis +"'";
         const [busc_registros] = await bdd.query(buscarsql);
