@@ -185,7 +185,7 @@ resp.render('mod_odo', { busc_registros, cargado: true });
 export const mod_nom = async (pet, resp)=>{
     let  nom, apellido, esp;
     
-    nombre = pet.body.nombre;
+    nom = pet.body.nombre;
     apellido = pet.body.apellido;
     esp = pet.body.especialidad;
    
