@@ -74,7 +74,6 @@
             <tr>
                 <th>C.I.</th>
                 <th>Saldo</th>
-                <th>Nombre y Apellido</th>
                 <th>Id tratamiento realizado</th>
             </tr>
         </thead>
@@ -82,10 +81,9 @@
             <% if (busc_registros.length > 0) {
                 busc_registros.forEach(cta => { %>
                     <tr>
-                        <td><%= cta.ci_afiliado %></td>
-                        <td><%= cta.Saldo %></td>
-                        <td><%= cta.Nombre y Apellido %></td>
-                        <td><%= cta.Id tratamiento realizado %></td>
+                        <td><%= cta.afiliado_ci_afiliado %></td>
+                        <td><%= cta.saldo %></td>
+                        <td><%= cta.tratamiento_realizado_idtratamiento_realizado %></td>
                     </tr>
                 <% });
             } else { %>
