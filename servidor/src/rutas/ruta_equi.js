@@ -1,5 +1,5 @@
 import express from 'express';
-import { menu_equi, alta_equi, baja_equi, mod_equi, busc_equi, mos_equi, nuevo_equi, buscequi_id, buscequi_fecha, buscequi_cons, modequi_id, modificar_equi,bajaequi_id, eliminar_equi} from '../controllers/cont_equi.js';
+import { menu_equi, alta_equi, baja_equi, mod_equi, busc_equi, mos_equi, nuevo_equi, buscequi_id, buscequi_fecha, buscequi_cons, modequi_id, modificar_equi, bajaequi_id, eliminar_equi} from '../controllers/cont_equi.js';
 
 const rEquipamiento= express.Router();
 
