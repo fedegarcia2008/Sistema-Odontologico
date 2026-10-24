@@ -23,4 +23,5 @@ rConsultorio.post('/consultorio/modificar/:clave', modificar_cons)
 // para borrar
 rConsultorio.get('/consultorio/bajaid/:clave', bajacons_id)
 rConsultorio.post('/consultorio/baja/:clave', eliminar_cons)
+
 export {rConsultorio}
