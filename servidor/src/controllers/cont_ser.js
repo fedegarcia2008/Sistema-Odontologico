@@ -11,7 +11,7 @@ export const alta_ser = (pet, resp)=>{
 }
 
 export const baja_ser = (pet, resp)=>{
-    resp.render('baja_ser')
+    resp.render('baja_ser', {cargado: false})
 }
 
 export const mod_ser = (pet, resp)=>{
@@ -150,3 +150,29 @@ export const modificar_ser = async (pet, resp)=>{
         });
     }
 };
+
+
+// para borrar
+export const  bajaser_id = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let bajasql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento WHERE idtratamiento = '"+ id +"'";
+        const [baja_registros] = await bdd.query(bajasql);
+        console.log(baja_registros)
+    resp.render('baja_ser', { baja_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar servicio:', error);
+    }
+}
+
+export const eliminar_ser = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let eliminarsql = "DELETE FROM tratamiento WHERE idtratamiento = '"+ id +"'";
+        const [baja_registros] = await bdd.query(eliminarsql);
+        console.log(baja_registros)
+    resp.render('baja_ser', { baja_registros, cargado: true});
+    }     catch (error) {
+        console.error('Error al eliminar servicio:', error);
+    }
+}

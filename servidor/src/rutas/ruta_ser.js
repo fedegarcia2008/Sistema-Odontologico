@@ -1,5 +1,5 @@
 import express from 'express';
-import { menu_ser, alta_ser, baja_ser, mod_ser, busc_ser, mos_ser, nuevo_ser, buscser_id, buscser_nom, buscser_odo, modser_id, modificar_ser } from '../controllers/cont_ser.js';
+import { menu_ser, alta_ser, baja_ser, mod_ser, busc_ser, mos_ser, nuevo_ser, buscser_id, buscser_nom, buscser_odo, modser_id, modificar_ser, bajaser_id, eliminar_ser } from '../controllers/cont_ser.js';
 
 const rServicio = express.Router();
 
@@ -20,6 +20,10 @@ rServicio.get('/servicio/buscaridodo/:odo', buscser_odo)
 //para modificar
 rServicio.get('/servicio/modificarid/:clave', modser_id)
 rServicio.post('/servicio/modificar/:clave', modificar_ser)
+
+// para borrar
+rServicio.get('/servicio/bajaid/:clave', bajaser_id)
+rServicio.post('/servicio/baja/:clave', eliminar_ser)
 
 
 export {rServicio}
