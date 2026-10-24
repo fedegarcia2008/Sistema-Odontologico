@@ -208,7 +208,7 @@ resp.render('mod_afi', { busc_registros, cargado: true, alert: false });
     }
 };
 
-export const modificar_afi = async (pet, resp)=>{
+export const mod_id = async (pet, resp)=>{
     let id, nombre, apellido, telCel, telFijo, plan;
     id = pet.body.clave;
     nombre = pet.body.nombre;
@@ -238,6 +238,41 @@ export const modificar_afi = async (pet, resp)=>{
         });
     }
 };
+
+
+export const  modafi_nom = async (pet, resp)=>{
+let nom_completo = pet.params.nombre;
+      try {
+        let buscsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";;
+        const [busc_registros] = await bdd.query(buscsql);
+        console.log(busc_registros)
+resp.render('mod_afi', { busc_registros, cargado: true });
+    } catch (error) {
+        console.error('Error al buscar afiliado:', error);
+    }
+};
+
+export const mod_nom = async (pet, resp)=>{
+    let  nombre, apellido, telCel, telFijo, plan;
+    
+    nom = pet.body.nombre;
+    apellido = pet.body.apellido;
+    telCel = pet.body.telCelular;
+    telFijo = pet.body.telFijo;
+    plan = pet.body.tipo;
+
+     try {
+        let modificarsql = "UPDATE afiliado SET nombre = '"+ nom +"', apellido= '"+ apellido+"', tel_cel= '"+ telCel+"', tel_fijo= '"+ telFijo+"', tipo_plan= '"+ plan+"'WHERE nombre  = '"+ nom +"'";
+        const [modificar_registros] = await bdd.query(modificarsql);
+        console.log(modificar_registros)
+resp.render('mod_afi', { modificar_registros, cargado: true});
+    } catch (error) {
+        console.error('Error al modificar afiliado', error);
+    }
+};
+
+
+
 
 
 // para borrar

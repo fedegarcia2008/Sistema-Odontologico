@@ -18,7 +18,7 @@
 
         <main class="formulario">
 
-    <form onsubmit="busc_form(event)" method="GET">
+    <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
             <input type="text" id="clave" name="clave" maxlength="10">
@@ -27,13 +27,22 @@
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
-
 </form>
 
+<form onsubmit="busc_nom(event)" method="GET">
+        <div class="campo">
+            <label>Apellido y Nombre:</label>
+            <input type="text" id="nombre" name="nombre" >
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
+    </form>
 <% if (cargado) { %>
 <% if (busc_registros.length > 0) { %>
 
-<form class="formulario resultado" onsubmit="mod_form(event)" method="POST">
+<form class="formulario resultado" onsubmit="mod_id(event)" onsubmit="mod_nom(event)"  method="POST">
 
           <div class="campo">
             <label>Clave de Identificacion:</label>
@@ -96,18 +105,35 @@
 </main>
 
         <script>
-        function busc_form(event) {
+        function busc_id(event) {
         event.preventDefault();
         let idejs = document.getElementById('clave').value;
         window.location.href = `/afiliado/modificarid/${idejs}`;
         document.getElementById('clave').value = "";   
         }
 
-    function mod_form(event) {
+    function mod_id(event) {
         event.preventDefault();
 
         let formulario = event.target;  // guarda en la variable formulario lo que esta dentro de <form>
         let idejs = formulario.querySelector('[name="clave"]').value;
+
+        formulario.action = `/afiliado/modificar/${idejs}`;  // ruta
+        formulario.submit();  // envio de datos
+    }
+
+    function busc_nom(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('nombre').value;
+        window.location.href = `/afiliado/modificarnombre/${idejs}`;
+        document.getElementById('nombre').value = "";   
+        }
+
+    function mod_nom(event) {
+        event.preventDefault();
+
+        let formulario = event.target;  // guarda en la variable formulario lo que esta dentro de <form>
+        let idejs = formulario.querySelector('[name="nombre"]').value;
 
         formulario.action = `/afiliado/modificar/${idejs}`;  // ruta
         formulario.submit();  // envio de datos
