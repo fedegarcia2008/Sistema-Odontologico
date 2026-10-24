@@ -19,7 +19,7 @@ export const mod_odo = (pet, resp)=>{
 }
 
 export const busc_odo = (pet, resp)=>{
-    resp.render('busc_odo' , {cargadoid: false, cargadotabla: false,})
+    resp.render('busc_odo' , { cargado: false})
 }
 
 
