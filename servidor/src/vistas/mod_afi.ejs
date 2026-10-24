@@ -40,7 +40,7 @@
         </div>
     </form>
 <% if (cargado) { %>
-<% if (busc_registros.length > 0) { %>
+<% if (busc_registros.length > 0 &&  busc_registros.length == 1) { %>
 
 <form class="formulario resultado" onsubmit="mod_id(event)" onsubmit="mod_nom(event)"  method="POST">
 
@@ -91,10 +91,9 @@
         <div class="boton">
             <input type="submit" value="GUARDAR CAMBIOS">
         </div>
-
     </form>
 
-<% } else { %>
+<% } else if (busc_registros.length >= 2) { %>
     <div class="formulario vacio">
     <i class="fa-solid fa-user-slash"></i>
     <p>No hay datos para mostrar.</p>
