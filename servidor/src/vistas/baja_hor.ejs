@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="icon" href="/img/favicon.webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Baja Horario - Secure Dental</title>
+</head>
+
+<body>
+ <%- include('header') %>
+
+    <h1>BAJA HORARIO</h1>
+ <main class="formulario">
+
+    <form onsubmit="busc_id(event)" method="GET">
+        <div class="campo">
+            <label>Clave de identificación:</label>
+            <input type="text" id="clave" name="clave" maxlength="10">
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
+
+</form>
+
+    
+<% if (cargado) { %>
+<% if (baja_registros.length > 0) { %>
+
+<form class="formulario resultado" onsubmit="baja_form(event)" method="POST">
+
+          <div class="campo">
+            <label>Clave de Identificacion:</label>
+        <input type="name" id="clave" name="clave" readonly value="<%= baja_registros[0].idhorario %>">
+</div>
+
+    <div class="fila">
+        <div class="campo">
+            <label>Dia:</label>
+            <input type="text" name="dia"
+                   readonly value="<%=  baja_registros[0].dia%>" >
+            </div>
+        </div>
+
+
+        <div class="fila">
+        <div class="campo">
+
+            <label>Horario de Entrada:</label>
+            <input type="text" name="horario_comienzo"
+                   readonly value="<%= baja_registros[0].horario_comienzo.slice(0, 5)%>">
+        </div>
+
+        
+
+        <div class="fila">
+        <div class="campo">
+            <label>Horario de Salida:</label>
+            <input type="text" name=" horario_final"
+                   readonly value="<%= baja_registros[0].horario_final.slice(0, 5)%>">
+        </div>
+    </div>
+
+        <div class="fila">
+        <div class="campo">
+            <label>Id odontologo:</label>
+            <input type="text" name="odontologo_idodontologo" readonly value="<%= baja_registros[0].odontologo_idodontologo %>" >
+
+        </div>
+</div>
+
+
+        <div class="boton">
+            <input type="submit" value="ELIMINAR">
+        </div>
+
+    </form>
+
+<% } else { %>
+    <div class="formulario vacio">
+    <i class="fa-solid fa-user-slash"></i>
+    <p>No hay datos para mostrar.</p>
+</div>
+<% } %>
+ <% } %>
+
+</main>
+
+        <script>
+        function busc_id(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('clave').value;
+        window.location.href = `/horario/bajaid/${idejs}`;
+        document.getElementById('clave').value = "";   
+        }
+
+    function baja_form(event) {
+        event.preventDefault();
+
+        let formulario = event.target; // guarda en la variable formulario lo que esta dentro de <form>
+        let idejs = formulario.querySelector('[name="clave"]').value;
+
+        formulario.action = `/horario/baja/${idejs}`;
+        formulario.submit();
+    }
+        </script>
+
+            <%- include('footer') %>
+ 
+</body>
+</html>

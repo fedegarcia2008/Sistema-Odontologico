@@ -11,7 +11,7 @@ export const alta_odo = (pet, resp)=>{
 }
 
 export const baja_odo = (pet, resp)=>{
-    resp.render('baja_odo')
+    resp.render('baja_odo', {cargado: false})
 }
 
 export const mod_odo = (pet, resp)=>{
@@ -168,3 +168,28 @@ export const modificar_odo = async (pet, resp)=>{
         });
     }
 };
+
+// para borrar
+export const  bajaodo_id = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let bajasql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE idodontologo = '"+ id +"'";
+        const [baja_registros] = await bdd.query(bajasql);
+        console.log(baja_registros)
+    resp.render('baja_odo', { baja_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar odontologo:', error);
+    }
+}
+
+export const eliminar_odo = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let eliminarsql = "DELETE FROM odontologo WHERE idodontologo = '"+ id +"'";
+        const [baja_registros] = await bdd.query(eliminarsql);
+        console.log(baja_registros)
+    resp.render('baja_odo', { baja_registros, cargado: true});
+    }     catch (error) {
+        console.error('Error al eliminar odontologo:', error);
+    }
+}
