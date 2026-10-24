@@ -11,6 +11,10 @@ export const cons1 = (pet, resp)=>{
     resp.render('cons1', {cargado: false})
 }
 
+// export const cons2 = (pet, resp)=>{
+//     resp.render('cons2', {cargado: false})
+// }
+
 export const busc_cons1 = async (pet, resp)=>{
       let id = pet.params.clave;
       try {
@@ -21,5 +25,16 @@ export const busc_cons1 = async (pet, resp)=>{
     resp.render('cons1', { busc_registros, cargado: true});
     }     catch (error) {
         console.error('Error al buscar la consulta:', error);
+    }
+}
+
+export const cons2 = async (pet, resp) => {
+    try {
+        let mostrarsql = "SELECT especialidad, COUNT(*) AS cantidad_odontologos, GROUP_CONCAT( CONCAT(nombre, ' ', apellido) ORDER BY apellido SEPARATOR ', ') AS odontologos FROM odontologo GROUP BY especialidad ORDER BY especialidad;"
+        const [registros] = await bdd.query(mostrarsql);
+        console.log(registros);
+        resp.render('cons2', { registros });
+    } catch (error) {
+        console.log("No puede mostrar los odntologos");
     }
 }
