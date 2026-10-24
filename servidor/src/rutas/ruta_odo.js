@@ -23,7 +23,6 @@ rOdontologo.get('/odontologo/buscarespecialidad/:espe', buscodo_espe)
 rOdontologo.get('/odontologo/modificarid/:clave', mododo_id)
 rOdontologo.post('/odontologo/modificar/:clave', mod_id)
 
-
 rOdontologo.get('/odontologo/modificarnombre/:nombre', mododo_nom)
 rOdontologo.post('/odontologo/modificar/:nombre', mod_nom)
 
