@@ -253,7 +253,7 @@ resp.render('mod_afi', { busc_registros, cargado: true });
 };
 
 export const mod_nom = async (pet, resp)=>{
-    let  nombre, apellido, telCel, telFijo, plan;
+    let  nom, apellido, telCel, telFijo, plan;
     
     nom = pet.body.nombre;
     apellido = pet.body.apellido;

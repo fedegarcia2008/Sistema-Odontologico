@@ -14,11 +14,11 @@
    <%- include('header') %>
 
 
-   <h1>MODIFICAR ODONTóloGO</h1>
+   <h1>MODIFICAR ODONTOlOGO</h1>
 
         <main class="formulario">
 
-    <form onsubmit="busc_form(event)" method="GET">
+    <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
             <input type="text" id="clave" name="clave">
@@ -27,8 +27,18 @@
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
-
 </form>
+
+<form onsubmit="busc_nom(event)" method="GET">
+        <div class="campo">
+            <label>Apellido y Nombre:</label>
+            <input type="text" id="nombre" name="nombre" >
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
+    </form>
 
     </main>
 
@@ -38,7 +48,7 @@
 <% if (cargado) { %>
 <% if (busc_registros.length > 0) { %>
 
-<form onsubmit="mod_form(event)" method="POST">
+<form onsubmit="mod_id(event)" onsubmit="mod_nom(event)" method="POST">
 
 <div class="campo">
             <label>Clave de identificación</label>
@@ -142,14 +152,14 @@ document.addEventListener("click", function (e) {
 
 
         <script>
-        function busc_form(event) {
+        function busc_id(event) {
         event.preventDefault();
         let idejs = document.getElementById('clave').value;
         window.location.href = `/odontologo/modificarid/${idejs}`;
         document.getElementById('clave').value = "";   
         }
 
-    function mod_form(event) {
+    function mod_id(event) {
         event.preventDefault();
 
         let formulario = event.target;
@@ -158,13 +168,31 @@ document.addEventListener("click", function (e) {
         formulario.action = `/odontologo/modificar/${idejs}`;
         formulario.submit();
     }
+
+    
+    function busc_nom(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('nombre').value;
+        window.location.href = `/odontologo/modificarnombre/${idejs}`;
+        document.getElementById('nombre').value = "";   
+        }
+
+    function mod_nom(event) {
+        event.preventDefault();
+
+        let formulario = event.target;  // guarda en la variable formulario lo que esta dentro de <form>
+        let idejs = formulario.querySelector('[name="nombre"]').value;
+
+        formulario.action = `/odontologo/modificar/${idejs}`;  // ruta
+        formulario.submit();  // envio de datos
+    }
+
         </script>
 
 
 
 
-
- <%- include('sweet_modificar') %>
+<!-- se borro sweet alert -->
 
 
             <%- include('footer') %>
