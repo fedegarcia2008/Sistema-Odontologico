@@ -92,16 +92,44 @@
             <input type="submit" value="GUARDAR CAMBIOS">
         </div>
     </form>
-
+</main>
 <% } else if (busc_registros.length >= 2) { %>
+    
+    <div class="tabla-contenedor">
+    <table class="tabla-datos">
+        <thead>
+            <tr>
+                <th>C.I.</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Teléfono Celular</th>
+                <th>Teléfono Fijo</th>
+                <th>Tipo de Plan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (busc_registros.length > 0) {
+                busc_registros.forEach(afi => { %>
+                    <tr>
+                        <td><%= afi.ci_afiliado %></td>
+                        <td><%= afi.nombre %></td>
+                        <td><%= afi.apellido %></td>
+                        <td><%= afi.tel_cel ? afi.tel_cel : "Sin teléfono" %></td>
+                        <td><%= afi.tel_fijo ? afi.tel_fijo : "Sin teléfono" %></td>
+                        <td><%= afi.tipo_plan %></td>
+                    </tr>
+                    </tbody>
+                <% });
+            } else if (busc_registros.length < 1 ) { %>
     <div class="formulario vacio">
     <i class="fa-solid fa-user-slash"></i>
+    
     <p>No hay datos para mostrar.</p>
 </div>
 <% } %>
- <% } %>
+ <% } %> <% } %>
 
-</main>
+
 
         <script>
         function busc_id(event) {
