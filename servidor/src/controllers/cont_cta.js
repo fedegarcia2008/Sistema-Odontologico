@@ -94,9 +94,9 @@ export const buscta_his = async (pet, resp)=>{
 
 
 export const buscta_nom = async (pet, resp)=>{
-      let nom = pet.params.nombre;
+      let nom_completo = pet.params.nombre;
       try {
-       let buscarsql = "SELECT afiliado_ci_afiliado, nombre, apellido, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte INNER JOIN afiliado ON ci_afiliado = afiliado_ci_afiliado WHERE CONCAT(apellido, ' ', nombre) LIKE '%" + nom + "%'";
+       let buscarsql = "SELECT afiliado_ci_afiliado, nombre, apellido, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte INNER JOIN afiliado ON ci_afiliado = afiliado_ci_afiliado WHERE CONCAT(apellido, ' ', nombre) LIKE '%" + nom_completo + "%'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
     resp.render('busc_cta', { busc_registros, cargadoid: false, cargadotabla: true, });
