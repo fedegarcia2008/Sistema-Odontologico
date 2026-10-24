@@ -1,5 +1,5 @@
 import express from 'express';
-import { menu_afi, alta_afi, baja_afi, mod_afi, busc_afi, mos_afi, nuevo_afi, modafi_id, modafi_nom , mod_nom, buscafi_plan, mod_id, buscafi_id, buscafi_nom, bajafi_id, eliminar_afi} from '../controllers/cont_afi.js';
+import { menu_afi, alta_afi, baja_afi, mod_afi, busc_afi, mos_afi, nuevo_afi, modafi_id, modafi_nom , mod_nom, buscafi_plan, mod_id, buscafi_id, buscafi_nom, bajafi_id, eliminar_afi, bajafi_nom, eliminar_nom} from '../controllers/cont_afi.js';
 
 const rAfiliado = express.Router();
 
@@ -32,5 +32,7 @@ rAfiliado.post('/afiliado/modificar/:nombre', mod_nom)
 rAfiliado.get('/afiliado/bajaid/:clave', bajafi_id)
 rAfiliado.post('/afiliado/baja/:clave', eliminar_afi)
 
+rAfiliado.get('/afiliado/bajanombre/:nombre', bajafi_nom)
+rAfiliado.post('/afiliado/baja/:nombre', eliminar_nom)
 
 export {rAfiliado}
