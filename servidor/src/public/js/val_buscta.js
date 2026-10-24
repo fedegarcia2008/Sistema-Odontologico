@@ -1,5 +1,5 @@
 
-    function busc_form(event) {
+    function busc_id(event) {
         event.preventDefault();
         let idejs = document.getElementById('clave').value;
         window.location.href = `/cuentacorriente/buscarid/${idejs}`;
@@ -13,7 +13,7 @@
         document.getElementById('clavehis').value = "";        
     }
 
-    function busc_nomape(event) {
+    function busc_nom(event) {
         event.preventDefault();
         let idejs = document.getElementById('nombre').value;
         window.location.href = `/cuentacorriente/buscarnom/${idejs}`;
