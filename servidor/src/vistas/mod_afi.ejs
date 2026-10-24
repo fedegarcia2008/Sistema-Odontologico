@@ -92,7 +92,7 @@
             <input type="submit" value="GUARDAR CAMBIOS">
         </div>
     </form>
-
+</main>
 <% } else if (busc_registros.length >= 2) { %>
     
     <div class="tabla-contenedor">
@@ -120,7 +120,7 @@
                     </tr>
                     </tbody>
                 <% });
-            } else if (busc_registros.length == 0) { %>
+            } else if (busc_registros.length < 1 ) { %>
     <div class="formulario vacio">
     <i class="fa-solid fa-user-slash"></i>
     
@@ -129,7 +129,7 @@
 <% } %>
  <% } %> <% } %>
 
-</main>
+
 
         <script>
         function busc_id(event) {
