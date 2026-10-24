@@ -17,6 +17,14 @@ function busc_id(event) {
         window.location.href = `/equipamiento/buscarconsultorio/${idejs}`;
         document.getElementById('idCons').value = "";        
     }
+
+    function busc_tipo(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('tipo').value;
+        window.location.href = `/equipamiento/buscartipo/${idejs}`;
+        document.getElementById('tipo').value = "";        
+    }
+
     let clave = document.querySelector('[name="clave"]');
 
  

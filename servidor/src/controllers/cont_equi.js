@@ -76,7 +76,7 @@ export const buscequi_id = async (pet, resp)=>{
         console.log(busc_registros)
     resp.render('busc_equi', { busc_registros, cargado: true });
     }     catch (error) {
-        console.error('Error al buscar el equipamiento:', error);
+        console.error('Error al buscar el numero de serie:', error);
     }
 }
 
@@ -103,7 +103,20 @@ export const buscequi_id = async (pet, resp)=>{
             console.log(busc_registros)
         resp.render('busc_equi', { busc_registros, cargado: true });
         }     catch (error) {
-            console.error('Error al buscar equipamiento:', error);
+            console.error('Error al buscar consultorio:', error);
+        }
+    }
+
+    export const buscequi_tipo = async (pet, resp)=>{
+          let tipo = pet.params.tipo;
+          
+          try {
+            let buscarsql = "SELECT nroserie, tipo, fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE tipo = '"+ tipo +"'" ;
+            const [busc_registros] = await bdd.query(buscarsql);
+            console.log(busc_registros)
+        resp.render('busc_equi', { busc_registros, cargado: true });
+        }     catch (error) {
+            console.error('Error al buscar tipo de equipamiento:', error);
         }
     }
 
