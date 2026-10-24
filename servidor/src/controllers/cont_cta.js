@@ -19,7 +19,7 @@ export const mod_cta = (pet, resp)=>{
 }
 
 export const busc_cta = (pet, resp)=>{
-    resp.render('busc_cta', {federico: false})
+    resp.render('busc_cta', {cargadoid: false, cargadotabla: false,})
 }
 
 
@@ -74,7 +74,7 @@ export const buscta_id = async (pet, resp)=>{
         let buscarsql = "SELECT afiliado_ci_afiliado, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte WHERE afiliado_ci_afiliado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_cta', { busc_registros, federico: true });
+    resp.render('busc_cta', { busc_registros, cargadoid: true, cargadotabla: false, });
     }     catch (error) {
         console.error('Error al buscar la cuenta corriente:', error);
     }

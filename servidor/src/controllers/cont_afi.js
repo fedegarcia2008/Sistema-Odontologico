@@ -19,7 +19,7 @@ export const mod_afi = (pet, resp)=>{
 }
 
 export const busc_afi = (pet, resp)=>{
-    resp.render('busc_afi', {alert: false, cargado: false})
+    resp.render('busc_afi', {alert: false, cargadoid: false, cargadotabla: false})
 }
 
 /*
@@ -91,7 +91,7 @@ export const buscafi_id = async (pet, resp)=>{
         if (busc_registros.length > 0) {
             resp.render('busc_afi', {
                 busc_registros,
-                cargado: true,
+                cargadoid: true, cargadotabla: false,
                 alert: true,
                 guardado: true,
                 msj: 'Afiliado encontrado',
@@ -101,7 +101,7 @@ export const buscafi_id = async (pet, resp)=>{
         } else {
             resp.render('busc_afi', {
                 busc_registros,
-                cargado: true,
+                cargadoid: true, cargadotabla: false,
                 alert: true,
                 guardado: false,
                 msj: 'No se encontró ningún afiliado con ese id.'
@@ -128,7 +128,7 @@ export const buscafi_nom = async (pet, resp)=>{
         if (busc_registros.length > 0) {
             resp.render('busc_afi', {
                 busc_registros,
-                cargado: true,
+                cargadoid: false, cargadotabla: true,
                 alert: true,
                 guardado: true,
                 msj: 'Afiliado encontrado',
@@ -138,7 +138,7 @@ export const buscafi_nom = async (pet, resp)=>{
         } else {
             resp.render('busc_afi', {
                 busc_registros,
-                cargado: true,
+                cargadoid: false, cargadotabla: true,
                 alert: true,
                 guardado: false,
                 msj: 'No se encontró ningún afiliado con ese nombre.'
@@ -147,7 +147,7 @@ export const buscafi_nom = async (pet, resp)=>{
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
         resp.render('busc_afi', {
-            cargado: true,
+            cargadoid: false, cargadotabla: true,
             alert: true,
             guardado: false,
             msj: 'No se pudo buscar el afiliado.'
@@ -166,7 +166,7 @@ export const buscafi_plan = async (pet, resp)=>{
         if (busc_registros.length > 0) {
             resp.render('busc_afi', {
                 busc_registros,
-                cargado: true,
+                cargadoid: false, cargadotabla: true,
                 alert: true,
                 guardado: true,
                 msj: 'Afiliado encontrado',
@@ -176,7 +176,7 @@ export const buscafi_plan = async (pet, resp)=>{
         } else {
             resp.render('busc_afi', {
                 busc_registros,
-                cargado: true,
+                cargadoid: false, cargadotabla: true,
                 alert: true,
                 guardado: false,
                 msj: 'No se encontró ningún afiliado con ese nombre.'
@@ -185,7 +185,7 @@ export const buscafi_plan = async (pet, resp)=>{
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
         resp.render('busc_afi', {
-            cargado: true,
+            cargadoid: false, cargadotabla: true,
             alert: true,
             guardado: false,
             msj: 'No se pudo buscar el afiliado.'

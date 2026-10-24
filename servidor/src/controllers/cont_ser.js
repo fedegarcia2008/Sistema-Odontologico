@@ -19,7 +19,7 @@ export const mod_ser = (pet, resp)=>{
 }
 
 export const busc_ser = (pet, resp)=>{
-    resp.render('busc_ser', {cargado: false })
+    resp.render('busc_ser', {cargadoid: false, cargadotabla: false, })
 }
 
 
@@ -76,7 +76,7 @@ export const buscser_id = async (pet, resp)=>{
         let buscarsql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento WHERE idtratamiento = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_ser', { busc_registros, cargado: true });
+    resp.render('busc_ser', { busc_registros, cargadoid: true, cargadotabla: false, });
     }     catch (error) {
         console.error('Error al buscar el servicio:', error);
     }
@@ -88,7 +88,7 @@ export const buscser_nom = async (pet, resp)=>{
         let buscarsql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento WHERE nombre = '"+ nombre +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_ser', { busc_registros, cargado: true });
+    resp.render('busc_ser', { busc_registros, cargadoid: false, cargadotabla: true, });
     }     catch (error) {
         console.error('Error al buscar el nombre del servicio:', error);
     }
@@ -100,7 +100,7 @@ export const buscser_odo = async (pet, resp)=>{
         let buscarsql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento WHERE odontologo_idodontologo = '"+ odo +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_ser', { busc_registros, cargado: true });
+    resp.render('busc_ser', { busc_registros, cargadoid: false, cargadotabla: true, });
     }     catch (error) {
         console.error('Error al buscar el id del odontologo:', error);
     }

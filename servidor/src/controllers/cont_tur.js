@@ -19,7 +19,7 @@ export const mod_tur = (pet, resp)=>{
 }
 
 export const busc_tur = (pet, resp)=>{
-    resp.render('busc_tur', {cargado: false})
+    resp.render('busc_tur', { cargadoid: false, cargadotabla: false,})
 }
 
 
@@ -75,7 +75,7 @@ export const busctur_id = async (pet, resp)=>{
         let buscarsql = "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE idconsulta = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_tur', { busc_registros, cargado: true });
+    resp.render('busc_tur', { busc_registros, cargadoid: true, cargadotabla: false, });
     }     catch (error) {
         console.error('Error al buscar el turno:', error);
     }
@@ -88,7 +88,7 @@ export const busctur_id = async (pet, resp)=>{
             let buscarsql = "SELECT idconsulta, fecha, horario, odontologo_idodontologo,  afiliado_ci_afiliado FROM consulta WHERE fecha = '"+ fecha +"'" ;
             const [busc_registros] = await bdd.query(buscarsql);
             console.log(busc_registros)
-        resp.render('busc_tur', { busc_registros, cargado: true });
+        resp.render('busc_tur', { busc_registros, cargadoid: false, cargadotabla: true, });
         }     catch (error) {
             console.error('Error al buscar turno:', error);
         }
@@ -102,7 +102,7 @@ export const busctur_id = async (pet, resp)=>{
            let buscarsql =  "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE fecha BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' ORDER BY fecha, horario";
             const [busc_registros] = await bdd.query(buscarsql);
             console.log(busc_registros)
-        resp.render('busc_tur', { busc_registros, cargado: true });
+        resp.render('busc_tur', { busc_registros, cargadoid: false, cargadotabla: true, });
         }     catch (error) {
             console.error('Error al buscar turno:', error);
         }
@@ -114,7 +114,7 @@ export const busctur_odo = async (pet, resp)=>{
         let buscarsql = "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE odontologo_idodontologo = '"+ odo +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_tur', { busc_registros, cargado: true });
+    resp.render('busc_tur', { busc_registros, cargadoid: false, cargadotabla: true, });
     }     catch (error) {
         console.error('Error al buscar el turno:', error);
     }
@@ -126,7 +126,7 @@ export const busctur_afi = async (pet, resp)=>{
         let buscarsql = "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE afiliado_ci_afiliado = '"+ afi +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_tur', { busc_registros, cargado: true });
+    resp.render('busc_tur', { busc_registros, cargadoid: true, cargadotabla: false, });
     }     catch (error) {
         console.error('Error al buscar el turno:', error);
     }

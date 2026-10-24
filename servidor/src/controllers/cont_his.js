@@ -19,7 +19,7 @@ export const mod_his = (pet, resp)=>{
 }
 
 export const busc_his = (pet, resp)=>{
-    resp.render('busc_his', {cargado: false})
+    resp.render('busc_his', {cargadoid: false, cargadotabla: false,})
 }
 
 
@@ -79,7 +79,7 @@ export const buschis_id = async (pet, resp)=>{
         let buscarsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE idtratamiento_realizado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_his', { busc_registros, cargado: true });
+    resp.render('busc_his', { busc_registros, cargadoid: true, cargadotabla: false, });
     }     catch (error) {
         console.error('Error al buscar historia clinica:', error);
     }
@@ -93,7 +93,7 @@ export const buschis_id = async (pet, resp)=>{
             let buscarsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento,  afiliado_ci_afiliado , odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE fecha_inicio = '"+ fecha +"'" ;
             const [busc_registros] = await bdd.query(buscarsql);
             console.log(busc_registros)
-        resp.render('busc_his', { busc_registros, cargado: true });
+        resp.render('busc_his', { busc_registros, cargadoid: false, cargadotabla: true, });
         }     catch (error) {
             console.error('Error al buscar turno:', error);
         }
@@ -106,7 +106,7 @@ export const buschis_id = async (pet, resp)=>{
                 let buscarsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE afiliado_ci_afiliado = '"+ afi +"'";
                 const [busc_registros] = await bdd.query(buscarsql);
                 console.log(busc_registros)
-            resp.render('busc_his', { busc_registros, cargado: true });
+            resp.render('busc_his', { busc_registros, cargadoid: true, cargadotabla: false, });
             }     catch (error) {
                 console.error('Error al buscar la consulta:', error);
             }
@@ -119,7 +119,7 @@ export const buschis_id = async (pet, resp)=>{
                 let buscarsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE odontologo_idodontologo = '"+ odo +"'";
                 const [busc_registros] = await bdd.query(buscarsql);
                 console.log(busc_registros)
-            resp.render('busc_his', { busc_registros, cargado: true });
+            resp.render('busc_his', { busc_registros, cargadoid: false, cargadotabla: true, });
             }     catch (error) {
                 console.error('Error al buscar la consulta:', error);
             }
@@ -131,7 +131,7 @@ export const buschis_id = async (pet, resp)=>{
                 let buscarsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE tratamiento_finalizado = '"+ trat +"'";
                 const [busc_registros] = await bdd.query(buscarsql);
                 console.log(busc_registros)
-            resp.render('busc_his', { busc_registros, cargado: true });
+            resp.render('busc_his', { busc_registros, cargadoid: false, cargadotabla: true,});
             }     catch (error) {
                 console.error('Error al buscar la consulta:', error);
             }
