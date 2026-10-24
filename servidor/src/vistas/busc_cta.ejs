@@ -30,8 +30,19 @@
 
 <form onsubmit="busc_idhis(event)" method="GET">
         <div class="campo">
-            <label>Id de la cuenta corriente:</label>
+            <label>Id de la historia clinica:</label>
             <input type="text" id="clavehis" name="clavehis">
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
+</form>
+
+<form onsubmit="busc_nomape(event)" method="GET">
+        <div class="campo">
+            <label>Nombre y apellido del afiliado :</label>
+            <input type="text" id="Nombre" name="nombre">
         </div>
         
        <div class="boton">
@@ -55,6 +66,38 @@
 
             <% } %>
  <% } %>
+
+
+ <% if (cargadotabla) { %>
+<div class="tabla-contenedor">
+    <table class="tabla-datos">
+        <thead>
+            <tr>
+                <th>C.I.</th>
+                <th>Saldo</th>
+                <th>Nombre y Apellido</th>
+                <th>Id tratamiento realizado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (busc_registros.length > 0) {
+                busc_registros.forEach(cta => { %>
+                    <tr>
+                        <td><%= cta.ci_afiliado %></td>
+                        <td><%= cta.Saldo %></td>
+                        <td><%= cta.Nombre y Apellido %></td>
+                        <td><%= cta.Id tratamiento realizado %></td>
+                    </tr>
+                <% });
+            } else { %>
+                <tr>
+                    <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                </tr>
+            <% } %>
+                      <% } %>
+        </tbody>
+    </table>
+</div>
 
 <%- include('footer') %>
 

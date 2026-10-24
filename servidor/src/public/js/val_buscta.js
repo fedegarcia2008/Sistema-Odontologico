@@ -13,6 +13,13 @@
         document.getElementById('clavehis').value = "";        
     }
 
+    function busc_nomape(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('nombre').value;
+        window.location.href = `/cuentacorriente/buscarnom/${idejs}`;
+        document.getElementById('nombre').value = "";        
+    }
+
     let clave = document.querySelector('[name="clave"]');
 
     clave.addEventListener("input", function () {

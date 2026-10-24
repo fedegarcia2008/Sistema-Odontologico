@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { menu_cta, alta_cta, baja_cta, mod_cta, busc_cta, mos_cta, nuevo_cta, buscta_id, modificar_cta, modcta_id, buscta_his, bajacta_id, eliminar_cta } from '../controllers/cont_cta.js';
+import { menu_cta, alta_cta, baja_cta, mod_cta, busc_cta, mos_cta, nuevo_cta, buscta_id, modificar_cta, modcta_id, buscta_his, buscta_nom, bajacta_id, eliminar_cta } from '../controllers/cont_cta.js';
 
 const rCtaCte = express.Router();
 
@@ -15,6 +15,7 @@ rCtaCte.post('/cuentacorriente/nuevoalta', nuevo_cta)
 
 rCtaCte.get('/cuentacorriente/buscarid/:clave', buscta_id)
 rCtaCte.get('/cuentacorriente/buscaridhis/:clavehis', buscta_his)
+rCtaCte.get('/cuentacorriente/buscarnom/:nombre', buscta_nom)
 
 //para modificar
 rCtaCte.get('/cuentacorriente/modificarid/:clave', modcta_id)
