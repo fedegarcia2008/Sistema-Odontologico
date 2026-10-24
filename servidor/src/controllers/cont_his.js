@@ -27,8 +27,9 @@ export const busc_his = (pet, resp)=>{
 
 export const nuevo_his = async (pet, resp) => {
 
-    let fecha, trat, ser, afi, odo, tur;
+    let id, fecha, trat, ser, afi, odo, tur;
 
+    id = pet.body.clave;
     fecha = pet.body.fecha;
     trat = pet.body.idTrat;
     ser = pet.body.idSer;
@@ -38,7 +39,7 @@ export const nuevo_his = async (pet, resp) => {
 
     try {
 
-        let altasql = "INSERT INTO tratamiento_realizado (fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta) VALUES ('" + fecha + "', '" + trat + "', '" + ser + "', '" + afi + "', '" + odo + "', '" + tur + "');";
+        let altasql = "INSERT INTO tratamiento_realizado (idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta) VALUES ('" + id + "', '" + fecha + "', '" + trat + "', '" + ser + "', '" + afi + "', '" + odo + "', '" + tur + "');";
 
         const [registro] = await bdd.query(altasql);
         console.log(registro)

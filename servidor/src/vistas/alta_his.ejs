@@ -16,7 +16,13 @@
 
     <main class="formulario">
         <form action="/historiaclinica/nuevoalta" method="POST">
+   
             
+        <div class="campo"> //VALIDACIONES EN ESTE ID
+            <label>ID <span class="asterisco">*</span></label>
+            <input type="text" name="clave" required>
+        </div>
+
         <div class="campo">
             <label>Fecha de inicio <span class="asterisco">*</span></label>
             <input type="date" name="fecha" required>
