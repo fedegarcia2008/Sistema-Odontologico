@@ -171,9 +171,9 @@ export const modificar_odo = async (pet, resp)=>{
 
 
 export const  mododo_nom = async (pet, resp)=>{
-let nom_completo = pet.params.nombre;
+let nom_completo = pet.params.nom_completo;
       try {
-        let buscsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE idodontologo = '"+ id +"'";
+        let buscsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE nombre = '"+ nom_completo +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
 resp.render('mod_odo', { busc_registros, cargado: true });
