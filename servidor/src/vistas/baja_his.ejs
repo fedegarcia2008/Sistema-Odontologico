@@ -42,18 +42,25 @@
         <div class="campo">
             <label>Fecha Inicio:</label>
             <input type="text" name="fecha_inicio"
-                   readonly value="<%= baja_registros[0].fecha_inicio %>" >
+                   readonly value="<%= new Date(baja_registros[0].fecha_inicio).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" })  %>" >
             </div>
         </div>
 
 
         <div class="fila">
         <div class="campo">
-
-            <label>Tratamiento Finalizado:</label>
-            <input type="text" name="tratamiento_finalizado"
-                   readonly value="<%= baja_registros[0].tratamiento_finalizado%>">
+            <div class="campo">
+            <label>Tratamiento finalizado </label>
+            <select name="idTrat" 
+                            value="<%= busc_registros[0].tratamiento_finalizado %>">
+                <option value="">Seleccione una opción</option>
+                <option value= 1>Finalizado</option>
+                <option value= 0>En curso</option>
+            </select>
         </div>
+        </div>
+
+        
 
         <div class="fila">
         <div class="campo">
