@@ -51,6 +51,18 @@
             </div>
         </form>
 
+        
+        <form onsubmit="busc_espe(event)" method="GET">
+            <div class="campo">
+                <label>Especialidad:</label>
+                <input type="text" id="espe" name="espe" maxlength="50">
+            </div>
+
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR ESPECIALIDAD">
+            </div>
+        </form>
+
     </main>
 
 <% if (cargado) { %>

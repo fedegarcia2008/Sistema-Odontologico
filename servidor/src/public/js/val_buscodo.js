@@ -18,6 +18,13 @@
         document.getElementById('cons').value = "";        
     }
 
+    function busc_espe(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('espe').value;
+        window.location.href = `/odontologo/buscarespecialidad/${idejs}`;
+        document.getElementById('espe').value = "";        
+    }
+
     let clave = document.querySelector('[name="clave"]');
 
     clave.addEventListener("input", function () {
