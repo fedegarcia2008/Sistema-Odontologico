@@ -304,10 +304,10 @@ let id = pet.params.clave;
 export const  bajafi_nom = async (pet, resp)=>{
 let nom_completo = pet.params.nombre;
       try {
-        let buscsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";;
-        const [busc_registros] = await bdd.query(buscsql);
-        console.log(busc_registros)
-resp.render('baja_afi', { busc_registros, cargado: true });
+        let bajasql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";;
+        const [baja_registros] = await bdd.query(bajasql);
+        console.log(baja_registros)
+resp.render('baja_afi', { baja_registros, cargado: true });
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
     }
