@@ -52,7 +52,7 @@
 
             <label>Fecha de Mantenimiento:</label>
             <input type="text" name="fecha_mantenimiento"
-                   readonly value="<%= baja_registros[0].fecha_mantenimiento %>">
+                   readonly value="<%=  new Date(baja_registros[0].fecha_mantenimiento).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" })  %>">
         </div>
 
         <div class="fila">
@@ -60,7 +60,7 @@
 
             <label>Id consultorio:</label>
             <input type="text" name="consultorio_idconsultorio"
-                   readonly value="<%= new Date(baja_registros[0].fecha_mantenimiento).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %>">
+                   readonly value="<%= baja_registros[0].consultorio_idconsultorio %>">
         </div>
 
 
