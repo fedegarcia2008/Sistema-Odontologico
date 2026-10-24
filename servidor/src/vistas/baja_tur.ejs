@@ -6,42 +6,109 @@
     <link rel="stylesheet" href="/css/menu.css">
     <link rel="icon" href="/img/favicon.webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Baja Afiliado - Secure Dental</title>
+    <title>Baja Turno- Secure Dental</title>
 </head>
 
 <body>
-<%- include('header') %>
+ <%- include('header') %>
 
-<h1>BAJA TURNO</h1>
+    <h1>BAJA TURNO</h1>
+ <main class="formulario">
 
-    <main class="formulario">
+    <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
-            <label>Identificador único:</label>
-            <input type="text" id="clave">
-        </div>
-
-        <div class="campo">
-            <label>Fecha:</label>
-            <input type="date" id="fecha">
-        </div>
-
-        <div class="campo">
-            <label>Hora:</label>
-            <input type="time" id="hora">
+            <label>Id consulta:</label>
+            <input type="text" id="clave" name="clave" maxlength="10">
         </div>
         
-        <!-- revisar la parte del horario, filtrar odontologos y si el id es autoincrement -->
-
-        <div class="campo">
-            <label>C.I. Afiliado:</label>
-            <input type="text" id="ci">
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
         </div>
 
-        <button class="confirmar">Confirmar</button>
+</form>
 
-        <div id="resultado"></div>
-    </main>
-<%- include('footer') %>
+    
+<% if (cargado) { %>
+<% if (baja_registros.length > 0) { %>
 
+<form class="formulario resultado" onsubmit="baja_form(event)" method="POST">
+
+          <div class="campo">
+            <label>Id consulta:</label>
+        <input type="text" id="clave" name="clave" readonly value="<%= baja_registros[0].idconsulta %>">
+</div>
+
+    <div class="fila">
+        <div class="campo">
+            <label>Fecha:</label>
+            <input type="text" name="fecha"
+                   readonly value="<%= new Date(baja_registros[0].fecha).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %>" >
+            </div>
+        </div>
+
+
+        <div class="fila">
+        <div class="campo">
+
+            <label>Horario:</label>
+            <input type="text" name="horario"
+            
+                   readonly value="<%= baja_registros[0].horario.slice(0,5) %>">
+        </div>
+
+        <div class="fila">
+        <div class="campo">
+            <label>Id Odontologo:</label>
+            <input type="text" name="odontologo_idodontologo"
+                   readonly value="<%= baja_registros[0].odontologo_idodontologo %>">
+        </div>
+    </div>
+
+    <div class="fila">
+        <div class="campo">
+            <label>CI afiliado:</label>
+            <input type="text" name="afiliado_ci_afiliado"
+                   readonly value="<%= baja_registros[0].afiliado_ci_afiliado %>">
+        </div>
+    </div>
+
+
+        <div class="boton">
+            <input type="submit" value="ELIMINAR">
+        </div>
+
+    </form>
+
+<% } else { %>
+    <div class="formulario vacio">
+    <i class="fa-solid fa-user-slash"></i>
+    <p>No hay datos para mostrar.</p>
+</div>
+<% } %>
+ <% } %>
+
+</main>
+
+        <script>
+        function busc_id(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('clave').value;
+        window.location.href = `/turno/bajaid/${idejs}`;
+        document.getElementById('clave').value = "";   
+        }
+
+    function baja_form(event) {
+        event.preventDefault();
+
+        let formulario = event.target; // guarda en la variable formulario lo que esta dentro de <form>
+        let idejs = formulario.querySelector('[name="clave"]').value;
+
+        formulario.action = `/turno/baja/${idejs}`;
+        formulario.submit();
+    }
+        </script>
+
+            <%- include('footer') %>
+ 
 </body>
 </html>
