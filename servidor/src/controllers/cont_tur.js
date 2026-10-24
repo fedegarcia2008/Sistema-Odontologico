@@ -11,7 +11,7 @@ export const alta_tur = (pet, resp)=>{
 }
 
 export const baja_tur = (pet, resp)=>{
-    resp.render('baja_tur')
+    resp.render('baja_tur', {cargado: false})
 }
 
 export const mod_tur = (pet, resp)=>{
@@ -177,3 +177,30 @@ id = pet.body.clave;
         });
     }
 };
+
+
+
+// para borrar
+export const  bajatur_id = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let bajasql = "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE idconsulta = '"+ id +"'";
+        const [baja_registros] = await bdd.query(bajasql);
+        console.log(baja_registros)
+    resp.render('baja_tur', { baja_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar turno:', error);
+    }
+}
+
+export const eliminar_tur = async (pet, resp)=>{
+let id = pet.params.clave;
+      try {
+        let eliminarsql = "DELETE FROM consulta WHERE idconsulta = '"+ id +"'";
+        const [baja_registros] = await bdd.query(eliminarsql);
+        console.log(baja_registros)
+    resp.render('baja_tur', { baja_registros, cargado: true});
+    }     catch (error) {
+        console.error('Error al eliminar turno:', error);
+    }
+}
