@@ -118,8 +118,9 @@
                         <td><%= afi.tel_fijo ? afi.tel_fijo : "Sin teléfono" %></td>
                         <td><%= afi.tipo_plan %></td>
                     </tr>
+                    </tbody>
                 <% });
-            } else { %>
+            } else if (busc_registros.length == 0) { %>
     <div class="formulario vacio">
     <i class="fa-solid fa-user-slash"></i>
     
