@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/menu.css"> <link rel="stylesheet" href="/css/mostrar.css">
+    <link rel="icon" href="/img/favicon.webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Consulta 3 - Secure Dental</title>
+</head>
+
+<body>
+ <%- include('header') %>
+
+
+    <h1>monto recaudado por periodo</h1>
+
+        <main class="formulario">
+
+        <form onsubmit="busc_fechas(event)" method="GET">
+            <div class="campo">
+                <label>Desde:</label>
+                <input type="date" id="fecha1" name="fecha1">
+                <label>Hasta:</label>
+                <input type="date" id="fecha2" name="fecha2">
+            </div>
+
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR PERIODO">
+            </div>
+        </form>
+
+</main>
+<script>
+    function busc_fechas(event) {
+        event.preventDefault();
+        let idejs1 = document.getElementById('fecha1').value;
+        let idejs2 = document.getElementById('fecha2').value;
+        window.location.href = `/consulta/montorecaudado/${idejs1}/${idejs2}`;
+        document.getElementById('fecha1').value = "";
+        document.getElementById('fecha2').value = "";    
+    }     
+</script>
+
+<% if (cargado) { %>
+<div class="tabla-contenedor">
+    <table class="tabla-datos">
+        <thead>
+            <tr>
+                <th>monto recaudado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (busc_registros.length > 0) {
+                busc_registros.forEach(monto => { %>
+                    <tr>
+                        <td><%= monto.monto_recaudado %></td>
+                    </tr>
+                <% });
+            } else { %>
+                <tr>
+                    <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                </tr>
+            <% } %>
+                      <% } %>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+<%- include('footer') %>
+
+
+
+</body>
+</html>

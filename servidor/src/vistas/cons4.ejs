@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/menu.css"> <link rel="stylesheet" href="/css/mostrar.css">
+    <link rel="icon" href="/img/favicon.webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Consulta 4 - Secure Dental</title>
+</head>
+
+<body>
+ <%- include('header') %>
+
+
+    <h1>ranking de odntologos por cant de tratameintos</h1>
+
+
+<div class="tabla-contenedor">
+    <table class="tabla-datos">
+        <thead>
+            <tr>
+                <th>id odontologo</th>
+                <th>nombre</th>
+                <th>apellido</th>
+                <th>cantidad tratamientos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (registros.length > 0) {
+                registros.forEach(odo => { %>
+                    <tr>
+                        <td><%= odo.idodontologo %></td>
+                        <td><%= odo.nombre %></td>
+                        <td><%= odo.apellido %></td>
+                        <td><%= odo.cantidad_tratamientos %></td>
+                    </tr>
+                <% });
+            } else { %>
+                <tr>
+                    <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                </tr>
+            <% } %>
+                 
+        </tbody>
+    </table>
+</div>
+
+
+
+
+<%- include('footer') %>
+
+
+
+
+
+</body>
+</html>
