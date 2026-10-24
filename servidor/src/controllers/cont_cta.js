@@ -80,6 +80,18 @@ export const buscta_id = async (pet, resp)=>{
     }
 }
 
+export const busc_idhis = async (pet, resp)=>{
+      let idhis = pet.params.idhis;
+      try {
+        let buscarsql = "SELECT afiliado_ci_afiliado, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte WHERE tratamiento_realizado_idtratamiento_realizado = '"+ idhis +"'";
+        const [busc_registros] = await bdd.query(buscarsql);
+        console.log(busc_registros)
+    resp.render('busc_cta', { busc_registros, cargadoid: true, cargadotabla: false, });
+    }     catch (error) {
+        console.error('Error al buscar la historia clinica:', error);
+    }
+}
+
 
 // para modificar
 export const  modcta_id = async (pet, resp)=>{
