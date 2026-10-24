@@ -137,7 +137,7 @@ resp.render('mod_odo', { busc_registros, cargado: true, alert: false });
     }
 };
 
-export const modificar_odo = async (pet, resp)=>{
+export const mod_id = async (pet, resp)=>{
   let id, nombre, apellido, esp, cons;
 
     id = pet.body.clave;
@@ -173,7 +173,7 @@ export const modificar_odo = async (pet, resp)=>{
 export const  mododo_nom = async (pet, resp)=>{
 let nom_completo = pet.params.nombre;
       try {
-        let buscsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE nombre = '"+ nom_completo +"'";
+        let buscsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
 resp.render('mod_odo', { busc_registros, cargado: true });

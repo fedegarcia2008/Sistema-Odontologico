@@ -20,7 +20,7 @@ rOdontologo.get('/odontologo/buscarespecialidad/:espe', buscodo_espe)
 
 //para modificar
 rOdontologo.get('/odontologo/modificarid/:clave', mododo_id)
-rOdontologo.post('/odontologo/modificar/:clave', modificar_odo)
+rOdontologo.post('/odontologo/modificar/:clave', mod_id)
 
 
 rOdontologo.get('/odontologo/modificarnombre/:nombre', mododo_nom)
