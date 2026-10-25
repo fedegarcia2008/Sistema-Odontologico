@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/buscar_consultas.css"> <link rel="stylesheet" href="/css/mostrar.css">
+    <link rel="icon" href="/img/favicon.webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Consulta 1 - Secure Dental</title>
+</head>
+
+<body>
+<%- include('../componentes/header') %>
+
+
+    <h1>HISTORIA CLÍNICA DEL PACIENTE</h1>
+
+<main class="formulario formulario-doble">
+
+    <form onsubmit="busc_id(event)" method="GET">
+        <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
+        <div class="campo">
+            <label for="clave">Clave de Identificación:</label>
+            <input type="text" id="clave" name="clave" minlength="8" maxlength="8"
+                   pattern="[0-9]{8}" autocomplete="off" placeholder="Ej: 12345678">
+            <small class="ayuda">8 dígitos, sin puntos ni espacios</small>
+        </div>
+        <div class="boton">
+            <input type="submit" value="BUSCAR POR C.I.">
+        </div>
+    </form>
+
+    <form onsubmit="busc_nom(event)" method="GET">
+        <h2><i class="fa-solid fa-user"></i> Buscar por nombre</h2>
+        <div class="campo">
+            <label for="nombre">Apellido y Nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej: Torres Ana" autocomplete="off">
+            <small class="ayuda">Escribe el apellido y el nombre</small>
+        </div>
+        <div class="boton">
+            <input type="submit" value="BUSCAR POR NOMBRE">
+        </div>
+    </form>
+
+</main>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<% if (alert) { %>
+    <% if (guardado) { %>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '<%= msj %>',
+                timer: '<%= tiempo %>'
+            });
+        </script>
+    <% } else { %>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: '<%= msj %>',
+            });
+        </script>
+    <% } %>
+<% } %>
+
+
+<% if (cargado) { %>
+
+
+    <% if (buscoid) { %>
+        <h1>
+            C.I. BUSCADO:
+            <%= busc_registros.length > 0
+                ? busc_registros[0].ci_afiliado
+                : 'Sin resultados' %>
+        </h1>
+
+    <% } else if (busconom) { %>
+        <h1>
+            PACIENTE BUSCADO:
+            <%= busc_registros.length > 0
+                ? busc_registros[0].apellido + ', ' + busc_registros[0].nombre
+                : 'Sin resultados' %>
+        </h1>
+    <% } %>
+
+
+
+ <div class="tabla-contenedor">
+    <table class="tabla-datos">
+        <thead>
+            <tr>
+                <th>C.I.</th>
+                <th>Paciente</th>
+                <th>ID</th>
+                <th>Consulta</th>
+                <th>Odontólogo</th>
+                <th>Tratamiento</th>
+                <th>Inicio</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% if (busc_registros.length > 0) { %>
+                <% busc_registros.forEach(afi => { %>
+                    <tr>
+                        <td><%= afi.ci_afiliado %></td>
+                        <td><%= afi.apellido %>, <%= afi.nombre %></td>
+                        <td><%= afi.idconsulta %></td>
+                        <td>
+                            <%= afi.fecha_consulta ? new Date(afi.fecha_consulta).toLocaleDateString('es-AR') : 'Sin fecha' %>
+                            <span class="sub"><%= afi.horario ? afi.horario.slice(0, 5) + ' hs' : 'Sin horario' %></span>
+                        </td>
+                        <td><%= afi.odontologo_apellido %>, <%= afi.odontologo_nombre %></td>
+                        <td><%= afi.tratamiento || 'Sin tratamiento' %></td>
+                        <td><%= afi.fecha_inicio ? new Date(afi.fecha_inicio).toLocaleDateString('es-AR') : '—' %></td>
+                        <td>
+                            <% if (afi.tratamiento_finalizado == null) { %>
+                                <span class="estado estado-nulo">Sin tratamiento</span>
+                            <% } else if (afi.tratamiento_finalizado) { %>
+                                <span class="estado estado-ok">Finalizado</span>
+                            <% } else { %>
+                                <span class="estado estado-curso">En curso</span>
+                            <% } %>
+                        </td>
+                    </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="8" class="sin-datos">No hay datos para mostrar</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+<% } %>
+
+
+
+<%- include('../componentes/footer') %>
+
+
+
+<script src="/js/val_consultas/cons1.js"></script>
+
+
+
+
+</body>
+</html>

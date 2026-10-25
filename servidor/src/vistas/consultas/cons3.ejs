@@ -10,10 +10,10 @@
 </head>
 
 <body>
- <%- include('header') %>
+<%- include('../componentes/header') %>
 
 
-    <h1>monto recaudado por periodo</h1>
+    <h1>tratamiento mas solicitado</h1>
 
         <main class="formulario">
 
@@ -36,7 +36,7 @@
         event.preventDefault();
         let idejs1 = document.getElementById('fecha1').value;
         let idejs2 = document.getElementById('fecha2').value;
-        window.location.href = `/consulta/montorecaudado/${idejs1}/${idejs2}`;
+        window.location.href = `/consulta/tratamiento/${idejs1}/${idejs2}`;
         document.getElementById('fecha1').value = "";
         document.getElementById('fecha2').value = "";    
     }     
@@ -47,14 +47,18 @@
     <table class="tabla-datos">
         <thead>
             <tr>
-                <th>monto recaudado</th>
+                <th>id TRATAMIENTO</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
             </tr>
         </thead>
         <tbody>
             <% if (busc_registros.length > 0) {
-                busc_registros.forEach(monto => { %>
+                busc_registros.forEach(trat => { %>
                     <tr>
-                        <td><%= monto.monto_recaudado %></td>
+                        <td><%= trat.idtratamiento %></td>
+                        <td><%= trat.nombre %></td>
+                        <td><%= trat.cantidad %></td>
                     </tr>
                 <% });
             } else { %>
@@ -70,7 +74,7 @@
 
 
 
-<%- include('footer') %>
+<%- include('../componentes/footer') %>
 
 
 

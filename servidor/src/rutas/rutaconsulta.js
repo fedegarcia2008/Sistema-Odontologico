@@ -1,5 +1,5 @@
 import express from 'express';
-import { menuconsultas, cons1, cons2, cons3, cons4, cons5, busc_cons1, busc_cons3, busc_cons5 } from '../controllers/contconsultas.js';
+import { menuconsultas, cons1, cons2, cons3, cons4, cons5, cons1_id, cons1_nom, busc_cons3, busc_cons5 } from '../controllers/contconsultas.js';
 
 const rConsulta = express.Router();
 
@@ -7,7 +7,8 @@ rConsulta.get('/consulta', menuconsultas)
 
 // Consulta 1 - Busca y Muestra
 rConsulta.get('/consulta/historiaclinica', cons1)
-rConsulta.get('/consulta/historiaclinica/:clave', busc_cons1)
+rConsulta.get('/consulta/historiaclinica/id/:clave', cons1_id) // por id
+rConsulta.get('/consulta/historiaclinica/nombre/:nombre', cons1_nom) // por nombre
 
 // Consulta 2 - Solo Muestra
 rConsulta.get('/consulta/especialidadodontologo', cons2)

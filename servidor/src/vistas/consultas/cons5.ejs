@@ -6,14 +6,14 @@
     <link rel="stylesheet" href="/css/menu.css"> <link rel="stylesheet" href="/css/mostrar.css">
     <link rel="icon" href="/img/favicon.webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Consulta 3 - Secure Dental</title>
+    <title>Consulta 5 - Secure Dental</title>
 </head>
 
 <body>
- <%- include('header') %>
+<%- include('../componentes/header') %>
 
 
-    <h1>tratamiento mas solicitado</h1>
+    <h1>monto recaudado por periodo</h1>
 
         <main class="formulario">
 
@@ -36,7 +36,7 @@
         event.preventDefault();
         let idejs1 = document.getElementById('fecha1').value;
         let idejs2 = document.getElementById('fecha2').value;
-        window.location.href = `/consulta/tratamiento/${idejs1}/${idejs2}`;
+        window.location.href = `/consulta/montorecaudado/${idejs1}/${idejs2}`;
         document.getElementById('fecha1').value = "";
         document.getElementById('fecha2').value = "";    
     }     
@@ -47,18 +47,14 @@
     <table class="tabla-datos">
         <thead>
             <tr>
-                <th>id TRATAMIENTO</th>
-                <th>Nombre</th>
-                <th>Cantidad</th>
+                <th>monto recaudado</th>
             </tr>
         </thead>
         <tbody>
             <% if (busc_registros.length > 0) {
-                busc_registros.forEach(trat => { %>
+                busc_registros.forEach(monto => { %>
                     <tr>
-                        <td><%= trat.idtratamiento %></td>
-                        <td><%= trat.nombre %></td>
-                        <td><%= trat.cantidad %></td>
+                        <td><%= monto.monto_recaudado %></td>
                     </tr>
                 <% });
             } else { %>
@@ -74,7 +70,7 @@
 
 
 
-<%- include('footer') %>
+<%- include('../componentes/footer') %>
 
 
 

@@ -94,7 +94,7 @@ export const buscafi_id = async (pet, resp)=>{
                 cargadoid: true, cargadotabla: false,
                 alert: true,
                 guardado: true,
-                msj: 'Afiliado encontrado',
+                msj: 'Afiliado Encontrado',
                 tiempo: 1500,
                 botonConfirma: false
             });
