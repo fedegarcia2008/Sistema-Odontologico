@@ -11,6 +11,8 @@
 
 <body>
 <%- include('../componentes/header') %>
+   <div class="tema-verde">
+
 
 
     <h1>HISTORIA CLÍNICA DEL PACIENTE</h1>
@@ -72,7 +74,7 @@
 
     <% if (buscoid) { %>
         <h1>
-            C.I. BUSCADO:
+            C.I. Buscado:
             <%= busc_registros.length > 0
                 ? busc_registros[0].ci_afiliado
                 : 'Sin resultados' %>
@@ -80,7 +82,7 @@
 
     <% } else if (busconom) { %>
         <h1>
-            PACIENTE BUSCADO:
+            Paciente Buscado:
             <%= busc_registros.length > 0
                 ? busc_registros[0].apellido + ', ' + busc_registros[0].nombre
                 : 'Sin resultados' %>
@@ -141,14 +143,13 @@
 
 
 
+</div>
+
 <%- include('../componentes/footer') %>
-
-
-
 <script src="/js/val_consultas/cons1.js"></script>
-
-
-
-
 </body>
+
+
+
+
 </html>

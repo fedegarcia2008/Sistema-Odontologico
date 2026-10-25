@@ -6,6 +6,36 @@
     --celeste-oscuro: #1d6479;
     --texto: #3a3a3a;
     --fondo: #f4f7fa;
+    --azul-rgb: 35, 59, 118;
+    --celeste-rgb: 91, 156, 177;
+}
+
+/* ===== Temas por sección =====   despues cambiar --azul por color principal.... */
+.tema-verde {
+    --azul: #1f5c3f;
+    --celeste: #3d9a6d;
+    --celeste-oscuro: #1b7a4e;
+    --fondo: #f3f9f5;
+    --azul-rgb: 31, 92, 63;
+    --celeste-rgb: 61, 154, 109;
+}
+
+.tema-naranja {
+    --azul: #8a3f12;
+    --celeste: #e07b39;
+    --celeste-oscuro: #b85a1e;
+    --fondo: #fbf6f2;
+    --azul-rgb: 138, 63, 18;
+    --celeste-rgb: 224, 123, 57;
+}
+
+.tema-violeta {
+    --azul: #4a2d7a;
+    --celeste: #8b6bc4;
+    --celeste-oscuro: #6b4aa3;
+    --fondo: #f7f4fb;
+    --azul-rgb: 74, 45, 122;
+    --celeste-rgb: 139, 107, 196;
 }
 
 * {

@@ -6,7 +6,7 @@
     margin: 30px auto 50px;
     overflow-x: auto;           /* queda como respaldo en celulares */
     border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(30, 58, 110, 0.15);
+    box-shadow: 0 4px 16px rgba(var(--azul-rgb), 0.15);
     background: #fff;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .tabla-datos thead {
-    background: linear-gradient(135deg, #243b7d, #1e6a82);
+    background: linear-gradient(135deg, var(--azul), var(--celeste-oscuro));
     color: #fff;
 }
 
@@ -39,10 +39,12 @@
     vertical-align: middle;
 }
 
-.tabla-datos tbody tr:nth-child(even) { background: #f5f8fc; }
+.tabla-datos tbody tr:nth-child(even) { 
+    background: rgba(var(--celeste-rgb), 0.06);
+}
 
 .tabla-datos tbody tr:hover {
-    background: #e3eef5;
+    background: rgba(var(--celeste-rgb), 0.15);
     transition: background 0.2s ease;
 }
 

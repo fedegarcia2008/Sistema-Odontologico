@@ -57,7 +57,25 @@ export const cons1_nom = async (pet, resp)=>{
 
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('consultas/cons1', { busc_registros, busconom: true, buscoid: false, cargado: true});
+        if (busc_registros.length > 0) {
+    resp.render('consultas/cons1', { busc_registros,
+        cargado:true,
+        buscoid: false, busconom: true,
+        alert: true,
+        guardado: true,
+        msj: 'Afiliado Encontrado',
+        tiempo: 1500,
+    });
+        } else {
+    resp.render('consultas/cons1', { busc_registros,
+        cargado:true,
+        buscoid: false, busconom: true,
+        alert: true,
+        guardado: false,
+        msj: 'Sin Resultados',
+        tiempo: 1500,
+    });
+}
     }     catch (error) {
         console.error('Error al buscar la consulta:', error);
     }
