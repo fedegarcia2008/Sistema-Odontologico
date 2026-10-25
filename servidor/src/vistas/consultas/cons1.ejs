@@ -48,26 +48,6 @@
 
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<% if (alert) { %>
-    <% if (guardado) { %>
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: '<%= msj %>',
-                timer: '<%= tiempo %>'
-            });
-        </script>
-    <% } else { %>
-        <script>
-            Swal.fire({
-                icon: 'error',
-                title: '<%= msj %>',
-            });
-        </script>
-    <% } %>
-<% } %>
-
 
 <% if (cargado) { %>
 
@@ -145,6 +125,7 @@
 
 </div>
 
+<%- include('../componentes/sweet_alert') %>
 <%- include('../componentes/footer') %>
 <script src="/js/val_consultas/cons1.js"></script>
 </body>
