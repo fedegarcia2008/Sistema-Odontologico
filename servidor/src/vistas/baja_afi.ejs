@@ -41,7 +41,7 @@
 <% if (cargado) { %>
 <% if (baja_registros.length > 0 &&  baja_registros.length == 1) { %>
 
-<form class="formulario resultado" onsubmit="mod_id(event)" onsubmit="mod_nom(event)"  method="POST">
+<form class="formulario resultado" onsubmit="baja_id(event)" onsubmit="baja_nom(event)"  method="POST">
 
           <div class="campo">
             <label>Clave de Identificacion:</label>
@@ -51,8 +51,8 @@
     <div class="fila">
         <div class="campo">
             <label>Nombre:</label>
-            <input type="text" name="nombre"
-                   value="<%= baja_registros[0].nombre %>" required>
+            <input type="text" name="nombre" readonly
+                   value="<%= baja_registros[0].nombre %>" >
             </div>
         </div>
 
@@ -61,34 +61,34 @@
         <div class="campo">
 
             <label>Apellido:</label>
-            <input type="text" name="apellido"
-                   value="<%= baja_registros[0].apellido %>" required>
+            <input type="text" name="apellido" readonly
+                   value="<%= baja_registros[0].apellido %>" >
         </div>
 
         <div class="fila">
         <div class="campo">
             <label>Celular:</label>
-            <input type="text" name="telCelular"
+            <input type="text" name="telCelular" readonly
                    value="<%= baja_registros[0].tel_cel %>">
         </div>
     </div>
 
         <div class="campo">
             <label>Teléfono fijo:</label>
-            <input type="text" name="telFijo"
+            <input type="text" name="telFijo" readonly
                    value="<%= baja_registros[0].tel_fijo %>">
         </div>
 
         <div class="fila">
         <div class="campo">
             <label>Tipo de plan</label>
-            <input type="text" name="tipo" required value="<%= baja_registros[0].tipo_plan %>" >
+            <input type="text" name="tipo" readonly value="<%= baja_registros[0].tipo_plan %>" >
 
         </div>
 </div>
 
         <div class="boton">
-            <input type="submit" value="GUARDAR CAMBIOS">
+            <input type="submit" value="ELIMINAR AFILIADO">
         </div>
     </form>
 
