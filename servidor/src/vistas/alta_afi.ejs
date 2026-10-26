@@ -23,7 +23,8 @@ size tamaño de la caja de texto-->
         <form action="/afiliado/nuevoalta" method="POST">
         <div class="campo">
             <label>Clave de Identificación <span class="asterisco">*</span></label>
-            <input type="text" name="clave"  maxlength="10" required>  <!-- sacar espacio max y minimo 8-->
+            <input type="text" name="clave"  minlength="8" maxlength="8"
+                   pattern="[0-9]{8}" autocomplete="off" required>
         </div>
 
         <div class="campo">

@@ -1,15 +1,15 @@
-let fecha1 = document.querySelector('[name="fecha1"]');
+// let fecha1 = document.querySelector('[name="fecha1"]');
 
-    fecha1.addEventListener("input", function () {
+//     fecha1.addEventListener("input", function () {
         
    
 
-        if (this.value) {
-        this.setCustomValidity("La C.I. debe contener exactamente 8 números.");
-    } else {
-        this.setCustomValidity("");
-    }
- }); 
+//         if (this.value) {
+//         this.setCustomValidity("La C.I. debe contener exactamente 8 números.");
+//     } else {
+//         this.setCustomValidity("");
+//     }
+//  }); 
     
     
     

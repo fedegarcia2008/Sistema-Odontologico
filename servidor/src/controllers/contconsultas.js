@@ -28,7 +28,7 @@ export const cons1_id = async (pet, resp)=>{
         console.log(busc_registros)
     if (busc_registros.length > 0) {
     resp.render('consultas/cons1', { busc_registros,
-        cargado:true,
+        cargado: true,
         buscoid: true, busconom: false,
         alert: true,
         guardado: true,
@@ -59,7 +59,7 @@ export const cons1_nom = async (pet, resp)=>{
         console.log(busc_registros)
         if (busc_registros.length > 0) {
     resp.render('consultas/cons1', { busc_registros,
-        cargado:true,
+        cargado: true,
         buscoid: false, busconom: true,
         alert: true,
         guardado: true,
@@ -68,7 +68,7 @@ export const cons1_nom = async (pet, resp)=>{
     });
         } else {
     resp.render('consultas/cons1', { busc_registros,
-        cargado:true,
+        cargado: true,
         buscoid: false, busconom: true,
         alert: true,
         guardado: false,
