@@ -45,7 +45,7 @@
 
           <div class="campo">
             <label>Clave de Identificacion:</label>
-        <input type="name" id="clave" name="clave" readonly value="<%= busc_registros[0].ci_afiliado %>">
+        <input type="name" id="clave" name="clave" readonly value="<%= baja_registros[0].ci_afiliado %>">
 </div>
 
     <div class="fila">
@@ -92,7 +92,7 @@
         </div>
     </form>
 
-<% } else if (busc_registros.length >= 2) { %>
+<% } else if (baja_registros.length >= 2) { %>
 
         <div class="tabla-contenedor">
             <table class="tabla-datos">
@@ -108,7 +108,7 @@
                 </thead>
 
                 <tbody>
-                    <% busc_registros.forEach(afi => { %>
+                    <% baja_registros.forEach(afi => { %>
                         <tr>
                             <td><%= afi.ci_afiliado %></td>
                             <td><%= afi.nombre %></td>
