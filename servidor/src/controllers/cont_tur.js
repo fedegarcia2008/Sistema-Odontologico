@@ -183,7 +183,7 @@ id = pet.body.clave;
           let fecha2 = pet.params.fecha2;
           
           try {
-           let buscsql =  "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE fecha BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' ORDER BY fecha, horario";
+           let buscsql =  "SELECT idconsulta, DATE_FORMAT(fecha, '%Y-%m-%d') AS fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE fecha BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' ORDER BY fecha, horario"; //mostrar bien las fechas
             const [busc_registros] = await bdd.query(buscsql);
             console.log(busc_registros)
         resp.render('mod_tur', { busc_registros,  cargado: true });
