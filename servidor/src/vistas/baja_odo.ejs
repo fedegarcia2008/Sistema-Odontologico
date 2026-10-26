@@ -38,7 +38,7 @@
         </div>
 
 </form>
-
+</main>
     
 <% if (cargado) { %>
 <% if (baja_registros.length > 0 &&  baja_registros.length == 1) { %>
@@ -78,20 +78,13 @@
 
         <div class="campo">
             <label>Id Consultorio:</label>
-            <input type="text" name="consultorio_idconsultorio"
+            <input type="text" name="consultorio"
                    readonly value="<%= baja_registros[0].consultorio_idconsultorio %>">
         </div>
 </div>
 
-<div class="boton">
-            <input type="submit" value="ELIMINAR">
-        </div>
-
-
-</main>
-
 <% } else if (baja_registros.length >= 2) { %>
-
+    <form>
         <div class="tabla-contenedor">
             <table class="tabla-datos">
                 <thead>
@@ -111,7 +104,7 @@
                             <td><%= odo.nombre %></td>
                             <td><%= odo.apellido %></td>
                             <td><%= odo.especialidad %></td>
-                            <td><%= odo.odontologo_idodontologo %></td>
+                            <td><%= odo.consultorio_idconsultorio %></td>
                         </tr>
 
                         
@@ -132,6 +125,7 @@
 
     <% } %>
 <% } %>
+
 
 
         <script>
