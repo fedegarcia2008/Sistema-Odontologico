@@ -38,7 +38,7 @@
         </div>
 
 </form>
-
+</main>
     
 <% if (cargado) { %>
 <% if (baja_registros.length > 0 &&  baja_registros.length == 1) { %>
@@ -83,15 +83,8 @@
         </div>
 </div>
 
-<div class="boton">
-            <input type="submit" value="ELIMINAR">
-        </div>
-
-
-</main>
-
 <% } else if (baja_registros.length >= 2) { %>
-
+    <form>
         <div class="tabla-contenedor">
             <table class="tabla-datos">
                 <thead>
@@ -132,6 +125,7 @@
 
     <% } %>
 <% } %>
+
 
 
         <script>
