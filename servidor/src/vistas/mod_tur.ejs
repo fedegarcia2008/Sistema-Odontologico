@@ -106,7 +106,7 @@
             </tr>
         </thead>
         <tbody>
-                busc_registros.forEach(tur => { %>
+                <% busc_registros.forEach(tur => { %>
                     <tr>
                         <td><%= tur.idconsulta %></td>
                         <td><%= new Date(tur.fecha).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %></td>
