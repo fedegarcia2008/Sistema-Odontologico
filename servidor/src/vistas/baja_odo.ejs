@@ -39,10 +39,9 @@
 
 </form>
 
-
     
 <% if (cargado) { %>
-<% if (baja_registros.length > 0) { %>
+<% if (baja_registros.length > 0 &&  baja_registros.length == 1) { %>
 
 <form class="formulario resultado" onsubmit="baja_id(event)" onsubmit="baja_nom(event)" method="POST">
 
@@ -84,6 +83,39 @@
         </div>
 </div>
 
+<% } else if (baja_registros.length >= 2) { %>
+
+        <div class="tabla-contenedor">
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>C.I.</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Tipo de Especialidad</th>
+                        <th>ID del consultorio</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% baja_registros.forEach(odo => { %>
+                        <tr>
+                            <td><%= odo.idodontologo %></td>
+                            <td><%= odo.nombre %></td>
+                            <td><%= odo.apellido %></td>
+                            <td><%= odo.especialidad %></td>
+                            <td><%= odo.odontologo_idodontologo %></td>
+                        </tr>
+
+                        
+                    <% }); %>
+                    <p>Mas de una coincidencia al buscar. Modifique por ID</p>
+                </tbody>
+            </table>
+        </div>
+
+    </form>
+
 
         <div class="boton">
             <input type="submit" value="ELIMINAR">
@@ -91,13 +123,14 @@
 
     </form>
 
-<% } else { %>
-    <div class="formulario vacio">
-    <i class="fa-solid fa-user-slash"></i>
-    <p>No hay datos para mostrar.</p>
-</div>
+ <% } else if (baja_registros.length == 0) { %>
+        <div class="formulario vacio">
+            <i class="fa-solid fa-user-slash"></i>
+            <p>No hay datos para mostrar.</p>
+        </div>
+
+    <% } %>
 <% } %>
- <% } %>
 
 </main>
 
