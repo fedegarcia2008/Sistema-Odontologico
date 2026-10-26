@@ -186,7 +186,7 @@ id = pet.body.clave;
            let modificarsql =  "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE fecha BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' ORDER BY fecha, horario";
             const [modificar_registros] = await bdd.query(modificarsql);
             console.log(modificar_registros)
-        resp.render('mod_tur', { modificar_registros, cargadoid: false, cargadotabla: true, });
+        resp.render('mod_tur', { modificar_registros,  cargado: true });
         }     catch (error) {
             console.error('Error al buscar turno:', error);
         }
