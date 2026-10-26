@@ -65,7 +65,7 @@
         <div class="campo">
             <label>Fecha</label>
             <input type="date" name="fecha" 
-                            value="<%= busc_registros[0].fecha %>">
+                            value="<%= new Date(tur.fecha).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %>">
         </div>
         
         <div class="campo">
