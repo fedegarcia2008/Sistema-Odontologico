@@ -1,5 +1,5 @@
 import express from 'express';
-import { menu_ser, alta_ser, baja_ser, mod_ser, busc_ser, mos_ser, nuevo_ser, buscser_id, buscser_nom, buscser_odo, modser_id, modificar_ser, bajaser_id, eliminar_ser } from '../controllers/cont_ser.js';
+import { menu_ser, alta_ser, baja_ser, mod_ser, busc_ser, mos_ser, nuevo_ser, buscser_id, buscser_nom, modser_nom, buscser_odo, modser_id, modificar_ser, bajaser_id, eliminar_ser } from '../controllers/cont_ser.js';
 
 const rServicio = express.Router();
 
