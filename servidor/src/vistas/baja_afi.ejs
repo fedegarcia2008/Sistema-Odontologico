@@ -62,27 +62,27 @@
 
             <label>Apellido:</label>
             <input type="text" name="apellido"
-                   value="<%= busc_registros[0].apellido %>" required>
+                   value="<%= baja_registros[0].apellido %>" required>
         </div>
 
         <div class="fila">
         <div class="campo">
             <label>Celular:</label>
             <input type="text" name="telCelular"
-                   value="<%= busc_registros[0].tel_cel %>">
+                   value="<%= baja_registros[0].tel_cel %>">
         </div>
     </div>
 
         <div class="campo">
             <label>Teléfono fijo:</label>
             <input type="text" name="telFijo"
-                   value="<%= busc_registros[0].tel_fijo %>">
+                   value="<%= baja_registros[0].tel_fijo %>">
         </div>
 
         <div class="fila">
         <div class="campo">
             <label>Tipo de plan</label>
-            <input type="text" name="tipo" required value="<%= busc_registros[0].tipo_plan %>" >
+            <input type="text" name="tipo" required value="<%= baja_registros[0].tipo_plan %>" >
 
         </div>
 </div>
@@ -125,7 +125,7 @@
             </table>
         </div>
 
-    <% } else if (busc_registros.length == 0) { %>
+    <% } else if (baja_registros.length == 0) { %>
 
         <div class="formulario vacio">
             <i class="fa-solid fa-user-slash"></i>
@@ -134,7 +134,7 @@
 
     <% } %>
 <% } %>
-</main>
+
 </main>
 
         <script>
