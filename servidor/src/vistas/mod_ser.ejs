@@ -30,10 +30,10 @@
 
 </form>
 
-<form onsubmit="busc_nom(event)" method="GET">
+<form onsubmit="busc_ser(event)" method="GET">
         <div class="campo">
-            <label>Apellido y Nombre:</label>
-            <input type="text" id="nombre" name="nombre" >
+            <label>Servicio:</label>
+            <input type="text" id="nom" name="nom" >
         </div>
         
        <div class="boton">
@@ -45,7 +45,7 @@
 <% if (cargado) { %>
 <% if (busc_registros.length > 0 &&  busc_registros.length == 1) { %>
 
-<form class="formulario resultado" onsubmit="mod_id(event)" onsubmit="mod_nom(event)" method="POST">
+<form class="formulario resultado" onsubmit="mod_id(event)" onsubmit="mod_ser(event)" method="POST">
 
 <div class="campo">
 
@@ -189,6 +189,25 @@ document.addEventListener("click", function (e) {
         formulario.action = `/servicio/modificar/${idejs}`;
         formulario.submit();
     }
+
+    function busc_ser(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('nom').value;
+        window.location.href = `/servicio/buscarservicio/${idejs}`;
+        document.getElementById('nom').value = "";        
+    }
+
+    function mod_ser(event) {
+        event.preventDefault();
+
+        let formulario = event.target;
+        let idejs = formulario.querySelector('[name="nom"]').value;
+
+        formulario.action = `/servicio/modificar/${idejs}`;
+        formulario.submit();
+    }
+
+
         </script>
 
 
