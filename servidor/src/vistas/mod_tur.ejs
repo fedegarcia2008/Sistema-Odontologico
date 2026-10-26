@@ -92,6 +92,7 @@
 
     </form>
 
+    
 <% } else if (busc_registros.length >= 2) { %>
     <div class="tabla-contenedor">
     <table class="tabla-datos">
@@ -154,7 +155,7 @@
         event.preventDefault();
         let idejs1 = document.getElementById('fecha1').value;
         let idejs2 = document.getElementById('fecha2').value;
-        window.location.href =  `/turno/buscarperiodo/${idejs1}/${idejs2}`;
+        window.location.href =  `/turno/modificarperiodo/${idejs1}/${idejs2}`;
         document.getElementById('fecha1').value = "";   
         document.getElementById('fecha2').value = "";  
         }
@@ -172,7 +173,6 @@
         </script>
 
 
- <%- include('sweet_modificar') %>
 
 
             <%- include('footer') %>
