@@ -19,7 +19,7 @@ rServicio.get('/servicio/buscaridodo/:odo', buscser_odo)
 
 //para modificar
 rServicio.get('/servicio/modificarid/:clave', modser_id)
-rServicio.get('/servicio/modificarsrvicio/:nom', modser_nom)
+rServicio.get('/servicio/modificarservicio/:nom', modser_nom)
 
 rServicio.post('/servicio/modificar/:clave', modificar_ser)
 
