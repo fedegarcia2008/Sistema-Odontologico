@@ -18,7 +18,7 @@
 
         <main class="formulario">
 
-    <form onsubmit="busc_form(event)" method="GET">
+    <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
             <input type="text" id="clave" name="clave">
@@ -27,8 +27,23 @@
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
-
 </form>
+
+
+        <form onsubmit="busc_fechas(event)" method="GET">
+            <div class="campo">
+                <label>Desde:</label>
+                <input type="date" id="fecha1" name="fecha1">
+                <label>Hasta:</label>
+                <input type="date" id="fecha2" name="fecha2">
+            </div>
+
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR PERIODO">
+            </div>
+        </form>
+
+
 
     </main>
 
@@ -36,9 +51,9 @@
 
 
 <% if (cargado) { %>
-<% if (busc_registros.length > 0) { %>
+<% if (busc_registros.length > 0 &&  busc_registros.length == 1) { %>
 
-<form onsubmit="mod_form(event)" method="POST">
+<form onsubmit="mod_id(event)"  method="POST">
 
 <div class="campo">
 
@@ -77,24 +92,55 @@
 
     </form>
 
-<% } else { %>
+<% } else if (busc_registros.length >= 2) { %>
+    <div class="tabla-contenedor">
+    <table class="tabla-datos">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Id Odontologo</th>
+                <th>Id Afiliado</th>
 
-    <p>No hay datos para mostrar.</p>
+            </tr>
+        </thead>
+        <tbody>
+                busc_registros.forEach(tur => { %>
+                    <tr>
+                        <td><%= tur.idconsulta %></td>
+                        <td><%= new Date(tur.fecha).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %></td>
+                        <td><%= tur.horario.slice(0,5) %></td>
+                        <td><%= tur.odontologo_idodontologo %></td>
+                        <td><%= tur.afiliado_ci_afiliado %></td>
+                    </tr>
+                <% });
+          <p>Mas de una coincidencia al buscar. Modifique por ID</p>
 
+        </tbody>
+    </table>
+</div>
+ <% } else if (busc_registros.length == 0) { %>
+
+        <div class="formulario vacio">
+            <i class="fa-solid fa-user-slash"></i>
+            <p>No hay datos para mostrar.</p>
+        </div>
+
+    <% } %>
 <% } %>
- <% } %>
 
 
 
         <script>
-        function busc_form(event) {
+        function busc_id(event) {
         event.preventDefault();
         let idejs = document.getElementById('clave').value;
         window.location.href = `/turno/modificarid/${idejs}`;
         document.getElementById('clave').value = "";   
         }
 
-    function mod_form(event) {
+    function mod_id(event) {
         event.preventDefault();
 
         let formulario = event.target;
@@ -103,10 +149,26 @@
         formulario.action = `/turno/modificar/${idejs}`;
         formulario.submit();
     }
+
+         function busc_fechas(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('fecha1').value;
+        let idejs2 = document.getElementById('fecha2').value;
+        window.location.href =  `/turno/buscarperiodo/${idejs1}/${idejs2}`;
+        document.getElementById('clave').value = "";   
+        }
+
+    function mod_fechas(event) {
+        event.preventDefault();
+
+        let formulario = event.target;
+        let idejs = formulario.querySelector('[name="fecha1"]').value;
+        let idejs2 = formulario.querySelector('[name="fecha2"]').value;
+
+        formulario.action = `/turno/modificarperiodo/${idejs}/${idejs2}`;
+        formulario.submit();
+    }
         </script>
-
-
-
 
 
  <%- include('sweet_modificar') %>

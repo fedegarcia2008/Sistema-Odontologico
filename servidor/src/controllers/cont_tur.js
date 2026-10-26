@@ -178,6 +178,20 @@ id = pet.body.clave;
     }
 };
 
+ export const modtur_fechas = async (pet, resp)=>{
+          let fecha1 = pet.params.fecha1;
+          let fecha2 = pet.params.fecha2;
+          
+          try {
+           let modificarsql =  "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE fecha BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' ORDER BY fecha, horario";
+            const [modificar_registros] = await bdd.query(modificarsql);
+            console.log(modificar_registros)
+        resp.render('mod_tur', { modificar_registros, cargadoid: false, cargadotabla: true, });
+        }     catch (error) {
+            console.error('Error al buscar turno:', error);
+        }
+    }
+
 
 
 // para borrar
