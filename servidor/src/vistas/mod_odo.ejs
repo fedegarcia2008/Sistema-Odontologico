@@ -43,12 +43,10 @@
     </main>
 
 
-
-
 <% if (cargado) { %>
-<% if (busc_registros.length > 0) { %>
+<% if (busc_registros.length > 0 &&  busc_registros.length == 1) { %>
 
-<form onsubmit="mod_id(event)" onsubmit="mod_nom(event)" method="POST">
+<form class="formulario resultado" onsubmit="mod_id(event)" onsubmit="mod_nom(event)" method="POST">
 
 <div class="campo">
             <label>Clave de identificación</label>
@@ -74,6 +72,13 @@
     <input type="text" name="especialidad" autocomplete="off" value="<%= busc_registros[0].especialidad %>">
 
     <div id="listaEspecialidades" class="lista-especialidades"></div>
+</div>
+
+<div class="campo">
+    <label>ID del odontologo</label>
+
+    <input type="text" name="idodo" readonly value="<%= busc_registros[0].odontologo_idodontologo %>">
+
 </div>
 
 <script>
@@ -129,7 +134,7 @@ document.addEventListener("click", function (e) {
 </script>
 
 <div class="campo">
-            <label>ID de consultorio</label>
+            <label>Clave de identificación</label>
             <input type="text" name="idCons" readonly
                             value="<%= busc_registros[0].consultorio_idconsultorio %>">
         </div>
@@ -137,9 +142,40 @@ document.addEventListener("click", function (e) {
             <input type="submit" value="GUARDAR CAMBIOS">
         </div>
 
+<% } else if (busc_registros.length >= 2) { %>
+
+        <div class="tabla-contenedor">
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>C.I.</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Tipo de Especialidad</th>
+                        <th>ID del consultorio</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% busc_registros.forEach(odo => { %>
+                        <tr>
+                            <td><%= odo.idodontologo %></td>
+                            <td><%= odo.nombre %></td>
+                            <td><%= odo.apellido %></td>
+                            <td><%= odo.especialidad %></td>
+                            <td><%= odo.odontologo_idodontologo %></td>
+                        </tr>
+
+                        
+                    <% }); %>
+                    <p>Mas de una coincidencia al buscar. Modifique por ID</p>
+                </tbody>
+            </table>
+        </div>
+
     </form>
 
-<% } else { %>
+<% } else if (busc_registros.length >= 0) { %>
 
     <p>No hay datos para mostrar.</p>
 
@@ -166,14 +202,13 @@ document.addEventListener("click", function (e) {
         formulario.submit();
     }
 
-    
     function busc_nom(event) {
         event.preventDefault();
         let idejs = document.getElementById('nombre').value;
         window.location.href = `/odontologo/modificarnombre/${idejs}`;
         document.getElementById('nombre').value = "";   
         }
-
+        
     function mod_nom(event) {
         event.preventDefault();
 
