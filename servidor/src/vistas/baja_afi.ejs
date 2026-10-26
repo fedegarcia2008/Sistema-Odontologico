@@ -37,22 +37,22 @@
 
 </form>
 
-    
+     
 <% if (cargado) { %>
-<% if (baja_registros.length > 0) { %>
+<% if (busc_registros.length > 0 &&  busc_registros.length == 1) { %>
 
-<form class="formulario resultado" onsubmit="baja_id(event)" onsubmit="baja_nom(event)" method="POST">
+<form class="formulario resultado" onsubmit="mod_id(event)" onsubmit="mod_nom(event)"  method="POST">
 
           <div class="campo">
             <label>Clave de Identificacion:</label>
-        <input type="text" id="clave" name="clave" readonly value="<%= baja_registros[0].ci_afiliado %>">
+        <input type="name" id="clave" name="clave" readonly value="<%= busc_registros[0].ci_afiliado %>">
 </div>
 
     <div class="fila">
         <div class="campo">
             <label>Nombre:</label>
             <input type="text" name="nombre"
-                   readonly value="<%= baja_registros[0].nombre %>" >
+                   value="<%= busc_registros[0].nombre %>" required>
             </div>
         </div>
 
@@ -62,47 +62,79 @@
 
             <label>Apellido:</label>
             <input type="text" name="apellido"
-            
-                   readonly value="<%= baja_registros[0].apellido %>">
+                   value="<%= busc_registros[0].apellido %>" required>
         </div>
 
         <div class="fila">
         <div class="campo">
             <label>Celular:</label>
             <input type="text" name="telCelular"
-                   readonly value="<%= baja_registros[0].tel_cel %>">
+                   value="<%= busc_registros[0].tel_cel %>">
         </div>
     </div>
 
         <div class="campo">
             <label>Teléfono fijo:</label>
             <input type="text" name="telFijo"
-                   readonly value="<%= baja_registros[0].tel_fijo %>">
+                   value="<%= busc_registros[0].tel_fijo %>">
         </div>
 
         <div class="fila">
         <div class="campo">
             <label>Tipo de plan</label>
-            <input type="text" name="tipo" readonly value="<%= baja_registros[0].tipo_plan %>" >
+            <input type="text" name="tipo" required value="<%= busc_registros[0].tipo_plan %>" >
 
         </div>
 </div>
-
 
         <div class="boton">
-            <input type="submit" value="ELIMINAR">
+            <input type="submit" value="GUARDAR CAMBIOS">
         </div>
-
     </form>
 
-<% } else { %>
-    <div class="formulario vacio">
-    <i class="fa-solid fa-user-slash"></i>
-    <p>No hay datos para mostrar.</p>
-</div>
-<% } %>
- <% } %>
+<% } else if (busc_registros.length >= 2) { %>
 
+        <div class="tabla-contenedor">
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>C.I.</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Teléfono Celular</th>
+                        <th>Teléfono Fijo</th>
+                        <th>Tipo de Plan</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% busc_registros.forEach(afi => { %>
+                        <tr>
+                            <td><%= afi.ci_afiliado %></td>
+                            <td><%= afi.nombre %></td>
+                            <td><%= afi.apellido %></td>
+                            <td><%= afi.tel_cel ? afi.tel_cel : "Sin teléfono" %></td>
+                            <td><%= afi.tel_fijo ? afi.tel_fijo : "Sin teléfono" %></td>
+                            <td><%= afi.tipo_plan %></td>
+                        </tr>
+
+                        
+                    <% }); %>
+                    <p>Mas de una coincidencia al buscar. Modifique por ID</p>
+                </tbody>
+            </table>
+        </div>
+
+    <% } else if (busc_registros.length == 0) { %>
+
+        <div class="formulario vacio">
+            <i class="fa-solid fa-user-slash"></i>
+            <p>No hay datos para mostrar.</p>
+        </div>
+
+    <% } %>
+<% } %>
+</main>
 </main>
 
         <script>
