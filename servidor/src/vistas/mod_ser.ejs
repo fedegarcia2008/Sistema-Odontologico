@@ -193,7 +193,7 @@ document.addEventListener("click", function (e) {
     function busc_ser(event) {
         event.preventDefault();
         let idejs = document.getElementById('nom').value;
-        window.location.href = `/servicio/buscarservicio/${idejs}`;
+        window.location.href = `/servicio/modificarservicio/${idejs}`;
         document.getElementById('nom').value = "";        
     }
 
