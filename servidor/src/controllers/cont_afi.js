@@ -36,18 +36,18 @@ export const nuevo_afi = async (pet, resp) => {
     apellido = pet.body.apellido;
 
     // pasar los telefonos a nvarchar
-    telCel = parseInt(pet.body.telCelular);
-    telCel = isNaN(telCel) ? 'NULL' : telCel;
+    telCel = pet.body.telCelular;
+   
 
-    telFijo = parseInt(pet.body.telFijo);
-    telFijo = isNaN(telFijo) ? 'NULL' : telFijo;
+    telFijo = pet.body.telFijo;
+    
 
 
     plan = pet.body.tipo;
 
     try {
 
-       let altasql = "INSERT INTO afiliado (ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan) VALUES ('" + id + "', '" + nombre + "', '" + apellido + "', " + telCel + ", " + telFijo + ", '" + plan + "');";
+       let altasql = "INSERT INTO afiliado (ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan) VALUES ('" + id + "', '" + nombre + "', '" + apellido + "', '" + telCel + "', '" + telFijo + "', '" + plan + "');";
  
         const [registro] = await bdd.query(altasql);
         console.log(registro)
