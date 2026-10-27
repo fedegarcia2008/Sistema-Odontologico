@@ -7,7 +7,7 @@ export const menu_odo = (pet, resp)=>{
 }
 
 export const alta_odo = (pet, resp)=>{
-    resp.render('alta_odo', {alert: false})
+    resp.render('altas/alta_odo', {alert: false})
 }
 
 export const baja_odo = (pet, resp)=>{
@@ -41,7 +41,7 @@ export const nuevo_odo = async (pet, resp) => {
 
         const [registro] = await bdd.query(altasql);
         console.log(registro)
-        resp.render('alta_odo', {
+        resp.render('altas/alta_odo', {
             guardado: true,
             alert: true,
             msj: 'Odontologo Guardado',
@@ -50,7 +50,7 @@ export const nuevo_odo = async (pet, resp) => {
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
-        resp.render('alta_odo', {
+        resp.render('altas/alta_odo', {
             guardado: false,
             alert: true,
             msj: 'No se pudo guardar el odontologo.'
