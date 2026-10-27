@@ -19,7 +19,7 @@ export const mod_hor = (pet, resp)=>{
 }
 
 export const busc_hor = (pet, resp)=>{
-    resp.render('busc_hor', {cargadoid: false, cargadotabla: false,})
+    resp.render('buscar/busc_hor', {cargadoid: false, cargadotabla: false,})
 }
 
 
@@ -74,7 +74,7 @@ export const buschor_id = async (pet, resp)=>{
         let buscarsql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM horario WHERE idhorario = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_hor', { busc_registros, cargadoid: true, cargadotabla: false, });
+    resp.render('buscar/busc_hor', { busc_registros, cargadoid: true, cargadotabla: false, });
     }     catch (error) {
         console.error('Error al buscar horario:', error);
     }
@@ -86,7 +86,7 @@ export const buschor_odo = async (pet, resp)=>{
         let buscarsql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM horario WHERE odontologo_idodontologo = '"+ odo +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_hor', { busc_registros, cargadoid: false, cargadotabla: true, });
+    resp.render('buscar/busc_hor', { busc_registros, cargadoid: false, cargadotabla: true, });
     }     catch (error) {
         console.error('Error al buscar el horario:', error);
     }
@@ -99,7 +99,7 @@ export const buschor_dia = async (pet, resp)=>{
         let buscarsql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM horario WHERE dia = '"+ dia +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_hor', { busc_registros, cargadoid: false, cargadotabla: true, });
+    resp.render('buscar/busc_hor', { busc_registros, cargadoid: false, cargadotabla: true, });
     }     catch (error) {
         console.error('Error al buscar dia:', error);
     }
