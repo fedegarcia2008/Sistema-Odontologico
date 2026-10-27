@@ -1,18 +1,61 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/inicio.css">
     <link rel="icon" href="img/favicon.webp">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Secure Dental</title>
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <title>Inicio - Secure Dental</title>
 </head>
 
 <body>
+<%- include('./componentes/header') %>
 
-<%- include('header') %>
-<%- include('footer') %>
+
+    <main class="inicio">
+
+        <section class="bienvenida">
+            <div class="bienvenida-texto">
+                <span class="subtitulo">
+                    <i class="fa-solid fa-tooth"></i>
+                    SISTEMA DE GESTIÓN ODONTOLÓGICA
+                </span>
+
+                <h1>Bienvenido a <span>Secure Dental</span></h1>
+
+                <p>
+                    Gestioná afiliados y administrá su información de manera
+                    rápida, sencilla y segura. Todo lo que necesitás para
+                    organizar la atención odontológica, en un solo lugar.
+                </p>
+
+            </div>
+
+            <div class="bienvenida-icono">
+                <div class="circulo-icono">
+                    <i class="fa-solid fa-tooth"></i>
+                </div>
+                <span class="decoracion decoracion-1"></span>
+                <span class="decoracion decoracion-2"></span>
+            </div>
+            <div class="nombres">
+
+    <h2>Integrantes</h2>
+    <p>García Federico</p>
+    <p>Corvalán Tiago</p>
+    <p>Strbic David</p>
+</div>
+        </section>
+
+    </main>
+    
+<%- include('./componentes/footer') %>
+
 
 </body>
 </html>

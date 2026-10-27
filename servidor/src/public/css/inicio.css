@@ -1,0 +1,163 @@
+
+.inicio {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 50px 10%;
+    background-color: var(--fondo);
+}
+
+/* Bienvenida */
+
+.bienvenida {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.bienvenida-texto {
+    flex: 1;
+}
+
+.subtitulo {
+    display: inline-block;
+    color: var(--celeste-oscuro);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.subtitulo i {
+    margin-right: 8px;
+    font-size: 17px;
+}
+
+.bienvenida-texto h1 {
+    text-align: left;
+    font-family: 'Cinzel', serif;
+    font-size: 38px;
+    color: var(--azul);
+    margin-bottom: 20px;
+}
+
+.bienvenida-texto h1 span {
+    color: var(--celeste-oscuro);
+}
+
+.bienvenida-texto p {
+    color: var(--texto);
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 550px;
+}
+
+/* Icono odontológico */
+
+.bienvenida-icono {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.circulo-icono {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background-color: rgba(var(--celeste-rgb), 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circulo-icono i {
+    font-size: 110px;
+    color: var(--celeste-oscuro);
+}
+
+/* Decoraciones */
+
+.decoracion {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    background-color: var(--celeste);
+    opacity: 0.5;
+}
+
+.decoracion-1 {
+    width: 20px;
+    height: 20px;
+    top: 15px;
+    right: 25%;
+}
+
+.decoracion-2 {
+    width: 12px;
+    height: 12px;
+    bottom: 15px;
+    left: 25%;
+}
+
+
+.nombres {
+    max-width: 1076px;
+    margin: 0 auto 30px;
+    padding: 10px 0;
+    text-align: left;
+}
+
+.nombres h2 {
+    color: #233f78;
+    font-size: 25px;
+    margin-bottom: 12px;
+}
+
+.nombres p {
+    color: #627183;
+    font-size: 18px;
+    margin: 8px 0;
+}
+
+
+/* Adaptación a celulares */
+
+@media (max-width: 700px) {
+    .inicio {
+        padding: 40px 25px;
+    }
+
+    .bienvenida {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .bienvenida-texto h1 {
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .bienvenida-texto p {
+        font-size: 14px;
+    }
+
+    .bienvenida-icono {
+        width: 100%;
+    }
+
+    .circulo-icono {
+        width: 170px;
+        height: 170px;
+    }
+
+    .circulo-icono i {
+        font-size: 80px;
+    }
+}
