@@ -7,7 +7,7 @@ export const menu_afi = (pet, resp)=>{
 }
 
 export const alta_afi = (pet, resp)=>{
-    resp.render('alta_afi', {alert: false})
+    resp.render('altas/alta_afi', {alert: false})
 }
 
 export const baja_afi = (pet, resp)=>{
@@ -51,7 +51,7 @@ export const nuevo_afi = async (pet, resp) => {
  
         const [registro] = await bdd.query(altasql);
         console.log(registro)
-        resp.render('alta_afi', {
+        resp.render('altas/alta_afi', {
             guardado: true,
             alert: true,
             msj: 'Afiliado Guardado',
@@ -60,7 +60,7 @@ export const nuevo_afi = async (pet, resp) => {
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
-        resp.render('alta_afi', {
+        resp.render('altas/alta_afi', {
             guardado: false,
             alert: true,
             msj: 'No se pudo guardar el afiliado.'

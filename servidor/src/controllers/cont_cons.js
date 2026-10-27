@@ -7,7 +7,7 @@ export const menu_cons = (pet, resp)=>{
 }
 
 export const alta_cons = (pet, resp)=>{
-    resp.render('alta_cons', {alert: false})
+    resp.render('altas/alta_cons', {alert: false})
 }
 
 export const baja_cons = (pet, resp)=>{
@@ -36,7 +36,7 @@ export const nuevo_cons = async (pet, resp) => {
 
          const [registro] = await bdd.query(altasql);
         console.log(registro)
-        resp.render('alta_cons', {
+        resp.render('altas/alta_cons', {
             guardado: true,
             alert: true,
             msj: 'Consulta Guardada',
@@ -45,7 +45,7 @@ export const nuevo_cons = async (pet, resp) => {
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
-        resp.render('alta_cons', {
+        resp.render('altas/alta_cons', {
             guardado: false,
             alert: true,
             msj: 'No se pudo guardar la consulta.'
