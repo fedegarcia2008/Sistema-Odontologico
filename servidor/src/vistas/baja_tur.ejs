@@ -24,70 +24,106 @@
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
-
 </form>
 
+
+ <form onsubmit="busc_fechas(event)" method="GET">
+            <div class="campo">
+                <label>Desde:</label>
+                <input type="date" id="fecha1" name="fecha1">
+                <label>Hasta:</label>
+                <input type="date" id="fecha2" name="fecha2">
+            </div>
+
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR PERIODO">
+            </div>
+        </form>
+</main>
     
 <% if (cargado) { %>
-<% if (baja_registros.length > 0) { %>
+<% if (baja_registros.length > 0 &&  baja_registros.length == 1) { %>
 
-<form class="formulario resultado" onsubmit="baja_form(event)" method="POST">
+<form onsubmit="baja_id(event)"  onsubmit="baja_fechas(event)"  method="POST">
 
-          <div class="campo">
-            <label>Id consulta:</label>
-        <input type="text" id="clave" name="clave" readonly value="<%= baja_registros[0].idconsulta %>">
-</div>
+<div class="campo">
 
-    <div class="fila">
-        <div class="campo">
-            <label>Fecha:</label>
-            <input type="text" name="fecha"
-                   readonly value="<%= new Date(baja_registros[0].fecha).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %>" >
-            </div>
+            <label>Identificador Único</label>
+            <input type="text" name="clave" readonly
+                            value="<%= baja_registros[0].idconsulta %>">
         </div>
 
-
-        <div class="fila">
         <div class="campo">
-
-            <label>Horario:</label>
-            <input type="text" name="horario"
-            
-                   readonly value="<%= baja_registros[0].horario.slice(0,5) %>">
+            <label>Fecha</label>
+            <input type="date" name="fecha" 
+                            value="<%= baja_registros[0].fecha %>">
+        </div>
+        
+        <div class="campo">
+            <label>Hora</label>
+            <input type="time" name="hora" 
+                            value="<%= baja_registros[0].horario %>">
+        </div>
+        
+        <div class="campo">
+            <label>id Odontólogo</label>
+            <input type="text" name="idOdo" readonly
+                            value="<%= baja_registros[0].odontologo_idodontologo %>">
         </div>
 
-        <div class="fila">
-        <div class="campo">
-            <label>Id Odontologo:</label>
-            <input type="text" name="odontologo_idodontologo"
-                   readonly value="<%= baja_registros[0].odontologo_idodontologo %>">
+         <div class="campo">
+            <label>id afiliado</label>
+            <input type="text" name="idAfi" readonly
+                            value="<%= baja_registros[0].afiliado_ci_afiliado %>">
         </div>
-    </div>
-
-    <div class="fila">
-        <div class="campo">
-            <label>CI afiliado:</label>
-            <input type="text" name="afiliado_ci_afiliado"
-                   readonly value="<%= baja_registros[0].afiliado_ci_afiliado %>">
-        </div>
-    </div>
-
 
         <div class="boton">
-            <input type="submit" value="ELIMINAR">
+            <input type="submit" value="GUARDAR CAMBIOS">
         </div>
 
     </form>
 
-<% } else { %>
-    <div class="formulario vacio">
-    <i class="fa-solid fa-user-slash"></i>
-    <p>No hay datos para mostrar.</p>
-</div>
-<% } %>
- <% } %>
+    
+<% } else if (baja_registros.length >= 2) { %>
+    <div class="tabla-contenedor">
+    <table class="tabla-datos">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Id Odontologo</th>
+                <th>Id Afiliado</th>
 
-</main>
+            </tr>
+        </thead>
+        <tbody>
+                <% baja_registros.forEach(tur => { %>
+                    <tr>
+                        <td><%= tur.idconsulta %></td>
+                        <td><%= new Date(tur.fecha).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %></td>
+                        <td><%= tur.horario.slice(0,5) %></td>
+                        <td><%= tur.odontologo_idodontologo %></td>
+                        <td><%= tur.afiliado_ci_afiliado %></td>
+                    </tr>
+                <% }); %>
+          <p>Mas de una coincidencia al buscar. Modifique por ID</p>
+
+        </tbody>
+    </table>
+</div>
+ <% } else if (baja_registros.length == 0) { %>
+
+        <div class="formulario vacio">
+            <i class="fa-solid fa-user-slash"></i>
+            <p>No hay datos para mostrar.</p>
+        </div>
+
+    <% } %>
+<% } %>
+
+
+
 
         <script>
         function busc_id(event) {
@@ -97,13 +133,33 @@
         document.getElementById('clave').value = "";   
         }
 
-    function baja_form(event) {
+    function baja_id(event) {
         event.preventDefault();
 
         let formulario = event.target; // guarda en la variable formulario lo que esta dentro de <form>
         let idejs = formulario.querySelector('[name="clave"]').value;
 
         formulario.action = `/turno/baja/${idejs}`;
+        formulario.submit();
+    }
+
+     function busc_fechas(event) {
+        event.preventDefault();
+        let idejs1 = document.getElementById('fecha1').value;
+        let idejs2 = document.getElementById('fecha2').value;
+        window.location.href =  `/turno/bajafechas/${idejs1}/${idejs2}`;
+        document.getElementById('fecha1').value = "";   
+        document.getElementById('fecha2').value = "";  
+        }
+
+    function baja_fechas(event) {
+        event.preventDefault();
+
+        let formulario = event.target;
+        let idejs1 = formulario.querySelector('[name="fecha1"]').value;
+        let idejs2 = formulario.querySelector('[name="fecha2"]').value;
+
+        formulario.action = `/turno/bajafechas/${idejs}/${idejs2}`;
         formulario.submit();
     }
         </script>

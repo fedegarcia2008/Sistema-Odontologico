@@ -183,7 +183,19 @@ export const modificar_equi = async (pet, resp)=>{
 export const  bajaequi_id = async (pet, resp)=>{
 let id = pet.params.clave;
       try {
-        let bajasql = "SELECT nroserie, tipo, fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE nroserie= '"+ id +"'";
+        let bajasql = "SELECT nroserie, tipo, DATE_FORMAT(fecha_mantenimiento, '%Y-%m-%d') AS fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE nroserie= '"+ id +"'";
+        const [baja_registros] = await bdd.query(bajasql);
+        console.log(baja_registros)
+    resp.render('baja_equi', { baja_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar equipamiento:', error);
+    }
+}
+
+export const  bajaequi_tipo = async (pet, resp)=>{
+let tipo = pet.params.tipo;
+      try {
+        let bajasql = "SELECT nroserie, tipo, DATE_FORMAT(fecha_mantenimiento, '%Y-%m-%d') AS fecha_mantenimiento , consultorio_idconsultorio FROM equipamiento WHERE tipo= '"+ tipo +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
     resp.render('baja_equi', { baja_registros, cargado: true });

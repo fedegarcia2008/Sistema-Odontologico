@@ -27,58 +27,94 @@
 
 </form>
 
-    
+
+    <form onsubmit="busc_tipo(event)" method="GET">
+        <div class="campo">
+            <label>Tipo de Equipamiento:</label>
+            <input type="text" id="tipo" name="tipo">
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
+
+</form>
+</main>
+
+
 <% if (cargado) { %>
-<% if (baja_registros.length > 0) { %>
+<% if (baja_registros.length > 0 &&  baja_registros.length == 1) { %>
 
-<form class="formulario resultado" onsubmit="baja_form(event)" method="POST">
+<form onsubmit="baja_id(event)" onsubmit="baja_tipo(event)"  method="POST">
 
-          <div class="campo">
-            <label>Nro de serie:</label>
-        <input type="text" id="clave" name="clave" readonly value="<%= baja_registros[0].nroserie %>">
-</div>
-
-    <div class="fila">
-        <div class="campo">
-            <label>Tipo:</label>
-            <input type="text" name="tipo"
-                   readonly value="<%= baja_registros[0].tipo %>" >
-            </div>
+<div class="campo">
+            <label>Nro. de serie </label>
+            <input type="text" name="clave" readonly
+                            value="<%= baja_registros[0].nroserie %>">
         </div>
 
-
-        <div class="fila">
         <div class="campo">
-
-            <label>Fecha de Mantenimiento:</label>
-            <input type="text" name="fecha_mantenimiento"
-                   readonly value="<%=  new Date(baja_registros[0].fecha_mantenimiento).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" })  %>">
+            <label>Tipo </label>
+            <input type="text" name="tipo" 
+                            value="<%= baja_registros[0].tipo %>">
+        </div>
+        
+        <div class="campo">
+            <label>Fecha mantenimiento</label>
+            <input type="date" name="fecha" 
+                            value="<%= baja_registros[0].fecha_mantenimiento %>">
         </div>
 
-        <div class="fila">
         <div class="campo">
-
-            <label>Id consultorio:</label>
-            <input type="text" name="consultorio_idconsultorio"
-                   readonly value="<%= baja_registros[0].consultorio_idconsultorio %>">
+            <label>ID consultorio</label>
+            <input type="text" name="idCons" readonly
+                            value="<%= baja_registros[0].consultorio_idconsultorio %>">
         </div>
-
 
         <div class="boton">
-            <input type="submit" value="ELIMINAR">
+            <input type="submit" value="GUARDAR CAMBIOS">
         </div>
 
     </form>
 
-<% } else { %>
-    <div class="formulario vacio">
-    <i class="fa-solid fa-user-slash"></i>
-    <p>No hay datos para mostrar.</p>
-</div>
+<% } else if (baja_registros.length >= 2) { %>
+
+        
+<div class="tabla-contenedor">
+    <table class="tabla-datos">
+        <thead>
+            <tr>
+            <th >Id</th>
+            <th >Tipo</th>
+            <th >Fecha</th>
+            <th >id Consultorio</th>
+            </tr>
+        </thead>
+        <tbody>
+                <% baja_registros.forEach(equi => { %>
+                    <tr>
+                        <td><%= equi.nroserie %></td>
+                        <td><%= equi.tipo %></td>
+                        <td><%= new Date(equi.fecha_mantenimiento).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %></td>
+                        <td><%= equi.consultorio_idconsultorio %></td>                                        
+                    </tr>                    
+                <% }); %>
+                 <p>Mas de una coincidencia al buscar. Modifique por ID</p>
+                </tbody>
+            </table>
+        </div>
+
+    <% } else if (baja_registros.length == 0) { %>
+
+        <div class="formulario vacio">
+            <i class="fa-solid fa-user-slash"></i>
+            <p>No hay datos para mostrar.</p>
+        </div>
+
 <% } %>
  <% } %>
 
-</main>
+
 
         <script>
         function busc_id(event) {
@@ -88,11 +124,28 @@
         document.getElementById('clave').value = "";   
         }
 
-    function baja_form(event) {
+    function baja_id(event) {
         event.preventDefault();
 
         let formulario = event.target; // guarda en la variable formulario lo que esta dentro de <form>
         let idejs = formulario.querySelector('[name="clave"]').value;
+
+        formulario.action = `/equipamiento/baja/${idejs}`;
+        formulario.submit();
+    }
+
+     function busc_tipo(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('tipo').value;
+        window.location.href = `/equipamiento/bajatipo/${idejs}`;
+        document.getElementById('tipo').value = "";   
+        }
+
+    function baja_tipo(event) {
+        event.preventDefault();
+
+        let formulario = event.target; // guarda en la variable formulario lo que esta dentro de <form>
+        let idejs = formulario.querySelector('[name="tipo"]').value;
 
         formulario.action = `/equipamiento/baja/${idejs}`;
         formulario.submit();
