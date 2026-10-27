@@ -7,7 +7,7 @@ export const menu_equi = (pet, resp)=>{
 }
 
 export const alta_equi = (pet, resp)=>{
-    resp.render('alta_equi', {alert: false})
+    resp.render('altas/alta_equi', {alert: false})
 }
 
 export const baja_equi = (pet, resp)=>{
@@ -38,7 +38,7 @@ export const nuevo_equi = async (pet, resp) => {
 
         const [registro] = await bdd.query(altasql);
         console.log(registro)
-        resp.render('alta_equi', {
+        resp.render('altas/alta_equi', {
             guardado: true,
             alert: true,
             msj: 'Equipamiento Guardado',
@@ -47,7 +47,7 @@ export const nuevo_equi = async (pet, resp) => {
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
-        resp.render('alta_equi', {
+        resp.render('altas/alta_equi', {
             guardado: false,
             alert: true,
             msj: 'No se pudo guardar el equipamiento.'

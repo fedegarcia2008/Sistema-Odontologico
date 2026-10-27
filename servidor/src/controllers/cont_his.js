@@ -7,7 +7,7 @@ export const menu_his = (pet, resp)=>{
 }
 
 export const alta_his = (pet, resp)=>{
-    resp.render('alta_his', {alert: false})
+    resp.render('altas/alta_his', {alert: false})
 }
 
 export const baja_his = (pet, resp)=>{
@@ -43,7 +43,7 @@ export const nuevo_his = async (pet, resp) => {
 
         const [registro] = await bdd.query(altasql);
         console.log(registro)
-        resp.render('alta_his', {
+        resp.render('altas/alta_his', {
             guardado: true,
             alert: true,
             msj: 'Historia Clinica Guardada',
@@ -52,7 +52,7 @@ export const nuevo_his = async (pet, resp) => {
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
-        resp.render('alta_his', {
+        resp.render('altas/alta_his', {
             guardado: false,
             alert: true,
             msj: 'No se pudo guardar la historia clinica.'
