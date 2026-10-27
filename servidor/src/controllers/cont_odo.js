@@ -19,7 +19,7 @@ export const mod_odo = (pet, resp)=>{
 }
 
 export const busc_odo = (pet, resp)=>{
-    resp.render('busc_odo' , { cargadoid: false,  cargadotabla: false})
+    resp.render('buscar/busc_odo' , { cargadoid: false,  cargadotabla: false})
 }
 
 
@@ -77,7 +77,7 @@ export const buscodo_id = async (pet, resp)=>{
         let buscarsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE idodontologo = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_odo', { busc_registros, cargadoid: true, cargadotabla: false  });
+    resp.render('buscar/busc_odo', { busc_registros, cargadoid: true, cargadotabla: false  });
     }     catch (error) {
         console.error('Error al buscar el odontologo:', error);
     }
@@ -91,7 +91,7 @@ export const buscodo_nom = async (pet, resp)=>{
         let buscarsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_odo', { busc_registros, cargadoid: false, cargadotabla: true});
+    resp.render('buscar/busc_odo', { busc_registros, cargadoid: false, cargadotabla: true});
     }     catch (error) {
         console.error('Error al buscar odontologo:', error);
     }
@@ -104,7 +104,7 @@ export const buscodo_cons = async (pet, resp)=>{
         let buscarsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE consultorio_idconsultorio = '"+ cons +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_odo', { busc_registros, cargadoid: false, cargadotabla: true});
+    resp.render('buscar/busc_odo', { busc_registros, cargadoid: false, cargadotabla: true});
     }     catch (error) {
         console.error('Error al buscar consultorio:', error);
     }
@@ -117,7 +117,7 @@ export const buscodo_espe = async (pet, resp)=>{
         let buscarsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE especialidad = '"+ espe +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_odo', { busc_registros, cargadoid: false, cargadotabla: true});
+    resp.render('buscar/busc_odo', { busc_registros, cargadoid: false, cargadotabla: true});
     }     catch (error) {
         console.error('Error al buscar especialidad:', error);
     }

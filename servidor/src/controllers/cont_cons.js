@@ -19,7 +19,7 @@ export const mod_cons = (pet, resp)=>{
 }
 
 export const busc_cons = (pet, resp)=>{
-    resp.render('busc_cons', {cargadoid: false, cargadotabla: false,})
+    resp.render('buscar/busc_cons', {cargadoid: false, cargadotabla: false,})
 }
 
 
