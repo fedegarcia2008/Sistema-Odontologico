@@ -24,14 +24,33 @@
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
+</form>
 
+
+<form onsubmit="busc_dia(event)" method="GET">
+        <div class="campo">
+             <label>Día </label>
+            <select id="dia" name="dia">
+                <option value="#">Seleccione un día</option>
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miércoles">Miércoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Viernes">Viernes</option>
+                <option value="Sábado">Sábado</option>
+            </select>
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
 </form>
 
     
 <% if (cargado) { %>
-<% if (baja_registros.length > 0) { %>
+<% if (baja_registros.length > 0 &&  baja_registros.length == 1) { %>
 
-<form class="formulario resultado" onsubmit="baja_form(event)" method="POST">
+<form class="formulario resultado" onsubmit="baja_id(event)" onsubmit="baja_dia(event)" method="POST">
 
           <div class="campo">
             <label>Clave de Identificacion:</label>
@@ -80,7 +99,35 @@
 
     </form>
 
-<% } else { %>
+<% } else if (baja_registros.length >= 2) { %>
+        
+        <div class="tabla-contenedor">
+            <table class="tabla-datos">
+                  <thead>
+                    <tr>
+                    <th >Id Horario</th>
+                    <th >Dia</th>
+                    <th >Hora inicio</th>
+                    <th >Hora Final</th>
+                    <th >Id Odontologo</th>
+            </tr>
+        </thead>
+        <tbody>
+                    <% busc_registros.forEach(hor => { %>
+                    <tr>
+                        <td><%= hor.idhorario %></td>
+                        <td><%= hor.dia %></td>
+                        <td><%= hor.horario_comienzo.slice(0, 5) %></td>
+                        <td><%= hor.horario_final.slice(0, 5) %></td>
+                        <td><%= hor.odontologo_idodontologo %></td> 
+                    </tr>   
+                <% }); %>
+                    <p>Mas de una coincidencia al buscar. Modifique por ID</p>
+                </tbody>
+            </table>
+        </div>
+
+<% } else if (baja_registros.length == 0) { %>
     <div class="formulario vacio">
     <i class="fa-solid fa-user-slash"></i>
     <p>No hay datos para mostrar.</p>
@@ -98,11 +145,28 @@
         document.getElementById('clave').value = "";   
         }
 
-    function baja_form(event) {
+    function baja_id(event) {
         event.preventDefault();
 
         let formulario = event.target; // guarda en la variable formulario lo que esta dentro de <form>
         let idejs = formulario.querySelector('[name="clave"]').value;
+
+        formulario.action = `/horario/baja/${idejs}`;
+        formulario.submit();
+    }
+
+    function busc_dia(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('dia').value;
+        window.location.href = `/horario/bajadia/${idejs}`;
+        document.getElementById('dia').value = "";   
+        }
+
+    function baja_dia(event) {
+        event.preventDefault();
+
+        let formulario = event.target; // guarda en la variable formulario lo que esta dentro de <form>
+        let idejs = formulario.querySelector('[name="dia"]').value;
 
         formulario.action = `/horario/baja/${idejs}`;
         formulario.submit();

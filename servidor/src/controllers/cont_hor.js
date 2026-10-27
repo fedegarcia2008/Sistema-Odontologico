@@ -178,6 +178,18 @@ let id = pet.params.clave;
     }
 }
 
+export const  bajahor_dia = async (pet, resp)=>{
+let dia = pet.params.dia;
+      try {
+        let bajasql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM horario WHERE dia = '"+ dia +"'";
+        const [baja_registros] = await bdd.query(bajasql);
+        console.log(baja_registros)
+    resp.render('baja_hor', { baja_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar horario:', error);
+    }
+}
+
 export const eliminar_hor = async (pet, resp)=>{
 let id = pet.params.clave;
       try {
