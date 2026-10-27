@@ -19,7 +19,7 @@
 
         <main class="formulario">
 
-    <form onsubmit="busc_form(event)" method="GET">
+    <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
             <input type="text" id="clave" name="clave">
@@ -31,15 +31,23 @@
 
 </form>
 
-    </main>
 
+<form onsubmit="busc_nom(event)" method="GET">
+        <div class="campo">
+            <label>Apellido y nombre:</label>
+            <input type="text" id="nombre" name="nombre">
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
 
-
-
+</form>
+   
 <% if (cargado) { %>
-<% if (busc_registros.length > 0) { %>
+<% if (busc_registros.length > 0 &&  busc_registros.length == 1) { %>
 
-<form onsubmit="mod_form(event)" method="POST">
+<form class="formulario resultado" onsubmit="mod_id(event)" onsubmit="mod_nom(event)" method="POST">
 
 <div class="campo">
 
@@ -67,24 +75,55 @@
 
     </form>
 
-<% } else { %>
+<% } else if (busc_registros.length >= 2) { %>
 
-    <p>No hay datos para mostrar.</p>
+        <div class="tabla-contenedor">
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>C.I.</th>
+                        <th>Nombre</th>
+                        <th>Costo</th>
+                        <th>ID del odontologo</th>
+                    </tr>
+                </thead>
 
+                <tbody>
+                    <% busc_registros.forEach(ser => { %>
+                        <tr>
+                            <td><%= ser.idtratamiento %></td>
+                            <td><%= ser.nombre %></td>
+                            <td><%= ser.costo %></td>
+                            <td><%= ser.odontologo_idodontologo %></td>
+                        </tr>
+
+                    <% }); %>
+                    <p>Mas de una coincidencia al buscar. Modifique por ID</p>
+                </tbody>
+            </table>
+        </div>
+
+
+ <% } else if (busc_registros.length == 0) { %>
+
+        <div class="formulario vacio">
+            <i class="fa-solid fa-user-slash"></i>
+            <p>No hay datos para mostrar.</p>
+        </div>
+
+    <% } %>
 <% } %>
- <% } %>
-
-
+ </main>
 
         <script>
-        function busc_form(event) {
+        function busc_id(event) {
         event.preventDefault();
         let idejs = document.getElementById('clave').value;
         window.location.href = `/convenio/modificarid/${idejs}`;
         document.getElementById('clave').value = "";   
         }
 
-    function mod_form(event) {
+    function mod_id(event) {
         event.preventDefault();
 
         let formulario = event.target;
@@ -93,10 +132,24 @@
         formulario.action = `/convenio/modificar/${idejs}`;
         formulario.submit();
     }
+
+     function busc_nom(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('nombre').value;
+        window.location.href = `/convenio/modificarnom/${idejs}`;
+        document.getElementById('nombre').value = "";        
+    }
+
+    function mod_nom(event) {
+        event.preventDefault();
+
+        let formulario = event.target;
+        let idejs = formulario.querySelector('[name="nombre"]').value;
+
+        formulario.action = `/convenio/modificar/${idejs}`;
+        formulario.submit();
+    }
         </script>
-
-
-
 
 
  <%- include('sweet_modificar') %>

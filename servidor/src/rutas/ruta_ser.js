@@ -24,7 +24,6 @@ rServicio.get('/servicio/modificarservicio/:nom', modser_nom)
 rServicio.post('/servicio/modificar/:clave', modificar_ser)
 
 
-
 // para borrar
 rServicio.get('/servicio/bajaid/:clave', bajaser_id)
 rServicio.post('/servicio/baja/:clave', eliminar_ser)
