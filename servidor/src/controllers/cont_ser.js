@@ -62,7 +62,7 @@ export const mos_ser = async (pet, resp) => {
         let mostrarsql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento ORDER BY idtratamiento;";
         const [registros] = await bdd.query(mostrarsql);
         console.log(registros);
-        resp.render('mos_ser', { registros });
+        resp.render('mostrar/mos_ser', { registros });
     } catch (error) {
         console.log("No puede mostrar los tratamientos");
     }

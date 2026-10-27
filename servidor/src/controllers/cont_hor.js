@@ -62,7 +62,7 @@ export const mos_hor = async (pet, resp) => {
         let mostrarsql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM horario ORDER BY idhorario;";
         const [registros] = await bdd.query(mostrarsql);
         console.log(registros);
-        resp.render('mos_hor', { registros });
+        resp.render('mostrar/mos_hor', { registros });
     } catch (error) {
         console.log("No puede mostrar los horario");
     }
