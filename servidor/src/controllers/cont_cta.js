@@ -7,7 +7,7 @@ export const menu_cta = (pet, resp)=>{
 }
 
 export const alta_cta = (pet, resp)=>{
-    resp.render('alta_cta', {alert: false})
+    resp.render('altas/alta_cta', {alert: false})
 }
 
 export const baja_cta = (pet, resp)=>{
@@ -38,7 +38,7 @@ export const nuevo_cta = async (pet, resp) => {
 
         const [registro] = await bdd.query(altasql);
         console.log(registro)
-        resp.render('alta_cta', {
+        resp.render('altas/alta_cta', {
             guardado: true,
             alert: true,
             msj: 'Cuenta Corriente Guardada',
@@ -47,7 +47,7 @@ export const nuevo_cta = async (pet, resp) => {
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
-        resp.render('alta_cta', {
+        resp.render('altas/alta_cta', {
             guardado: false,
             alert: true,
             msj: 'No se pudo guardar la cuenta corriente.'
