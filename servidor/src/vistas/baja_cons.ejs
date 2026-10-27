@@ -24,14 +24,26 @@
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
-
 </form>
 
+    
+ <form onsubmit="busc_num(event)" method="GET">
+        <div class="campo">
+            <label>Numero de Consutorio</label>
+            <input type="text" id="num" name="num">
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
+</form>
+    </main>
+</main>
     
 <% if (cargado) { %>
 <% if (baja_registros.length > 0) { %>
 
-<form class="formulario resultado" onsubmit="baja_form(event)" method="POST">
+<form class="formulario resultado" onsubmit="baja_id(event)" onsubmit="baja_num(event)" method="POST">
 
           <div class="campo">
             <label>Clave de Identificacion:</label>
@@ -70,7 +82,7 @@
 <% } %>
  <% } %>
 
-</main>
+
 
         <script>
         function busc_id(event) {
@@ -80,11 +92,28 @@
         document.getElementById('clave').value = "";   
         }
 
-    function baja_form(event) {
+    function baja_id(event) {
         event.preventDefault();
 
         let formulario = event.target; // guarda en la variable formulario lo que esta dentro de <form>
         let idejs = formulario.querySelector('[name="clave"]').value;
+
+        formulario.action = `/consultorio/baja/${idejs}`;
+        formulario.submit();
+    }
+
+     function busc_num(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('num').value;
+        window.location.href = `/consultorio/bajanum/${idejs}`;
+        document.getElementById('num').value = "";   
+        }
+
+    function baja_num(event) {
+        event.preventDefault();
+
+        let formulario = event.target; // guarda en la variable formulario lo que esta dentro de <form>
+        let idejs = formulario.querySelector('[name="num"]').value;
 
         formulario.action = `/consultorio/baja/${idejs}`;
         formulario.submit();
