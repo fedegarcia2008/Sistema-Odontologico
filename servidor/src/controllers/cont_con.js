@@ -15,7 +15,7 @@ export const baja_con = (pet, resp)=>{
 }
 
 export const mod_con = (pet, resp)=>{
-    resp.render('mod_con', {alert: false, cargado: false} )
+    resp.render('modificar/mod_con', {alert: false, cargado: false} )
 }
 
 export const busc_con = (pet, resp)=>{
@@ -99,7 +99,7 @@ let id = pet.params.clave;
         let buscsql = "SELECT idconvenio, nombre, rebaja FROM convenio WHERE idconvenio = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_con', { busc_registros, cargado: true, alert: false });
+resp.render('modificar/mod_con', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar el convenio:', error);
     }
@@ -111,7 +111,7 @@ let nom = pet.params.nombre;
         let buscsql = "SELECT idconvenio, nombre, rebaja FROM convenio WHERE nombre = '"+ nom +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_con', { busc_registros, cargado: true, alert: false });
+resp.render('modificar/mod_con', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar el nombre:', error);
     }
@@ -128,7 +128,7 @@ export const modificar_con = async (pet, resp)=>{
         let modificarsql = "UPDATE convenio SET nombre = '"+ nombre +"', rebaja = '"+ rebaja+"' WHERE idconvenio = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('mod_con', {
+ resp.render('modificar/mod_con', {
             cargado: false,
             alert: true,
             guardado: true,
@@ -138,7 +138,7 @@ export const modificar_con = async (pet, resp)=>{
         });
     } catch (error) {
         console.error('Error al modificar convenio:', error);
-        resp.render('mod_con', {
+        resp.render('modificar/mod_con', {
             cargado: false,
             alert: true,
             guardado: false,
