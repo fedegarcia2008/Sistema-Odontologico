@@ -98,7 +98,7 @@ let id = pet.params.clave;
         let buscsql = "SELECT idconsultorio, numero, local_idlocal FROM consultorio WHERE idconsultorio = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_cons', { busc_registros, cargado: true, alert: false });
+resp.render('mostrar/mod_cons', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar el consultorio:', error);
     }

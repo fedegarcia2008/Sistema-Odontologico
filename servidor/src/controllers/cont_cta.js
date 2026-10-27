@@ -61,7 +61,7 @@ export const mos_cta = async (pet, resp) => {
         let mostrarsql = "SELECT afiliado_ci_afiliado, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte ORDER BY afiliado_ci_afiliado ;";
         const [registros] = await bdd.query(mostrarsql);
         console.log(registros);
-        resp.render('mos_cta', { registros });
+        resp.render('mostrar/mos_cta', { registros });
     } catch (error) {
         console.log("No puede mostrar las cta cte");
     }

@@ -6,40 +6,37 @@
     <link rel="stylesheet" href="/css/mostrar.css">
     <link rel="icon" href="/img/favicon.webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Mostrar Horarios - Secure Dental</title>
+    <title>Mostrar Equipamientos - Secure Dental</title>
 </head>
 
 <body>
 
-    <%- include('header') %>
+    <%- include('../componentes/header') %>
 
         <div>
-        <h1>mostrar datos de todos los Horarios</h1>
+        <h1>mostrar datos de todos los Equipamientos</h1>
     </div>
     
 <div class="tabla-contenedor">
     <table class="tabla-datos">
         <thead>
             <tr>
-            <th >Id Horario</th>
-            <th >Dia</th>
-            <th >Hora inicio</th>
-            <th >Hora Final</th>
-            <th >Id Odontologo</th>
-            
+            <th >Id</th>
+            <th >Tipo</th>
+            <th >Fecha</th>
+            <th >id Consultorio</th>
             </tr>
         </thead>
         <tbody>
 
             <% if (registros.length > 0) {
-                registros.forEach(hor => { %>
+                registros.forEach(equi => { %>
                     <tr>
-                        <td><%= hor.idhorario %></td>
-                        <td><%= hor.dia %></td>
-                        <td><%= hor.horario_comienzo.slice(0, 5) %></td>
-                        <td><%= hor.horario_final.slice(0, 5) %></td>
-                        <td><%= hor.odontologo_idodontologo %></td> 
-                    </tr>   
+                        <td><%= equi.nroserie %></td>
+                        <td><%= equi.tipo %></td>
+                        <td><%= new Date(equi.fecha_mantenimiento).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %></td>
+                        <td><%= equi.consultorio_idconsultorio %></td>                                        
+                    </tr>                    
                 <% }); %>
             <% }
             else{ %>
@@ -52,7 +49,6 @@
 
     </div>
 
-    <%- include('footer') %>
-
+    <%- include('../componentes/footer') %>
 </body>
 </html>

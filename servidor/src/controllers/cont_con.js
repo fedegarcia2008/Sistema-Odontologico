@@ -59,7 +59,7 @@ export const mos_con = async (pet, resp) => {
         let mostrarsql = "SELECT idconvenio, nombre, rebaja FROM convenio ORDER BY idconvenio;";
         const [registros] = await bdd.query(mostrarsql);
         console.log(registros);
-        resp.render('mos_con', { registros });
+        resp.render('mostrar/mos_con', { registros });
     } catch (error) {
         console.log("No puede mostrar los convenios");
     }

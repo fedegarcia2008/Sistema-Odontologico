@@ -66,7 +66,7 @@ export const mos_his = async (pet, resp) => {
         let mostrarsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado ORDER BY idtratamiento_realizado;";
         const [registros] = await bdd.query(mostrarsql);
         console.log(registros);
-        resp.render('mos_his', { registros });
+        resp.render('mostrar/mos_his', { registros });
     } catch (error) {
         console.log("No puede mostrar las historias clinicas");
     }

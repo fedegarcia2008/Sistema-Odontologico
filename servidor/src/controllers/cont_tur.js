@@ -62,7 +62,7 @@ export const mos_tur = async (pet, resp) => {
         let mostrarsql = "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta ORDER BY idconsulta;";
         const [registros] = await bdd.query(mostrarsql);
         console.log(registros);
-        resp.render('mos_tur', { registros });
+        resp.render('mostrar/mos_tur', { registros });
     } catch (error) {
         console.log("No puede mostrar las consultas");
     }

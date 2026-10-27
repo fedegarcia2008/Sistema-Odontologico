@@ -6,36 +6,33 @@
     <link rel="stylesheet" href="/css/mostrar.css">
     <link rel="icon" href="/img/favicon.webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Mostrar Equipamientos - Secure Dental</title>
+    <title>Mostrar Cta Cte - Secure Dental</title>
 </head>
 
 <body>
 
-    <%- include('header') %>
+   <%- include('../componentes/header') %>
 
         <div>
-        <h1>mostrar datos de todos los Equipamientos</h1>
+        <h1>mostrar datos de todas las Cta Cte</h1>
     </div>
-    
 <div class="tabla-contenedor">
     <table class="tabla-datos">
         <thead>
             <tr>
-            <th >Id</th>
-            <th >Tipo</th>
-            <th >Fecha</th>
-            <th >id Consultorio</th>
+            <th >Id Afiliado</th>
+            <th >saldo</th>
+            <th >id Historia Clinica</th>
             </tr>
         </thead>
         <tbody>
 
             <% if (registros.length > 0) {
-                registros.forEach(equi => { %>
+                registros.forEach(cta => { %>
                     <tr>
-                        <td><%= equi.nroserie %></td>
-                        <td><%= equi.tipo %></td>
-                        <td><%= new Date(equi.fecha_mantenimiento).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %></td>
-                        <td><%= equi.consultorio_idconsultorio %></td>                                        
+                        <td><%= cta.afiliado_ci_afiliado %></td>
+                        <td><%= "$" %><%= cta.saldo %></td>
+                        <td><%= cta.tratamiento_realizado_idtratamiento_realizado %></td>                                         
                     </tr>                    
                 <% }); %>
             <% }
@@ -49,7 +46,7 @@
 
     </div>
 
-    <%- include('footer') %>
+     <%- include('../componentes/footer') %>
 
 </body>
 </html>

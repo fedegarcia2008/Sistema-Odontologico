@@ -74,7 +74,7 @@ export const mos_afi = async (pet, resp) => {
         let mostrarsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado ORDER BY ci_afiliado;";
         const [registros] = await bdd.query(mostrarsql);
         console.log(registros);
-        resp.render('mos_afi', { registros });
+        resp.render('mostrar/mos_afi', { registros });
     } catch (error) {
         console.log("No puede mostrar los afiliados");
     }

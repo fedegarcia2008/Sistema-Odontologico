@@ -6,34 +6,40 @@
     <link rel="stylesheet" href="/css/mostrar.css">
     <link rel="icon" href="/img/favicon.webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Mostrar Cta Cte - Secure Dental</title>
+    <title>Mostrar Horarios - Secure Dental</title>
 </head>
 
 <body>
 
-    <%- include('header') %>
+  <%- include('../componentes/header') %>
 
         <div>
-        <h1>mostrar datos de todas las Cta Cte</h1>
+        <h1>mostrar datos de todos los Horarios</h1>
     </div>
+    
 <div class="tabla-contenedor">
     <table class="tabla-datos">
         <thead>
             <tr>
-            <th >Id Afiliado</th>
-            <th >saldo</th>
-            <th >id Historia Clinica</th>
+            <th >Id Horario</th>
+            <th >Dia</th>
+            <th >Hora inicio</th>
+            <th >Hora Final</th>
+            <th >Id Odontologo</th>
+            
             </tr>
         </thead>
         <tbody>
 
             <% if (registros.length > 0) {
-                registros.forEach(cta => { %>
+                registros.forEach(hor => { %>
                     <tr>
-                        <td><%= cta.afiliado_ci_afiliado %></td>
-                        <td><%= "$" %><%= cta.saldo %></td>
-                        <td><%= cta.tratamiento_realizado_idtratamiento_realizado %></td>                                         
-                    </tr>                    
+                        <td><%= hor.idhorario %></td>
+                        <td><%= hor.dia %></td>
+                        <td><%= hor.horario_comienzo.slice(0, 5) %></td>
+                        <td><%= hor.horario_final.slice(0, 5) %></td>
+                        <td><%= hor.odontologo_idodontologo %></td> 
+                    </tr>   
                 <% }); %>
             <% }
             else{ %>
@@ -46,7 +52,7 @@
 
     </div>
 
-    <%- include('footer') %>
+     <%- include('../componentes/footer') %>
 
 </body>
 </html>
