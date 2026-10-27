@@ -11,7 +11,7 @@ export const alta_odo = (pet, resp)=>{
 }
 
 export const baja_odo = (pet, resp)=>{
-    resp.render('baja_odo', {cargado: false})
+    resp.render('bajas/baja_odo', {cargado: false})
 }
 
 export const mod_odo = (pet, resp)=>{
@@ -209,7 +209,7 @@ let id = pet.params.clave;
         let bajasql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE idodontologo = '"+ id +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('baja_odo', { baja_registros, cargado: true });
+    resp.render('bajas/baja_odo', { baja_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar odontologo:', error);
     }
@@ -221,7 +221,7 @@ let id = pet.params.clave;
         let eliminarsql = "DELETE FROM odontologo WHERE idodontologo = '"+ id +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('baja_odo', { baja_registros, cargado: true});
+    resp.render('bajas/baja_odo', { baja_registros, cargado: true});
     }     catch (error) {
         console.error('Error al eliminar odontologo:', error);
     }
@@ -233,7 +233,7 @@ let nom = pet.params.nom;
         let bajasql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE CONCAT(apellido, ' ', nombre) = '"+ nom +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('baja_odo', { baja_registros, cargado: true });
+    resp.render('bajas/baja_odo', { baja_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar odontologo:', error);
     }

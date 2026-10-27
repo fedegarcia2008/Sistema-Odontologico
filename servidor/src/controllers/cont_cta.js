@@ -11,7 +11,7 @@ export const alta_cta = (pet, resp)=>{
 }
 
 export const baja_cta = (pet, resp)=>{
-    resp.render('baja_cta', {cargado: false})
+    resp.render('bajas/baja_cta', {cargado: false})
 }
 
 export const mod_cta = (pet, resp)=>{
@@ -172,7 +172,7 @@ let id = pet.params.clave;
         let bajasql = "SELECT afiliado_ci_afiliado, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte WHERE afiliado_ci_afiliado = '"+ id +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('baja_cta', { baja_registros, cargado: true });
+    resp.render('bajas/baja_cta', { baja_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar la cuenta corriente:', error);
     }
@@ -184,7 +184,7 @@ let nom_completo = pet.params.nombre;
         let bajasql = "SELECT afiliado_ci_afiliado, nombre, apellido, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte INNER JOIN afiliado ON ci_afiliado = afiliado_ci_afiliado WHERE CONCAT(apellido, ' ', nombre) LIKE '%" + nom_completo + "%'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('baja_cta', { baja_registros, cargado: true });
+    resp.render('bajas/baja_cta', { baja_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar la cuenta corriente:', error);
     }
@@ -196,7 +196,7 @@ let id = pet.params.clave;
         let eliminarsql = "DELETE FROM cta_cte WHERE afiliado_ci_afiliado = '"+ id +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('baja_cta', { baja_registros, cargado: true});
+    resp.render('bajas/baja_cta', { baja_registros, cargado: true});
     }     catch (error) {
         console.error('Error al eliminar cuenta corriente:', error);
     }

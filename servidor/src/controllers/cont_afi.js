@@ -11,7 +11,7 @@ export const alta_afi = (pet, resp)=>{
 }
 
 export const baja_afi = (pet, resp)=>{
-    resp.render('baja_afi', {cargado: false})
+    resp.render('bajas/baja_afi', {cargado: false})
 }
 
 export const mod_afi = (pet, resp)=>{
@@ -282,7 +282,7 @@ let id = pet.params.clave;
         let bajasql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE ci_afiliado = '"+ id +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('baja_afi', { baja_registros, cargado: true });
+    resp.render('bajas/baja_afi', { baja_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar afiliado:', error);
     }
@@ -294,7 +294,7 @@ let id = pet.params.clave;
         let eliminarsql = "DELETE FROM afiliado WHERE ci_afiliado = '"+ id +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('baja_afi', { baja_registros, cargado: true});
+    resp.render('bajas/baja_afi', { baja_registros, cargado: true});
     }     catch (error) {
         console.error('Error al eliminar afiliado:', error);
     }
@@ -307,7 +307,7 @@ let nom_completo = pet.params.nombre;
         let bajasql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";;
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-resp.render('baja_afi', { baja_registros, cargado: true });
+resp.render('bajas/baja_afi', { baja_registros, cargado: true });
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
     }
@@ -318,7 +318,7 @@ let nom_completo = pet.params.nombre;
         let eliminarsql = "DELETE FROM afiliado WHERE nombre = '"+ nom_completo +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('baja_afi', { baja_registros, cargado: true});
+    resp.render('bajas/baja_afi', { baja_registros, cargado: true});
     }     catch (error) {
         console.error('Error al eliminar afiliado:', error);
     }
