@@ -47,7 +47,7 @@
 
           <div class="campo">
             <label>Ci Afiliado:</label>
-        <input type="name" id="clave" name="clave" readonly value="<%= baja_registros[0].afiliado_ci_afiliado %>">
+        <input type="text" id="clave" name="clave" readonly value="<%= baja_registros[0].afiliado_ci_afiliado %>">
 </div>
 
     <div class="fila">
@@ -70,7 +70,7 @@
         <div class="boton">
             <input type="submit" value="ELIMINAR">
         </div>
-
+        </div>
     </form>
 
  <% } else if (baja_registros.length >= 2) { %>
@@ -94,7 +94,7 @@
                         </tr>
                         
                     <% }); %>
-                    <p>Mas de una coincidencia al buscar. Modifique por ID</p>
+                    <p>Mas de una coincidencia al buscar. Haga la baja por ID</p>
                 </tbody>
             </table>
         </div>
