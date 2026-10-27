@@ -160,6 +160,18 @@ let id = pet.params.clave;
     }
 }
 
+export const  bajacons_num = async (pet, resp)=>{
+let num = pet.params.num;
+      try {
+        let bajasql = "SELECT idconsultorio, numero, local_idlocal FROM consultorio WHERE numero = '"+ num +"'";
+        const [baja_registros] = await bdd.query(bajasql);
+        console.log(baja_registros)
+    resp.render('baja_cons', { baja_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar el consultorio:', error);
+    }
+}
+
 export const eliminar_cons = async (pet, resp)=>{
 let id = pet.params.clave;
       try {
