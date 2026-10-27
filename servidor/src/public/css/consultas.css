@@ -1,0 +1,64 @@
+
+.pagina-consultas {
+    background-color: #f3f6fa;
+    padding: 30px;
+    text-align: center;
+    min-height: 350px;
+}
+
+.pagina-consultas h1 {
+    color: #233b76;
+    margin-bottom: 30px;
+}
+
+.contenedor-consultas {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.tarjeta-consulta {
+    background-color: white;
+    color: #233b76;
+    text-decoration: none;
+    width: 250px;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px #00000010;
+    transition: 0.3s;
+}
+
+.tarjeta-consulta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px #00000020;
+}
+
+.icono-consulta {
+    color: #21677f;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.tarjeta-consulta h2 {
+    font-size: 18px;
+}
+
+.tarjeta-consulta p {
+    color: #666;
+    font-size: 14px;
+}
+
+.ver-consulta {
+    display: inline-block;
+    margin-top: 10px;
+    color: #21677f;
+    font-weight: bold;
+}
+
+/* Adaptación para celulares */
+@media (max-width: 600px) {
+    .tarjeta-consulta {
+        width: 100%;
+    }
+}
