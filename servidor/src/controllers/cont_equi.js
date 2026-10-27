@@ -61,7 +61,7 @@ export const mos_equi = async (pet, resp) => {
         let mostrarsql = "SELECT nroserie, tipo, fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento ORDER BY nroserie;";
         const [registros] = await bdd.query(mostrarsql);
         console.log(registros);
-        resp.render('mos_equi', { registros });
+        resp.render('mostrar/mos_equi', { registros });
     } catch (error) {
         console.log("No puede mostrar los equipamientos");
     }
