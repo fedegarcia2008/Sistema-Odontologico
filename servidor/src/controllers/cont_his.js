@@ -215,6 +215,18 @@ let id = pet.params.clave;
     }
 }
 
+export const  bajahis_afi = async (pet, resp)=>{
+let afi = pet.params.idAfi;
+      try {
+        let bajasql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE afiliado_ci_afiliado = '"+ afi +"'";
+        const [baja_registros] = await bdd.query(bajasql);
+        console.log(baja_registros)
+    resp.render('baja_his', { baja_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar historia clinica:', error);
+    }
+}
+
 export const eliminar_his = async (pet, resp)=>{
 let id = pet.params.clave;
       try {

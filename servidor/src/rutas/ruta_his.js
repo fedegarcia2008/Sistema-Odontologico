@@ -1,5 +1,5 @@
 import express from 'express';
-import { menu_his, alta_his, baja_his, mod_his, busc_his, mos_his, nuevo_his, buschis_id, buschis_fecha, buschis_afi, buschis_odo, buschis_trat, modhis_id, modificar_his, bajahis_id, eliminar_his, modhis_afi} from '../controllers/cont_his.js';
+import { menu_his, alta_his, baja_his, mod_his, busc_his, mos_his, nuevo_his, buschis_id, buschis_fecha, buschis_afi, buschis_odo, buschis_trat, modhis_id, modificar_his, bajahis_id, eliminar_his, modhis_afi, bajahis_afi} from '../controllers/cont_his.js';
 
 const rHistoria = express.Router();
 
@@ -28,6 +28,7 @@ rHistoria.post('/historiaclinica/modificar/:clave', modificar_his)
 
 // para borrar
 rHistoria.get('/historiaclinica/bajaid/:clave', bajahis_id)
+rHistoria.get('/historiaclinica/bajaafiliado/:idAfi', bajahis_afi)
 rHistoria.post('/historiaclinica/baja/:clave', eliminar_his)
 
 export {rHistoria}
