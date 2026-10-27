@@ -1,14 +1,19 @@
 
 .pagina-consultas {
-    background-color: #f3f6fa;
+    background-color: var(--fondo);
     padding: 30px;
     text-align: center;
-    min-height: 350px;
+    flex: 1;
 }
 
 .pagina-consultas h1 {
-    color: #233b76;
+    color: var(--azul);
+    margin-bottom: 15px;
+}
+
+.pagina-consultas > p {
     margin-bottom: 30px;
+    color: var(--texto);
 }
 
 .contenedor-consultas {
@@ -20,45 +25,66 @@
 
 .tarjeta-consulta {
     background-color: white;
-    color: #233b76;
+    color: var(--azul);
     text-decoration: none;
     width: 250px;
     padding: 25px;
     border-radius: 15px;
-    box-shadow: 0 4px 10px #00000010;
+    box-shadow: 0 4px 10px rgba(var(--azul-rgb), 0.10);
     transition: 0.3s;
 }
 
 .tarjeta-consulta:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 15px #00000020;
+    box-shadow: 0 6px 15px rgba(var(--azul-rgb), 0.20);
 }
 
 .icono-consulta {
-    color: #21677f;
-    font-size: 30px;
-    margin-bottom: 15px;
+    color: var(--celeste-oscuro);
+    background-color: rgba(var(--celeste-rgb), 0.15);
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
 }
 
 .tarjeta-consulta h2 {
-    font-size: 18px;
+    color: var(--azul);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    margin-bottom: 12px;
 }
 
 .tarjeta-consulta p {
-    color: #666;
-    font-size: 14px;
+    color: var(--texto);
+    font-size: 13px;
+    line-height: 1.6;
 }
 
 .ver-consulta {
     display: inline-block;
-    margin-top: 10px;
-    color: #21677f;
-    font-weight: bold;
+    margin-top: 15px;
+    color: var(--celeste-oscuro);
+    font-size: 14px;
+    font-weight: 600;
 }
 
-/* Adaptación para celulares */
+.tarjeta-consulta:hover .icono-consulta {
+    background-color: var(--celeste);
+    color: white;
+}
+
 @media (max-width: 600px) {
+    .pagina-consultas {
+        padding: 25px 15px;
+    }
+
     .tarjeta-consulta {
         width: 100%;
+        max-width: 350px;
     }
 }
