@@ -178,6 +178,18 @@ let id = pet.params.clave;
     }
 }
 
+export const bajacta_nom = async (pet, resp)=>{
+let nom_completo = pet.params.nombre;
+      try {
+        let bajasql = "SELECT afiliado_ci_afiliado, nombre, apellido, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte INNER JOIN afiliado ON ci_afiliado = afiliado_ci_afiliado WHERE CONCAT(apellido, ' ', nombre) LIKE '%" + nom_completo + "%'";
+        const [baja_registros] = await bdd.query(bajasql);
+        console.log(baja_registros)
+    resp.render('baja_cta', { baja_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar la cuenta corriente:', error);
+    }
+}
+
 export const eliminar_cta = async (pet, resp)=>{
 let id = pet.params.clave;
       try {

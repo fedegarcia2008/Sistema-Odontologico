@@ -27,11 +27,23 @@
 
 </form>
 
+<form onsubmit="busc_nom(event)" method="GET">
+        <div class="campo">
+            <label>Apellido y nombre del afiliado:</label>
+            <input type="text" id="nombre" name="nombre" maxlength="20">
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
+
+</form>
+
     
 <% if (cargado) { %>
-<% if (baja_registros.length > 0) { %>
+<% if (baja_registros.length > 0 &&  baja_registros.length == 1) { %>
 
-<form class="formulario resultado" onsubmit="baja_form(event)" method="POST">
+<form class="formulario resultado" onsubmit="baja_id(event)" onsubmit="baja_nom(event)" method="POST">
 
           <div class="campo">
             <label>Ci Afiliado:</label>
@@ -61,13 +73,41 @@
 
     </form>
 
-<% } else { %>
-    <div class="formulario vacio">
-    <i class="fa-solid fa-user-slash"></i>
-    <p>No hay datos para mostrar.</p>
-</div>
+ <% } else if (baja_registros.length >= 2) { %>
+
+        <div class="tabla-contenedor">
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>C.I. Afiliado</th>
+                        <th>Saldo</th>
+                        <th>ID Historia Clínica</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% baja_registros.forEach(cta => { %>
+                        <tr>
+                            <td><%= cta.afiliado_ci_afiliado %></td>
+                            <td><%= cta.saldo %></td>
+                            <td><%= cta.tratamiento_realizado_idtratamiento_realizado %></td>
+                        </tr>
+                        
+                    <% }); %>
+                    <p>Mas de una coincidencia al buscar. Modifique por ID</p>
+                </tbody>
+            </table>
+        </div>
+
+    <% } else if (baja_registros.length == 0) { %>
+
+        <div class="formulario vacio">
+            <i class="fa-solid fa-user-slash"></i>
+            <p>No hay datos para mostrar.</p>
+        </div>
+
+    <% } %>
 <% } %>
- <% } %>
 
 </main>
 
@@ -79,11 +119,29 @@
         document.getElementById('clave').value = "";   
         }
 
-    function baja_form(event) {
+    function baja_id(event) {
         event.preventDefault();
 
         let formulario = event.target; // guarda en la variable formulario lo que esta dentro de <form>
         let idejs = formulario.querySelector('[name="clave"]').value;
+
+        formulario.action = `/cuentacorriente/baja/${idejs}`;
+        formulario.submit();
+    }
+
+
+    function busc_nom(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('nombre').value;
+        window.location.href = `/cuentacorriente/bajanom/${idejs}`;
+        document.getElementById('nombre').value = "";   
+        }
+
+    function baja_nom(event) {
+        event.preventDefault();
+
+        let formulario = event.target; // guarda en la variable formulario lo que esta dentro de <form>
+        let idejs = formulario.querySelector('[name="nombre"]').value;
 
         formulario.action = `/cuentacorriente/baja/${idejs}`;
         formulario.submit();
