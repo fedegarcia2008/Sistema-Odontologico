@@ -136,7 +136,7 @@ resp.render('mod_equi', { busc_registros, cargado: true, alert: false });
 export const  modequi_tipo = async (pet, resp)=>{
 let tipo = pet.params.tipo;
       try {
-        let buscsql = "SELECT nroserie, tipo, DATE_FORMAT(fecha_mantenimiento, '%Y-%m-%d') AS fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE tipo '"+ tipo +"'";
+        let buscsql = "SELECT nroserie, tipo, DATE_FORMAT(fecha_mantenimiento, '%Y-%m-%d') AS fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE tipo= '"+ tipo +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
 resp.render('mod_equi', { busc_registros, cargado: true, alert: false });

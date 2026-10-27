@@ -153,6 +153,19 @@ resp.render('mod_his', { busc_registros, cargado: true, alert: false });
     }
 };
 
+
+export const  modhis_afi = async (pet, resp)=>{
+let afi = pet.params.idAfi;
+      try {
+        let buscsql = "SELECT idtratamiento_realizado, DATE_FORMAT(fecha_inicio, '%Y-%m-%d') AS fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE afiliado_ci_afiliado = '"+ afi +"'";
+        const [busc_registros] = await bdd.query(buscsql);
+        console.log(busc_registros)
+resp.render('mod_his', { busc_registros, cargado: true, alert: false });
+    } catch (error) {
+        console.error('Error al buscar la historia clinica:', error);
+    }
+};
+
 export const modificar_his = async (pet, resp)=>{
     
     let id, fecha, trat, ser, afi, odo, tur;
