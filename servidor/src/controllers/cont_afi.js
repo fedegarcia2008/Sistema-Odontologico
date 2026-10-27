@@ -19,7 +19,7 @@ export const mod_afi = (pet, resp)=>{
 }
 
 export const busc_afi = (pet, resp)=>{
-    resp.render('busc_afi', {alert: false, cargadoid: false, cargadotabla: false})
+    resp.render('buscar/busc_afi', {alert: false, cargadoid: false, cargadotabla: false})
 }
 
 /*
@@ -89,7 +89,7 @@ export const buscafi_id = async (pet, resp)=>{
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
         if (busc_registros.length > 0) {
-            resp.render('busc_afi', {
+            resp.render('buscar/busc_afi', {
                 busc_registros,
                 cargadoid: true, cargadotabla: false,
                 alert: true,
@@ -99,7 +99,7 @@ export const buscafi_id = async (pet, resp)=>{
                 botonConfirma: false
             });
         } else {
-            resp.render('busc_afi', {
+            resp.render('buscar/busc_afi', {
                 busc_registros,
                 cargadoid: true, cargadotabla: false,
                 alert: true,
@@ -109,7 +109,7 @@ export const buscafi_id = async (pet, resp)=>{
         }
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
-        resp.render('busc_afi', {
+        resp.render('buscar/busc_afi', {
             cargado: true,
             alert: true,
             guardado: false,
@@ -126,7 +126,7 @@ export const buscafi_nom = async (pet, resp)=>{
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
         if (busc_registros.length > 0) {
-            resp.render('busc_afi', {
+            resp.render('buscar/busc_afi', {
                 busc_registros,
                 cargadoid: false, cargadotabla: true,
                 alert: true,
@@ -136,7 +136,7 @@ export const buscafi_nom = async (pet, resp)=>{
                 botonConfirma: false
             });
         } else {
-            resp.render('busc_afi', {
+            resp.render('buscar/busc_afi', {
                 busc_registros,
                 cargadoid: false, cargadotabla: true,
                 alert: true,
@@ -146,7 +146,7 @@ export const buscafi_nom = async (pet, resp)=>{
         }
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
-        resp.render('busc_afi', {
+        resp.render('buscar/busc_afi', {
             cargadoid: false, cargadotabla: true,
             alert: true,
             guardado: false,
@@ -164,7 +164,7 @@ export const buscafi_plan = async (pet, resp)=>{
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
         if (busc_registros.length > 0) {
-            resp.render('busc_afi', {
+            resp.render('buscar/busc_afi', {
                 busc_registros,
                 cargadoid: false, cargadotabla: true,
                 alert: true,
@@ -174,7 +174,7 @@ export const buscafi_plan = async (pet, resp)=>{
                 botonConfirma: false
             });
         } else {
-            resp.render('busc_afi', {
+            resp.render('buscar/busc_afi', {
                 busc_registros,
                 cargadoid: false, cargadotabla: true,
                 alert: true,
@@ -184,7 +184,7 @@ export const buscafi_plan = async (pet, resp)=>{
         }
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
-        resp.render('busc_afi', {
+        resp.render('buscar/busc_afi', {
             cargadoid: false, cargadotabla: true,
             alert: true,
             guardado: false,

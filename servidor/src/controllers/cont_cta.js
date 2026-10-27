@@ -19,7 +19,7 @@ export const mod_cta = (pet, resp)=>{
 }
 
 export const busc_cta = (pet, resp)=>{
-    resp.render('busc_cta', {cargadoid: false, cargadotabla: false,})
+    resp.render('buscar/busc_cta', {cargadoid: false, cargadotabla: false,})
 }
 
 
@@ -74,7 +74,7 @@ export const buscta_id = async (pet, resp)=>{
         let buscarsql = "SELECT afiliado_ci_afiliado, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte WHERE afiliado_ci_afiliado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_cta', { busc_registros, cargadoid: true, cargadotabla: false, });
+    resp.render('buscar/busc_cta', { busc_registros, cargadoid: true, cargadotabla: false, });
     }     catch (error) {
         console.error('Error al buscar la cuenta corriente:', error);
     }
@@ -86,7 +86,7 @@ export const buscta_his = async (pet, resp)=>{
         let buscarsql = "SELECT afiliado_ci_afiliado, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte WHERE tratamiento_realizado_idtratamiento_realizado = '"+ idhis +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_cta', { busc_registros, cargadoid: true, cargadotabla: false, });
+    resp.render('buscar/busc_cta', { busc_registros, cargadoid: true, cargadotabla: false, });
     }     catch (error) {
         console.error('Error al buscar la historia clinica:', error);
     }
@@ -99,7 +99,7 @@ export const buscta_nom = async (pet, resp)=>{
        let buscarsql = "SELECT afiliado_ci_afiliado, nombre, apellido, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte INNER JOIN afiliado ON ci_afiliado = afiliado_ci_afiliado WHERE CONCAT(apellido, ' ', nombre) LIKE '%" + nom_completo + "%'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('busc_cta', { busc_registros, cargadoid: false, cargadotabla: true, });
+    resp.render('buscar/busc_cta', { busc_registros, cargadoid: false, cargadotabla: true, });
     }     catch (error) {
         console.error('Error al buscar el nombre y apellido:', error);
     }
@@ -113,7 +113,7 @@ let id = pet.params.clave;
         let buscsql = "SELECT afiliado_ci_afiliado, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte WHERE afiliado_ci_afiliado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_cta', { busc_registros, cargado: true, alert: false });
+resp.render('buscar/mod_cta', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar la cuenta corriente:', error);
     }
@@ -125,7 +125,7 @@ let nom_completo = pet.params.nombre;
         let buscsql = "SELECT afiliado_ci_afiliado, nombre, apellido, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte INNER JOIN afiliado ON ci_afiliado = afiliado_ci_afiliado WHERE CONCAT(apellido, ' ', nombre) LIKE '%" + nom_completo + "%'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_cta', { busc_registros, cargado: true, alert: false });
+resp.render('buscar/mod_cta', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar el nombre del afiliado:', error);
     }
