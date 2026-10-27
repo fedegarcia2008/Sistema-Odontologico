@@ -7,7 +7,7 @@ export const menu_ser = (pet, resp)=>{
 }
 
 export const alta_ser = (pet, resp)=>{
-    resp.render('alta_ser', {alert: false})
+    resp.render('altas/alta_ser', {alert: false})
 }
 
 export const baja_ser = (pet, resp)=>{
@@ -39,7 +39,7 @@ export const nuevo_ser = async (pet, resp) => {
 
         const [registro] = await bdd.query(altasql);
         console.log(registro)
-        resp.render('alta_ser', {
+        resp.render('altas/alta_ser', {
             guardado: true,
             alert: true,
             msj: 'Servicio Guardado',
@@ -48,7 +48,7 @@ export const nuevo_ser = async (pet, resp) => {
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
-        resp.render('alta_ser', {
+        resp.render('altas/alta_ser', {
             guardado: false,
             alert: true,
             msj: 'No se pudo guardar el servicio.'
