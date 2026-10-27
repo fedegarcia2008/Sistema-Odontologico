@@ -15,7 +15,7 @@ export const baja_afi = (pet, resp)=>{
 }
 
 export const mod_afi = (pet, resp)=>{
-    resp.render('mod_afi',  {alert: false, cargado: false} )
+    resp.render('modificar/mod_afi',  {alert: false, cargado: false} )
 }
 
 export const busc_afi = (pet, resp)=>{
@@ -202,7 +202,7 @@ let id = pet.params.clave;
         let buscsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE ci_afiliado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_afi', { busc_registros, cargado: true, alert: false });
+resp.render('modificar/mod_afi', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
     }
@@ -220,7 +220,7 @@ export const mod_id = async (pet, resp)=>{
         let modificarsql = "UPDATE afiliado SET nombre = '"+ nombre +"', apellido = '"+ apellido +"', tel_cel = '"+ telCel +"', tel_fijo = '"+ telFijo +"', tipo_plan = '"+ plan +"' WHERE ci_afiliado = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('mod_afi', {
+ resp.render('modificar/mod_afi', {
             cargado: false,
             alert: true,
             guardado: true,
@@ -230,7 +230,7 @@ export const mod_id = async (pet, resp)=>{
         });
     } catch (error) {
         console.error('Error al modificar afiliado:', error);
-        resp.render('mod_afi', {
+        resp.render('modificar/mod_afi', {
             cargado: false,
             alert: true,
             guardado: false,
@@ -246,7 +246,7 @@ let nom_completo = pet.params.nombre;
         let buscsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";;
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_afi', { busc_registros, cargado: true });
+resp.render('modificar/mod_afi', { busc_registros, cargado: true });
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
     }
@@ -265,7 +265,7 @@ export const mod_nom = async (pet, resp)=>{
         let modificarsql = "UPDATE afiliado SET nombre = '"+ nom +"', apellido= '"+ apellido+"', tel_cel= '"+ telCel+"', tel_fijo= '"+ telFijo+"', tipo_plan= '"+ plan+"'WHERE nombre  = '"+ nom +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
-resp.render('mod_afi', { modificar_registros, cargado: true});
+resp.render('modificar/mod_afi', { modificar_registros, cargado: true});
     } catch (error) {
         console.error('Error al modificar afiliado', error);
     }
