@@ -119,6 +119,19 @@ resp.render('mod_cta', { busc_registros, cargado: true, alert: false });
     }
 };
 
+export const modcta_nom = async (pet, resp)=>{
+let nom_completo = pet.params.nombre;
+      try {
+        let buscsql = "SELECT afiliado_ci_afiliado, nombre, apellido, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte INNER JOIN afiliado ON ci_afiliado = afiliado_ci_afiliado WHERE CONCAT(apellido, ' ', nombre) LIKE '%" + nom_completo + "%'";
+        const [busc_registros] = await bdd.query(buscsql);
+        console.log(busc_registros)
+resp.render('mod_cta', { busc_registros, cargado: true, alert: false });
+    } catch (error) {
+        console.error('Error al buscar el nombre del afiliado:', error);
+    }
+};
+
+
 export const modificar_cta = async (pet, resp)=>{
      
     let id, saldo, trat;

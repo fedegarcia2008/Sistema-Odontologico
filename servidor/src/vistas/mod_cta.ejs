@@ -19,10 +19,22 @@
 
         <main class="formulario">
 
-    <form onsubmit="busc_form(event)" method="GET">
+    <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
             <input type="text" id="clave" name="clave">
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
+
+</form>
+
+<form onsubmit="busc_nom(event)" method="GET">
+        <div class="campo">
+            <label>Clave de identificación:</label>
+            <input type="text" id="nombre" name="nombre">
         </div>
         
        <div class="boton">
@@ -37,9 +49,9 @@
 
 
 <% if (cargado) { %>
-<% if (busc_registros.length > 0) { %>
+<% if (busc_registros.length > 0 &&  busc_registros.length == 1) { %>
 
-<form onsubmit="mod_form(event)" method="POST" >
+<form class="formulario resultado" onsubmit="mod_id(event)" onsubmit="mod_nom(event)" method="POST">
 
 <div class="campo">
             <label>C.I. Afiliado</label>
@@ -65,27 +77,47 @@
 
     </form>
 
-<% } else { %>
+ <% } else if (busc_registros.length == 0) { %>
 
-    <p>No hay datos para mostrar.</p>
+        <div class="formulario vacio">
+            <i class="fa-solid fa-user-slash"></i>
+            <p>No hay datos para mostrar.</p>
+        </div>
 
+    <% } %>
 <% } %>
- <% } %>
 
 
         <script>
-        function busc_form(event) {
+        function busc_id(event) {
         event.preventDefault();
         let idejs = document.getElementById('clave').value;
         window.location.href = `/cuentacorriente/modificarid/${idejs}`;
         document.getElementById('clave').value = "";   
         }
 
-    function mod_form(event) {
+    function mod_id(event) {
         event.preventDefault();
 
         let formulario = event.target;
         let idejs = formulario.querySelector('[name="clave"]').value;
+
+        formulario.action = `/cuentacorriente/modificar/${idejs}`;
+        formulario.submit();
+    }
+
+    function busc_nom(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('nombre').value;
+        window.location.href = `/cuentacorriente/modificarnom/${idejs}`;
+        document.getElementById('clave').value = "";   
+        }
+
+    function mod_nom(event) {
+        event.preventDefault();
+
+        let formulario = event.target;
+        let idejs = formulario.querySelector('[name="nombre"]').value;
 
         formulario.action = `/cuentacorriente/modificar/${idejs}`;
         formulario.submit();
