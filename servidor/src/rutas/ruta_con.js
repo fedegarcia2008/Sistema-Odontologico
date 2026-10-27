@@ -1,5 +1,5 @@
 import express from 'express';
-import { menu_con, alta_con, baja_con, mod_con, busc_con, mos_con, nuevo_con, buscon_id,buscon_nom, modcon_nom, modcon_id, modificar_con, bajacon_id, eliminar_con } from '../controllers/cont_con.js';
+import { menu_con, alta_con, baja_con, mod_con, busc_con, mos_con, nuevo_con, buscon_id,buscon_nom, bajacon_nom, modcon_nom, modcon_id, modificar_con, bajacon_id, eliminar_con } from '../controllers/cont_con.js';
 
 const rConvenio = express.Router();
 
@@ -24,6 +24,10 @@ rConvenio.post('/convenio/modificar/:clave', modificar_con)
 
 // para borrar
 rConvenio.get('/convenio/bajaid/:clave', bajacon_id)
+rConvenio.get('/convenio/bajanom/:nombre', bajacon_nom)
+
 rConvenio.post('/convenio/baja/:clave', eliminar_con)
+
+
 
 export {rConvenio}

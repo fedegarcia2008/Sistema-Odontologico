@@ -161,6 +161,18 @@ let id = pet.params.clave;
     }
 }
 
+export const bajacon_nom = async (pet, resp)=>{
+let nom = pet.params.nombre;
+      try {
+        let bajasql = "SELECT idconvenio, nombre, rebaja FROM convenio WHERE nombre = '"+ nom +"'";
+        const [baja_registros] = await bdd.query(bajasql);
+        console.log(baja_registros)
+    resp.render('baja_con', { baja_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar convenio:', error);
+    }
+}
+
 export const eliminar_con = async (pet, resp)=>{
 let id = pet.params.clave;
       try {

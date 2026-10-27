@@ -28,11 +28,24 @@
 
 </form>
 
+
+<form onsubmit="busc_nom(event)" method="GET">
+        <div class="campo">
+            <label>Nombre:</label>
+            <input type="text" id="nombre" name="nombre" maxlength="20">
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
+
+</form>
+
     
 <% if (cargado) { %>
 <% if (baja_registros.length > 0) { %>
 
-<form class="formulario resultado" onsubmit="baja_form(event)" method="POST">
+<form class="formulario resultado" onsubmit="baja_id(event)" onsubmit="baja_nom(event)" method="POST">
 
           <div class="campo">
             <label>Clave de Identificacion:</label>
@@ -80,7 +93,7 @@
         document.getElementById('clave').value = "";   
         }
 
-    function baja_form(event) {
+    function baja_id(event) {
         event.preventDefault();
 
         let formulario = event.target; // guarda en la variable formulario lo que esta dentro de <form>
@@ -89,6 +102,24 @@
         formulario.action = `/convenio/baja/${idejs}`;
         formulario.submit();
     }
+
+function busc_nom(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('nombre').value;
+        window.location.href = `/horario/bajanom/${idejs}`;
+        document.getElementById('nombre').value = "";   
+        }
+
+    function baja_nom(event) {
+        event.preventDefault();
+
+        let formulario = event.target; // guarda en la variable formulario lo que esta dentro de <form>
+        let idejs = formulario.querySelector('[name="nombre"]').value;
+
+        formulario.action = `/horario/baja/${idejs}`;
+        formulario.submit();
+    }
+
         </script>
 
 <%- include('footer') %>
