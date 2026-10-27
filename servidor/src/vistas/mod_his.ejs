@@ -19,7 +19,7 @@
 
         <main class="formulario">
 
-    <form onsubmit="busc_form(event)" method="GET">
+    <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
             <input type="text" id="clave" name="clave">
@@ -118,7 +118,7 @@
         document.getElementById('clave').value = "";   
         }
 
-    function mod_form(event) {
+    function mod_id(event) {
         event.preventDefault();
 
         let formulario = event.target;
