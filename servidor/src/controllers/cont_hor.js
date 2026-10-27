@@ -11,7 +11,7 @@ export const alta_hor = (pet, resp)=>{
 }
 
 export const baja_hor = (pet, resp)=>{
-    resp.render('baja_hor', {cargado: false})
+    resp.render('bajas/baja_hor', {cargado: false})
 }
 
 export const mod_hor = (pet, resp)=>{
@@ -172,7 +172,7 @@ let id = pet.params.clave;
         let bajasql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM horario WHERE idhorario = '"+ id +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('baja_hor', { baja_registros, cargado: true });
+    resp.render('bajas/baja_hor', { baja_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar horario:', error);
     }
@@ -184,7 +184,7 @@ let dia = pet.params.dia;
         let bajasql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM horario WHERE dia = '"+ dia +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('baja_hor', { baja_registros, cargado: true });
+    resp.render('bajas/baja_hor', { baja_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar horario:', error);
     }
@@ -196,7 +196,7 @@ let id = pet.params.clave;
         let eliminarsql = "DELETE FROM horario WHERE idhorario = '"+ id +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('baja_hor', { baja_registros, cargado: true});
+    resp.render('bajas/baja_hor', { baja_registros, cargado: true});
     }     catch (error) {
         console.error('Error al eliminar horario:', error);
     }

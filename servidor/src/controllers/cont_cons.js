@@ -11,7 +11,7 @@ export const alta_cons = (pet, resp)=>{
 }
 
 export const baja_cons = (pet, resp)=>{
-    resp.render('baja_cons', {cargado: false})
+    resp.render('bajas/baja_cons', {cargado: false})
 }
 
 export const mod_cons = (pet, resp)=>{
@@ -154,7 +154,7 @@ let id = pet.params.clave;
         let bajasql = "SELECT idconsultorio, numero, local_idlocal FROM consultorio WHERE idconsultorio = '"+ id +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('baja_cons', { baja_registros, cargado: true });
+    resp.render('bajas/baja_cons', { baja_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar el consultorio:', error);
     }
@@ -166,7 +166,7 @@ let num = pet.params.num;
         let bajasql = "SELECT idconsultorio, numero, local_idlocal FROM consultorio WHERE numero = '"+ num +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('baja_cons', { baja_registros, cargado: true });
+    resp.render('bajas/baja_cons', { baja_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar el consultorio:', error);
     }
@@ -178,7 +178,7 @@ let id = pet.params.clave;
         let eliminarsql = "DELETE FROM consultorio WHERE idconsultorio = '"+ id +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('baja_cons', { baja_registros, cargado: true});
+    resp.render('bajas/baja_cons', { baja_registros, cargado: true});
     }     catch (error) {
         console.error('Error al eliminar consultorio:', error);
     }
