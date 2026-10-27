@@ -59,7 +59,7 @@ export const mos_cons = async (pet, resp) => {
         let mostrarsql = "SELECT idconsultorio, numero, local_idlocal FROM consultorio ORDER BY idconsultorio;";
         const [registros] = await bdd.query(mostrarsql);
         console.log(registros);
-        resp.render('mos_cons', { registros });
+        resp.render('mostrar/mos_cons', { registros });
     } catch (error) {
         console.log("No puede mostrar los Consultorios");
     }
@@ -98,7 +98,7 @@ let id = pet.params.clave;
         let buscsql = "SELECT idconsultorio, numero, local_idlocal FROM consultorio WHERE idconsultorio = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mostrar/mod_cons', { busc_registros, cargado: true, alert: false });
+resp.render('mod_cons', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar el consultorio:', error);
     }

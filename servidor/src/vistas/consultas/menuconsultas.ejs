@@ -1,33 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/consultas.css">
     <link rel="icon" href="img/favicon.webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
     <title>Consultas</title>
 </head>
 
 <body>
 
-<%- include('../componentes/header') %>
+    <%- include('../componentes/header') %>
+<div class="tema-verde">
+    <main class="pagina-consultas">
 
-<div>
-    <h1>CONSULTAS ESPECÍFICAS/ESPECIALES</h1>
+        <h1>CONSULTAS</h1>
+
+        <p>Seleccioná la consulta que querés realizar.</p>
+<br>
+        <section class="contenedor-consultas">
+
+            <a href="/consulta/historiaclinica" class="tarjeta-consulta">
+                <div class="icono-consulta">
+                    <i class="fa-solid fa-file-medical"></i>
+                </div>
+
+                <h2>Historia clínica</h2>
+
+                <p>Consultá la historia clínica de los pacientes.</p>
+
+                <span class="ver-consulta">
+                    Acceder <i class="fa-solid fa-arrow-right"></i>
+                </span>
+            </a>
+
+            <a href="/consulta/especialidadodontologo" class="tarjeta-consulta">
+                <div class="icono-consulta">
+                    <i class="fa-solid fa-user-doctor"></i>
+                </div>
+
+                <h2>Odontólogos por especialidad</h2>
+
+                <p>Consultá los odontólogos según su especialidad.</p>
+
+                <span class="ver-consulta">
+                    Acceder <i class="fa-solid fa-arrow-right"></i>
+                </span>
+            </a>
+
+            <a href="/consulta/tratamiento" class="tarjeta-consulta">
+                <div class="icono-consulta">
+                    <i class="fa-solid fa-tooth"></i>
+                </div>
+
+                <h2>Tratamientos más solicitados</h2>
+
+                <p>Conocé los tratamientos más solicitados por período.</p>
+
+                <span class="ver-consulta">
+                    Acceder <i class="fa-solid fa-arrow-right"></i>
+                </span>
+            </a>
+
+            <a href="/consulta/rankingodontologos" class="tarjeta-consulta">
+                <div class="icono-consulta">
+                    <i class="fa-solid fa-ranking-star"></i>
+                </div>
+
+                <h2>Ranking de odontólogos</h2>
+
+                <p>Consultá el ranking según la cantidad de tratamientos.</p>
+
+                <span class="ver-consulta">
+                    Acceder <i class="fa-solid fa-arrow-right"></i>
+                </span>
+            </a>
+
+            <a href="/consulta/montorecaudado" class="tarjeta-consulta">
+                <div class="icono-consulta">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                </div>
+
+                <h2>Monto recaudado</h2>
+
+                <p>Consultá el monto recaudado durante un período.</p>
+
+                <span class="ver-consulta">
+                    Acceder <i class="fa-solid fa-arrow-right"></i>
+                </span>
+            </a>
+
+        </section>
+
+    </main>
 </div>
-
-<li><a href="/consulta/historiaclinica">historiaclinica del paciente</a></li>
-
-<li><a href="/consulta/especialidadodontologo">odontologos x especialidad</a></li>
-
-<li><a href="/consulta/tratamiento">tratamiento mas solicitado por periodo</a></li>
-
-<li><a href="/consulta/rankingodontologos">ranking de odntologos por cant de tratameintos</a></li>
-
-<li><a href="/consulta/montorecaudado">monto recaudado por periodo</a></li>
-
-<%- include('../componentes/footer') %>
+    <%- include('../componentes/footer') %>
 
 </body>
+
 </html>
