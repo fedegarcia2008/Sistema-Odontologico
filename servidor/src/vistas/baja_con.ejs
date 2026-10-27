@@ -106,7 +106,7 @@
 function busc_nom(event) {
         event.preventDefault();
         let idejs = document.getElementById('nombre').value;
-        window.location.href = `/horario/bajanom/${idejs}`;
+        window.location.href = `/convenio/bajanom/${idejs}`;
         document.getElementById('nombre').value = "";   
         }
 
@@ -116,7 +116,7 @@ function busc_nom(event) {
         let formulario = event.target; // guarda en la variable formulario lo que esta dentro de <form>
         let idejs = formulario.querySelector('[name="nombre"]').value;
 
-        formulario.action = `/horario/baja/${idejs}`;
+        formulario.action = `/convenio/baja/${idejs}`;
         formulario.submit();
     }
 
