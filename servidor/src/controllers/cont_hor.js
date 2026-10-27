@@ -7,7 +7,7 @@ export const menu_hor = (pet, resp)=>{
 }
 
 export const alta_hor = (pet, resp)=>{
-    resp.render('alta_hor', {alert: false})
+    resp.render('altas/alta_hor', {alert: false})
 }
 
 export const baja_hor = (pet, resp)=>{
@@ -39,7 +39,7 @@ export const nuevo_hor = async (pet, resp) => {
 
        const [registro] = await bdd.query(altasql);
         console.log(registro)
-        resp.render('alta_hor', {
+        resp.render('altas/alta_hor', {
             guardado: true,
             alert: true,
             msj: 'Horario Guardado',
@@ -48,7 +48,7 @@ export const nuevo_hor = async (pet, resp) => {
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
-        resp.render('alta_hor', {
+        resp.render('altas/alta_hor', {
             guardado: false,
             alert: true,
             msj: 'No se pudo guardar el horario.'
