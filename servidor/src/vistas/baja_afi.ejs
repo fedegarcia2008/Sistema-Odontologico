@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/menu.css">
+<link rel="stylesheet" href="/css/mostrar.css">
     <link rel="icon" href="/img/favicon.webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <title>Baja Afiliado - Secure Dental</title>
@@ -40,7 +41,7 @@
      
 <% if (cargado) { %>
 <% if (baja_registros.length > 0 &&  baja_registros.length == 1) { %>
-
+<main class="formulario">
 <form class="formulario resultado" onsubmit="baja_id(event)" onsubmit="baja_nom(event)"  method="POST">
 
           <div class="campo">
@@ -135,7 +136,7 @@
     <% } %>
 <% } %>
 
-
+</main>
 
         <script>
         function busc_id(event) {
