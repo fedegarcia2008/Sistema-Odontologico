@@ -15,7 +15,7 @@ export const baja_his = (pet, resp)=>{
 }
 
 export const mod_his = (pet, resp)=>{
-    resp.render('mod_his', {alert: false, cargado: false})
+    resp.render('modificar/mod_his', {alert: false, cargado: false})
 }
 
 export const busc_his = (pet, resp)=>{
@@ -147,7 +147,7 @@ let id = pet.params.clave;
         let buscsql = "SELECT idtratamiento_realizado, DATE_FORMAT(fecha_inicio, '%Y-%m-%d') AS fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE idtratamiento_realizado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_his', { busc_registros, cargado: true, alert: false });
+resp.render('modificar/mod_his', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar la historia clinica:', error);
     }
@@ -160,7 +160,7 @@ let afi = pet.params.idAfi;
         let buscsql = "SELECT idtratamiento_realizado, DATE_FORMAT(fecha_inicio, '%Y-%m-%d') AS fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE afiliado_ci_afiliado = '"+ afi +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_his', { busc_registros, cargado: true, alert: false });
+resp.render('modificar/mod_his', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar la historia clinica:', error);
     }
@@ -182,7 +182,7 @@ export const modificar_his = async (pet, resp)=>{
         let modificarsql = "UPDATE tratamiento_realizado SET fecha_inicio = '"+ fecha +"', tratamiento_finalizado = '"+ trat+"' WHERE idtratamiento_realizado = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('mod_his', {
+ resp.render('modificar/mod_his', {
             cargado: false,
             alert: true,
             guardado: true,
@@ -192,7 +192,7 @@ export const modificar_his = async (pet, resp)=>{
         });
     } catch (error) {
         console.error('Error al modificar la historia clinica:', error);
-        resp.render('mod_his', {
+        resp.render('modificar/mod_his', {
             cargado: false,
             alert: true,
             guardado: false,

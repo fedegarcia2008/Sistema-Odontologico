@@ -15,7 +15,7 @@ export const baja_cta = (pet, resp)=>{
 }
 
 export const mod_cta = (pet, resp)=>{
-    resp.render('mod_cta', {alert: false, cargado: false})
+    resp.render('modificar/mod_cta', {alert: false, cargado: false})
 }
 
 export const busc_cta = (pet, resp)=>{
@@ -113,7 +113,7 @@ let id = pet.params.clave;
         let buscsql = "SELECT afiliado_ci_afiliado, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte WHERE afiliado_ci_afiliado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('buscar/mod_cta', { busc_registros, cargado: true, alert: false });
+resp.render('modificar/mod_cta', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar la cuenta corriente:', error);
     }
@@ -125,7 +125,7 @@ let nom_completo = pet.params.nombre;
         let buscsql = "SELECT afiliado_ci_afiliado, nombre, apellido, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte INNER JOIN afiliado ON ci_afiliado = afiliado_ci_afiliado WHERE CONCAT(apellido, ' ', nombre) LIKE '%" + nom_completo + "%'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('buscar/mod_cta', { busc_registros, cargado: true, alert: false });
+resp.render('modificar//mod_cta', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar el nombre del afiliado:', error);
     }
@@ -144,7 +144,7 @@ export const modificar_cta = async (pet, resp)=>{
         let modificarsql = "UPDATE cta_cte SET saldo = '"+ saldo +"' WHERE afiliado_ci_afiliado = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('mod_cta', {
+ resp.render('modificar/mod_cta', {
             cargado: false,
             alert: true,
             guardado: true,
@@ -154,7 +154,7 @@ export const modificar_cta = async (pet, resp)=>{
         });
     } catch (error) {
         console.error('Error al modificar la cuenta:', error);
-        resp.render('mod_cta', {
+        resp.render('modificar/mod_cta', {
             cargado: false,
             alert: true,
             guardado: false,

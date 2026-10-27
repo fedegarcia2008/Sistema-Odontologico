@@ -15,7 +15,7 @@ export const baja_ser = (pet, resp)=>{
 }
 
 export const mod_ser = (pet, resp)=>{
-    resp.render('mod_ser', {alert: false, cargado: false})
+    resp.render('modificar/mod_ser', {alert: false, cargado: false})
 }
 
 export const busc_ser = (pet, resp)=>{
@@ -114,7 +114,7 @@ let id = pet.params.clave;
         let buscsql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento WHERE idtratamiento = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_ser', { busc_registros, cargado: true, alert: false });
+resp.render('modificar/mod_ser', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar el servicio:', error);
     }
@@ -126,7 +126,7 @@ let nom = pet.params.nom;
         let buscsql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento WHERE nombre = '"+ nom +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_ser', { busc_registros, cargado: true, alert: false });
+resp.render('modificar/mod_ser', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar el servicio:', error);
     }
@@ -144,7 +144,7 @@ export const modificar_ser = async (pet, resp)=>{
         let modificarsql = "UPDATE tratamiento SET nombre = '"+ nombre +"', costo = '"+ costo+"' WHERE idtratamiento = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('mod_ser', {
+ resp.render('modificar/mod_ser', {
             cargado: false,
             alert: true,
             guardado: true,
@@ -154,7 +154,7 @@ export const modificar_ser = async (pet, resp)=>{
         });
     } catch (error) {
         console.error('Error al modificar servicio:', error);
-        resp.render('mod_ser', {
+        resp.render('modificar/mod_ser', {
             cargado: false,
             alert: true,
             guardado: false,

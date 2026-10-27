@@ -15,7 +15,7 @@ export const baja_tur = (pet, resp)=>{
 }
 
 export const mod_tur = (pet, resp)=>{
-    resp.render('mod_tur', {alert: false, cargado: false})
+    resp.render('modificar/mod_tur', {alert: false, cargado: false})
 }
 
 export const busc_tur = (pet, resp)=>{
@@ -139,7 +139,7 @@ let id = pet.params.clave;
         let buscsql = "SELECT idconsulta, DATE_FORMAT(fecha, '%Y-%m-%d') AS fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE idconsulta = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_tur', { busc_registros, cargado: true, alert: false });
+resp.render('modificar/mod_tur', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar la consulta:', error);
     }
@@ -186,7 +186,7 @@ id = pet.body.clave;
            let buscsql =  "SELECT idconsulta, DATE_FORMAT(fecha, '%Y-%m-%d') AS fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE fecha BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' ORDER BY fecha, horario"; //mostrar bien las fechas
             const [busc_registros] = await bdd.query(buscsql);
             console.log(busc_registros)
-        resp.render('mod_tur', { busc_registros,  cargado: true });
+        resp.render('modificar/mod_tur', { busc_registros,  cargado: true });
         }     catch (error) {
             console.error('Error al buscar turno:', error);
         }
