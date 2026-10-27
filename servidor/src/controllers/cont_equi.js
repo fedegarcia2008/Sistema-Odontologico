@@ -15,7 +15,7 @@ export const baja_equi = (pet, resp)=>{
 }
 
 export const mod_equi = (pet, resp)=>{
-    resp.render('mod_equi' , {alert: false, cargado: false})
+    resp.render('modificar/mod_equi' , {alert: false, cargado: false})
 }
 
 export const busc_equi = (pet, resp)=>{
@@ -127,7 +127,7 @@ let id = pet.params.clave;
         let buscsql = "SELECT nroserie, tipo, DATE_FORMAT(fecha_mantenimiento, '%Y-%m-%d') AS fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE nroserie= '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_equi', { busc_registros, cargado: true, alert: false });
+resp.render('modificar/mod_equi', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar el equipamiento:', error);
     }
@@ -139,7 +139,7 @@ let tipo = pet.params.tipo;
         let buscsql = "SELECT nroserie, tipo, DATE_FORMAT(fecha_mantenimiento, '%Y-%m-%d') AS fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE tipo= '"+ tipo +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_equi', { busc_registros, cargado: true, alert: false });
+resp.render('modificar/mod_equi', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar el equipamiento:', error);
     }
@@ -159,7 +159,7 @@ export const modificar_equi = async (pet, resp)=>{
         let modificarsql = "UPDATE equipamiento SET tipo = '"+ tipo +"', fecha_mantenimiento = '"+ fecha+"' WHERE nroserie = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('mod_equi', {
+ resp.render('modificar/mod_equi', {
             cargado: false,
             alert: true,
             guardado: true,
@@ -169,7 +169,7 @@ export const modificar_equi = async (pet, resp)=>{
         });
     } catch (error) {
         console.error('Error al modificar el equipamiento:', error);
-        resp.render('mod_equi', {
+        resp.render('modificar/mod_equi', {
             cargado: false,
             alert: true,
             guardado: false,

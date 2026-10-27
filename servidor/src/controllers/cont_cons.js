@@ -15,7 +15,7 @@ export const baja_cons = (pet, resp)=>{
 }
 
 export const mod_cons = (pet, resp)=>{
-    resp.render('mod_cons', {alert: false, cargado: false})
+    resp.render('modificar/mod_cons', {alert: false, cargado: false})
 }
 
 export const busc_cons = (pet, resp)=>{
@@ -110,7 +110,7 @@ let num = pet.params.num;
         let buscsql = "SELECT idconsultorio, numero, local_idlocal FROM consultorio WHERE numero= '"+ num +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_cons', { busc_registros, cargado: true, alert: false });
+resp.render('modificar/mod_cons', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar el consultorio:', error);
     }
@@ -127,7 +127,7 @@ export const modificar_cons = async (pet, resp)=>{
         let modificarsql = "UPDATE consultorio SET numero = '"+ nro +"' WHERE idconsultorio = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('mod_cons', {
+ resp.render('modificar/mod_cons', {
             cargado: false,
             alert: true,
             guardado: true,
@@ -137,7 +137,7 @@ export const modificar_cons = async (pet, resp)=>{
         });
     } catch (error) {
         console.error('Error al modificar consultorio:', error);
-        resp.render('mod_cons', {
+        resp.render('modificar/mod_cons', {
             cargado: false,
             alert: true,
             guardado: false,

@@ -15,7 +15,7 @@ export const baja_odo = (pet, resp)=>{
 }
 
 export const mod_odo = (pet, resp)=>{
-    resp.render('mod_odo', {alert: false, cargado: false})
+    resp.render('modificar/mod_odo', {alert: false, cargado: false})
 }
 
 export const busc_odo = (pet, resp)=>{
@@ -131,7 +131,7 @@ let id = pet.params.clave;
         let buscsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE idodontologo = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_odo', { busc_registros, cargado: true, alert: false });
+resp.render('modificar/mod_odo', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar el odontologo:', error);
     }
@@ -150,7 +150,7 @@ export const mod_id = async (pet, resp)=>{
         let modificarsql = "UPDATE odontologo SET nombre = '"+ nombre +"', apellido = '"+ apellido+"', especialidad = '"+ esp +"' WHERE idodontologo = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('mod_odo', {
+ resp.render('modificar/mod_odo', {
             cargado: false,
             alert: true,
             guardado: true,
@@ -160,7 +160,7 @@ export const mod_id = async (pet, resp)=>{
         });
     } catch (error) {
         console.error('Error al modificar odontologo:', error);
-        resp.render('mod_con', {
+        resp.render('modificar/mod_con', {
             cargado: false,
             alert: true,
             guardado: false,
@@ -176,7 +176,7 @@ let nom_completo = pet.params.nombre;
         let buscsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_odo', { busc_registros, cargado: true });
+resp.render('modificar/mod_odo', { busc_registros, cargado: true });
     } catch (error) {
         console.error('Error al buscar odontologo:', error);
     }
@@ -195,7 +195,7 @@ export const mod_nom = async (pet, resp)=>{
         let modificarsql = "UPDATE afiliado SET nombre = '"+ nom +"', apellido= '"+ apellido+"', especialidad= '"+ esp+"' WHERE nombre  = '"+ nom +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
-resp.render('mod_odo', { modificar_registros, cargado: true});
+resp.render('modificar/mod_odo', { modificar_registros, cargado: true});
     } catch (error) {
         console.error('Error al modificar odontologo', error);
     }
@@ -246,7 +246,7 @@ let nom = pet.params.nom;
         let eliminarsql = "DELETE FROM odontologo WHERE CONCAT(apellido, ' ', nombre) = '"+ nom +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('baja_odo', { baja_registros, cargado: true});
+    resp.render('bajas/baja_odo', { baja_registros, cargado: true});
     }     catch (error) {
         console.error('Error al eliminar odontologo:', error);
     }

@@ -15,7 +15,7 @@ export const baja_hor = (pet, resp)=>{
 }
 
 export const mod_hor = (pet, resp)=>{
-    resp.render('mod_hor', {alert: false, cargado: false})
+    resp.render('modificar/mod_hor', {alert: false, cargado: false})
 }
 
 export const busc_hor = (pet, resp)=>{
@@ -112,7 +112,7 @@ let id = pet.params.clave;
         let buscsql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM horario WHERE idhorario = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_hor', { busc_registros, cargado: true, alert: false });
+resp.render('modificar/mod_hor', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar el horario:', error);
     }
@@ -124,7 +124,7 @@ let dia = pet.params.dia;
         let buscsql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM horario WHERE dia = '"+ dia +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('mod_hor', { busc_registros, cargado: true, alert: false });
+resp.render('modificar/mod_hor', { busc_registros, cargado: true, alert: false });
     } catch (error) {
         console.error('Error al buscar el horario:', error);
     }
@@ -143,7 +143,7 @@ export const modificar_hor = async (pet, resp)=>{
         let modificarsql = "UPDATE horario SET dia = '"+ dia +"', horario_comienzo = '"+ inicio+"',horario_final = '"+ final +"' WHERE idhorario = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('mod_hor', {
+ resp.render('modificar/mod_hor', {
             cargado: false,
             alert: true,
             guardado: true,
@@ -153,7 +153,7 @@ export const modificar_hor = async (pet, resp)=>{
         });
     } catch (error) {
         console.error('Error al modificar horario:', error);
-        resp.render('mod_hor', {
+        resp.render('modificar/mod_hor', {
             cargado: false,
             alert: true,
             guardado: false,
