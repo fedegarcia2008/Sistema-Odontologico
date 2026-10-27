@@ -1,5 +1,5 @@
 import express from 'express';
-import { menu_equi, alta_equi, baja_equi, mod_equi, busc_equi, mos_equi, nuevo_equi, buscequi_id, buscequi_fecha, buscequi_cons, modequi_id,modequi_tipo, modificar_equi, buscequi_tipo, bajaequi_id, eliminar_equi} from '../controllers/cont_equi.js';
+import { menu_equi, alta_equi, baja_equi, mod_equi, busc_equi, mos_equi, nuevo_equi, buscequi_id, buscequi_fecha, buscequi_cons, modequi_id,modequi_tipo, modificar_equi, buscequi_tipo, bajaequi_id, bajaequi_tipo ,eliminar_equi} from '../controllers/cont_equi.js';
 
 const rEquipamiento= express.Router();
 
@@ -25,6 +25,7 @@ rEquipamiento.post('/equipamiento/modificar/:clave', modificar_equi)
 
 // para borrar
 rEquipamiento.get('/equipamiento/bajaid/:clave', bajaequi_id)
+rEquipamiento.get('/equipamiento/bajatipo/:tipo', bajaequi_tipo)
 rEquipamiento.post('/equipamiento/baja/:clave', eliminar_equi)
 
 export {rEquipamiento}
