@@ -19,7 +19,7 @@
 
         <main class="formulario">
 
-    <form onsubmit="busc_form(event)" method="GET">
+    <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
             <input type="text" id="clave" name="clave">
@@ -28,9 +28,18 @@
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
-
 </form>
 
+ <form onsubmit="busc_num(event)" method="GET">
+        <div class="campo">
+            <label>Numero de Consutorio</label>
+            <input type="text" id="num" name="num">
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
+</form>
     </main>
 
 
@@ -39,7 +48,7 @@
 <% if (cargado) { %>
 <% if (busc_registros.length > 0) { %>
 
-<form onsubmit="mod_form(event)" method="POST">
+<form onsubmit="mod_id(event)" onsubmit="mod_num(event)" method="POST">
 
 <div class="campo">
             <label>Identificador Único</label>
@@ -75,14 +84,14 @@
 
 
         <script>
-        function busc_form(event) {
+        function busc_id(event) {
         event.preventDefault();
         let idejs = document.getElementById('clave').value;
         window.location.href = `/consultorio/modificarid/${idejs}`;
         document.getElementById('clave').value = "";   
         }
 
-    function mod_form(event) {
+    function mod_id(event) {
         event.preventDefault();
 
         let formulario = event.target;
@@ -91,10 +100,24 @@
         formulario.action = `/consultorio/modificar/${idejs}`;
         formulario.submit();
     }
+
+    function busc_num(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('num').value;
+        window.location.href = `/consultorio/modificarnum/${idejs}`;
+        document.getElementById('num').value = "";   
+        }
+
+    function mod_num(event) {
+        event.preventDefault();
+
+        let formulario = event.target;
+        let idejs = formulario.querySelector('[name="num"]').value;
+
+        formulario.action = `/consultorio/modificar/${idejs}`;
+        formulario.submit();
+    }
         </script>
-
-
-
 
 
  <%- include('sweet_modificar') %>
