@@ -34,7 +34,7 @@
 
 <form onsubmit="busc_nom(event)" method="GET">
         <div class="campo">
-            <label>Apellido y nombre:</label>
+            <label>Nombre:</label>
             <input type="text" id="nombre" name="nombre">
         </div>
         
@@ -43,6 +43,8 @@
         </div>
 
 </form>
+
+ </main>
    
 <% if (cargado) { %>
 <% if (busc_registros.length > 0 &&  busc_registros.length == 1) { %>
@@ -75,35 +77,6 @@
 
     </form>
 
-<% } else if (busc_registros.length >= 2) { %>
-
-        <div class="tabla-contenedor">
-            <table class="tabla-datos">
-                <thead>
-                    <tr>
-                        <th>C.I.</th>
-                        <th>Nombre</th>
-                        <th>Costo</th>
-                        <th>ID del odontologo</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <% busc_registros.forEach(ser => { %>
-                        <tr>
-                            <td><%= ser.idtratamiento %></td>
-                            <td><%= ser.nombre %></td>
-                            <td><%= ser.costo %></td>
-                            <td><%= ser.odontologo_idodontologo %></td>
-                        </tr>
-
-                    <% }); %>
-                    <p>Mas de una coincidencia al buscar. Modifique por ID</p>
-                </tbody>
-            </table>
-        </div>
-
-
  <% } else if (busc_registros.length == 0) { %>
 
         <div class="formulario vacio">
@@ -113,7 +86,7 @@
 
     <% } %>
 <% } %>
- </main>
+
 
         <script>
         function busc_id(event) {
