@@ -27,59 +27,145 @@
 
 </form>
 
+<form onsubmit="busc_ser(event)" method="GET">
+        <div class="campo">
+            <label>Servicio:</label>
+            <input type="text" id="nom" name="nom" >
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
+    </form>
+</main>
     
 <% if (cargado) { %>
-<% if (baja_registros.length > 0) { %>
+<% if (baja_registros.length > 0 &&  baja_registros.length == 1) { %>
 
-<form class="formulario resultado" onsubmit="baja_form(event)" method="POST">
+<form class="formulario resultado" onsubmit="baja_id(event)" onsubmit="baja_ser(event)" method="POST">
 
-          <div class="campo">
-            <label>id tratamiento:</label>
-        <input type="text" id="clave" name="clave" readonly value="<%= baja_registros[0].idtratamiento %>">
+<div class="campo">
+
+            <label>Id</label>
+            <input type="text" name="clave" readonly
+                            value="<%= baja_registros[0].idtratamiento %>">
+        </div>
+        
+<div class="campo">
+    <label>Tipo de Servicio</label>
+
+    <input type="text" name="nombre" autocomplete="off"  value="<%= baja_registros[0].nombre %>">
+
+    <div id="listaServicios" class="lista-servicios"></div>
 </div>
 
-    <div class="fila">
+<script>
+    let servicio = document.querySelector('[name="nombre"]');
+let lista = document.querySelector("#listaServicios");
+
+let servicios = [
+    "Odontología",
+    "Ortodoncia",
+    "Endodoncia",
+    "Periodoncia",
+    "Implantología",
+    "Odontopediatría",
+    "Cirugía bucal"
+];
+
+servicio.addEventListener("input", function () {
+    let texto = this.value.toLowerCase();
+
+    lista.innerHTML = "";
+
+    if (texto === "") {
+        lista.style.display = "none";
+        return;
+    }
+
+    let resultados = servicios.filter(function (nombre) {
+        return nombre.toLowerCase().includes(texto);
+    });
+
+    resultados.forEach(function (nombre) {
+        let opcion = document.createElement("div");
+
+        opcion.textContent = nombre;
+        opcion.classList.add("opcion-servicio");
+
+        opcion.addEventListener("click", function () {
+            servicio.value = nombre;
+            lista.style.display = "none";
+        });
+
+        lista.appendChild(opcion);
+    });
+
+    lista.style.display = resultados.length > 0 ? "block" : "none";
+});
+
+document.addEventListener("click", function (e) {
+    if (!servicio.contains(e.target) && !lista.contains(e.target)) {
+        lista.style.display = "none";
+    }
+});
+</script>
         <div class="campo">
-            <label>Nombre:</label>
-            <input type="text" name="nombre"
-                   readonly value="<%= baja_registros[0].nombre %>" >
-            </div>
+            <label>Costo</label>
+            <input type="text" name="costo" 
+                            value="<%= baja_registros[0].costo %>">
         </div>
 
-
-        <div class="fila">
         <div class="campo">
-
-            <label>Costo:</label>
-            <input type="text" name="costo"
-            
-                   readonly value="<%= baja_registros[0].costo %>">
+            <label>id Odontólogo</label>
+            <input type="text" name="idOdo" readonly
+                            value="<%= baja_registros[0].odontologo_idodontologo %>">
         </div>
-
-        <div class="fila">
-        <div class="campo">
-            <label>Id Odontologo:</label>
-            <input type="text" name="odontologo_idodontologo"
-                   readonly value="<%= baja_registros[0].odontologo_idodontologo %>">
-        </div>
-    </div>
-
 
         <div class="boton">
-            <input type="submit" value="ELIMINAR">
+            <input type="submit" value="GUARDAR CAMBIOS">
         </div>
 
     </form>
 
-<% } else { %>
-    <div class="formulario vacio">
-    <i class="fa-solid fa-user-slash"></i>
-    <p>No hay datos para mostrar.</p>
-</div>
-<% } %>
- <% } %>
+<% } else if (baja_registros.length >= 2) { %>
 
-</main>
+        <div class="tabla-contenedor">
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>C.I.</th>
+                        <th>Nombre</th>
+                        <th>Costo</th>
+                        <th>ID del odontologo</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% baja_registros.forEach(ser => { %>
+                        <tr>
+                            <td><%= ser.idtratamiento %></td>
+                            <td><%= ser.nombre %></td>
+                            <td><%= ser.costo %></td>
+                            <td><%= ser.odontologo_idodontologo %></td>
+                        </tr>
+
+                    <% }); %>
+                    <p>Mas de una coincidencia al buscar. Modifique por ID</p>
+                </tbody>
+            </table>
+        </div>
+
+
+ <% } else if (baja_registros.length == 0) { %>
+
+        <div class="formulario vacio">
+            <i class="fa-solid fa-user-slash"></i>
+            <p>No hay datos para mostrar.</p>
+        </div>
+
+    <% } %>
+<% } %>
 
         <script>
         function busc_id(event) {
@@ -89,11 +175,28 @@
         document.getElementById('clave').value = "";   
         }
 
-    function baja_form(event) {
+    function baja_id(event) {
         event.preventDefault();
 
         let formulario = event.target; // guarda en la variable formulario lo que esta dentro de <form>
         let idejs = formulario.querySelector('[name="clave"]').value;
+
+        formulario.action = `/servicio/baja/${idejs}`;
+        formulario.submit();
+    }
+
+     function busc_ser(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('nom').value;
+        window.location.href = `/servicio/bajaservicio/${idejs}`;
+        document.getElementById('nom').value = "";   
+        }
+
+    function baja_ser(event) {
+        event.preventDefault();
+
+        let formulario = event.target; // guarda en la variable formulario lo que esta dentro de <form>
+        let idejs = formulario.querySelector('[name="nom"]').value;
 
         formulario.action = `/servicio/baja/${idejs}`;
         formulario.submit();

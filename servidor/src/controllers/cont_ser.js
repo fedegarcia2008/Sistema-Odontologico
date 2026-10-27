@@ -177,6 +177,18 @@ let id = pet.params.clave;
     }
 }
 
+export const  bajaser_nom = async (pet, resp)=>{
+let nom = pet.params.nom;
+      try {
+        let bajasql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento WHERE nombre = '"+ nom +"'";
+        const [baja_registros] = await bdd.query(bajasql);
+        console.log(baja_registros)
+    resp.render('baja_ser', { baja_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar servicio:', error);
+    }
+}
+
 export const eliminar_ser = async (pet, resp)=>{
 let id = pet.params.clave;
       try {
