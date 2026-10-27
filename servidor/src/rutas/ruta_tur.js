@@ -1,5 +1,5 @@
 import express from 'express';
-import { menu_tur, alta_tur, baja_tur, mod_tur, busc_tur, mos_tur, nuevo_tur, busctur_id, busctur_fechas, busctur_afi, busctur_odo, modtur_id, modificar_tur, busctur_fecha, bajatur_id, eliminar_tur , modtur_fechas } from '../controllers/cont_tur.js';
+import { menu_tur, alta_tur, baja_tur, mod_tur, busc_tur, mos_tur, nuevo_tur, busctur_id, busctur_fechas, busctur_afi, busctur_odo, modtur_id, modificar_tur, busctur_fecha, bajatur_id, bajatur_fechas, eliminar_tur , modtur_fechas } from '../controllers/cont_tur.js';
 
 const rTurno = express.Router();
 
@@ -28,6 +28,7 @@ rTurno.get('/turno/modificarperiodo/:fecha1/:fecha2', modtur_fechas);
 
 // para borrar
 rTurno.get('/turno/bajaid/:clave', bajatur_id)
+rTurno.get('/turno/bajafechas/:fecha1/:fecha2', bajatur_fechas)
 rTurno.post('/turno/baja/:clave', eliminar_tur)
 
 export {rTurno}

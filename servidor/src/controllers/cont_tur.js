@@ -207,6 +207,19 @@ let id = pet.params.clave;
     }
 }
 
+export const  bajatur_fechas = async (pet, resp)=>{
+            let fecha1 = pet.params.fecha1;
+            let fecha2 = pet.params.fecha2;
+      try {
+        let bajasql = "SELECT idconsulta, fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE fecha BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' ORDER BY fecha, horario";;
+        const [baja_registros] = await bdd.query(bajasql);
+        console.log(baja_registros)
+    resp.render('baja_tur', { baja_registros, cargado: true });
+    }     catch (error) {
+        console.error('Error al buscar turno:', error);
+    }
+}
+
 export const eliminar_tur = async (pet, resp)=>{
 let id = pet.params.clave;
       try {
