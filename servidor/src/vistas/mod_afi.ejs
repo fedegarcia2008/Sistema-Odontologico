@@ -44,7 +44,7 @@
     
 <% if (cargado) { %>
 <% if (busc_registros.length > 0 &&  busc_registros.length == 1) { %>
-
+<main class="formulario">
 <form class="formulario resultado" onsubmit="mod_id(event)" onsubmit="mod_nom(event)"  method="POST">
 
           <div class="campo">
@@ -138,7 +138,7 @@
 
     <% } %>
 <% } %>
-
+</main>
 
         <script>
         function busc_id(event) {
