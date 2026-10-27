@@ -11,7 +11,7 @@ export const alta_equi = (pet, resp)=>{
 }
 
 export const baja_equi = (pet, resp)=>{
-    resp.render('baja_equi', {cargado: false})
+    resp.render('bajas/baja_equi', {cargado: false})
 }
 
 export const mod_equi = (pet, resp)=>{
@@ -186,7 +186,7 @@ let id = pet.params.clave;
         let bajasql = "SELECT nroserie, tipo, DATE_FORMAT(fecha_mantenimiento, '%Y-%m-%d') AS fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE nroserie= '"+ id +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('baja_equi', { baja_registros, cargado: true });
+    resp.render('bajas/baja_equi', { baja_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar equipamiento:', error);
     }
@@ -198,7 +198,7 @@ let tipo = pet.params.tipo;
         let bajasql = "SELECT nroserie, tipo, DATE_FORMAT(fecha_mantenimiento, '%Y-%m-%d') AS fecha_mantenimiento , consultorio_idconsultorio FROM equipamiento WHERE tipo= '"+ tipo +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('baja_equi', { baja_registros, cargado: true });
+    resp.render('bajas/baja_equi', { baja_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar equipamiento:', error);
     }
@@ -210,7 +210,7 @@ let id = pet.params.clave;
         let eliminarsql = "DELETE FROM equipamiento WHERE nroserie = '"+ id +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('baja_equi', { baja_registros, cargado: true});
+    resp.render('bajas/baja_equi', { baja_registros, cargado: true});
     }     catch (error) {
         console.error('Error al eliminar equipaiento:', error);
     }

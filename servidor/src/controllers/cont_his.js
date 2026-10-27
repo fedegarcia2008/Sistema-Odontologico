@@ -11,7 +11,7 @@ export const alta_his = (pet, resp)=>{
 }
 
 export const baja_his = (pet, resp)=>{
-    resp.render('baja_his', {cargado: false})
+    resp.render('bajas/baja_his', {cargado: false})
 }
 
 export const mod_his = (pet, resp)=>{
@@ -209,7 +209,7 @@ let id = pet.params.clave;
         let bajasql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE idtratamiento_realizado = '"+ id +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('baja_his', { baja_registros, cargado: true });
+    resp.render('bajas/baja_his', { baja_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar historia clinica:', error);
     }
@@ -221,7 +221,7 @@ let afi = pet.params.idAfi;
         let bajasql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE afiliado_ci_afiliado = '"+ afi +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('baja_his', { baja_registros, cargado: true });
+    resp.render('bajas/baja_his', { baja_registros, cargado: true });
     }     catch (error) {
         console.error('Error al buscar historia clinica:', error);
     }
@@ -233,7 +233,7 @@ let id = pet.params.clave;
         let eliminarsql = "DELETE FROM tratamiento_realizado WHERE idtratamiento_realizado = '"+ id +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('baja_his', { baja_registros, cargado: true});
+    resp.render('bajas/baja_his', { baja_registros, cargado: true});
     }     catch (error) {
         console.error('Error al eliminar historia clinica:', error);
     }
