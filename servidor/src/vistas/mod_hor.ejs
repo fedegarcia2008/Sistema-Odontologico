@@ -18,7 +18,7 @@
 
         <main class="formulario">
 
-    <form onsubmit="busc_form(event)" method="GET">
+    <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
             <input type="text" id="clave" name="clave">
@@ -27,7 +27,26 @@
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
+</form>
 
+<form onsubmit="busc_dia(event)" method="GET">
+        <div class="campo">
+             <label>Día </label>
+            <select name="dia">
+                <option value="#">Seleccione un día</option>
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miércoles">Miércoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Viernes">Viernes</option>
+                <option value="Sábado">Sábado</option>
+            </select>
+            <input type="text" id="dia" name="dia">
+        </div>
+        
+       <div class="boton">
+        <input type="submit" value="BUSCAR">
+        </div>
 </form>
 
     </main>
@@ -36,9 +55,9 @@
 
 
 <% if (cargado) { %>
-<% if (busc_registros.length > 0) { %>
+<% if (busc_registros.length > 0 &&  busc_registros.length == 1) { %>
 
-<form onsubmit="mod_form(event)" method="POST">
+<form onsubmit="mod_id(event)" onsubmit="mod_dia(event)"  method="POST">
 
 <div class="campo">
 
@@ -85,28 +104,77 @@
 
     </form>
 
-<% } else { %>
+<% } else if (busc_registros.length >= 2) { %>
+    
+        <div class="tabla-contenedor">
+            <table class="tabla-datos">
+                  <thead>
+                    <tr>
+                    <th >Id Horario</th>
+                    <th >Dia</th>
+                    <th >Hora inicio</th>
+                    <th >Hora Final</th>
+                    <th >Id Odontologo</th>
+            </tr>
+        </thead>
+        <tbody>
+                    <% busc_registros.forEach(hor => { %>
+                    <tr>
+                        <td><%= hor.idhorario %></td>
+                        <td><%= hor.dia %></td>
+                        <td><%= hor.horario_comienzo.slice(0, 5) %></td>
+                        <td><%= hor.horario_final.slice(0, 5) %></td>
+                        <td><%= hor.odontologo_idodontologo %></td> 
+                    </tr>   
+                <% }); %>
+                    <p>Mas de una coincidencia al buscar. Modifique por ID</p>
+                </tbody>
+            </table>
+        </div>
 
-    <p>No hay datos para mostrar.</p>
+   <% } else if (busc_registros.length == 0) { %>
 
+        <div class="formulario vacio">
+            <i class="fa-solid fa-user-slash"></i>
+            <p>No hay datos para mostrar.</p>
+        </div>
+
+    <% } %>
 <% } %>
- <% } %>
+
 
 
 
         <script>
-        function busc_form(event) {
+        function busc_id(event) {
         event.preventDefault();
         let idejs = document.getElementById('clave').value;
         window.location.href = `/horario/modificarid/${idejs}`;
         document.getElementById('clave').value = "";   
         }
 
-    function mod_form(event) {
+    function mod_id(event) {
         event.preventDefault();
 
         let formulario = event.target;
         let idejs = formulario.querySelector('[name="clave"]').value;
+
+        formulario.action = `/horario/modificar/${idejs}`;
+        formulario.submit();
+    }
+
+         function busc_dia(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('dia').value;
+        window.location.href = `/horario/mmodificardia/${idejs}`;
+        document.getElementById('dia').value = "";   
+        }
+
+    function mod_dia(event) {
+        event.preventDefault();
+
+        let formulario = event.target;
+        let idejs = formulario.querySelector('[name="dia"]').value;
 
         formulario.action = `/horario/modificar/${idejs}`;
         formulario.submit();

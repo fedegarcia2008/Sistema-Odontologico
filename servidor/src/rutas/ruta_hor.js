@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { menu_hor, alta_hor, baja_hor, mod_hor, busc_hor, mos_hor, nuevo_hor, buschor_id, buschor_odo, buschor_dia, modhor_id, modificar_hor, bajahor_id, eliminar_hor } from '../controllers/cont_hor.js';
+import { menu_hor, alta_hor, baja_hor, mod_hor, busc_hor, mos_hor, nuevo_hor, buschor_id, buschor_odo, buschor_dia, modhor_id, modhor_dia, modificar_hor, bajahor_id, eliminar_hor } from '../controllers/cont_hor.js';
 
 const rHorario = express.Router();
 
@@ -21,7 +21,11 @@ rHorario.get('/horario/buscarodontologo/:idOdo', buschor_odo)
 
 //para modificar
 rHorario.get('/horario/modificarid/:clave', modhor_id)
+rHorario.get('/horario/modificardia/:dia', modhor_dia)
 rHorario.post('/horario/modificar/:clave', modificar_hor)
+
+
+
 
 
 // para borrar

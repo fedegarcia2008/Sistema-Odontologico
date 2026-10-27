@@ -118,6 +118,18 @@ resp.render('mod_hor', { busc_registros, cargado: true, alert: false });
     }
 };
 
+export const  modhor_dia = async (pet, resp)=>{
+let dia = pet.params.dia;
+      try {
+        let buscsql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM horario WHERE dia = '"+ dia +"'";
+        const [busc_registros] = await bdd.query(buscsql);
+        console.log(busc_registros)
+resp.render('mod_hor', { busc_registros, cargado: true, alert: false });
+    } catch (error) {
+        console.error('Error al buscar el horario:', error);
+    }
+};
+
 export const modificar_hor = async (pet, resp)=>{
      let id, dia , inicio, final, odo;
 
@@ -149,6 +161,8 @@ export const modificar_hor = async (pet, resp)=>{
         });
     }
 };
+
+
 
 
 // para borrar
