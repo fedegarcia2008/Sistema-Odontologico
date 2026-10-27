@@ -77,7 +77,33 @@
 
     </form>
 
- <% } else if (busc_registros.length == 0) { %>
+ <% } else if (busc_registros.length >= 2) { %>
+
+        <div class="tabla-contenedor">
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>C.I. Afiliado</th>
+                        <th>Saldo</th>
+                        <th>ID Historia Clínica</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% busc_registros.forEach(cta => { %>
+                        <tr>
+                            <td><%= cta.afiliado_ci_afiliado %></td>
+                            <td><%= cta.saldo %></td>
+                            <td><%= cta.tratamiento_realizado_idtratamiento_realizado %></td>
+                        </tr>
+                        
+                    <% }); %>
+                    <p>Mas de una coincidencia al buscar. Modifique por ID</p>
+                </tbody>
+            </table>
+        </div>
+
+    <% } else if (busc_registros.length == 0) { %>
 
         <div class="formulario vacio">
             <i class="fa-solid fa-user-slash"></i>
