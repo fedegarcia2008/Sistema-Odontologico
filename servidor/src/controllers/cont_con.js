@@ -105,6 +105,18 @@ resp.render('mod_con', { busc_registros, cargado: true, alert: false });
     }
 };
 
+export const modcon_nom = async (pet, resp)=>{
+let nom = pet.params.nombre;
+      try {
+        let buscsql = "SELECT idconvenio, nombre, rebaja FROM convenio WHERE nombre = '"+ nom +"'";
+        const [busc_registros] = await bdd.query(buscsql);
+        console.log(busc_registros)
+resp.render('mod_con', { busc_registros, cargado: true, alert: false });
+    } catch (error) {
+        console.error('Error al buscar el nombre:', error);
+    }
+};
+
 export const modificar_con = async (pet, resp)=>{
      let id, nombre, rebaja;
 
