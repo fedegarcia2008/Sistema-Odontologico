@@ -43,7 +43,8 @@
 
         <div class="campo">
             <label>Id afiliado <span class="asterisco">*</span></label>
-            <input type="text" name="idAfi" maxlength="10" required>
+            <input type="text" name="idAfi"  minlength="8" maxlength="8"
+                   pattern="[0-9]{8}" autocomplete="off" required>
         </div>
 
         <div class="campo">
