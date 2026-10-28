@@ -16,6 +16,7 @@ let idAfi = document.querySelector('[name="idAfi"]');
     }
  });
 
+ // fecha
  let fecha = document.querySelector('[name="fecha"]'); 
 
     let hoy = new Date(); // Obtiene la fecha actual
@@ -24,3 +25,21 @@ let idAfi = document.querySelector('[name="idAfi"]');
     let dia = String(hoy.getDate()).padStart(2, "0"); 
 
     fecha.min = anio + "-" + mes + "-" + dia; // No permite seleccionar fechas anteriores a hoy
+
+
+    // hora
+    let hora = document.querySelector('[name="hora"]'); // Busca el campo hora
+
+    hora.min = "08:00"; 
+    hora.max = "20:00"; 
+    hora.step = "300"; // Permite intervalos de 5 minutos, esta en segunndos
+
+hora.addEventListener("input", function () { 
+    if (this.value < "08:00" || this.value > "20:00") { // Comprueba el rango horario
+        this.setCustomValidity("El turno debe ser entre las 08:00 y las 20:00.");
+    } else if (this.validity.stepMismatch) { // Comprueba si respeta los intervalos de 5 minutos
+        this.setCustomValidity("El horario debe ser múltiplo de 5 minutos.");
+    } else {
+        this.setCustomValidity(""); // saca el mensaje si la hora es válida
+    }
+});
