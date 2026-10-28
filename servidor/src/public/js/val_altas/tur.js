@@ -16,11 +16,11 @@ let idAfi = document.querySelector('[name="idAfi"]');
     }
  });
 
- let fecha = document.querySelector('[name="fecha"]'); // Busca el campo fecha
+ let fecha = document.querySelector('[name="fecha"]'); 
 
     let hoy = new Date(); // Obtiene la fecha actual
-    let anio = hoy.getFullYear(); // Obtiene el año actual
-    let mes = String(hoy.getMonth() + 1).padStart(2, "0"); // Obtiene el mes
-    let dia = String(hoy.getDate()).padStart(2, "0"); // Obtiene el día
+    let anio = hoy.getFullYear(); 
+    let mes = String(hoy.getMonth() + 1).padStart(2, "0"); 
+    let dia = String(hoy.getDate()).padStart(2, "0"); 
 
     fecha.min = anio + "-" + mes + "-" + dia; // No permite seleccionar fechas anteriores a hoy
