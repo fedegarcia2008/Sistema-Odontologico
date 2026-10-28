@@ -17,7 +17,7 @@ let idAfi = document.querySelector('[name="idAfi"]');
  });
 
  // fecha
- let fecha = document.querySelector('[name="fecha"]'); 
+    let fecha = document.querySelector('[name="fecha"]'); 
 
     let hoy = new Date(); // Obtiene la fecha actual
     let anio = hoy.getFullYear(); 
