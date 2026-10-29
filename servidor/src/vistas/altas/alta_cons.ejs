@@ -14,22 +14,35 @@
 
 <h1>ALTA CONSULTORIO</h1>
 
-    <main class="formulario">
+    <main>
+    <section class="panel">
+        <div class="panel-cabecera">
+            <i class="fa-solid fa-user-plus"></i>
+            <div>
+                <h2>Nuevo Consultorio</h2>
+                <small>Los campos con * son obligatorios</small>
+            </div>
+        </div>
+
         <form action="/consultorio/nuevoalta" method="POST">
 
+            <div class="panel-campos">
         <div class="campo">
             <label>Identificador Único <span class="asterisco">*</span></label>
-            <input type="text" name="clave" maxlength="3" autocomplete="off" required>
+            <input type="text" name="clave" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
+            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
         </div>
         
         <div class="campo">
             <label>Nro. de consultorio <span class="asterisco">*</span></label>
-            <input type="text" name="nCons" maxlength="3" autocomplete="off" required>
+            <input type="text" name="nCons" maxlength="3" placeholder="Ej: 001" autocomplete="off" required>
+            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
         </div>
 
                 <div class="campo">
             <label>ID Local <span class="asterisco">*</span></label>
             <input type="text" value="1" name="idLocal" autocomplete="off" readonly>
+        </div>
         </div>
         
         <div class="boton">
@@ -37,9 +50,10 @@
         </div>
         
     </form>
+    </section>
     </main>
     
-<%- include('../componentes/sweet_alert') %>
+<%- include('../componentes/sweet_alta') %>
 
 <%- include('../componentes/footer') %>
 

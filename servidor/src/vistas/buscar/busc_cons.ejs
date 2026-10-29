@@ -16,12 +16,18 @@
 
     <h1>BUSCAR CONSULTORIO</h1>
 
-        <main class="formulario">
+    <main class="busq-contenedor">
+    <div class="busq-grid">
 
-    <form onsubmit="busc_id(event)" method="GET">
+        <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+        <div>
+        <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave"  maxlength="3" autocomplete="off" required>
+            <input type="text" id="clave" name="clave" placeholder="Ej: 123" maxlength="3" autocomplete="off" required>
+        <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+
+        </div> 
         </div>
         
        <div class="boton">
@@ -29,19 +35,24 @@
         </div>
         
         </form>
-        <form onsubmit="busc_num(event)" method="GET">
+
+
+        <form class="busq-item" onsubmit="busc_num(event)" method="GET">
+        <div>
+        <h2><i class="fa-solid fa-id-card"></i> Buscar por numero de consultorio</h2>
         <div class="campo">
             <label>Numero de Consultorio:</label>
-            <input type="text" id="cons" name="cons"  maxlength="3" autocomplete="off" required>
+            <input type="text" id="cons" name="cons" placeholder="Ej: 123" maxlength="3" autocomplete="off" required>
+        <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
         </div>
+         </div>
         
        <div class="boton">
         <input type="submit" value="BUSCAR por nro">
         </div>
-
+        </form>
         
-</form>
-
+</div>
 </main>
 
 <% if (cargadoid) { %>

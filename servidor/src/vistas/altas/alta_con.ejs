@@ -15,12 +15,24 @@
 
 <h1>ALTA CONVENIO</h1>
 
-<main class="formulario">
-        <form action="/convenio/nuevoalta" method="POST">
-        <div class="campo">
+<main>
+    <section class="panel">
+        <div class="panel-cabecera">
+            <i class="fa-solid fa-user-plus"></i>
+            <div>
+                <h2>Nuevo Convenio</h2>
+                <small>Los campos con * son obligatorios</small>
+            </div>
+        </div>
 
+        <form action="/convenio/nuevoalta" method="POST">
+        <div class="panel-campos">
+        
+            <div class="campo">
             <label>Identificador Único <span class="asterisco">*</span></label>
-            <input type="text" name="clave" maxlength="2" autocomplete="off" required>
+            <input type="text" name="clave" maxlength="2" placeholder="Ej: 12" autocomplete="off" required>
+            <span class="ayuda">2 dígitos, sin puntos ni espacios</span>
+        
         </div>
 
         <div class="campo">
@@ -30,7 +42,9 @@
         
         <div class="campo">
             <label>Rebaja <span class="asterisco">*</span></label>
-            <input type="text" name="rebaja" maxlength="6" autocomplete="off" required>
+            <input type="text" name="rebaja" maxlength="2" autocomplete="off" required>
+            <span class="ayuda">2 dígitos, sin puntos ni espacios</span>
+        </div>
         </div>
 
 
@@ -39,6 +53,7 @@
         </div>
        
     </form>
+    </section>
     </main>
 
    <script src="/js/val_altas/conv.js"></script>
