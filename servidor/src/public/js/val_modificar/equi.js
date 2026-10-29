@@ -49,8 +49,7 @@ function busc_id(event) {
     }
 });
 
-    let equipamiento = document.querySelector('[name="tipo"]');
-let lista = document.querySelector("#listaEquipamiento");
+  let equipamientosInputs = document.querySelectorAll('[name="tipo"]');
 
 let equipamientos = [
     "Sillón odontológico",
@@ -160,40 +159,50 @@ let equipamientos = [
     "Sistema de alarma"
 ];
 
-equipamiento.addEventListener("input", function () {
-    let texto = this.value.toLowerCase();
+equipamientosInputs.forEach(function (equipamiento) {
 
-    lista.innerHTML = "";
+    let lista = equipamiento.parentElement.querySelector("#listaEquipamiento");
 
-    if (texto === "") {
-        lista.style.display = "none";
+    if (!lista) {
         return;
     }
 
-    let resultados = equipamientos.filter(function (tipo) {
-        return tipo.toLowerCase().includes(texto);
-    });
+    equipamiento.addEventListener("input", function () {
+        let texto = this.value.toLowerCase();
 
-    resultados.forEach(function (tipo) {
-        let opcion = document.createElement("div");
+        lista.innerHTML = "";
 
-        opcion.textContent = tipo;
-        opcion.classList.add("opcion");
-
-        opcion.addEventListener("click", function () {
-            equipamiento.value = tipo;
+        if (texto === "") {
             lista.style.display = "none";
+            return;
+        }
+
+        let resultados = equipamientos.filter(function (tipo) {
+            return tipo.toLowerCase().includes(texto);
         });
 
-        lista.appendChild(opcion);
+        resultados.forEach(function (tipo) {
+            let opcion = document.createElement("div");
+
+            opcion.textContent = tipo;
+            opcion.classList.add("opcion");
+
+            opcion.addEventListener("click", function () {
+                equipamiento.value = tipo;
+                lista.style.display = "none";
+            });
+
+            lista.appendChild(opcion);
+        });
+
+        lista.style.display = resultados.length > 0 ? "block" : "none";
     });
 
-    lista.style.display = resultados.length > 0 ? "block" : "none";
-});
+    document.addEventListener("click", function (e) {
+        if (!equipamiento.contains(e.target) && !lista.contains(e.target)) {
+            lista.style.display = "none";
+        }
+    });
 
-document.addEventListener("click", function (e) {
-    if (!equipamiento.contains(e.target) && !lista.contains(e.target)) {
-        lista.style.display = "none";
-    }
 });
     

@@ -57,8 +57,9 @@
 
         <div class="campo">
             <label>Tipo </label>
-            <input type="text" name="tipo" 
+            <input type="text" name="tipo"  maxlength="50" autocomplete="off" 
                             value="<%= busc_registros[0].tipo %>">
+             <div id="listaEquipamiento" class="lista"></div>
         </div>
         
         <div class="campo">
