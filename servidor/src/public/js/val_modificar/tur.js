@@ -34,3 +34,9 @@ function busc_id(event) {
         formulario.action = `/turno/modificarperiodo/${idejs}/${idejs2}`;
         formulario.submit();
     }
+
+    let clave = document.querySelector('[name="clave"]');
+
+    clave.addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, "");
+    });
