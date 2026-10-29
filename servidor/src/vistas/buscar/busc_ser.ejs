@@ -21,7 +21,7 @@
     <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="2">
+            <input type="text" id="clave" name="clave" maxlength="2" required>
         </div>
         
        <div class="boton">
@@ -34,7 +34,7 @@
     <form onsubmit="busc_nom(event)" method="GET">
         <div class="campo">
             <label>Nombre del Servicio</label>
-            <input type="text" id="nom" name="nom" autocomplete="off"> 
+            <input type="text" id="nom" name="nom" autocomplete="off" required> 
      <div id="listaServicios" class="lista"></div>
         </div>
         
@@ -47,7 +47,7 @@
      <form onsubmit="busc_odo(event)" method="GET">
         <div class="campo">
             <label>Id del odontologo</label>
-            <input type="text" id="odo" name="odo" maxlength="3" autocomplete="off"> 
+            <input type="text" id="odo" name="odo" maxlength="3" autocomplete="off" required> 
         </div>
         
        <div class="boton">

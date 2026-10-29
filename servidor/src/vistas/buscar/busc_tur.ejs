@@ -20,7 +20,7 @@
     <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off">
+            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off" required>
         </div>
         
        <div class="boton">
@@ -33,7 +33,7 @@
         <form onsubmit="busc_fecha(event)" method="GET">
             <div class="campo">
                 <label>Fecha:</label>
-                <input type="date" id="fecha" name="fecha">
+                <input type="date" id="fecha" name="fecha" required>
             </div>
 
             <div class="boton">
@@ -44,9 +44,9 @@
         <form onsubmit="busc_fechas(event)" method="GET">
             <div class="campo">
                 <label>Desde:</label>
-                <input type="date" id="fecha1" name="fecha1">
+                <input type="date" id="fecha1" name="fecha1" required>
                 <label>Hasta:</label>
-                <input type="date" id="fecha2" name="fecha2">
+                <input type="date" id="fecha2" name="fecha2" required>
             </div>
 
             <div class="boton">
@@ -58,7 +58,7 @@
         <form onsubmit="busc_odo(event)" method="GET">
             <div class="campo">
                 <label>ID odontólogo:</label>
-                <input type="text" id="idOdo" name="idOdo" maxlength="3" autocomplete="off">
+                <input type="text" id="idOdo" name="idOdo" maxlength="3" autocomplete="off" required>
             </div>
 
             <div class="boton">
@@ -71,7 +71,7 @@
             <div class="campo">
                 <label>id afiliado<span class="asterisco">*</span></label>
             <input type="text" name="idAfi"  minlength="8" maxlength="8"
-                   pattern="[0-9]{8}" autocomplete="off">
+                   pattern="[0-9]{8}" autocomplete="off" required>
             </div>
 
             <div class="boton">

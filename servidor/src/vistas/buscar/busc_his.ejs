@@ -21,7 +21,7 @@
     <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off"  >
+            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off" required >
         </div>
         
        <div class="boton">
@@ -34,7 +34,7 @@
         <form onsubmit="busc_fecha(event)" method="GET">
             <div class="campo">
                 <label>Fecha:</label>
-                <input type="date" id="fecha" name="fecha">
+                <input type="date" id="fecha" name="fecha" required>
             </div>
 
             <div class="boton">
@@ -47,7 +47,7 @@
             <div class="campo">
                 <label>Id afiliado <span class="asterisco">*</span></label>
             <input type="text" name="idAfi"  minlength="8" maxlength="8"
-                   pattern="[0-9]{8}" autocomplete="off" >
+                   pattern="[0-9]{8}" autocomplete="off" required>
             </div>
 
             <div class="boton">
@@ -58,7 +58,7 @@
         <form onsubmit="busc_odo(event)" method="GET">
             <div class="campo">
                   <label>Id odontologo <span class="asterisco">*</span></label>
-            <input type="text" name="idOdo" maxlength="3">
+            <input type="text" name="idOdo" maxlength="3" required>
             </div>
 
             <div class="boton">
@@ -71,7 +71,7 @@
 
   <div class="campo">
             <label>Tipo de Tratamiento </label>
-            <select name="trat_rea" id="trat_rea" >
+            <select name="trat_rea" id="trat_rea" required>
                 <option value="">Seleccione una opción</option>
                 <option value= 1>Finalizado</option>
                 <option value= 0>En curso</option>
