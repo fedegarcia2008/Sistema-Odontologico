@@ -84,15 +84,23 @@
                    value="<%= busc_registros[0].tel_fijo %>" maxlength="9" autocomplete="off">
         </div>
 
+
+
         <div class="fila">
-        <div class="campo">
-           <label>Tipo de plan <span class="asterisco">*</span></label>
-            <select name="tipo" required  value="<%= busc_registros[0].tipo_plan %>">
-                <option value="">Seleccione un plan</option>
-                <option value="Individual">Individual</option>
-                <option value="Grupal">Grupal</option>
-            </select>
-        </div>
+    <div class="campo">
+        <label>Tipo de plan <span class="asterisco">*</span></label>
+        <select name="tipo" required>
+            <option value="">Seleccione un plan</option>
+            <option value="Individual"
+                <%= busc_registros[0].tipo_plan === 'Individual' ? 'selected' : '' %>>
+                Individual
+            </option>
+            <option value="Grupal"
+                <%= busc_registros[0].tipo_plan === 'Grupal' ? 'selected' : '' %>>
+                Grupal
+            </option>
+        </select>
+    </div>
 </div>
 
         <div class="boton">
