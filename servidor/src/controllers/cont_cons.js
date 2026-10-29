@@ -19,7 +19,7 @@ export const mod_cons = (pet, resp)=>{
 }
 
 export const busc_cons = (pet, resp)=>{
-    resp.render('buscar/busc_cons', {cargadoid: false, cargadotabla: false,})
+    resp.render('buscar/busc_cons', {alert: false, cargadoid: false, cargadotabla: false,})
 }
 
 
@@ -73,11 +73,35 @@ export const buscons_id = async (pet, resp)=>{
         let buscarsql = "SELECT idconsultorio, numero, local_idlocal FROM consultorio WHERE idconsultorio = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('buscar/busc_cons', { busc_registros, cargadoid: true, cargadotabla: false, });
-    }     catch (error) {
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_cons', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'success',
+                msj: 'CONSULTORIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_cons', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN CONSULTORIO CON ESE NÚMERO'
+            });
+        }
+    } catch (error) {
         console.error('Error al buscar consultorio:', error);
+        resp.render('buscar/busc_cons', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL CONSULTORIO',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 export const buscons_nrocons = async (pet, resp)=>{
       let nro = pet.params.cons;
