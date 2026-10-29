@@ -40,18 +40,18 @@ export const nuevo_ser = async (pet, resp) => {
         const [registro] = await bdd.query(altasql);
         console.log(registro)
         resp.render('altas/alta_ser', {
-            guardado: true,
             alert: true,
-            msj: 'Servicio Guardado',
+            icono: 'success',
+            msj: 'SERVICIO GUARDADO',
             tiempo: 1500,
-            botonConfirma: false
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
         resp.render('altas/alta_ser', {
-            guardado: false,
             alert: true,
-            msj: 'No se pudo guardar el servicio.'
+            icono: 'error',
+            msj: 'ERROR AL GUARDAR EL SERVICIO',
+            tiempo: 1500,
         });
     }
 };
