@@ -72,11 +72,35 @@ export const buscon_id = async (pet, resp)=>{
         let buscarsql = "SELECT idconvenio, nombre, rebaja FROM convenio WHERE idconvenio = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('buscar/busc_con', { busc_registros, cargadoid: true, cargadotabla: false,});
-    }     catch (error) {
-        console.error('Error al buscar la consulta:', error);
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_con', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'success',
+                msj: 'CONVENIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_con', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN CONVENIO CON ESE ID'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar convenio:', error);
+        resp.render('buscar/busc_con', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL CONVENIO',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 export const buscon_nom = async (pet, resp)=>{
       let nom = pet.params.nombre;
