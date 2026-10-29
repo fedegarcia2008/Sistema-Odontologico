@@ -95,16 +95,15 @@ export const buscafi_id = async (pet, resp)=>{
                 alert: true,
                 icono: 'success',
                 msj: 'AFILIADO ENCONTRADO',
-                tiempo: 1500,
+                tiempo: 2000,
             });
         } else {
             resp.render('buscar/busc_afi', {
                 busc_registros,
-             
                 cargadoid: true, cargadotabla: false,
                 alert: true,
                 icono: 'info',
-                tiempo: 1500,
+                tiempo: 2000,
                 msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESA CI'
             });
         }
@@ -114,7 +113,7 @@ export const buscafi_id = async (pet, resp)=>{
             alert: true,
             icono: 'error',
             msj: 'ERROR AL BUSCAR EL AFILIADO',
-            tiempo: 1500,
+            tiempo: 2000,
         });
     }
 };
@@ -131,27 +130,28 @@ export const buscafi_nom = async (pet, resp)=>{
                 busc_registros,
                 cargadoid: false, cargadotabla: true,
                 alert: true,
-                guardado: true,
-                msj: 'Afiliado encontrado',
-                tiempo: 1500,
-                botonConfirma: false
+                icono: 'success',
+                msj: 'AFILIADO ENCONTRADO',
+                tiempo: 2000,
             });
         } else {
             resp.render('buscar/busc_afi', {
                 busc_registros,
-                cargadoid: false, cargadotabla: true,
+             
+                cargadoid: true, cargadotabla: false,
                 alert: true,
-                guardado: false,
-                msj: 'No se encontró ningún afiliado con ese nombre.'
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESE NOMBRE'
             });
         }
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
         resp.render('buscar/busc_afi', {
-            cargadoid: false, cargadotabla: true,
             alert: true,
-            guardado: false,
-            msj: 'No se pudo buscar el afiliado.'
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL AFILIADO',
+            tiempo: 2000,
         });
     }
 };
@@ -169,27 +169,28 @@ export const buscafi_plan = async (pet, resp)=>{
                 busc_registros,
                 cargadoid: false, cargadotabla: true,
                 alert: true,
-                guardado: true,
-                msj: 'Afiliado encontrado',
-                tiempo: 1500,
-                botonConfirma: false
+                icono: 'success',
+                msj: 'AFILIADO ENCONTRADO',
+                tiempo: 2000,
             });
         } else {
             resp.render('buscar/busc_afi', {
                 busc_registros,
-                cargadoid: false, cargadotabla: true,
+             
+                cargadoid: true, cargadotabla: false,
                 alert: true,
-                guardado: false,
-                msj: 'No se encontró ningún afiliado con ese nombre.'
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESE PLAN'
             });
         }
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
         resp.render('buscar/busc_afi', {
-            cargadoid: false, cargadotabla: true,
             alert: true,
-            guardado: false,
-            msj: 'No se pudo buscar el afiliado.'
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL AFILIADO',
+            tiempo: 2000,
         });
     }
 };
