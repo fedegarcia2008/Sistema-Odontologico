@@ -16,51 +16,59 @@
 
     <h1>BUSCAR AFILIADO</h1>
 
-        <main class="formulario">
+        <main class="busq-contenedor">
+    <div class="busq-grid">
 
-    <form onsubmit="busc_id(event)" method="GET">
-        <div class="campo">
-            <label>Clave de Identificación <span class="asterisco">*</span></label>
-            <input type="text" name="clave" id="clave"  minlength="8" maxlength="8"
-                   pattern="[0-9]{8}" autocomplete="off" required>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR POR CI">
-        </div>
-</form>
+        <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
+                <div class="campo">
+                    <label>Clave de Identificación <span class="asterisco">*</span></label>
+                    <input type="text" name="clave" id="clave" minlength="8" maxlength="8"
+                           pattern="[0-9]{8}" autocomplete="off" placeholder="Ej: 12345678" required>
+                    <span class="ayuda">8 dígitos, sin puntos ni espacios</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR C.I.">
+            </div>
+        </form>
 
-        
+        <form class="busq-item" onsubmit="busc_nom(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-user"></i> Buscar por nombre</h2>
+                <div class="campo">
+                    <label>Apellido y Nombre</label>
+                    <input type="text" id="nombre" name="nombre" maxlength="20"
+                           autocomplete="off" placeholder="Ej: Torres Ana" required>
+                    <span class="ayuda">Escribí el apellido y el nombre</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR NOMBRE">
+            </div>
+        </form>
 
-    <form onsubmit="busc_nom(event)" method="GET">
-        <div class="campo">
-            <label>Apellido y Nombre:</label>
-            <input type="text" id="nombre" name="nombre" maxlength="20" autocomplete="off" required>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR POR NOMBRE">
-        </div>
-</form>
+        <form class="busq-item" onsubmit="busc_plan(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-file-contract"></i> Buscar por plan</h2>
+                <div class="campo">
+                    <label>Tipo de plan <span class="asterisco">*</span></label>
+                    <select name="plan" id="plan" required>
+                        <option value="">Seleccione un plan</option>
+                        <option value="Individual">Individual</option>
+                        <option value="Grupal">Grupal</option>
+                    </select>
+                    <span class="ayuda">Muestra todos los afiliados del plan</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR PLAN">
+            </div>
+        </form>
 
-
-    <form onsubmit="busc_plan(event)" method="GET">
-
-  <div class="campo">
-            <label>Tipo de plan <span class="asterisco">*</span></label>
-            <select name="plan" id="plan" required>
-                <option value="" >Seleccione un plan</option>
-                <option value="Individual">Individual</option>
-                <option value="Grupal">Grupal</option>
-            </select>
-     </div> 
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR POR TIPO DE PLAN">
-        </div>
-</form>
-
-    </main>
+    </div>
+</main>
 
 <% if (cargadoid) { %>
     <section class="res-contenedor">
