@@ -66,11 +66,11 @@
 
                 <div class="campo">
             <label>Tratamiento finalizado </label>
-            <select name="idTrat" 
+            <select name="idTrat" required 
                             value="<%= busc_registros[0].tratamiento_realizado %>">
-                <option value="">Seleccione una opción</option>
-                <option value= 1>Finalizado</option>
-                <option value= 0>En curso</option>
+                    <option value="">Seleccione un plan</option>
+                    <option value= 1 <%= busc_registros[0].tratamiento_realizado == 'Individual' ? 'selected' : '' %>>Finalizado</option>
+                    <option value= 0 <%= busc_registros[0].tratamiento_realizado == 'Grupal' ? 'selected' : '' %>>En curso</option>
             </select>
         </div>
         <div class="campo">
