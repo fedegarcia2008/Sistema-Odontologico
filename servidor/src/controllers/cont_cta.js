@@ -19,7 +19,7 @@ export const mod_cta = (pet, resp)=>{
 }
 
 export const busc_cta = (pet, resp)=>{
-    resp.render('buscar/busc_cta', {cargadoid: false, cargadotabla: false,})
+    resp.render('buscar/busc_cta', {alert: false, cargadoid: false, cargadotabla: false,})
 }
 
 
