@@ -20,8 +20,9 @@
 
     <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
-            <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave"  >
+          <label>Clave de Identificación <span class="asterisco">*</span></label>
+            <input type="text" name="clave"  minlength="8" maxlength="8"
+                   pattern="[0-9]{8}" autocomplete="off" >
         </div>
         
        <div class="boton">
@@ -32,7 +33,7 @@
 <form onsubmit="busc_idhis(event)" method="GET">
         <div class="campo">
             <label>Id de la historia clinica:</label>
-            <input type="text" id="clavehis" name="clavehis">
+            <input type="text" id="clavehis" name="clavehis" maxlength="3" autocomplete="off">
         </div>
         
        <div class="boton">
@@ -43,7 +44,7 @@
 <form onsubmit="busc_nom(event)" method="GET">
         <div class="campo">
             <label>apellido y Nombre del afiliado :</label>
-            <input type="text" id="nombre" name="nombre">
+            <input type="text" id="nombre" name="nombre" maxlength="20" autocomplete="off">
         </div>
         
        <div class="boton">
