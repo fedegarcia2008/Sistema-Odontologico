@@ -35,7 +35,7 @@
         <div class="campo">
              <label>Nombre del Servicio</label>
             <input type="text" id="nom" name="nom" autocomplete="off" required> 
-     <div id="listaServicios" class="lista"></div>
+     <div id="listaServicios1" class="lista1"></div>
         </div>
         
        <div class="boton">
@@ -64,60 +64,10 @@
     <div id="listaServicios" class="lista-servicios"></div>
 </div>
 
-<script>
-    let servicio = document.querySelector('[name="nombre"]');
-let lista = document.querySelector("#listaServicios");
 
-let servicios = [
-    "Odontología",
-    "Ortodoncia",
-    "Endodoncia",
-    "Periodoncia",
-    "Implantología",
-    "Odontopediatría",
-    "Cirugía bucal"
-];
-
-servicio.addEventListener("input", function () {
-    let texto = this.value.toLowerCase();
-
-    lista.innerHTML = "";
-
-    if (texto === "") {
-        lista.style.display = "none";
-        return;
-    }
-
-    let resultados = servicios.filter(function (nombre) {
-        return nombre.toLowerCase().includes(texto);
-    });
-
-    resultados.forEach(function (nombre) {
-        let opcion = document.createElement("div");
-
-        opcion.textContent = nombre;
-        opcion.classList.add("opcion-servicio");
-
-        opcion.addEventListener("click", function () {
-            servicio.value = nombre;
-            lista.style.display = "none";
-        });
-
-        lista.appendChild(opcion);
-    });
-
-    lista.style.display = resultados.length > 0 ? "block" : "none";
-});
-
-document.addEventListener("click", function (e) {
-    if (!servicio.contains(e.target) && !lista.contains(e.target)) {
-        lista.style.display = "none";
-    }
-});
-</script>
         <div class="campo">
             <label>Costo</label>
-            <input type="text" name="costo" 
+            <input type="text" name="costo" maxlength="8" autocomplete="off"
                             value="<%= busc_registros[0].costo %>">
         </div>
 
