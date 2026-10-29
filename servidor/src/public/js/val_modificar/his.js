@@ -50,3 +50,12 @@
         this.setCustomValidity("");
     }
  });
+
+ let fecha = document.querySelector('[name="fecha"]'); // Busca el campo fecha
+
+    let hoy = new Date(); // Obtiene la fecha actual
+    let anio = hoy.getFullYear(); // Obtiene el año
+    let mes = String(hoy.getMonth() + 1).padStart(2, "0"); // Obtiene el mes
+    let dia = String(hoy.getDate()).padStart(2, "0"); // Obtiene el día
+
+fecha.max = anio + "-" + mes + "-" + dia; // No permite fechas posteriores a hoy
