@@ -68,7 +68,7 @@
             <label>Tratamiento finalizado </label>
             <select name="idTrat" required 
                             value="<%= busc_registros[0].tratamiento_realizado %>">
-                    <option value="">Seleccione un plan</option>
+                    <option value="">Estado del tratamiento</option>
                     <option value= 1 <%= busc_registros[0].tratamiento_realizado == 'Individual' ? 'selected' : '' %>>Finalizado</option>
                     <option value= 0 <%= busc_registros[0].tratamiento_realizado == 'Grupal' ? 'selected' : '' %>>En curso</option>
             </select>
