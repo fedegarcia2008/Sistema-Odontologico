@@ -56,8 +56,8 @@
     <div class="fila">
         <div class="campo">
             <label>Nombre:</label>
-            <input type="text" name="nombre" 
-                   value="<%= busc_registros[0].nombre %>" required>
+            <input type="text" name="nombre" maxlength="20" autocomplete="off"
+                   value="<%= busc_registros[0].nombre %>">
             </div>
         </div>
 
@@ -66,28 +66,33 @@
         <div class="campo">
 
             <label>Apellido:</label>
-            <input type="text" name="apellido"
-                   value="<%= busc_registros[0].apellido %>" required>
+            <input type="text" name="apellido" maxlength="20" autocomplete="off"
+                   value="<%= busc_registros[0].apellido %>" >
         </div>
 
         <div class="fila">
         <div class="campo">
             <label>Celular:</label>
             <input type="text" name="telCelular"
-                   value="<%= busc_registros[0].tel_cel %>">
+                   value="<%= busc_registros[0].tel_cel %>" maxlength="12" autocomplete="off">
         </div>
     </div>
 
         <div class="campo">
             <label>Teléfono fijo:</label>
             <input type="text" name="telFijo"
-                   value="<%= busc_registros[0].tel_fijo %>">
+                   value="<%= busc_registros[0].tel_fijo %>" maxlength="9" autocomplete="off">
         </div>
 
         <div class="fila">
         <div class="campo">
-            <label>Tipo de plan</label>
-            <input type="text" name="tipo" required value="<%= busc_registros[0].tipo_plan %>" >
+           <label>Tipo de plan <span class="asterisco">*</span></label>
+            <select name="tipo" required>
+                <option value="">Seleccione un plan</option>
+                <option value="Individual">Individual</option>
+                <option value="Grupal">Grupal</option>
+            </select>
+            <input type="text" name="tipo"  value="<%= busc_registros[0].tipo_plan %>" >
 
         </div>
 </div>
