@@ -21,7 +21,7 @@
     <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave"  >
+            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off"  >
         </div>
         
        <div class="boton">
@@ -45,8 +45,9 @@
         
         <form onsubmit="busc_afi(event)" method="GET">
             <div class="campo">
-                <label>ID Afiliado:</label>
-                <input type="text" id="idAfi" name="idAfi">
+                <label>Id afiliado <span class="asterisco">*</span></label>
+            <input type="text" name="idAfi"  minlength="8" maxlength="8"
+                   pattern="[0-9]{8}" autocomplete="off" >
             </div>
 
             <div class="boton">
@@ -56,8 +57,8 @@
 
         <form onsubmit="busc_odo(event)" method="GET">
             <div class="campo">
-                <label>ID odontólogo:</label>
-                <input type="text" id="idOdo" name="idOdo">
+                  <label>Id odontologo <span class="asterisco">*</span></label>
+            <input type="text" name="idOdo" maxlength="3">
             </div>
 
             <div class="boton">
