@@ -36,6 +36,13 @@
     }
 
 
+    let clave = document.querySelector('[name="clave"]');
+
+    clave.addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, "").slice(0, 3);
+   
+ });
+
     let fecha = document.querySelector('[name="fecha"]'); 
 
     let hoy = new Date(); // Obtiene la fecha actual

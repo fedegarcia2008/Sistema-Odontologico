@@ -37,11 +37,6 @@
     clave.addEventListener("input", function () {
         this.value = this.value.replace(/\D/g, "").slice(0, 3);
    
-        if (this.value.length < 3) {
-        this.setCustomValidity("El ID debe contener exactamente 3 números.");
-    } else {
-        this.setCustomValidity("");
-    }
  });
 
 let nombre = document.querySelector('[name="nom"]');

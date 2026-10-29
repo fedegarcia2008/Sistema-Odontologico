@@ -22,7 +22,7 @@
     <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave">
+            <input type="text" id="clave" name="clave" maxlength="2">
         </div>
         
        <div class="boton">
@@ -33,8 +33,9 @@
 
 <form onsubmit="busc_ser(event)" method="GET">
         <div class="campo">
-            <label>Servicio:</label>
-            <input type="text" id="nom" name="nom" >
+             <label>Nombre del Servicio</label>
+            <input type="text" id="nom" name="nom" autocomplete="off"> 
+     <div id="listaServicios" class="lista"></div>
         </div>
         
        <div class="boton">
