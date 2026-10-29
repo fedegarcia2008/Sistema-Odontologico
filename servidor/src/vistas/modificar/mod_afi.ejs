@@ -44,70 +44,69 @@
 </main>
     
 <% if (cargado) { %>
-<% if (busc_registros.length > 0 &&  busc_registros.length == 1) { %>
-<main class="formulario">
-<form class="formulario resultado" onsubmit="mod_id(event)" onsubmit="mod_nom(event)"  method="POST">
 
-          <div class="campo">
-            <label>Clave de Identificacion:</label>
-        <input type="name" id="clave" name="clave" readonly value="<%= busc_registros[0].ci_afiliado %>">
-</div>
+    <% if (busc_registros.length == 1) { %>
 
-    <div class="fila">
-        <div class="campo">
-            <label>Nombre:</label>
-            <input type="text" name="nombre" maxlength="20" autocomplete="off"
-                   value="<%= busc_registros[0].nombre %>">
-            </div>
-        </div>
+        <section class="res-contenedor">
+            <form class="res-card" onsubmit="mod_id(event)" method="POST">
 
+                <div class="res-cabecera">
+                    <i class="fa-solid fa-user-pen"></i>
+                    <div>
+                        <h2><%= busc_registros[0].nombre %> <%= busc_registros[0].apellido %></h2>
+                        <span class="res-id">C.I. <%= busc_registros[0].ci_afiliado %></span>
+                    </div>
+                </div>
 
-        <div class="fila">
-        <div class="campo">
+                <div class="res-campos">
+                    <div class="campo">
+                        <label>Clave de identificación</label>
+                        <input type="text" name="clave" readonly value="<%= busc_registros[0].ci_afiliado %>">
+                    </div>
 
-            <label>Apellido:</label>
-            <input type="text" name="apellido" maxlength="20" autocomplete="off"
-                   value="<%= busc_registros[0].apellido %>" >
-        </div>
+                    <div class="campo">
+                        <label>Tipo de plan <span class="asterisco">*</span></label>
+                        <select name="tipo" required>
+                            <option value="">Seleccione un plan</option>
+                            <option value="Individual" <%= busc_registros[0].tipo_plan == 'Individual' ? 'selected' : '' %>>Individual</option>
+                            <option value="Grupal" <%= busc_registros[0].tipo_plan == 'Grupal' ? 'selected' : '' %>>Grupal</option>
+                        </select>
+                    </div>
 
-        <div class="fila">
-        <div class="campo">
-            <label>Celular:</label>
-            <input type="text" name="telCelular"
-                   value="<%= busc_registros[0].tel_cel %>" maxlength="12" autocomplete="off">
-        </div>
-    </div>
+                    <div class="campo">
+                        <label>Nombre</label>
+                        <input type="text" name="nombre" maxlength="20" autocomplete="off"
+                               value="<%= busc_registros[0].nombre %>">
+                    </div>
 
-        <div class="campo">
-            <label>Teléfono fijo:</label>
-            <input type="text" name="telFijo"
-                   value="<%= busc_registros[0].tel_fijo %>" maxlength="9" autocomplete="off">
-        </div>
+                    <div class="campo">
+                        <label>Apellido</label>
+                        <input type="text" name="apellido" maxlength="20" autocomplete="off"
+                               value="<%= busc_registros[0].apellido %>">
+                    </div>
 
+                    <div class="campo">
+                        <label>Celular</label>
+                        <input type="text" name="telCelular" maxlength="12" autocomplete="off"
+                               value="<%= busc_registros[0].tel_cel %>">
+                    </div>
 
+                    <div class="campo">
+                        <label>Teléfono fijo</label>
+                        <input type="text" name="telFijo" maxlength="9" autocomplete="off"
+                               value="<%= busc_registros[0].tel_fijo %>">
+                    </div>
+                </div>
 
-        <div class="fila">
-    <div class="campo">
-        <label>Tipo de plan <span class="asterisco">*</span></label>
-        <select name="tipo" required>
-            <option value="Individual"
-                <%= busc_registros[0].tipo_plan === 'Individual' ? 'selected' : '' %>>
-                Individual
-            </option>
-            <option value="Grupal"
-                <%= busc_registros[0].tipo_plan === 'Grupal' ? 'selected' : '' %>>
-                Grupal
-            </option>
-        </select>
-    </div>
-</div>
+                <div class="boton">
+                    <input type="submit" value="GUARDAR CAMBIOS">
+                </div>
+            </form>
+        </section>
 
-        <div class="boton">
-            <input type="submit" value="GUARDAR CAMBIOS">
-        </div>
-    </form>
+    <% } else if (busc_registros.length >= 2) { %>
 
-<% } else if (busc_registros.length >= 2) { %>
+        <p class="res-aviso">Hay más de una coincidencia. Buscá por C.I. para modificar.</p>
 
         <div class="tabla-contenedor">
             <table class="tabla-datos">
@@ -121,7 +120,6 @@
                         <th>Tipo de Plan</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <% busc_registros.forEach(afi => { %>
                         <tr>
@@ -132,25 +130,23 @@
                             <td><%= afi.tel_fijo ? afi.tel_fijo : "Sin teléfono" %></td>
                             <td><%= afi.tipo_plan %></td>
                         </tr>
-
-                        
                     <% }); %>
-                    <p>Mas de una coincidencia al buscar. Modifique por ID</p>
                 </tbody>
             </table>
         </div>
 
-    <% } else if (busc_registros.length == 0) { %>
+    <% } else { %>
 
-        <div class="formulario vacio">
-            <i class="fa-solid fa-user-slash"></i>
-            <p>No hay datos para mostrar.</p>
-        </div>
+        <section class="res-contenedor">
+            <div class="res-card res-vacio">
+                <i class="fa-solid fa-user-slash"></i>
+                <p>No hay datos para mostrar.</p>
+            </div>
+        </section>
 
     <% } %>
-<% } %>
 
-</main>
+<% } %>
 
 <%- include('../componentes/footer') %>
 <script src="/js/val_modificar/afi.js"></script>
