@@ -55,3 +55,10 @@
                 return letra.toUpperCase();
             });
     });
+
+    let saldo = document.querySelector('[name="saldo"]');
+
+    saldo.addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, "").slice(0, 10);
+   
+ });
