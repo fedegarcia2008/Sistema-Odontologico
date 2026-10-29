@@ -44,7 +44,7 @@
     }
  });
 
-    let nombre = document.querySelectorAll('[name="nombre"]');
+    let nombres = document.querySelectorAll('[name="nombre"]');
 
     nombres.forEach(function (nombre) {
     nombre.addEventListener("input", function () {
