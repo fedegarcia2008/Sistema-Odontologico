@@ -10,20 +10,16 @@ let clave = document.querySelector('[name="clave"]');
     }
  });
 
-let rebaja = document.querySelector('[name="rebaja"]');
+ let saldo = document.querySelector('[name="saldo"]');
 
-    rebaja.addEventListener("input", function () {
-        this.value = this.value.replace(/[^0-9,]/g, "");
+    saldo.addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, "").slice(0, 10);
+   
+ });
 
-    let partes = this.value.split(",");
+let idTrat = document.querySelector('[name="idTrat"]');
 
-    if (partes.length > 2) {
-        this.value = partes[0] + "," + partes.slice(1).join("");
-    }
-
-    partes = this.value.split(",");
-
-    if (partes.length === 2) {
-        this.value = partes[0] + "," + partes[1].slice(0, 2);
-    }
-});
+    idTrat.addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, "").slice(0, 3);
+   
+ });

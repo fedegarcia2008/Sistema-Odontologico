@@ -44,13 +44,36 @@ let especialidad = document.querySelector('[name="especialidad"]');
 let lista = document.querySelector("#listaEspecialidades");
 
 let especialidades = [
-    "Odontología",
+    "Odontología general",
+    "Odontología preventiva",
+    "Odontología restauradora",
+    "Odontología estética",
+    "Odontopediatría",
     "Ortodoncia",
+    "Ortopedia dentofacial",
     "Endodoncia",
     "Periodoncia",
-    "Implantología",
-    "Odontopediatría",
-    "Cirugía bucal"
+    "Implantología dental",
+    "Cirugía bucal",
+    "Cirugía maxilofacial",
+    "Prótesis dental",
+    "Prostodoncia",
+    "Rehabilitación oral",
+    "Odontogeriatría",
+    "Odontología para pacientes con discapacidad",
+    "Odontología hospitalaria",
+    "Odontología deportiva",
+    "Odontología del sueño",
+    "Odontología comunitaria",
+    "Odontología familiar",
+    "Odontología laboral",
+    "Medicina bucal",
+    "Patología bucal",
+    "Radiología odontológica",
+    "Diagnóstico por imágenes odontológicas",
+    "Oclusión y trastornos temporomandibulares",
+    "Odontología mínimamente invasiva",
+    "Odontología legal y forense"
 ];
 
 especialidad.addEventListener("input", function () {
@@ -71,7 +94,7 @@ especialidad.addEventListener("input", function () {
         let opcion = document.createElement("div");
 
         opcion.textContent = nombre;
-        opcion.classList.add("opcion-especialidad");
+        opcion.classList.add("opcion");
 
         opcion.addEventListener("click", function () {
             especialidad.value = nombre;
