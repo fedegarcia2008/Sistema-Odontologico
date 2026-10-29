@@ -20,7 +20,14 @@
         document.getElementById('idOdo').value = "";        
     }
 
-let idOdo = document.querySelector('[name="idOdo"]');
+
+let clave = document.querySelector('[name="clave"]');
+
+    clave.addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, "");
+    });
+
+ let idOdo = document.querySelector('[name="idOdo"]');
 
     idOdo.addEventListener("input", function () {
         this.value = this.value.replace(/\D/g, "");
