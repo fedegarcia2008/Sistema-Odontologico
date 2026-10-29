@@ -23,7 +23,7 @@
         <div class="campo">
             <label>Clave de Identificación <span class="asterisco">*</span></label>
             <input type="text" name="clave" id="clave"  minlength="8" maxlength="8"
-                   pattern="[0-9]{8}" autocomplete="off" >
+                   pattern="[0-9]{8}" autocomplete="off" required>
         </div>
         
        <div class="boton">
@@ -34,7 +34,7 @@
 <form onsubmit="busc_nom(event)" method="GET">
         <div class="campo">
             <label>Apellido y Nombre:</label>
-            <input type="text" id="nombre" name="nombre" maxlength="20" autocomplete="off">
+            <input type="text" id="nombre" name="nombre" maxlength="20" autocomplete="off" required>
         </div>
         
        <div class="boton">

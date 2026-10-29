@@ -22,7 +22,7 @@
     <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off"  >
+            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off" required >
         </div>
         
        <div class="boton">
@@ -34,7 +34,7 @@
         <div class="campo">
             <label>Id afiliado <span class="asterisco">*</span></label>
             <input type="text" name="idAfi"  minlength="8" maxlength="8"
-                   pattern="[0-9]{8}" autocomplete="off" >
+                   pattern="[0-9]{8}" autocomplete="off" required>
         </div>
         
        <div class="boton">

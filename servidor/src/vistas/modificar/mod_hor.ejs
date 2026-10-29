@@ -22,7 +22,7 @@
     <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off">
+            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off" required>
         </div>
         
        <div class="boton">
@@ -33,8 +33,8 @@
 <form onsubmit="busc_dia(event)" method="GET">
         <div class="campo">
              <label>Día </label>
-            <select id="dia" name="dia">
-                <option value="#">Seleccione un día</option>
+            <select id="dia" name="dia" required>
+                <option value="">Seleccione un día</option>
                 <option value="Lunes">Lunes</option>
                 <option value="Martes">Martes</option>
                 <option value="Miércoles">Miércoles</option>
