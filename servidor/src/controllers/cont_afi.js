@@ -303,9 +303,6 @@ resp.render('modificar/mod_afi', { modificar_registros, cargado: true});
 };
 
 
-
-
-
 // para borrar
 export const  bajafi_id = async (pet, resp)=>{
 let id = pet.params.clave;

@@ -19,47 +19,61 @@
 maxlenght limite de caracteres igual a la bdd
 size tamaño de la caja de texto-->
 
-    <main class="formulario">
+   <main>
+    <section class="panel">
+        <div class="panel-cabecera">
+            <i class="fa-solid fa-user-plus"></i>
+            <div>
+                <h2>Nuevo afiliado</h2>
+                <small>Los campos con * son obligatorios</small>
+            </div>
+        </div>
+
         <form action="/afiliado/nuevoalta" method="POST">
-        <div class="campo">
-            <label>Clave de Identificación <span class="asterisco">*</span></label>
-            <input type="text" name="clave"  minlength="8" maxlength="8"
-                   pattern="[0-9]{8}" autocomplete="off" required>
-        </div>
+            <div class="panel-campos">
+                <div class="campo">
+                    <label>Clave de Identificación <span class="asterisco">*</span></label>
+                    <input type="text" name="clave" minlength="8" maxlength="8"
+                           pattern="[0-9]{8}" autocomplete="off" placeholder="Ej: 12345678" required>
+                    <span class="ayuda">8 dígitos, sin puntos ni espacios</span>
+                </div>
 
-        <div class="campo">
-            <label>Nombre <span class="asterisco">*</span></label>
-            <input type="text" name="nombre" maxlength="20" autocomplete="off" required>
-        </div>
+                <div class="campo">
+                    <label>Tipo de plan <span class="asterisco">*</span></label>
+                    <select name="tipo" required>
+                        <option value="">Seleccione un plan</option>
+                        <option value="Individual">Individual</option>
+                        <option value="Grupal">Grupal</option>
+                    </select>
+                </div>
 
-        <div class="campo">
-            <label>Apellido <span class="asterisco">*</span></label>
-            <input type="text" name="apellido" maxlength="20" autocomplete="off" required>
-        </div>
+                <div class="campo">
+                    <label>Nombre <span class="asterisco">*</span></label>
+                    <input type="text" name="nombre" maxlength="20" autocomplete="off" required>
+                </div>
 
-        <div class="campo">
-            <label>Teléfono celular</label>
-            <input type="text" name="telCelular" maxlength="12" autocomplete="off">
-        </div>
+                <div class="campo">
+                    <label>Apellido <span class="asterisco">*</span></label>
+                    <input type="text" name="apellido" maxlength="20" autocomplete="off" required>
+                </div>
 
-        <div class="campo">
-            <label>Teléfono fijo </label>
-            <input type="text" name="telFijo" maxlength="9" autocomplete="off">
-        </div>
+                <div class="campo">
+                    <label>Teléfono celular</label>
+                    <input type="text" name="telCelular" maxlength="12" autocomplete="off">
+                </div>
 
-        <div class="campo">
-            <label>Tipo de plan <span class="asterisco">*</span></label>
-            <select name="tipo" required>
-                <option value="">Seleccione un plan</option>
-                <option value="Individual">Individual</option>
-                <option value="Grupal">Grupal</option>
-            </select>
-        </div>
-        <div class="boton">
-        <input type="submit" value="INGRESAR">
-        </div>
-    </form>
-  </main>
+                <div class="campo">
+                    <label>Teléfono fijo</label>
+                    <input type="text" name="telFijo" maxlength="9" autocomplete="off">
+                </div>
+            </div>
+
+            <div class="boton">
+                <input type="submit" value="INGRESAR">
+            </div>
+        </form>
+    </section>
+</main>
 
 
 <script src="/js/val_altas/afi.js"></script>
