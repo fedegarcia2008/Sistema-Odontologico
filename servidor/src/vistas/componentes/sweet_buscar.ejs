@@ -1,0 +1,50 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<% if (alert) { %>
+    <% if (guardado) { %>
+       <% if (busc_registros.length > 0) {%>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '<%= msj %>',
+                timer: '<%= tiempo %>',
+              
+            });
+        </script>
+          <% } else if (busc_registros.length == 0){ %>
+        <script>
+            Swal.fire({
+                icon: 'info',
+                title: '<%= msj %>',
+                timer: '<%= tiempo %>',
+              
+            });
+        </script>
+    <% } else { %>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: '<%= msj %>',
+                timer: '<%= tiempo %>',
+            });
+        </script>
+    <% } %>
+<% } %>
+    <% if (modalert) { %>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '<%= msj %>',
+                timer: '<%= tiempo %>',
+              
+            });
+        </script>
+    <% } else { %>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: '<%= msj %>',
+                timer: '<%= tiempo %>',
+            });
+        </script>
+    <% } %>
+<% } %>

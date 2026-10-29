@@ -37,18 +37,18 @@ export const nuevo_con = async (pet, resp) => {
         const [registro] = await bdd.query(altasql);
         console.log(registro)
         resp.render('altas/alta_con', {
-            guardado: true,
             alert: true,
-            msj: 'Convenio Guardado',
+            icono: 'success',
+            msj: 'CONVENIO GUARDADO',
             tiempo: 1500,
-            botonConfirma: false
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
         resp.render('altas/alta_con', {
-            guardado: false,
             alert: true,
-            msj: 'No se pudo guardar el convenio.'
+            icono: 'error',
+            msj: 'ERROR AL GUARDAR EL CONVENIO',
+            tiempo: 1500,
         });
     }
 };

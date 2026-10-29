@@ -39,18 +39,18 @@ export const nuevo_equi = async (pet, resp) => {
         const [registro] = await bdd.query(altasql);
         console.log(registro)
         resp.render('altas/alta_equi', {
-            guardado: true,
             alert: true,
-            msj: 'Equipamiento Guardado',
+            icono: 'success',
+            msj: 'AFILIADO GUARDADO',
             tiempo: 1500,
-            botonConfirma: false
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
         resp.render('altas/alta_equi', {
-            guardado: false,
             alert: true,
-            msj: 'No se pudo guardar el equipamiento.'
+            icono: 'error',
+            msj: 'ERROR AL GUARDAR EL EQUIPAMIENTO',
+            tiempo: 1500,
         });
     }
 };

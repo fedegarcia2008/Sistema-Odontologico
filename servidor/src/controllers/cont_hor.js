@@ -40,18 +40,18 @@ export const nuevo_hor = async (pet, resp) => {
        const [registro] = await bdd.query(altasql);
         console.log(registro)
         resp.render('altas/alta_hor', {
-            guardado: true,
             alert: true,
-            msj: 'Horario Guardado',
+            icono: 'success',
+            msj: 'HORARIO GUARDADO',
             tiempo: 1500,
-            botonConfirma: false
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
         resp.render('altas/alta_hor', {
-            guardado: false,
             alert: true,
-            msj: 'No se pudo guardar el horario.'
+            icono: 'error',
+            msj: 'ERROR AL GUARDAR EL HORARIO',
+            tiempo: 1500,
         });
     }
 };

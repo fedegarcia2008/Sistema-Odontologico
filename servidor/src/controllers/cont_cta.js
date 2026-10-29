@@ -39,18 +39,18 @@ export const nuevo_cta = async (pet, resp) => {
         const [registro] = await bdd.query(altasql);
         console.log(registro)
         resp.render('altas/alta_cta', {
-            guardado: true,
             alert: true,
-            msj: 'Cuenta Corriente Guardada',
+            icono: 'success',
+            msj: 'CUENTA CORRIENTE GUARDADA',
             tiempo: 1500,
-            botonConfirma: false
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
         resp.render('altas/alta_cta', {
-            guardado: false,
             alert: true,
-            msj: 'No se pudo guardar la cuenta corriente.'
+            icono: 'error',
+            msj: 'ERROR AL GUARDAR LA CUENTA CORRIENTE',
+            tiempo: 1500,
         });
     }
 };
