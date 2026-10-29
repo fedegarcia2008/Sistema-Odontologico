@@ -99,11 +99,36 @@ export const buscta_nom = async (pet, resp)=>{
        let buscarsql = "SELECT afiliado_ci_afiliado, nombre, apellido, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte INNER JOIN afiliado ON ci_afiliado = afiliado_ci_afiliado WHERE CONCAT(apellido, ' ', nombre) LIKE '%" + nom_completo + "%'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('buscar/busc_cta', { busc_registros, cargadoid: false, cargadotabla: true, });
-    }     catch (error) {
-        console.error('Error al buscar el nombre y apellido:', error);
+         if (busc_registros.length > 0) {
+            resp.render('buscar/busc_afi', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'success',
+                msj: 'AFILIADO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_afi', {
+                busc_registros,
+             
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESE NOMBRE'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar afiliado:', error);
+        resp.render('buscar/busc_afi', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR LA CUENTA CORRIENTE',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 
 // para modificar
