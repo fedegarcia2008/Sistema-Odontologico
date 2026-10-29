@@ -18,7 +18,7 @@
     <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Id Turno:</label>
-            <input type="text" id="clave" name="clave" maxlength="3">
+            <input type="text" id="clave" name="clave" maxlength="3" required>
         </div>
         
        <div class="boton">
@@ -30,9 +30,9 @@
  <form onsubmit="busc_fechas(event)" method="GET">
             <div class="campo">
                 <label>Desde:</label>
-                <input type="date" id="fecha1" name="fecha1">
+                <input type="date" id="fecha1" name="fecha1" required>
                 <label>Hasta:</label>
-                <input type="date" id="fecha2" name="fecha2">
+                <input type="date" id="fecha2" name="fecha2" required>
             </div>
 
             <div class="boton">
