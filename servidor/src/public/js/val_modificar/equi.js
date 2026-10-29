@@ -205,4 +205,13 @@ equipamientosInputs.forEach(function (equipamiento) {
     });
 
 });
+
+ let fecha = document.querySelector('[name="fecha"]'); 
+
+    let hoy = new Date(); // Obtiene la fecha actual
+    let anio = hoy.getFullYear(); 
+    let mes = String(hoy.getMonth() + 1).padStart(2, "0");
+    let dia = String(hoy.getDate()).padStart(2, "0"); 
+
+    fecha.max = anio + "-" + mes + "-" + dia; // No permite fechas posteriores a hoy
     
