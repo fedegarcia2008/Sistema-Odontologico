@@ -61,7 +61,7 @@ telefonoCelular.addEventListener("input", function () {
     // Máximo 10 números
     numeros = numeros.slice(0, 10);
 
-    // Formato: 11 1234-5678
+    
     let formato = numeros.slice(0, 2);
 
     if (numeros.length > 2) {
