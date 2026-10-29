@@ -59,7 +59,7 @@
 });
 
 
-  let apellido = document.querySelectorAll('[name="apellido"]');
+  let apellido = document.querySelector('[name="apellido"]');
 
     apellido.addEventListener("input", function () {
         this.value = this.value
