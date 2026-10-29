@@ -31,3 +31,9 @@
         formulario.action = `/horario/baja/${idejs}`;
         formulario.submit();
     }
+
+    let clave = document.querySelector('[name="clave"]');
+
+    clave.addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, "");
+    });

@@ -34,3 +34,13 @@
         formulario.action = `/turno/bajafechas/${idejs}/${idejs2}`;
         formulario.submit();
     }
+
+
+    let fecha = document.querySelector('[name="fecha"]'); 
+
+    let hoy = new Date(); // Obtiene la fecha actual
+    let anio = hoy.getFullYear(); 
+    let mes = String(hoy.getMonth() + 1).padStart(2, "0"); 
+    let dia = String(hoy.getDate()).padStart(2, "0"); 
+
+    fecha.min = anio + "-" + mes + "-" + dia; // No permite seleccionar fechas anteriores a hoy

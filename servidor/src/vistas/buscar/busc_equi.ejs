@@ -20,8 +20,8 @@
 
     <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
-            <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave"  >
+            <label>Nro. de serie</label>
+            <input type="text" name="clave" maxlength="12" autocomplete="off">
         </div>
         
        <div class="boton">
@@ -34,7 +34,7 @@
         <form onsubmit="busc_fecha(event)" method="GET">
             <div class="campo">
                 <label>Fecha:</label>
-                <input type="date" id="fecha" name="fecha">
+                <input type="date" id="fecha" name="fecha" autocomplete="off">
             </div>
 
             <div class="boton">
@@ -44,8 +44,8 @@
 
         <form onsubmit="busc_cons(event)" method="GET">
             <div class="campo">
-                <label>Consultorio:</label>
-                <input type="text" id="idCons" name="idCons">
+                <label>ID Consultorio:</label>
+                <input type="text" id="idCons" name="idCons" maxlength="3" autocomplete="off">
             </div>
 
             <div class="boton">
@@ -57,7 +57,8 @@
         <form onsubmit="busc_tipo(event)" method="GET">
             <div class="campo">
                 <label>Tipo de Equipamiento:</label>
-                <input type="text" id="tipo" name="tipo">
+                <input type="text" id="tipo" name="tipo" autocomplete="off">
+                        <div id="listaEquipamiento" class="lista"></div>
             </div>
 
             <div class="boton">

@@ -17,8 +17,8 @@
 
     <form onsubmit="busc_id(event)" method="GET">
         <div class="campo">
-            <label>iD tratamiento:</label>
-            <input type="text" id="clave" name="clave" maxlength="10">
+            <label>ID Servicio:</label>
+            <input type="text" id="clave" name="clave" maxlength="2" autocomplete="off">
         </div>
         
        <div class="boton">
@@ -29,64 +29,10 @@
 
 <form onsubmit="busc_ser(event)" method="GET">
         <div class="campo">
-            <label>Servicio:</label>
-            <input type="text" id="nom" name="nom">
-
-            <!-- no funciona la lista  -->
-          <div id="listaServicios" class="lista-servicios"></div>
+            <label>Tipo de Servicio:</label>
+            <input type="text" id="nom" name="nom" autocomplete="off">
+        <div id="listaServicios" class="lista"></div>
 </div>
-
-<script>
-    let servicio = document.querySelector('[name="nombre"]');
-let lista = document.querySelector("#listaServicios");
-
-let servicios = [
-    "Odontología",
-    "Ortodoncia",
-    "Endodoncia",
-    "Periodoncia",
-    "Implantología",
-    "Odontopediatría",
-    "Cirugía bucal"
-];
-
-servicio.addEventListener("input", function () {
-    let texto = this.value.toLowerCase();
-
-    lista.innerHTML = "";
-
-    if (texto === "") {
-        lista.style.display = "none";
-        return;
-    }
-
-    let resultados = servicios.filter(function (nombre) {
-        return nombre.toLowerCase().includes(texto);
-    });
-
-    resultados.forEach(function (nombre) {
-        let opcion = document.createElement("div");
-
-        opcion.textContent = nombre;
-        opcion.classList.add("opcion-servicio");
-
-        opcion.addEventListener("click", function () {
-            servicio.value = nombre;
-            lista.style.display = "none";
-        });
-
-        lista.appendChild(opcion);
-    });
-
-    lista.style.display = resultados.length > 0 ? "block" : "none";
-});
-
-document.addEventListener("click", function (e) {
-    if (!servicio.contains(e.target) && !lista.contains(e.target)) {
-        lista.style.display = "none";
-    }
-});
-</script>
         
        <div class="boton">
         <input type="submit" value="BUSCAR">
@@ -103,7 +49,7 @@ document.addEventListener("click", function (e) {
 
 <div class="campo">
 
-            <label>Id</label>
+            <label>ID Servicio</label>
             <input type="text" name="clave" readonly
                             value="<%= baja_registros[0].idtratamiento %>">
         </div>
