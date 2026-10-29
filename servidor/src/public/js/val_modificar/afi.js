@@ -57,3 +57,16 @@
             });
     });
 });
+
+
+  let apellido = document.querySelectorAll('[name="apellido"]');
+
+    apellido.addEventListener("input", function () {
+        this.value = this.value
+            .replace(/[^a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]/g, "")
+            .replace(/\s{2,}/g, " ")
+            .toLowerCase()
+            .replace(/(^|\s)\S/g, function (letra) {
+                return letra.toUpperCase();
+            });
+    });
