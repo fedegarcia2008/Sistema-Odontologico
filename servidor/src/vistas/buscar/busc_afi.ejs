@@ -53,7 +53,7 @@
                 <option value="Individual">Individual</option>
                 <option value="Grupal">Grupal</option>
             </select>
-
+     </div> 
         
        <div class="boton">
         <input type="submit" value="BUSCAR POR TIPO DE PLAN">
@@ -63,56 +63,75 @@
     </main>
 
 <% if (cargadoid) { %>
+    <section class="res-contenedor">
         <% if (busc_registros.length > 0) { %>
-      
-                <p>Clave:  <%= busc_registros[0].ci_afiliado %></p>
-                <p>Nombre:  <%= busc_registros[0].nombre %></p>
-                <p>Apellido:  <%= busc_registros[0].apellido %></p>
-                <p>Celular:  <%= busc_registros[0].tel_cel %></p>
-                <p>Teléfono fijo:  <%= busc_registros[0].tel_fijo %></p>
-                <p>Plan: <%= busc_registros[0].tipo_plan %></p>
-      
-            <% } else { %>
+            <div class="res-card">
+                <div class="res-cabecera">
+                    <i class="fa-solid fa-user"></i>
+                    <div>
+                        <h2><%= busc_registros[0].nombre %> <%= busc_registros[0].apellido %></h2>
+                        <span class="res-id">C.I. <%= busc_registros[0].ci_afiliado %></span>
+                    </div>
+                </div>
 
-                    <p> No hay datos para mostrar</p>
-
-            <% } %>
- <% } %>
+                <div class="res-datos">
+                    <div class="res-dato">
+                        <small>Celular</small>
+                        <strong><%= busc_registros[0].tel_cel ? busc_registros[0].tel_cel : "Sin teléfono" %></strong>
+                    </div>
+                    <div class="res-dato">
+                        <small>Teléfono fijo</small>
+                        <strong><%= busc_registros[0].tel_fijo ? busc_registros[0].tel_fijo : "Sin teléfono" %></strong>
+                    </div>
+                    <div class="res-dato">
+                        <small>Plan</small>
+                        <strong><%= busc_registros[0].tipo_plan %></strong>
+                    </div>
+                </div>
+            </div>
+        <% } else { %>
+            <div class="res-card res-vacio">
+                <i class="fa-solid fa-user-slash"></i>
+                <p>No hay datos para mostrar</p>
+            </div>
+        <% } %>
+    </section>
+<% } %>
 
 <% if (cargadotabla) { %>
-<div class="tabla-contenedor">
-    <table class="tabla-datos">
-        <thead>
-            <tr>
-                <th>C.I.</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Teléfono Celular</th>
-                <th>Teléfono Fijo</th>
-                <th>Tipo de Plan</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% if (busc_registros.length > 0) {
-                busc_registros.forEach(afi => { %>
-                    <tr>
-                        <td><%= afi.ci_afiliado %></td>
-                        <td><%= afi.nombre %></td>
-                        <td><%= afi.apellido %></td>
-                        <td><%= afi.tel_cel ? afi.tel_cel : "Sin teléfono" %></td>
-                        <td><%= afi.tel_fijo ? afi.tel_fijo : "Sin teléfono" %></td>
-                        <td><%= afi.tipo_plan %></td>
-                    </tr>
-                <% });
-            } else { %>
+    <div class="tabla-contenedor">
+        <table class="tabla-datos">
+            <thead>
                 <tr>
-                    <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                    <th>C.I.</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Teléfono Celular</th>
+                    <th>Teléfono Fijo</th>
+                    <th>Tipo de Plan</th>
                 </tr>
-            <% } %>
-                      <% } %>
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                <% if (busc_registros.length > 0) {
+                    busc_registros.forEach(afi => { %>
+                        <tr>
+                            <td><%= afi.ci_afiliado %></td>
+                            <td><%= afi.nombre %></td>
+                            <td><%= afi.apellido %></td>
+                            <td><%= afi.tel_cel ? afi.tel_cel : "Sin teléfono" %></td>
+                            <td><%= afi.tel_fijo ? afi.tel_fijo : "Sin teléfono" %></td>
+                            <td><%= afi.tipo_plan %></td>
+                        </tr>
+                    <% });
+                } else { %>
+                    <tr>
+                        <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+<% } %>
 
 
 
