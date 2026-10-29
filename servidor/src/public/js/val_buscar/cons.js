@@ -19,3 +19,9 @@
     clave.addEventListener("input", function () {
         this.value = this.value.replace(/\D/g, "");
     });
+
+    let cons = document.querySelector('[name="cons"]');
+
+    cons.addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, "");
+    });
