@@ -224,3 +224,171 @@ footer {
     font-size: 18px;
     color: #b42318;
 }
+
+
+/* ===== Resultados compactos (buscar / modificar / baja) ===== */
+.res-contenedor {
+    max-width: 640px;
+    margin: 20px auto 40px;
+    padding: 0 16px;
+}
+
+.res-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-top: 4px solid var(--celeste);
+    border-radius: 16px;
+    box-shadow: 0 8px 28px rgba(var(--azul-rgb), 0.1);
+    padding: 22px 26px;
+}
+
+.res-cabecera {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid rgba(var(--celeste-rgb), 0.25);
+}
+
+.res-cabecera > i {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+    color: var(--celeste-oscuro);
+    background: rgba(var(--celeste-rgb), 0.15);
+    border-radius: 50%;
+}
+
+.res-cabecera h2 {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.2;
+    text-align: left;
+}
+
+.res-id {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 3px 12px;
+    background: var(--azul);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: 999px;
+}
+
+/* --- Buscar: datos de solo lectura --- */
+.res-datos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.res-dato {
+    padding: 10px 12px;
+    background: #f8fafc;
+    border: 1px solid #e5eaf0;
+    border-radius: 10px;
+}
+
+.res-dato small {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 11px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #7a869a;
+}
+
+.res-dato strong {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--texto);
+    word-break: break-word;
+}
+
+/* --- Modificar / Baja: campos en dos columnas --- */
+.res-campos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px 14px;
+}
+
+.res-campos .campo {
+    margin-bottom: 10px;
+}
+
+.res-campos .campo label {
+    margin-bottom: 4px;
+    font-size: 12px;
+}
+
+.res-campos .campo input,
+.res-campos .campo select {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 8px;
+}
+
+.res-card .boton {
+    margin: 12px auto 0;
+}
+
+.res-card .boton input {
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* Botón rojo para eliminar */
+.res-card .boton.peligro input {
+    background-color: #c0392b;
+}
+
+.res-card .boton.peligro input:hover {
+    background-color: #922b21;
+}
+
+/* --- Sin resultados / aviso --- */
+.res-vacio {
+    text-align: center;
+    padding: 30px;
+}
+
+.res-vacio i {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 32px;
+    color: var(--celeste);
+}
+
+.res-vacio p {
+    font-size: 15px;
+    color: var(--texto);
+}
+
+.res-aviso {
+    max-width: 640px;
+    margin: 20px auto 0;
+    padding: 10px 16px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--celeste-oscuro);
+    background: rgba(var(--celeste-rgb), 0.12);
+    border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+    .res-campos {
+        grid-template-columns: 1fr;
+    }
+
+    .res-card {
+        padding: 18px;
+    }
+}
