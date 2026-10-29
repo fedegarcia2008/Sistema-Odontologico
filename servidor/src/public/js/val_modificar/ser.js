@@ -39,7 +39,7 @@
     });
 
 
-    let nom = document.querySelector('[name="nom"]');
+    let nombre = document.querySelector('[name="nombre"]');
     let lista = document.querySelector("#listaServicios");
 
     let servicios = [
