@@ -58,13 +58,15 @@ size tamaño de la caja de texto-->
                 </div>
 
                 <div class="campo">
-                    <label>Teléfono celular</label>
-                    <input type="text" name="telCelular" maxlength="12" autocomplete="off">
+                    <label>Teléfono celular </label>
+                    <input type="text" name="telCelular"maxlength="12"pattern="11 [0-9]{4}-[0-9]{4}"
+                        title="El teléfono debe comenzar con 11 y tener 10 números. Ejemplo: 11 1234-5678"  autocomplete="off"  required>
                 </div>
 
                 <div class="campo">
                     <label>Teléfono fijo</label>
-                    <input type="text" name="telFijo" maxlength="9" autocomplete="off">
+                    <input type="text" name="telFijo" maxlength="9"  pattern="[0-9]{8}"
+                        title="El teléfono fijo debe tener exactamente 8 números" autocomplete="off">
                 </div>
             </div>
 
