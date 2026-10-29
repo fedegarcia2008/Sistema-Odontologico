@@ -46,6 +46,7 @@
 
     let nombre = document.querySelectorAll('[name="nombre"]');
 
+    nombres.forEach(function (nombre) {
     nombre.addEventListener("input", function () {
         this.value = this.value
             .replace(/[^a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]/g, "")
@@ -55,3 +56,4 @@
                 return letra.toUpperCase();
             });
     });
+});
