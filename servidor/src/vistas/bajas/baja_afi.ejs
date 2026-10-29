@@ -40,60 +40,61 @@
 </main>
      
 <% if (cargado) { %>
-<% if (baja_registros.length > 0 &&  baja_registros.length == 1) { %>
-<main class="formulario">
-<form class="formulario resultado" onsubmit="baja_id(event)" onsubmit="baja_nom(event)"  method="POST">
 
-          <div class="campo">
-            <label>Clave de Identificacion:</label>
-        <input type="name" id="clave" name="clave" readonly value="<%= baja_registros[0].ci_afiliado %>">
-</div>
+    <% if (baja_registros.length == 1) { %>
 
-    <div class="fila">
-        <div class="campo">
-            <label>Nombre:</label>
-            <input type="text" name="nombre" readonly
-                   value="<%= baja_registros[0].nombre %>" >
-            </div>
-        </div>
+        <section class="res-contenedor">
+            <form class="res-card" onsubmit="baja_id(event)" method="POST">
 
+                <div class="res-cabecera">
+                    <i class="fa-solid fa-user-minus"></i>
+                    <div>
+                        <h2><%= baja_registros[0].nombre %> <%= baja_registros[0].apellido %></h2>
+                        <span class="res-id">C.I. <%= baja_registros[0].ci_afiliado %></span>
+                    </div>
+                </div>
 
-        <div class="fila">
-        <div class="campo">
+                <div class="res-campos">
+                    <div class="campo">
+                        <label>Clave de identificación</label>
+                        <input type="text" name="clave" readonly value="<%= baja_registros[0].ci_afiliado %>">
+                    </div>
 
-            <label>Apellido:</label>
-            <input type="text" name="apellido" readonly
-                   value="<%= baja_registros[0].apellido %>" >
-        </div>
+                    <div class="campo">
+                        <label>Tipo de plan</label>
+                        <input type="text" name="tipo" readonly value="<%= baja_registros[0].tipo_plan %>">
+                    </div>
 
-        <div class="fila">
-        <div class="campo">
-            <label>Celular:</label>
-            <input type="text" name="telCelular" readonly
-                   value="<%= baja_registros[0].tel_cel %>">
-        </div>
-    </div>
+                    <div class="campo">
+                        <label>Nombre</label>
+                        <input type="text" name="nombre" readonly value="<%= baja_registros[0].nombre %>">
+                    </div>
 
-        <div class="campo">
-            <label>Teléfono fijo:</label>
-            <input type="text" name="telFijo" readonly
-                   value="<%= baja_registros[0].tel_fijo %>">
-        </div>
+                    <div class="campo">
+                        <label>Apellido</label>
+                        <input type="text" name="apellido" readonly value="<%= baja_registros[0].apellido %>">
+                    </div>
 
-        <div class="fila">
-        <div class="campo">
-            <label>Tipo de plan</label>
-            <input type="text" name="tipo" readonly value="<%= baja_registros[0].tipo_plan %>" >
+                    <div class="campo">
+                        <label>Celular</label>
+                        <input type="text" name="telCelular" readonly value="<%= baja_registros[0].tel_cel %>">
+                    </div>
 
-        </div>
-</div>
+                    <div class="campo">
+                        <label>Teléfono fijo</label>
+                        <input type="text" name="telFijo" readonly value="<%= baja_registros[0].tel_fijo %>">
+                    </div>
+                </div>
 
-        <div class="boton">
-            <input type="submit" value="ELIMINAR AFILIADO">
-        </div>
-    </form>
+                <div class="boton peligro">
+                    <input type="submit" value="ELIMINAR AFILIADO">
+                </div>
+            </form>
+        </section>
 
-<% } else if (baja_registros.length >= 2) { %>
+    <% } else if (baja_registros.length >= 2) { %>
+
+        <p class="res-aviso">Hay más de una coincidencia. Buscá por C.I. para eliminar.</p>
 
         <div class="tabla-contenedor">
             <table class="tabla-datos">
@@ -107,7 +108,6 @@
                         <th>Tipo de Plan</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <% baja_registros.forEach(afi => { %>
                         <tr>
@@ -118,25 +118,23 @@
                             <td><%= afi.tel_fijo ? afi.tel_fijo : "Sin teléfono" %></td>
                             <td><%= afi.tipo_plan %></td>
                         </tr>
-
-                        
                     <% }); %>
-                    <p>Mas de una coincidencia al buscar. Modifique por ID</p>
                 </tbody>
             </table>
         </div>
 
-    <% } else if (baja_registros.length == 0) { %>
+    <% } else { %>
 
-        <div class="formulario vacio">
-            <i class="fa-solid fa-user-slash"></i>
-            <p>No hay datos para mostrar.</p>
-        </div>
+        <section class="res-contenedor">
+            <div class="res-card res-vacio">
+                <i class="fa-solid fa-user-slash"></i>
+                <p>No hay datos para mostrar.</p>
+            </div>
+        </section>
 
     <% } %>
-<% } %>
 
-</main>
+<% } %>
 
 
         <%- include('../componentes/footer') %>
