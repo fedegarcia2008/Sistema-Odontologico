@@ -169,3 +169,11 @@ nombres.forEach(function (nom) {
     });
 
 });
+
+
+let costo = document.querySelector('[name="costo"]');
+
+    costo.addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, "").slice(0, 8);
+   
+ });
