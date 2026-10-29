@@ -71,25 +71,8 @@
             });
     });
 
-        let telefonoCelular = document.querySelector('[name="telCelular"]');
-
-    telefonoCelular.addEventListener("input", function () {
-    let numeros = this.value.replace(/\D/g, "");
-    let formato = numeros.slice(0, 2);
-
-    if (numeros.length > 2) {
-        formato += " " + numeros.slice(2, 6);
-    }
-
-    if (numeros.length > 6) {
-        formato += "-" + numeros.slice(6, 12);
-    }
-
-    this.value = formato;
-});
-
-
-    let telefonoFijo = document.querySelector('[name="telFijo"]');
+       
+let telefonoFijo = document.querySelector('[name="telFijo"]');
 
 telefonoFijo.addEventListener("input", function () {
     let numeros = this.value.replace(/\D/g, "").slice(0, 8);
@@ -99,4 +82,34 @@ telefonoFijo.addEventListener("input", function () {
     } else {
         this.value = numeros;
     }
+});
+
+
+
+let telefonoCelular = document.querySelector('[name="telCelular"]');
+
+telefonoCelular.addEventListener("input", function () {
+
+    let numeros = this.value.replace(/\D/g, "");
+
+    // Siempre debe empezar con 11
+    if (!numeros.startsWith("11")) {
+        numeros = "11" + numeros.replace(/^11/, "");
+    }
+
+    // Máximo 10 números
+    numeros = numeros.slice(0, 10);
+
+    
+    let formato = numeros.slice(0, 2);
+
+    if (numeros.length > 2) {
+        formato += " " + numeros.slice(2, 6);
+    }
+
+    if (numeros.length > 6) {
+        formato += "-" + numeros.slice(6, 10);
+    }
+
+    this.value = formato;
 });
