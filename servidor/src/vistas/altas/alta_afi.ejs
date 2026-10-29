@@ -29,22 +29,22 @@ size tamaño de la caja de texto-->
 
         <div class="campo">
             <label>Nombre <span class="asterisco">*</span></label>
-            <input type="text" name="nombre" maxlength="20" required>
+            <input type="text" name="nombre" maxlength="20" autocomplete="off" required>
         </div>
 
         <div class="campo">
             <label>Apellido <span class="asterisco">*</span></label>
-            <input type="text" name="apellido" maxlength="20" required>
+            <input type="text" name="apellido" maxlength="20" autocomplete="off" required>
         </div>
 
         <div class="campo">
             <label>Teléfono celular</label>
-            <input type="text" name="telCelular" maxlength="12">
+            <input type="text" name="telCelular" maxlength="12" autocomplete="off">
         </div>
 
         <div class="campo">
             <label>Teléfono fijo </label>
-            <input type="text" name="telFijo" maxlength="9">
+            <input type="text" name="telFijo" maxlength="9" autocomplete="off">
         </div>
 
         <div class="campo">
@@ -64,7 +64,7 @@ size tamaño de la caja de texto-->
 
 <script src="/js/val_altas/afi.js"></script>
 
-<%- include('../componentes/sweet_alert') %>
+<%- include('../componentes/sweet_alta') %>
   
 <%- include('../componentes/footer') %>
 </body>

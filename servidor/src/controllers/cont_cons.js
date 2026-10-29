@@ -37,18 +37,18 @@ export const nuevo_cons = async (pet, resp) => {
          const [registro] = await bdd.query(altasql);
         console.log(registro)
         resp.render('altas/alta_cons', {
-            guardado: true,
             alert: true,
-            msj: 'Consulta Guardada',
+            icono: 'success',
+            msj: 'CONSULTORIO GUARDADO',
             tiempo: 1500,
-            botonConfirma: false
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
         resp.render('altas/alta_cons', {
-            guardado: false,
             alert: true,
-            msj: 'No se pudo guardar la consulta.'
+            icono: 'error',
+            msj: 'ERROR AL GUARDAR EL CONSULTORIO',
+            tiempo: 1500,
         });
     }
 };

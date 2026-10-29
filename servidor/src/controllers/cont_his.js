@@ -44,18 +44,18 @@ export const nuevo_his = async (pet, resp) => {
         const [registro] = await bdd.query(altasql);
         console.log(registro)
         resp.render('altas/alta_his', {
-            guardado: true,
             alert: true,
-            msj: 'Historia Clinica Guardada',
+            icono: 'success',
+            msj: 'HISTORIA CLÍNICA GUARDADA',
             tiempo: 1500,
-            botonConfirma: false
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
         resp.render('altas/alta_his', {
-            guardado: false,
             alert: true,
-            msj: 'No se pudo guardar la historia clinica.'
+            icono: 'error',
+            msj: 'ERROR AL GUARDAR LA HISTORIA CLÍNICA',
+            tiempo: 1500,
         });
     }
 };

@@ -15,7 +15,7 @@ export const baja_afi = (pet, resp)=>{
 }
 
 export const mod_afi = (pet, resp)=>{
-    resp.render('modificar/mod_afi',  {alert: false, cargado: false} )
+    resp.render('modificar/mod_afi',  {alert: false, cargado: false, modalert: false, guardado:false} )
 }
 
 export const busc_afi = (pet, resp)=>{
@@ -52,18 +52,18 @@ export const nuevo_afi = async (pet, resp) => {
         const [registro] = await bdd.query(altasql);
         console.log(registro)
         resp.render('altas/alta_afi', {
-            guardado: true,
             alert: true,
-            msj: 'Afiliado Guardado',
+            icono: 'success',
+            msj: 'AFILIADO GUARDADO',
             tiempo: 1500,
-            botonConfirma: false
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
         resp.render('altas/alta_afi', {
-            guardado: false,
             alert: true,
-            msj: 'No se pudo guardar el afiliado.'
+            icono: 'error',
+            msj: 'ERROR AL GUARDAR EL AFILIADO',
+            tiempo: 1500,
         });
     }
 };
@@ -93,10 +93,8 @@ export const buscafi_id = async (pet, resp)=>{
                 busc_registros,
                 cargadoid: true, cargadotabla: false,
                 alert: true,
-                guardado: true,
-                msj: 'Afiliado Encontrado',
+                msj: 'AFILIADO ENCONTRADO',
                 tiempo: 1500,
-                botonConfirma: false
             });
         } else {
             resp.render('buscar/busc_afi', {
@@ -104,7 +102,8 @@ export const buscafi_id = async (pet, resp)=>{
                 cargadoid: true, cargadotabla: false,
                 alert: true,
                 guardado: false,
-                msj: 'No se encontró ningún afiliado con ese id.'
+                tiempo: 1500,
+                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESA CI'
             });
         }
     } catch (error) {
@@ -113,7 +112,7 @@ export const buscafi_id = async (pet, resp)=>{
             cargado: true,
             alert: true,
             guardado: false,
-            msj: 'No se pudo buscar el afiliado.'
+            msj: 'ERROR AL BUSCAR EL AFILIADO'
         });
     }
 };
@@ -195,16 +194,40 @@ export const buscafi_plan = async (pet, resp)=>{
 
 
 
-// para modificar
+// buscar para modificar
 export const  modafi_id = async (pet, resp)=>{
 let id = pet.params.clave;
       try {
         let buscsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE ci_afiliado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar/mod_afi', { busc_registros, cargado: true, alert: false });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_afi', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                guardado: true,
+                msj: 'AFILIADO ENCONTRADO',
+                tiempo: 1500,
+            });
+        } else {
+            resp.render('modificar/mod_afi', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                guardado: false,
+                tiempo: 1500,
+                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESA CI'
+            });
+        }
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
+        resp.render('modificar/mod_afi', {
+            cargado: true,
+            alert: true,
+            guardado: false,
+            msj: 'ERROR AL BUSCAR EL AFILIADO'
+        });
     }
 };
 
@@ -220,21 +243,26 @@ export const mod_id = async (pet, resp)=>{
         let modificarsql = "UPDATE afiliado SET nombre = '"+ nombre +"', apellido = '"+ apellido +"', tel_cel = '"+ telCel +"', tel_fijo = '"+ telFijo +"', tipo_plan = '"+ plan +"' WHERE ci_afiliado = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('modificar/mod_afi', {
-            cargado: false,
-            alert: true,
-            guardado: true,
-            msj: 'Afiliado Modificado',
-            tiempo: 1500,
-            botonConfirma: false
-        });
+      
+            resp.render('modificar/mod_afi', {
+                mod_registros,
+                cargado: false,
+                alert: true,
+                modalert: true,
+                msj: 'AFILIADO MODIFICADO',
+                tiempo: 1500,
+            });
+     
     } catch (error) {
         console.error('Error al modificar afiliado:', error);
+        // ALERTA ERROR (cae en el último else del template)
         resp.render('modificar/mod_afi', {
+         
             cargado: false,
             alert: true,
-            guardado: false,
-            msj: 'No se pudo modificar el afiliado.'
+            modalert: true,
+            msj: 'ERROR AL MODIFICAR EL AFILIADO',
+            tiempo: 1500,
         });
     }
 };

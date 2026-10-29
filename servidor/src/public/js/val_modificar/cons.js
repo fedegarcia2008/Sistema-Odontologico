@@ -31,3 +31,16 @@
         formulario.action = `/consultorio/modificar/${idejs}`;
         formulario.submit();
     }
+
+        
+    let clave = document.querySelector('[name="clave"]');
+
+    clave.addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, "");
+    });
+
+    let num = document.querySelector('[name="num"]');
+
+    num.addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, "");
+    });
