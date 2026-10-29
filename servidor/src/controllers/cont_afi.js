@@ -93,15 +93,17 @@ export const buscafi_id = async (pet, resp)=>{
                 busc_registros,
                 cargadoid: true, cargadotabla: false,
                 alert: true,
+                icono: 'success',
                 msj: 'AFILIADO ENCONTRADO',
                 tiempo: 1500,
             });
         } else {
             resp.render('buscar/busc_afi', {
                 busc_registros,
+             
                 cargadoid: true, cargadotabla: false,
                 alert: true,
-                guardado: false,
+                icono: 'info',
                 tiempo: 1500,
                 msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESA CI'
             });
@@ -109,10 +111,10 @@ export const buscafi_id = async (pet, resp)=>{
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
         resp.render('buscar/busc_afi', {
-            cargado: true,
             alert: true,
-            guardado: false,
-            msj: 'ERROR AL BUSCAR EL AFILIADO'
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL AFILIADO',
+            tiempo: 1500,
         });
     }
 };
