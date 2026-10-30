@@ -387,11 +387,28 @@ let nom_completo = pet.params.nombre;
         let eliminarsql = "DELETE FROM afiliado WHERE nombre = '"+ nom_completo +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('bajas/baja_afi', { baja_registros, cargado: true});
-    }     catch (error) {
+            resp.render('bajas/baja_afi', {
+                baja_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'AFILIADO ELIMINADO',
+                tiempo: 2000,
+            });
+     
+    } catch (error) {
         console.error('Error al eliminar afiliado:', error);
+    
+        resp.render('bajas/baja_afi', {
+         
+            cargado: false,
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL ELIMINAR EL AFILIADO',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 
 // // va todo tu select para buscar el afiliado que queres borrar
