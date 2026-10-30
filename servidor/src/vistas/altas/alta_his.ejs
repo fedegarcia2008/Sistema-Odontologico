@@ -14,13 +14,24 @@
 
 <h1>ALTA HISTORIA CLINICA</h1>
 
-    <main class="formulario">
+    <main>
+    <section class="panel">
+        <div class="panel-cabecera">
+            <i class="fa-solid fa-user-plus"></i>
+            <div>
+                <h2>Nuevo afiliado</h2>
+                <small>Los campos con * son obligatorios</small>
+            </div>
+        </div>
+
+            
         <form action="/historiaclinica/nuevoalta" method="POST">
    
-            
+        <div class="panel-campos">
         <div class="campo">
             <label>Clave de identificacion <span class="asterisco">*</span></label>
-            <input type="text" name="clave" autocomplete="off" required>
+            <input type="text" name="clave" autocomplete="off" placeholder="Ej: 123" required>
+            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
         </div>
 
         <div class="campo">
@@ -38,23 +49,28 @@
         </div>
         <div class="campo">
             <label>Id servicio <span class="asterisco">*</span></label>
-            <input type="text" name="idSer" maxlength="2" autocomplete="off" required>
+            <input type="text" name="idSer" maxlength="2" autocomplete="off" placeholder="Ej: 01" required>
+            <span class="ayuda">2 dígitos, sin puntos ni espacios</span>
         </div>
 
         <div class="campo">
             <label>Id afiliado <span class="asterisco">*</span></label>
             <input type="text" name="idAfi"  minlength="8" maxlength="8"
-                   pattern="[0-9]{8}" autocomplete="off" required>
+                   pattern="[0-9]{8}" autocomplete="off" placeholder="Ej: 12345678" required>
+                   <span class="ayuda">8 dígitos, sin puntos ni espacios</span>
         </div>
 
         <div class="campo">
             <label>Id odontologo <span class="asterisco">*</span></label>
-            <input type="text" name="idOdo" maxlength="3" autocomplete="off" required>
+            <input type="text" name="idOdo" maxlength="3" autocomplete="off" placeholder="Ej: 123" required>
+            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
         </div>
 
         <div class="campo">
             <label>Id turno <span class="asterisco">*</span></label>
-            <input type="text" name="idTur" autocomplete="off" required> <!--maxlenght? pq es AI-->
+            <input type="text" name="idTur" maxlength="3" autocomplete="off" placeholder="Ej: 123"  required> <!--maxlenght? pq es AI-->
+        <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+        </div>
         </div>
 
         <div class="boton">
@@ -62,6 +78,8 @@
         </div>
         
     </form>
+
+    </section>
     </main>
     
 <%- include('../componentes/sweet_alta') %>

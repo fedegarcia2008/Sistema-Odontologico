@@ -17,12 +17,17 @@
 
    <h1>MODIFICAR EQUIPAMIENTO</h1>
 
-        <main class="formulario">
+    <main class="busq-contenedor">
+    <div class="busq-grid">
 
-    <form onsubmit="busc_id(event)" method="GET">
+        <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por numero de serie</h2>
         <div class="campo">
             <label>Nro. de serie</label>
-            <input type="text" name="clave"  id="clave"  maxlength="12" autocomplete="off" required>
+            <input type="text" name="clave" id="clave" maxlength="12" placeholder="Ej: AB-1234" autocomplete="off" required>
+        <span class="ayuda">2 letras y 4 dígitos</span>
+        </div>
         </div>
         
        <div class="boton">
@@ -30,19 +35,24 @@
         </div>
 </form>
 
-    <form onsubmit="busc_tipo(event)" method="GET">
+    <form class="busq-item" onsubmit="busc_tipo(event)" method="GET">
+        <div>
+            <h2><i class="fa-solid fa-id-card"></i>Buscar por tipo de Equipamiento</h2>
         <div class="campo">
             <label>Tipo de Equipamiento:</label>
             <input type="text" id="tipo" name="tipo" autocomplete="off" required>
              <div id="listaEquipamiento" class="lista"></div>
         </div>
+        </div>
         
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
 
-</form>
-    </main>
+    </form>
+
+    </div>
+</main>
 
 <% if (cargado) { %>
 <% if (busc_registros.length > 0 &&  busc_registros.length == 1) { %>

@@ -529,6 +529,30 @@ footer {
     font-size: 13px;
 }
 
+/* ===== Buscadores 2 x 2 ===== */
+.busq-grid.busq-2x2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* Se reinician los bordes del estilo lado a lado */
+.busq-2x2 .busq-item + .busq-item {
+    border-left: none;
+    background: transparent;
+}
+
+/* Columna derecha: divisor vertical y fondo suave */
+.busq-2x2 .busq-item:nth-child(even) {
+    border-left: 1px solid #e6ecf2;
+    background: #fafcfe;
+}
+
+/* Fila de abajo: divisor horizontal */
+.busq-2x2 .busq-item:nth-child(n+3) {
+    border-top: 1px solid #e6ecf2;
+}
+
+
+
 @media (max-width: 700px) {
     .busq-item + .busq-item {
         border-left: none;
@@ -541,6 +565,17 @@ footer {
 
     .panel-campos {
         grid-template-columns: 1fr;
+    }
+    .busq-grid.busq-2x2 {
+        grid-template-columns: 1fr;
+    }
+
+    .busq-2x2 .busq-item:nth-child(even) {
+        border-left: none;
+    }
+
+    .busq-2x2 .busq-item + .busq-item {
+        border-top: 1px solid #e6ecf2;
     }
 }
 
