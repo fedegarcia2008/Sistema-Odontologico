@@ -15,7 +15,7 @@ export const baja_afi = (pet, resp)=>{
 }
 
 export const mod_afi = (pet, resp)=>{
-    resp.render('modificar/mod_afi',  {alert: false, cargado: false, modalert: false, guardado:false} )
+    resp.render('modificar/mod_afi',  {alert: false, cargado: false} )
 }
 
 export const busc_afi = (pet, resp)=>{
@@ -55,7 +55,7 @@ export const nuevo_afi = async (pet, resp) => {
             alert: true,
             icono: 'success',
             msj: 'AFILIADO GUARDADO',
-            tiempo: 1500,
+            tiempo: 2000,
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
@@ -63,7 +63,7 @@ export const nuevo_afi = async (pet, resp) => {
             alert: true,
             icono: 'error',
             msj: 'ERROR AL GUARDAR EL AFILIADO',
-            tiempo: 1500,
+            tiempo: 2000,
         });
     }
 };
@@ -209,17 +209,17 @@ let id = pet.params.clave;
                 busc_registros,
                 cargado: true,
                 alert: true,
-                guardado: true,
+                icono: 'success',
                 msj: 'AFILIADO ENCONTRADO',
-                tiempo: 1500,
+                tiempo: 2000,
             });
         } else {
             resp.render('modificar/mod_afi', {
                 busc_registros,
                 cargado: true,
                 alert: true,
-                guardado: false,
-                tiempo: 1500,
+                icono: 'info',
+                tiempo: 2000,
                 msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESA CI'
             });
         }
@@ -228,7 +228,7 @@ let id = pet.params.clave;
         resp.render('modificar/mod_afi', {
             cargado: true,
             alert: true,
-            guardado: false,
+            icono: 'false',
             msj: 'ERROR AL BUSCAR EL AFILIADO'
         });
     }
@@ -248,24 +248,24 @@ export const mod_id = async (pet, resp)=>{
         console.log(modificar_registros)
       
             resp.render('modificar/mod_afi', {
-                mod_registros,
+                modificar_registros,
                 cargado: false,
                 alert: true,
-                modalert: true,
+                icono: 'success',
                 msj: 'AFILIADO MODIFICADO',
-                tiempo: 1500,
+                tiempo: 2000,
             });
      
     } catch (error) {
         console.error('Error al modificar afiliado:', error);
-        // ALERTA ERROR (cae en el último else del template)
+    
         resp.render('modificar/mod_afi', {
          
             cargado: false,
             alert: true,
-            modalert: true,
+            icono: 'error',
             msj: 'ERROR AL MODIFICAR EL AFILIADO',
-            tiempo: 1500,
+            tiempo: 2000,
         });
     }
 };
