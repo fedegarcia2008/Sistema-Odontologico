@@ -45,7 +45,7 @@ export const nuevo_odo = async (pet, resp) => {
             alert: true,
             icono: 'success',
             msj: 'ODONTÓLOGO GUARDADO',
-            tiempo: 1500,
+            tiempo: 2000,
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
@@ -53,7 +53,7 @@ export const nuevo_odo = async (pet, resp) => {
             alert: true,
             icono: 'error',
             msj: 'ERROR AL GUARDAR EL ODONTÓLOGO',
-            tiempo: 1500,
+            tiempo: 2000,
         });
     }
 };
@@ -226,13 +226,37 @@ let id = pet.params.clave;
         let buscsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE idodontologo = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar/mod_odo', { busc_registros, cargado: true, alert: false });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_odo', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'ODONTÓLOGO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_odo', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN ODONTÓLOGO CON ESE ID'
+            });
+        }
     } catch (error) {
-        console.error('Error al buscar el odontologo:', error);
+        console.error('Error al buscar odontólogo:', error);
+        resp.render('modificar/mod_odo', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL ODONTÓLOGO'
+        });
     }
 };
 
-export const mod_id = async (pet, resp)=>{
+export const modificar_odo = async (pet, resp)=>{
   let id, nombre, apellido, esp, cons;
 
     id = pet.body.clave;
@@ -245,21 +269,25 @@ export const mod_id = async (pet, resp)=>{
         let modificarsql = "UPDATE odontologo SET nombre = '"+ nombre +"', apellido = '"+ apellido+"', especialidad = '"+ esp +"' WHERE idodontologo = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('modificar/mod_odo', {
-            cargado: false,
-            alert: true,
-            guardado: true,
-            msj: 'Odontologo Modificado',
-            tiempo: 1500,
-            botonConfirma: false
-        });
+            resp.render('modificar/mod_odo', {
+                modificar_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'ODONTÓLOGO MODIFICADO',
+                tiempo: 2000,
+            });
+     
     } catch (error) {
-        console.error('Error al modificar odontologo:', error);
-        resp.render('modificar/mod_con', {
+        console.error('Error al modificar odontólogo:', error);
+    
+        resp.render('modificar/mod_odo', {
+         
             cargado: false,
             alert: true,
-            guardado: false,
-            msj: 'No se pudo modificar el odontologo'
+            icono: 'error',
+            msj: 'ERROR AL MODIFICAR EL ODONTÓLOGO',
+            tiempo: 2000,
         });
     }
 };
@@ -271,28 +299,33 @@ let nom_completo = pet.params.nombre;
         let buscsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar/mod_odo', { busc_registros, cargado: true });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_odo', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'ODONTÓLOGO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_odo', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN ODONTÓLOGO CON ESE NOMBRE'
+            });
+        }
     } catch (error) {
-        console.error('Error al buscar odontologo:', error);
-    }
-};
-
-export const mod_nom = async (pet, resp)=>{
-    let  nom, apellido, esp;
-    
-    nom = pet.body.nombre;
-    apellido = pet.body.apellido;
-    esp = pet.body.especialidad;
-   
-
-
-     try {
-        let modificarsql = "UPDATE afiliado SET nombre = '"+ nom +"', apellido= '"+ apellido+"', especialidad= '"+ esp+"' WHERE nombre  = '"+ nom +"'";
-        const [modificar_registros] = await bdd.query(modificarsql);
-        console.log(modificar_registros)
-resp.render('modificar/mod_odo', { modificar_registros, cargado: true});
-    } catch (error) {
-        console.error('Error al modificar odontologo', error);
+        console.error('Error al buscar odontólogo:', error);
+        resp.render('modificar/mod_odo', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL ODONTÓLOGO'
+        });
     }
 };
 
