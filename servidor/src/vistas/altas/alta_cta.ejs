@@ -14,13 +14,24 @@
 
 <h1>ALTA CUENTA CORRIENTE</h1>
 
-    <main class="formulario">
+<main>
+    <section class="panel">
+        <div class="panel-cabecera">
+            <i class="fa-solid fa-user-plus"></i>
+            <div>
+                <h2>Nueva Cuenta Corriente</h2>
+                <small>Los campos con * son obligatorios</small>
+            </div>
+        </div>
+
         <form action="/cuentacorriente/nuevoalta" method="POST"> <!--dps cambiar ruteo en este-->
+            <div class="panel-campos">
         <div class="campo">
             <label>Clave de Identificación <span class="asterisco">*</span></label>
             <input type="text" name="clave"  minlength="8" maxlength="8"
-                   pattern="[0-9]{8}" autocomplete="off" required>
-        </div>
+                   pattern="[0-9]{8}" autocomplete="off" placeholder="Ej: 12345678" required>
+        <span class="ayuda">8 dígitos, sin puntos ni espacios</span>
+                </div>
 
         <div class="campo">
             <label>Saldo <span class="asterisco">*</span></label>
@@ -29,7 +40,9 @@
         
         <div class="campo">
             <label>ID Historia Clínica <span class="asterisco">*</span></label>
-            <input type="text" name="idTrat" autocomplete="off" required>
+            <input type="text" name="idTrat" autocomplete="off" placeholder="Ej: 123" required>
+            <span class="ayuda">8 dígitos, sin puntos ni espacios</span>
+        </div>
         </div>
 
         <div class="boton">
@@ -37,6 +50,7 @@
         </div>
         
     </form>
+    </section>
     </main> 
 
 <%- include('../componentes/sweet_alta') %>

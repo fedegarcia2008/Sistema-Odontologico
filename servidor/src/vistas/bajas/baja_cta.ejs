@@ -13,12 +13,18 @@
 <%- include('../componentes/header') %>
 
     <h1>BAJA CUENTA CORRIENTE</h1>
- <main class="formulario">
+    
+<main class="busq-contenedor">
+    <div class="busq-grid">
 
-    <form onsubmit="busc_id(event)" method="GET">
+        <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I. del afiliado</h2>
         <div class="campo">
             <label>Ci Afiliado:</label>
-            <input type="text" id="clave" name="clave" maxlength="8" autocomplete="off" required>
+            <input type="text" id="clave" name="clave" maxlength="8" placeholder="Ej: 12345678" autocomplete="off" required>
+            <span class="ayuda">8 dígitos, sin puntos ni espacios</span>
+        </div>
         </div>
         
        <div class="boton">
@@ -27,18 +33,22 @@
 
 </form>
 
-<form onsubmit="busc_nom(event)" method="GET">
+<form class="busq-item" onsubmit="busc_nom(event)" method="GET">
+    <div>
+        <h2><i class="fa-solid fa-id-card"></i> Buscar por nombre del afiliado</h2>
         <div class="campo">
             <label>Apellido y nombre del afiliado:</label>
-            <input type="text" id="nombre" name="nombre" maxlength="20" autocomplete="off" required>
+            <input type="text" id="nombre" name="nombre" maxlength="20" placeholder="Ej: 12345678" autocomplete="off" required>
+        </div>
         </div>
         
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
-
 </form>
 
+</div>
+</main>
     
 <% if (cargado) { %>
 <% if (baja_registros.length > 0 &&  baja_registros.length == 1) { %>
