@@ -19,7 +19,7 @@ export const mod_odo = (pet, resp)=>{
 }
 
 export const busc_odo = (pet, resp)=>{
-    resp.render('buscar/busc_odo' , { cargadoid: false,  cargadotabla: false})
+    resp.render('buscar/busc_odo' , { alert: false, cargadoid: false,  cargadotabla: false})
 }
 
 
@@ -77,11 +77,35 @@ export const buscodo_id = async (pet, resp)=>{
         let buscarsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE idodontologo = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('buscar/busc_odo', { busc_registros, cargadoid: true, cargadotabla: false  });
-    }     catch (error) {
-        console.error('Error al buscar el odontologo:', error);
+       if (busc_registros.length > 0) {
+            resp.render('buscar/busc_odo', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'success',
+                msj: 'ODONTÓLOGO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_odo', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN ODONTÓLOGO CON ESE ID'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar odontólogo:', error);
+        resp.render('buscar/busc_odo', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL ODONTÓLOGO',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 
 export const buscodo_nom = async (pet, resp)=>{
@@ -91,11 +115,35 @@ export const buscodo_nom = async (pet, resp)=>{
         let buscarsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('buscar/busc_odo', { busc_registros, cargadoid: false, cargadotabla: true});
-    }     catch (error) {
-        console.error('Error al buscar odontologo:', error);
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_odo', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'success',
+                msj: 'ODONTÓLOGO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_odo', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN ODONTÓLOGO CON ESE NOMBRE'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar odontólogo:', error);
+        resp.render('buscar/busc_odo', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL ODONTÓLOGO',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 export const buscodo_cons = async (pet, resp)=>{
       let cons = pet.params.cons;
@@ -104,11 +152,35 @@ export const buscodo_cons = async (pet, resp)=>{
         let buscarsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE consultorio_idconsultorio = '"+ cons +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('buscar/busc_odo', { busc_registros, cargadoid: false, cargadotabla: true});
-    }     catch (error) {
-        console.error('Error al buscar consultorio:', error);
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_odo', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'success',
+                msj: 'ODONTÓLOGO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_odo', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN ODONTÓLOGO CON ESE ID'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar odontólogo:', error);
+        resp.render('buscar/busc_odo', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL ODONTÓLOGO',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 export const buscodo_espe = async (pet, resp)=>{
       let espe = pet.params.espe;
@@ -117,12 +189,35 @@ export const buscodo_espe = async (pet, resp)=>{
         let buscarsql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE especialidad = '"+ espe +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('buscar/busc_odo', { busc_registros, cargadoid: false, cargadotabla: true});
-    }     catch (error) {
-        console.error('Error al buscar especialidad:', error);
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_odo', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'success',
+                msj: 'ODONTÓLOGO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_odo', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN ODONTÓLOGO CON ESA ESPECIALIDAD'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar odontólogo:', error);
+        resp.render('buscar/busc_odo', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL ODONTÓLOGO',
+            tiempo: 2000,
+        });
     }
-}
-
+};
 
 // para modificar
 export const  mododo_id = async (pet, resp)=>{

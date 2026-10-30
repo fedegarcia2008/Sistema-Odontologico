@@ -19,7 +19,7 @@ export const mod_hor = (pet, resp)=>{
 }
 
 export const busc_hor = (pet, resp)=>{
-    resp.render('buscar/busc_hor', {cargadoid: false, cargadotabla: false,})
+    resp.render('buscar/busc_hor', {alert: false, cargadoid: false, cargadotabla: false,})
 }
 
 
@@ -74,11 +74,35 @@ export const buschor_id = async (pet, resp)=>{
         let buscarsql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM horario WHERE idhorario = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('buscar/busc_hor', { busc_registros, cargadoid: true, cargadotabla: false, });
-    }     catch (error) {
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_hor', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'success',
+                msj: 'HORARIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_hor', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN HORARIO CON ESE ID'
+            });
+        }
+    } catch (error) {
         console.error('Error al buscar horario:', error);
+        resp.render('buscar/busc_hor', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL HORARIO',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 export const buschor_odo = async (pet, resp)=>{
       let odo = pet.params.idOdo;
@@ -86,11 +110,35 @@ export const buschor_odo = async (pet, resp)=>{
         let buscarsql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM horario WHERE odontologo_idodontologo = '"+ odo +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('buscar/busc_hor', { busc_registros, cargadoid: false, cargadotabla: true, });
-    }     catch (error) {
-        console.error('Error al buscar el horario:', error);
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_hor', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'success',
+                msj: 'HORARIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_hor', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN HORARIO CON ESE ID'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar horario:', error);
+        resp.render('buscar/busc_hor', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL HORARIO',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 
 export const buschor_dia = async (pet, resp)=>{
@@ -99,11 +147,35 @@ export const buschor_dia = async (pet, resp)=>{
         let buscarsql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM horario WHERE dia = '"+ dia +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('buscar/busc_hor', { busc_registros, cargadoid: false, cargadotabla: true, });
-    }     catch (error) {
-        console.error('Error al buscar dia:', error);
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_hor', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'success',
+                msj: 'HORARIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_hor', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN HORARIO CON ESE DÍA'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar horario:', error);
+        resp.render('buscar/busc_hor', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL HORARIO',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 // para modificar
 export const  modhor_id = async (pet, resp)=>{

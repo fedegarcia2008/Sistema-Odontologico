@@ -19,7 +19,7 @@ export const mod_his = (pet, resp)=>{
 }
 
 export const busc_his = (pet, resp)=>{
-    resp.render('buscar/busc_his', {cargadoid: false, cargadotabla: false,})
+    resp.render('buscar/busc_his', {alert: false, cargadoid: false, cargadotabla: false,})
 }
 
 

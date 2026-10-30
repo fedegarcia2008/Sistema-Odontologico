@@ -138,7 +138,7 @@ export const buscafi_nom = async (pet, resp)=>{
             resp.render('buscar/busc_afi', {
                 busc_registros,
              
-                cargadoid: true, cargadotabla: false,
+                cargadoid: false, cargadotabla: true,
                 alert: true,
                 icono: 'info',
                 tiempo: 2000,

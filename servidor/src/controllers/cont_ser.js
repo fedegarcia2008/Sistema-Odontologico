@@ -19,7 +19,7 @@ export const mod_ser = (pet, resp)=>{
 }
 
 export const busc_ser = (pet, resp)=>{
-    resp.render('buscar/busc_ser', {cargadoid: false, cargadotabla: false, })
+    resp.render('buscar/busc_ser', {alert: false, cargadoid: false, cargadotabla: false, })
 }
 
 
@@ -76,11 +76,35 @@ export const buscser_id = async (pet, resp)=>{
         let buscarsql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento WHERE idtratamiento = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('buscar/busc_ser', { busc_registros, cargadoid: true, cargadotabla: false, });
-    }     catch (error) {
-        console.error('Error al buscar el servicio:', error);
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_ser', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'success',
+                msj: 'SERVICIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_ser', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN SERVICIO CON ESE ID'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar servicio:', error);
+        resp.render('buscar/busc_ser', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL SERVICIO',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 export const buscser_nom = async (pet, resp)=>{
       let nombre = pet.params.nom;
@@ -88,11 +112,35 @@ export const buscser_nom = async (pet, resp)=>{
         let buscarsql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento WHERE nombre = '"+ nombre +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('buscar/busc_ser', { busc_registros, cargadoid: false, cargadotabla: true, });
-    }     catch (error) {
-        console.error('Error al buscar el nombre del servicio:', error);
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_ser', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'success',
+                msj: 'SERVICIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_ser', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN SERVICIO CON ESE NOMBRE'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar servicio:', error);
+        resp.render('buscar/busc_ser', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL SERVICIO',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 export const buscser_odo = async (pet, resp)=>{
       let odo = pet.params.odo;
@@ -100,11 +148,35 @@ export const buscser_odo = async (pet, resp)=>{
         let buscarsql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento WHERE odontologo_idodontologo = '"+ odo +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('buscar/busc_ser', { busc_registros, cargadoid: false, cargadotabla: true, });
-    }     catch (error) {
-        console.error('Error al buscar el id del odontologo:', error);
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_ser', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'success',
+                msj: 'SERVICIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_ser', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN SERVICIO CON ESE ID'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar servicio:', error);
+        resp.render('buscar/busc_ser', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL SERVICIO',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 
 // para modificar

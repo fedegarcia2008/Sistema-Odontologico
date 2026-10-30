@@ -19,7 +19,7 @@ export const mod_tur = (pet, resp)=>{
 }
 
 export const busc_tur = (pet, resp)=>{
-    resp.render('buscar/busc_tur', { cargadoid: false, cargadotabla: false,})
+    resp.render('buscar/busc_tur', {alert: false, cargadoid: false, cargadotabla: false,})
 }
 
 
