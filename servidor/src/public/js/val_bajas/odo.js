@@ -5,6 +5,14 @@
         document.getElementById('clave').value = "";   
         }
 
+    function busc_nom(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('nombre').value;
+        window.location.href = `/odontologo/bajanombre/${idejs}`;
+        document.getElementById('nombre').value = "";   
+        }
+
+
     function baja_id(event) {
         event.preventDefault();
 
@@ -14,13 +22,6 @@
         formulario.action = `/odontologo/baja/${idejs}`;
         formulario.submit();
     }
-
-    function busc_nom(event) {
-        event.preventDefault();
-        let idejs = document.getElementById('nom').value;
-        window.location.href = `/odontologo/bajanom/${idejs}`;
-        document.getElementById('nom').value = "";   
-        }
 
     function baja_nom(event) {
         event.preventDefault();

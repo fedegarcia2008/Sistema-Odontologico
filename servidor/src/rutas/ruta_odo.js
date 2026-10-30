@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { menu_odo, alta_odo, baja_odo, mod_odo, busc_odo, mos_odo, nuevo_odo, mododo_nom, mod_nom, buscodo_id, buscodo_nom, mododo_id, buscodo_cons, buscodo_espe, mod_id, bajaodo_id,  eliminar_odo, bajaodo_nom, eliminar_nom } from '../controllers/cont_odo.js';
+import { menu_odo, alta_odo, baja_odo, mod_odo, busc_odo, mos_odo, nuevo_odo, mododo_nom, mod_nom, buscodo_id, buscodo_nom, mododo_id, buscodo_cons, buscodo_espe, mod_id, bajaodo_id,  eliminar_odo, bajaodo_nom } from '../controllers/cont_odo.js';
 
 const rOdontologo = express.Router();
 
@@ -28,9 +28,8 @@ rOdontologo.post('/odontologo/modificar/:nombre', mod_nom)
 
 // para borrar
 rOdontologo.get('/odontologo/bajaid/:clave', bajaodo_id)
-rOdontologo.post('/odontologo/baja/:clave', eliminar_odo)
+rOdontologo.get('/odontologo/bajanombre/:nombre', bajaodo_nom)
 
-rOdontologo.get('/odontologo/bajanom/:nom', bajaodo_nom)
-rOdontologo.post('/odontologo/baja/:nom', eliminar_nom)
+rOdontologo.post('/odontologo/baja/:clave', eliminar_odo)
 
 export {rOdontologo}
