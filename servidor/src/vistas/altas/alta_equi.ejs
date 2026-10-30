@@ -14,11 +14,23 @@
 
 <h1>ALTA EQUIPAMIENTO</h1>
 
-    <main class="formulario">
-        <form action="/equipamiento/nuevoalta" method="POST">
+    <main>
+    <section class="panel">
+        <div class="panel-cabecera">
+            <i class="fa-solid fa-user-plus"></i>
+            <div>
+                <h2>Nuevo afiliado</h2>
+                <small>Los campos con * son obligatorios</small>
+            </div>
+        </div>
+
+            
+    <form action="/equipamiento/nuevoalta" method="POST">
+        <div class="panel-campos">
         <div class="campo">
             <label>Nro. de serie <span class="asterisco">*</span></label>
-            <input type="text" name="clave" maxlength="12" autocomplete="off" required>
+            <input type="text" name="clave" maxlength="12" placeholder="Ej: AB-1234" autocomplete="off" required>
+            <span class="ayuda">2 letras y 4 dígitos</span>
         </div>
 
         <div class="campo">
@@ -35,7 +47,9 @@
 
         <div class="campo">
             <label>ID consultorio <span class="asterisco">*</span></label>
-            <input type="text" name="idCons" maxlength="3" autocomplete="off" required>
+            <input type="text" name="idCons" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
+            <span class="ayuda">3 digitos, sin puntos ni espacios</span>
+        </div>
         </div>
 
         <div class="boton">
@@ -43,6 +57,7 @@
         </div>
         
     </form>
+    </section>
     </main>
 
 <%- include('../componentes/sweet_alta') %>

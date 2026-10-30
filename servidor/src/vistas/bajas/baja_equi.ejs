@@ -14,33 +14,43 @@
 <%- include('../componentes/header') %>
 
     <h1>BAJA EQUIPAMIENTO</h1>
- <main class="formulario">
 
-    <form onsubmit="busc_id(event)" method="GET">
+    <main class="busq-contenedor">
+    <div class="busq-grid">
+
+        <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por numero de serie</h2>
         <div class="campo">
             <label>Nro de serie:</label>
-            <input type="text" id="clave" name="clave" maxlength="10" autocomplete="off" required>
+            <input type="text" id="clave" name="clave" maxlength="10" placeholder="Ej: AB-1234" autocomplete="off" required>
+        <span class="ayuda">2 letras y 4 dígitos</span>
         </div>
         
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
+        </div>
 
 </form>
 
 
-    <form onsubmit="busc_tipo(event)" method="GET">
+    <form class="busq-item" onsubmit="busc_tipo(event)" method="GET">
+        <div>
+            <h2><i class="fa-solid fa-id-card"></i> Buscar por tipo de equipamiento</h2>
         <div class="campo">
             <label>Tipo de Equipamiento:</label>
             <input type="text" id="tipo" name="tipo" maxlength="30" autocomplete="off" required>
         <div id="listaEquipamiento" class="lista"></div>
         </div>
+        </div>
         
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
-
 </form>
+
+</div>
 </main>
 
 

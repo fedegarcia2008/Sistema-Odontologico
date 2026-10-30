@@ -14,11 +14,12 @@
 <%- include('../componentes/header') %>
 
 
-    <h1>BUSCAR EQUIPAMIENTOS</h1>
+  <main class="busq-contenedor">
+    <div class="busq-grid">
 
-        <main class="formulario">
-
-    <form onsubmit="busc_id(event)" method="GET">
+        <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por numero de serie</h2>>
         <div class="campo">
             <label>Nro. de serie</label>
             <input type="text" name="clave" id="clave" maxlength="12" autocomplete="off" required>
@@ -66,6 +67,7 @@
             </div>
         </form>
 
+        </div>
     </main>
 
 <% if (cargadoid) { %>
