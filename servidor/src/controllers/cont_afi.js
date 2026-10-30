@@ -277,9 +277,33 @@ let nom_completo = pet.params.nombre;
         let buscsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";;
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar/mod_afi', { busc_registros, cargado: true });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_afi', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'AFILIADO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_afi', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESE NOMBRE'
+            });
+        }
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
+        resp.render('modificar/mod_afi', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL AFILIADO'
+        });
     }
 };
 
@@ -296,9 +320,26 @@ export const mod_nom = async (pet, resp)=>{
         let modificarsql = "UPDATE afiliado SET nombre = '"+ nom +"', apellido= '"+ apellido+"', tel_cel= '"+ telCel+"', tel_fijo= '"+ telFijo+"', tipo_plan= '"+ plan+"'WHERE nombre  = '"+ nom +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
-resp.render('modificar/mod_afi', { modificar_registros, cargado: true});
+            resp.render('modificar/mod_afi', {
+                modificar_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'AFILIADO MODIFICADO',
+                tiempo: 2000,
+            });
+     
     } catch (error) {
-        console.error('Error al modificar afiliado', error);
+        console.error('Error al modificar afiliado:', error);
+    
+        resp.render('modificar/mod_afi', {
+         
+            cargado: false,
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL MODIFICAR EL AFILIADO',
+            tiempo: 2000,
+        });
     }
 };
 
