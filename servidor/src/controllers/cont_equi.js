@@ -222,9 +222,33 @@ let id = pet.params.clave;
         let buscsql = "SELECT nroserie, tipo, DATE_FORMAT(fecha_mantenimiento, '%Y-%m-%d') AS fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE nroserie= '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar/mod_equi', { busc_registros, cargado: true, alert: false });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_equi', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'EQUIPAMIENTO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_equi', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN EQUIPAMIENTO CON ESE ID'
+            });
+        }
     } catch (error) {
-        console.error('Error al buscar el equipamiento:', error);
+        console.error('Error al buscar equipamiento:', error);
+        resp.render('modificar/mod_equi', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL EQUIPAMIENTO'
+        });
     }
 };
 
@@ -234,9 +258,33 @@ let tipo = pet.params.tipo;
         let buscsql = "SELECT nroserie, tipo, DATE_FORMAT(fecha_mantenimiento, '%Y-%m-%d') AS fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE tipo= '"+ tipo +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar/mod_equi', { busc_registros, cargado: true, alert: false });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_equi', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'EQUIPAMIENTO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_equi', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN EQUIPAMIENTO CON ESE NOMBRE'
+            });
+        }
     } catch (error) {
-        console.error('Error al buscar el equipamiento:', error);
+        console.error('Error al buscar equipamiento:', error);
+        resp.render('modificar/mod_equi', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL EQUIPAMIENTO'
+        });
     }
 };
 
@@ -254,21 +302,25 @@ export const modificar_equi = async (pet, resp)=>{
         let modificarsql = "UPDATE equipamiento SET tipo = '"+ tipo +"', fecha_mantenimiento = '"+ fecha+"' WHERE nroserie = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('modificar/mod_equi', {
-            cargado: false,
-            alert: true,
-            guardado: true,
-            msj: 'Equipamiento Modificado',
-            tiempo: 1500,
-            botonConfirma: false
-        });
+            resp.render('modificar/mod_equi', {
+                modificar_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'EQUIPAMIENTO MODIFICADO',
+                tiempo: 2000,
+            });
+     
     } catch (error) {
-        console.error('Error al modificar el equipamiento:', error);
+        console.error('Error al modificar equipamiento:', error);
+    
         resp.render('modificar/mod_equi', {
+         
             cargado: false,
             alert: true,
-            guardado: false,
-            msj: 'No se pudo modificar el equipamiento'
+            icono: 'error',
+            msj: 'ERROR AL MODIFICAR EL EQUIPAMIENTO',
+            tiempo: 2000,
         });
     }
 };

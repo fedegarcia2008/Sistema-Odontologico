@@ -186,9 +186,33 @@ let id = pet.params.clave;
         let buscsql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento WHERE idtratamiento = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar/mod_ser', { busc_registros, cargado: true, alert: false });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_ser', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'SERVICIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_ser', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN SERVICIO CON ESE ID'
+            });
+        }
     } catch (error) {
-        console.error('Error al buscar el servicio:', error);
+        console.error('Error al buscar servicio:', error);
+        resp.render('modificar/mod_ser', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL SERVICIO'
+        });
     }
 };
 
@@ -198,9 +222,33 @@ let nom = pet.params.nom;
         let buscsql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento WHERE nombre = '"+ nom +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar/mod_ser', { busc_registros, cargado: true, alert: false });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_ser', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'SERVICIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_ser', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN SERVICIO CON ESE NOMBRE'
+            });
+        }
     } catch (error) {
-        console.error('Error al buscar el servicio:', error);
+        console.error('Error al buscar servicio:', error);
+        resp.render('modificar/mod_ser', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL SERVICIO'
+        });
     }
 };
 
@@ -216,21 +264,25 @@ export const modificar_ser = async (pet, resp)=>{
         let modificarsql = "UPDATE tratamiento SET nombre = '"+ nombre +"', costo = '"+ costo+"' WHERE idtratamiento = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('modificar/mod_ser', {
-            cargado: false,
-            alert: true,
-            guardado: true,
-            msj: 'Servicio Modificado',
-            tiempo: 1500,
-            botonConfirma: false
-        });
+            resp.render('modificar/mod_ser', {
+                modificar_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'SERVICIO MODIFICADO',
+                tiempo: 2000,
+            });
+     
     } catch (error) {
         console.error('Error al modificar servicio:', error);
+    
         resp.render('modificar/mod_ser', {
+         
             cargado: false,
             alert: true,
-            guardado: false,
-            msj: 'No se pudo modificar el servicio'
+            icono: 'error',
+            msj: 'ERROR AL MODIFICAR EL SERVICIO',
+            tiempo: 2000,
         });
     }
 };

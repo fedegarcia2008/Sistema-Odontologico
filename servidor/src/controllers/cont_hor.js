@@ -184,9 +184,33 @@ let id = pet.params.clave;
         let buscsql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM horario WHERE idhorario = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar/mod_hor', { busc_registros, cargado: true, alert: false });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_hor', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'HORARIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_hor', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN HORARIO CON ESE ID'
+            });
+        }
     } catch (error) {
-        console.error('Error al buscar el horario:', error);
+        console.error('Error al buscar horario:', error);
+        resp.render('modificar/mod_hor', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL HORARIO'
+        });
     }
 };
 
@@ -196,9 +220,33 @@ let dia = pet.params.dia;
         let buscsql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM horario WHERE dia = '"+ dia +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar/mod_hor', { busc_registros, cargado: true, alert: false });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_hor', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'HORARIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_hor', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN HORARIO CON ESE DÍA'
+            });
+        }
     } catch (error) {
-        console.error('Error al buscar el horario:', error);
+        console.error('Error al buscar horario:', error);
+        resp.render('modificar/mod_hor', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL HORARIO'
+        });
     }
 };
 
@@ -215,27 +263,28 @@ export const modificar_hor = async (pet, resp)=>{
         let modificarsql = "UPDATE horario SET dia = '"+ dia +"', horario_comienzo = '"+ inicio+"',horario_final = '"+ final +"' WHERE idhorario = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('modificar/mod_hor', {
-            cargado: false,
-            alert: true,
-            guardado: true,
-            msj: 'Horario Modificado',
-            tiempo: 1500,
-            botonConfirma: false
-        });
+            resp.render('modificar/mod_hor', {
+                modificar_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'HORARIO MODIFICADO',
+                tiempo: 2000,
+            });
+     
     } catch (error) {
         console.error('Error al modificar horario:', error);
+    
         resp.render('modificar/mod_hor', {
+         
             cargado: false,
             alert: true,
-            guardado: false,
-            msj: 'No se pudo modificar el horario'
+            icono: 'error',
+            msj: 'ERROR AL MODIFICAR EL HORARIO',
+            tiempo: 2000,
         });
     }
 };
-
-
-
 
 // para borrar
 export const  bajahor_id = async (pet, resp)=>{

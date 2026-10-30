@@ -122,9 +122,33 @@ let id = pet.params.clave;
         let buscsql = "SELECT idconsultorio, numero, local_idlocal FROM consultorio WHERE idconsultorio = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar/mod_cons', { busc_registros, cargado: true, alert: false });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_cons', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'CONSULTORIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_cons', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN CONSULTORIO CON ESE ID'
+            });
+        }
     } catch (error) {
-        console.error('Error al buscar el consultorio:', error);
+        console.error('Error al buscar consultorio:', error);
+        resp.render('modificar/mod_cons', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL CONSULTORIO'
+        });
     }
 };
 
@@ -134,12 +158,35 @@ let num = pet.params.num;
         let buscsql = "SELECT idconsultorio, numero, local_idlocal FROM consultorio WHERE numero= '"+ num +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar/mod_cons', { busc_registros, cargado: true, alert: false });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_cons', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'CONSULTORIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_cons', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN CONSULTORIO CON ESE NÚMERO'
+            });
+        }
     } catch (error) {
-        console.error('Error al buscar el consultorio:', error);
+        console.error('Error al buscar consultorio:', error);
+        resp.render('modificar/mod_cons', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL CONSULTORIO'
+        });
     }
 };
-
 
 export const modificar_cons = async (pet, resp)=>{
        let id, nro, local;
@@ -151,21 +198,25 @@ export const modificar_cons = async (pet, resp)=>{
         let modificarsql = "UPDATE consultorio SET numero = '"+ nro +"' WHERE idconsultorio = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('modificar/mod_cons', {
-            cargado: false,
-            alert: true,
-            guardado: true,
-            msj: 'Consultorio Modificado',
-            tiempo: 1500,
-            botonConfirma: false
-        });
+            resp.render('modificar/mod_cons', {
+                modificar_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'CONSULTORIO MODIFICADO',
+                tiempo: 2000,
+            });
+     
     } catch (error) {
         console.error('Error al modificar consultorio:', error);
+    
         resp.render('modificar/mod_cons', {
+         
             cargado: false,
             alert: true,
-            guardado: false,
-            msj: 'No se pudo modificar el consultorio'
+            icono: 'error',
+            msj: 'ERROR AL MODIFICAR EL CONSULTORIO',
+            tiempo: 2000,
         });
     }
 };

@@ -267,9 +267,33 @@ let id = pet.params.clave;
         let buscsql = "SELECT idtratamiento_realizado, DATE_FORMAT(fecha_inicio, '%Y-%m-%d') AS fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE idtratamiento_realizado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar/mod_his', { busc_registros, cargado: true, alert: false });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_his', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'HISTORIA CLÍNICA ENCONTRADA',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_his', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUNA HISTORIA CLÍNICA CON ESE ID'
+            });
+        }
     } catch (error) {
-        console.error('Error al buscar la historia clinica:', error);
+        console.error('Error al buscar historia clinica:', error);
+        resp.render('modificar/mod_his', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR LA HISTORIA CLÍNICA'
+        });
     }
 };
 
@@ -280,9 +304,33 @@ let afi = pet.params.idAfi;
         let buscsql = "SELECT idtratamiento_realizado, DATE_FORMAT(fecha_inicio, '%Y-%m-%d') AS fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE afiliado_ci_afiliado = '"+ afi +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar/mod_his', { busc_registros, cargado: true, alert: false });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_his', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'HISTORIA CLÍNICA ENCONTRADA',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_his', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUNA HISTORIA CLÍNICA CON ESE ID'
+            });
+        }
     } catch (error) {
-        console.error('Error al buscar la historia clinica:', error);
+        console.error('Error al buscar historia clinica:', error);
+        resp.render('modificar/mod_his', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR LA HISTORIA CLÍNICA'
+        });
     }
 };
 
@@ -302,21 +350,25 @@ export const modificar_his = async (pet, resp)=>{
         let modificarsql = "UPDATE tratamiento_realizado SET fecha_inicio = '"+ fecha +"', tratamiento_finalizado = '"+ trat+"' WHERE idtratamiento_realizado = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('modificar/mod_his', {
-            cargado: false,
-            alert: true,
-            guardado: true,
-            msj: 'Historia Clinica Modificada',
-            tiempo: 1500,
-            botonConfirma: false
-        });
+            resp.render('modificar/mod_his', {
+                modificar_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'HISTORIA CLÍNICA MODIFICADA',
+                tiempo: 2000,
+            });
+     
     } catch (error) {
-        console.error('Error al modificar la historia clinica:', error);
+        console.error('Error al modificar la historia clínica:', error);
+    
         resp.render('modificar/mod_his', {
+         
             cargado: false,
             alert: true,
-            guardado: false,
-            msj: 'No se pudo modificar la historia clinica'
+            icono: 'error',
+            msj: 'ERROR AL MODIFICAR LA HISTORIA CLÍNICA',
+            tiempo: 2000,
         });
     }
 };
