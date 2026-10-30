@@ -40,7 +40,7 @@ export const nuevo_con = async (pet, resp) => {
             alert: true,
             icono: 'success',
             msj: 'CONVENIO GUARDADO',
-            tiempo: 1500,
+            tiempo: 2000,
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
@@ -48,7 +48,7 @@ export const nuevo_con = async (pet, resp) => {
             alert: true,
             icono: 'error',
             msj: 'ERROR AL GUARDAR EL CONVENIO',
-            tiempo: 1500,
+            tiempo: 2000,
         });
     }
 };
@@ -148,9 +148,33 @@ let id = pet.params.clave;
         let buscsql = "SELECT idconvenio, nombre, rebaja FROM convenio WHERE idconvenio = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar/mod_con', { busc_registros, cargado: true, alert: false });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_con', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'CONVENIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_con', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN CONVENIO CON ESE ID'
+            });
+        }
     } catch (error) {
-        console.error('Error al buscar el convenio:', error);
+        console.error('Error al buscar convenio:', error);
+        resp.render('modificar/mod_con', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL CONVENIO'
+        });
     }
 };
 
@@ -160,9 +184,33 @@ let nom = pet.params.nombre;
         let buscsql = "SELECT idconvenio, nombre, rebaja FROM convenio WHERE nombre = '"+ nom +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar/mod_con', { busc_registros, cargado: true, alert: false });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_con', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'CONVENIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_con', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN CONVENIO CON ESE NOMBRE'
+            });
+        }
     } catch (error) {
-        console.error('Error al buscar el nombre:', error);
+        console.error('Error al buscar convenio:', error);
+        resp.render('modificar/mod_con', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL CONVENIO'
+        });
     }
 };
 
@@ -177,21 +225,25 @@ export const modificar_con = async (pet, resp)=>{
         let modificarsql = "UPDATE convenio SET nombre = '"+ nombre +"', rebaja = '"+ rebaja+"' WHERE idconvenio = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('modificar/mod_con', {
-            cargado: false,
-            alert: true,
-            guardado: true,
-            msj: 'Convenio Modificado',
-            tiempo: 1500,
-            botonConfirma: false
-        });
+            resp.render('modificar/mod_con', {
+                modificar_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'CONVENIO MODIFICADO',
+                tiempo: 2000,
+            });
+     
     } catch (error) {
         console.error('Error al modificar convenio:', error);
+    
         resp.render('modificar/mod_con', {
+         
             cargado: false,
             alert: true,
-            guardado: false,
-            msj: 'No se pudo modificar el convenio'
+            icono: 'error',
+            msj: 'ERROR AL MODIFICAR EL CONVENIO',
+            tiempo: 2000,
         });
     }
 };

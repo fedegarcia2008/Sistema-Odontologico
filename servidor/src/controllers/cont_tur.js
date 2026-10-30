@@ -139,11 +139,75 @@ let id = pet.params.clave;
         let buscsql = "SELECT idconsulta, DATE_FORMAT(fecha, '%Y-%m-%d') AS fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE idconsulta = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar/mod_tur', { busc_registros, cargado: true, alert: false });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_tur', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'TURNO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_tur', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN TURNO CON ESE ID'
+            });
+        }
     } catch (error) {
-        console.error('Error al buscar la consulta:', error);
+        console.error('Error al buscar turno:', error);
+        resp.render('modificar/mod_tur', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL TURNO'
+        });
     }
 };
+
+
+ export const modtur_fechas = async (pet, resp)=>{
+          let fecha1 = pet.params.fecha1;
+          let fecha2 = pet.params.fecha2;
+          
+          try {
+           let buscsql =  "SELECT idconsulta, DATE_FORMAT(fecha, '%Y-%m-%d') AS fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE fecha BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' ORDER BY fecha, horario"; //mostrar bien las fechas
+            const [busc_registros] = await bdd.query(buscsql);
+            console.log(busc_registros)
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_tur', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'TURNO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_tur', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN TURNO CON PARA ESE PERÍODO'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar turno:', error);
+        resp.render('modificar/mod_tur', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL TURNO'
+        });
+    }
+};
+
 
 export const modificar_tur = async (pet, resp)=>{
     
@@ -159,40 +223,28 @@ id = pet.body.clave;
         let modificarsql = "UPDATE consulta SET fecha = '"+ fecha +"', horario = '"+ hora+"', odontologo_idodontologo = '"+ odo +"', afiliado_ci_afiliado = '"+ afi +"'  WHERE idconsulta = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('mod_tur', {
-            cargado: false,
-            alert: true,
-            guardado: true,
-            msj: 'Turno Modificado',
-            tiempo: 1500,
-            botonConfirma: false
-        });
+            resp.render('modificar/mod_tur', {
+                modificar_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'TURNO MODIFICADO',
+                tiempo: 2000,
+            });
+     
     } catch (error) {
-        console.error('Error al modificar consulta:', error);
-        resp.render('mod_tur', {
+        console.error('Error al modificar turno:', error);
+    
+        resp.render('modificar/mod_tur', {
+         
             cargado: false,
             alert: true,
-            guardado: false,
-            msj: 'No se pudo modificar la consulta'
+            icono: 'error',
+            msj: 'ERROR AL MODIFICAR EL TURNO',
+            tiempo: 2000,
         });
     }
 };
-
- export const modtur_fechas = async (pet, resp)=>{
-          let fecha1 = pet.params.fecha1;
-          let fecha2 = pet.params.fecha2;
-          
-          try {
-           let buscsql =  "SELECT idconsulta, DATE_FORMAT(fecha, '%Y-%m-%d') AS fecha, horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE fecha BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' ORDER BY fecha, horario"; //mostrar bien las fechas
-            const [busc_registros] = await bdd.query(buscsql);
-            console.log(busc_registros)
-        resp.render('modificar/mod_tur', { busc_registros,  cargado: true });
-        }     catch (error) {
-            console.error('Error al buscar turno:', error);
-        }
-    }
-
-
 
 // para borrar
 export const  bajatur_id = async (pet, resp)=>{

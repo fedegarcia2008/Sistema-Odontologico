@@ -186,9 +186,33 @@ let id = pet.params.clave;
         let buscsql = "SELECT afiliado_ci_afiliado, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte WHERE afiliado_ci_afiliado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar/mod_cta', { busc_registros, cargado: true, alert: false });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_cta', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'CUANTA CORRIENTE ENCONTRADA',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_cta', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESE CI'
+            });
+        }
     } catch (error) {
-        console.error('Error al buscar la cuenta corriente:', error);
+        console.error('Error al buscar cta cte:', error);
+        resp.render('modificar/mod_cta', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR LA CUENTA CORRIENTE'
+        });
     }
 };
 
@@ -198,9 +222,33 @@ let nom_completo = pet.params.nombre;
         let buscsql = "SELECT afiliado_ci_afiliado, nombre, apellido, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte INNER JOIN afiliado ON ci_afiliado = afiliado_ci_afiliado WHERE CONCAT(apellido, ' ', nombre) LIKE '%" + nom_completo + "%'";
         const [busc_registros] = await bdd.query(buscsql);
         console.log(busc_registros)
-resp.render('modificar//mod_cta', { busc_registros, cargado: true, alert: false });
+        if (busc_registros.length > 0) {
+            resp.render('modificar/mod_cta', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'CUANTA CORRIENTE ENCONTRADA',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('modificar/mod_cta', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESE NOMBRE'
+            });
+        }
     } catch (error) {
-        console.error('Error al buscar el nombre del afiliado:', error);
+        console.error('Error al buscar cta cte:', error);
+        resp.render('modificar/mod_cta', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR LA CUENTA CORRIENTE'
+        });
     }
 };
 
@@ -217,21 +265,25 @@ export const modificar_cta = async (pet, resp)=>{
         let modificarsql = "UPDATE cta_cte SET saldo = '"+ saldo +"' WHERE afiliado_ci_afiliado = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
- resp.render('modificar/mod_cta', {
-            cargado: false,
-            alert: true,
-            guardado: true,
-            msj: 'Cuenta Corriente Modificada',
-            tiempo: 1500,
-            botonConfirma: false
-        });
+            resp.render('modificar/mod_cta', {
+                modificar_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'CUENTA CORRIENTE MODIFICADA',
+                tiempo: 2000,
+            });
+     
     } catch (error) {
-        console.error('Error al modificar la cuenta:', error);
+        console.error('Error al modificar cta cte:', error);
+    
         resp.render('modificar/mod_cta', {
+         
             cargado: false,
             alert: true,
-            guardado: false,
-            msj: 'No se pudo modificar la cuenta'
+            icono: 'error',
+            msj: 'ERROR AL MODIFICAR LA CUENTA CORRIENTE',
+            tiempo: 2000,
         });
     }
 };

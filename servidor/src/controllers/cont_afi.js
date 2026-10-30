@@ -234,7 +234,7 @@ let id = pet.params.clave;
     }
 };
 
-export const mod_id = async (pet, resp)=>{
+export const mod_id = async (pet, resp)=>{ //este no tendria que ser modificar_afi???
     let id, nombre, apellido, telCel, telFijo, plan;
     id = pet.body.clave;
     nombre = pet.body.nombre;
