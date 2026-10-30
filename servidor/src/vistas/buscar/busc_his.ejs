@@ -16,25 +16,31 @@
 
     <h1>BUSCAR HISTORIA CLINICA</h1>
 
-        <main class="formulario">
+    <main class="busq-contenedor">
+    <div class="busq-grid">
 
-    <form onsubmit="busc_id(event)" method="GET">
+        <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off" required >
+            <input type="text" id="clave" name="clave" maxlength="3" placeholder="Ej: 123" autocomplete="off" required >
+        <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+        </div>
         </div>
         
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
-    
 </form>
-
     
-        <form onsubmit="busc_fecha(event)" method="GET">
+        <form class="busq-item" onsubmit="busc_fecha(event)" method="GET">
+             <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por fecha</h2>
             <div class="campo">
                 <label>Fecha:</label>
                 <input type="date" id="fecha" name="fecha" required>
+            </div>
             </div>
 
             <div class="boton">
@@ -43,11 +49,15 @@
         </form>
 
         
-        <form onsubmit="busc_afi(event)" method="GET">
+        <form class="busq-item" onsubmit="busc_afi(event)" method="GET">
+             <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por ID del afiliado</h2>
             <div class="campo">
-                <label>Id afiliado <span class="asterisco">*</span></label>
+                <label>Id afiliado</label>
             <input type="text" name="idAfi" id="idAfi" minlength="8" maxlength="8"
-                   pattern="[0-9]{8}" autocomplete="off" required>
+                   pattern="[0-9]{8}" autocomplete="off" placeholder="Ej: 12345678" required>
+                   <span class="ayuda">8 dígitos, sin puntos ni espacios</span>
+            </div>
             </div>
 
             <div class="boton">
@@ -55,10 +65,14 @@
             </div>
         </form>
 
-        <form onsubmit="busc_odo(event)" method="GET">
+        <form class="busq-item" onsubmit="busc_odo(event)" method="GET">
+             <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por ID del odontologo</h2>
             <div class="campo">
-                  <label>Id odontologo <span class="asterisco">*</span></label>
-            <input type="text" name="idOdo" id="idOdo" autocomplete="off" maxlength="3" required>
+                  <label>Id odontologo</label>
+            <input type="text" name="idOdo" id="idOdo" autocomplete="off" placeholder="Ej: 123" maxlength="3" required>
+            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+            </div>
             </div>
 
             <div class="boton">
@@ -67,22 +81,26 @@
         </form>
 
         
-    <form onsubmit="busc_trat(event)" method="GET">
-
-  <div class="campo">
-            <label>Tipo de Tratamiento </label>
+    <form class="busq-item" onsubmit="busc_trat(event)" method="GET">
+         <div>
+            <h2><i class="fa-solid fa-id-card"></i> Buscar por estado de tratamiento</h2>
+        <div class="campo">
+            <label>Estado de Tratamiento </label>
             <select name="trat_rea" id="trat_rea" required>
                 <option value="">Seleccione una opción</option>
                 <option value= 1>Finalizado</option>
                 <option value= 0>En curso</option>
             </select>
             </div>
+            </div>
+            
        <div class="boton">
-        <input type="submit" value="BUSCAR POR ESTADO DE TRATAMIENTO">
+        <input type="submit" value="BUSCAR POR ESTADO DE TRAT.">
         </div>
-</form>
 
+    </form>
 
+        </div>
     </main>
 
 <% if (cargadoid) { %>

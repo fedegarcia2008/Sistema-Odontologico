@@ -14,13 +14,24 @@
 
 <h1>ALTA HORARIO</h1>
 
-    <main class="formulario">
+    <main>
+    <section class="panel">
+        <div class="panel-cabecera">
+            <i class="fa-solid fa-user-plus"></i>
+            <div>
+                <h2>Nuevo Horario</h2>
+                <small>Los campos con * son obligatorios</small>
+            </div>
+        </div>
+
+            
         <form action="/horario/nuevoalta" method="POST">
 
+        <div class="panel-campos">
         <div class="campo">
             <label>Día <span class="asterisco">*</span></label>
             <select name="dia" required>
-                <option value="#">Seleccione un día</option>
+                <option value="">Seleccione un día</option>
                 <option value="Lunes">Lunes</option>
                 <option value="Martes">Martes</option>
                 <option value="Miércoles">Miércoles</option>
@@ -33,23 +44,30 @@
         <div class="campo">
             <label>Hora inicio <span class="asterisco">*</span></label>
             <input type="time" name="horaIn" id="horaIn" required>
+            <span class="ayuda">horarios entre las 8 y 20 hs</span>
         </div>
 
         <div class="campo">
             <label>Hora final <span class="asterisco">*</span></label>
             <input type="time" name="horaFi" id="horaFi" required>
+        <span class="ayuda">horarios entre las 8 y 20 hs</span>
         </div>
 
         <div class="campo">
             <label>ID Odontólogo <span class="asterisco">*</span></label>
-            <input type="text" name="idOdo" maxlength="3"  autocomplete="off" required>
+            <input type="text" name="idOdo" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
+            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
         </div>
+        </div>
+        
          
         <div class="boton">
         <input type="submit" value="INGRESAR">
         </div>
 
     </form>
+
+    </section>
     </main>
 
 <%- include('../componentes/sweet_alta') %>

@@ -17,12 +17,16 @@
 
    <h1>MODIFICAR HORARIO</h1>
 
-        <main class="formulario">
+    <main class="busq-contenedor">
+    <div class="busq-grid">
 
-    <form onsubmit="busc_id(event)" method="GET">
+    <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+        <div>
+            <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off" required>
+            <input type="text" id="clave" name="clave" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
+        </div>
         </div>
         
        <div class="boton">
@@ -30,7 +34,9 @@
         </div>
 </form>
 
-<form onsubmit="busc_dia(event)" method="GET">
+<form class="busq-item" onsubmit="busc_dia(event)" method="GET">
+    <div>
+        <h2><i class="fa-solid fa-id-card"></i> Buscar por dia</h2>
         <div class="campo">
              <label>Día </label>
             <select id="dia" name="dia" required>
@@ -43,16 +49,15 @@
                 <option value="Sábado">Sábado</option>
             </select>
         </div>
+            </div>
         
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
-</form>
+    </form>
 
+        </div>
     </main>
-
-
-
 
 <% if (cargado) { %>
 <% if (busc_registros.length > 0 &&  busc_registros.length == 1) { %>

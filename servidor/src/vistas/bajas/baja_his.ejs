@@ -13,12 +13,18 @@
 <%- include('../componentes/header') %>
 
     <h1>BAJA HISTORIA CLINICA</h1>
- <main class="formulario">
 
-    <form onsubmit="busc_id(event)" method="GET">
+<main class="busq-contenedor">
+    <div class="busq-grid">
+
+        <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave"  autocomplete="off" required>
+            <input type="text" id="clave" name="clave" placeholder="Ej: 123" autocomplete="off" required>
+            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+        </div>
         </div>
         
        <div class="boton">
@@ -27,17 +33,23 @@
 
 </form>
 
-    <form onsubmit="busc_afi(event)" method="GET">
+    <form class="busq-item" onsubmit="busc_afi(event)" method="GET">
+        <div>
+            <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
         <div class="campo">
             <label>id afiliado:</label>
-            <input type="text" id="idAfi" name="idAfi" maxlength="8" autocomplete="off" required>
+            <input type="text" id="idAfi" name="idAfi" maxlength="8" placeholder="Ej: 12345678" autocomplete="off" required>
+            <span class="ayuda">8 dígitos, sin puntos ni espacios</span>
+        </div>
         </div>
         
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
-
-</form>
+        </form>
+    
+    </div>
+</main>
 
     
 <% if (cargado) { %>

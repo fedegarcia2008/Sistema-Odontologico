@@ -14,12 +14,23 @@
 
 <h1>ALTA SERVICIO</h1>
 
-    <main class="formulario">
+    <main>
+    <section class="panel">
+        <div class="panel-cabecera">
+            <i class="fa-solid fa-user-plus"></i>
+            <div>
+                <h2>Nuevo Servicio</h2>
+                <small>Los campos con * son obligatorios</small>
+            </div>
+        </div>
+
         <form action="/servicio/nuevoalta" method="POST">
+        <div class="panel-campos">
         <div class="campo">
 
-            <label>Id <span class="asterisco">*</span></label>
-            <input type="text" name="clave" maxlength="2" autocomplete="off" required>
+            <label>Clave de identificación <span class="asterisco">*</span></label>
+            <input type="text" name="clave" maxlength="2" placeholder="Ej: 01" autocomplete="off" required>
+            <span class="ayuda">2 dígitos, sin puntos ni espacios</span>
         </div>
         
 <div class="campo">
@@ -37,7 +48,9 @@
 
         <div class="campo">
             <label>id Odontólogo <span class="asterisco">*</span></label>
-            <input type="text" name="idOdo" maxlength="3" autocomplete="off" required>
+            <input type="text" name="idOdo" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
+            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+        </div>
         </div>
          
         <div class="boton">
@@ -45,6 +58,8 @@
         </div>
 
     </form>
+
+    </section>
     </main>
 
 <%- include('../componentes/sweet_alta') %>

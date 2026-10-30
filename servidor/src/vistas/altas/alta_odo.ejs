@@ -14,16 +14,27 @@
 
 <h1>ALTA ODONTóloGO</h1>
 
-    <main class="formulario">
+    <main>
+    <section class="panel">
+        <div class="panel-cabecera">
+            <i class="fa-solid fa-user-plus"></i>
+            <div>
+                <h2>Nuevo Odontologo</h2>
+                <small>Los campos con * son obligatorios</small>
+            </div>
+        </div>
+
         <form action="/odontologo/nuevoalta" method="POST">
+            <div class="panel-campos">
       <div class="campo">
             <label>Clave de identificación <span class="asterisco">*</span></label>
-            <input type="text" name="clave" maxlength="3"  autocomplete="off" required>
+            <input type="text" name="clave" maxlength="3" autocomplete="off" placeholder="Ej: 123" required>
+            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
         </div>
 
         <div class="campo">
             <label>Nombre <span class="asterisco">*</span></label>
-            <input type="text" name="nombre" maxlength="20"  autocomplete="off" required>
+            <input type="text" name="nombre" maxlength="20" autocomplete="off" required>
         </div>
 
         <div class="campo">
@@ -31,25 +42,27 @@
             <input type="text" name="apellido" maxlength="20" autocomplete="off" required>
         </div>
 
-<div class="campo">
-    <label>Tipo de Especialidad <span class="asterisco">*</span></label>
+        <div class="campo">
+            <label>Tipo de Especialidad <span class="asterisco">*</span></label>
+            <input type="text" name="especialidad" autocomplete="off" required>
 
-    <input type="text" name="especialidad" autocomplete="off" required>
+         <div id="listaEspecialidades" class="lista"></div>
+        </div>
 
-    <div id="listaEspecialidades" class="lista"></div>
-</div>
-
-<div class="campo">
+        <div class="campo">
             <label>ID de consultorio <span class="asterisco">*</span></label>
-            <input type="text" name="idCons" maxlength="3" autocomplete="off" required>
+            <input type="text" name="idCons" maxlength="3" autocomplete="off" placeholder="Ej: 123" required>
+            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+        </div>
         </div>
          
-        <div class="boton">
-            
+        <div class="boton">   
         <input type="submit" value="INGRESAR">
         </div>
         
     </form>
+
+    </section>
     </main>
 
 <%- include('../componentes/sweet_alta') %>

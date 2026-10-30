@@ -17,21 +17,23 @@
 
    <h1>MODIFICAR TURNO</h1>
 
-        <main class="formulario">
+    <main class="busq-contenedor">
+    <div class="busq-grid">
 
-    <form onsubmit="busc_id(event)" method="GET">
+    <form class="busq-item" onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off" required>
+            <input type="text" id="clave" name="clave" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
+        <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
         </div>
         
        <div class="boton">
         <input type="submit" value="BUSCAR">
         </div>
-</form>
+    </form>
 
 
-        <form onsubmit="busc_fechas(event)" method="GET">
+        <form class="busq-item" onsubmit="busc_fechas(event)" method="GET">
             <div class="campo">
                 <label>Desde:</label>
                 <input type="date" id="fecha1" name="fecha1" required>
@@ -44,12 +46,8 @@
             </div>
         </form>
 
-
-
+    </div>
     </main>
-
-
-
 
 <% if (cargado) { %>
 <% if (busc_registros.length > 0 &&  busc_registros.length == 1) { %>

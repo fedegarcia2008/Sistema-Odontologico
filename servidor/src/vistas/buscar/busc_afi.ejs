@@ -53,7 +53,7 @@
             <div>
                 <h2><i class="fa-solid fa-file-contract"></i> Buscar por plan</h2>
                 <div class="campo">
-                    <label>Tipo de plan <span class="asterisco">*</span></label>
+                    <label>Tipo de plan</label>
                     <select name="plan" id="plan" required>
                         <option value="">Seleccione un plan</option>
                         <option value="Individual">Individual</option>
@@ -74,6 +74,7 @@
 <% if (cargadoid) { %>
     <section class="res-contenedor">
         <% if (busc_registros.length > 0) { %>
+
             <div class="res-card">
                 <div class="res-cabecera">
                     <i class="fa-solid fa-user"></i>
@@ -83,26 +84,46 @@
                     </div>
                 </div>
 
-                <div class="res-datos">
-                    <div class="res-dato">
-                        <small>Celular</small>
-                        <strong><%= busc_registros[0].tel_cel ? busc_registros[0].tel_cel : "Sin teléfono" %></strong>
+                <div class="res-campos">
+                    <div class="campo">
+                        <label>Clave de identificación</label>
+                        <input type="text" readonly value="<%= busc_registros[0].ci_afiliado %>">
                     </div>
-                    <div class="res-dato">
-                        <small>Teléfono fijo</small>
-                        <strong><%= busc_registros[0].tel_fijo ? busc_registros[0].tel_fijo : "Sin teléfono" %></strong>
+
+                    <div class="campo">
+                        <label>Tipo de plan</label>
+                        <input type="text" readonly value="<%= busc_registros[0].tipo_plan %>">
                     </div>
-                    <div class="res-dato">
-                        <small>Plan</small>
-                        <strong><%= busc_registros[0].tipo_plan %></strong>
+
+                    <div class="campo">
+                        <label>Nombre</label>
+                        <input type="text" readonly value="<%= busc_registros[0].nombre %>">
+                    </div>
+
+                    <div class="campo">
+                        <label>Apellido</label>
+                        <input type="text" readonly value="<%= busc_registros[0].apellido %>">
+                    </div>
+
+                    <div class="campo">
+                        <label>Celular</label>
+                        <input type="text" readonly value="<%= busc_registros[0].tel_cel ? busc_registros[0].tel_cel : 'Sin teléfono' %>">
+                    </div>
+
+                    <div class="campo">
+                        <label>Teléfono fijo</label>
+                        <input type="text" readonly value="<%= busc_registros[0].tel_fijo ? busc_registros[0].tel_fijo : 'Sin teléfono' %>">
                     </div>
                 </div>
             </div>
+
         <% } else { %>
+
             <div class="res-card res-vacio">
                 <i class="fa-solid fa-user-slash"></i>
                 <p>No hay datos para mostrar</p>
             </div>
+
         <% } %>
     </section>
 <% } %>

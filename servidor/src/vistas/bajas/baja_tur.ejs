@@ -13,12 +13,15 @@
 <%- include('../componentes/header') %>
 
     <h1>BAJA TURNO</h1>
- <main class="formulario">
 
-    <form onsubmit="busc_id(event)" method="GET">
+    <main class="busq-contenedor">
+    <div class="busq-grid">
+
+    <form class="busq-item" onsubmit="busc_id(event)" method="GET">
         <div class="campo">
             <label>Id Turno:</label>
-            <input type="text" id="clave" name="clave"  autocomplete="off" maxlength="3" required>
+            <input type="text" id="clave" name="clave" placeholder="Ej: 123" autocomplete="off" maxlength="3" required>
+        <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
         </div>
         
        <div class="boton">
@@ -27,7 +30,7 @@
 </form>
 
 
- <form onsubmit="busc_fechas(event)" method="GET">
+ <form class="busq-item" onsubmit="busc_fechas(event)" method="GET">
             <div class="campo">
                 <label>Desde:</label>
                 <input type="date" id="fecha1" name="fecha1" required>
@@ -39,12 +42,14 @@
                 <input type="submit" value="BUSCAR POR PERIODO">
             </div>
         </form>
+
+    </div>    
 </main>
     
 <% if (cargado) { %>
 <% if (baja_registros.length > 0 &&  baja_registros.length == 1) { %>
 
-<form onsubmit="baja_id(event)"  onsubmit="baja_fechas(event)"  method="POST">
+<form onsubmit="baja_id(event)" onsubmit="baja_fechas(event)"  method="POST">
 
 <div class="campo">
 

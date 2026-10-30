@@ -22,7 +22,7 @@
             <div>
                 <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
                 <div class="campo">
-                    <label>Clave de Identificación <span class="asterisco">*</span></label>
+                    <label>Clave de Identificación</label>
                     <input type="text" name="clave" id="clave" minlength="8" maxlength="8"
                            pattern="[0-9]{8}" autocomplete="off" placeholder="Ej: 12345678" required>
                     <span class="ayuda">8 dígitos, sin puntos ni espacios</span>
@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="campo">
-                        <label>Tipo de plan <span class="asterisco">*</span></label>
+                        <label>Tipo de plan</label>
                         <select name="tipo" required>
                             <option value="">Seleccione un plan</option>
                             <option value="Individual" <%= busc_registros[0].tipo_plan == 'Individual' ? 'selected' : '' %>>Individual</option>
