@@ -16,12 +16,17 @@
 
     <h1>BUSCAR HORARIO</h1>
 
-        <main class="formulario">
+   <main class="busq-contenedor">
+    <div class="busq-grid">
 
-    <form onsubmit="busc_id(event)" method="GET">
+    <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+        <div>
+            <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off" required>
+            <input type="text" id="clave" name="clave" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
+        <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+        </div>
         </div>
         
        <div class="boton">
@@ -29,9 +34,10 @@
         </div>
 </form>
 
-<form onsubmit="busc_dia(event)" method="GET">
-
-  <div class="campo">
+<form class="busq-item" onsubmit="busc_dia(event)" method="GET">
+    <div>
+        <h2><i class="fa-solid fa-id-card"></i> Buscar por dia</h2>
+        <div class="campo">
             <label>Dia</label>
             <select name="dia" id="dia" required>
                 <option value="">Seleccione un dia</option>
@@ -42,16 +48,22 @@
                 <option value="Viernes">Viernes</option>
                 <option value="Sabado">Sabado</option>
             </select>
+            </div>    
+            </div>
         
        <div class="boton">
         <input type="submit" value="BUSCAR POR DIA">
         </div>
-</form>
+    </form>
 
-        <form onsubmit="busc_odo(event)" method="GET">
+        <form class="busq-item" onsubmit="busc_odo(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por ID del odontologo</h2>
             <div class="campo">
                 <label>ID odontólogo:</label>
-                <input type="text" id="idOdo" name="idOdo" maxlength="3" autocomplete="off" required>
+                <input type="text" id="idOdo" name="idOdo" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
+            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+            </div>
             </div>
 
             <div class="boton">
@@ -59,9 +71,7 @@
             </div>
         </form>
 
-
-
-
+        </div>
     </main>
 
 <% if (cargadoid) { %>

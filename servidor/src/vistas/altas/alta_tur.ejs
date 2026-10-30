@@ -14,9 +14,18 @@
 
 <h1>ALTA TURNO</h1>
 
-    <main class="formulario">
-        <form action="/turno/nuevoalta" method="POST">
+    <main>
+    <section class="panel">
+        <div class="panel-cabecera">
+            <i class="fa-solid fa-user-plus"></i>
+            <div>
+                <h2>Nuevo Turno</h2>
+                <small>Los campos con * son obligatorios</small>
+            </div>
+        </div>
 
+        <form action="/turno/nuevoalta" method="POST">
+        <div class="panel-campos">
         <div class="campo">
             <label>Fecha <span class="asterisco">*</span></label>
             <input type="date" name="fecha" required>
@@ -25,17 +34,21 @@
         <div class="campo">
             <label>Hora <span class="asterisco">*</span></label>
             <input type="time" name="hora" required>
+            <span class="ayuda">horarios entre las 8 y 20 hs</span>
         </div>
         
         <div class="campo">
             <label>id Odontólogo <span class="asterisco">*</span></label>
-            <input type="text" name="idOdo" maxlength="3" autocomplete="off" required>
+            <input type="text" name="idOdo" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
+            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
         </div>
 
          <div class="campo">
             <label>id afiliado<span class="asterisco">*</span></label>
             <input type="text" name="idAfi"  minlength="8" maxlength="8"
-                   pattern="[0-9]{8}" autocomplete="off" required>
+                   pattern="[0-9]{8}" autocomplete="off" placeholder="Ej: 12345678" required>
+            <span class="ayuda">8 dígitos, sin puntos ni espacios</span>
+        </div>
         </div>
         
         <div class="boton">
@@ -43,6 +56,8 @@
         </div>
 
     </form>
+
+    </section>
     </main>
 
 <%- include('../componentes/sweet_alta') %> 

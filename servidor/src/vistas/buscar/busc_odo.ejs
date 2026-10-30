@@ -16,24 +16,31 @@
 
     <h1>BUSCAR ODONTOLOGO</h1>
 
-        <main class="formulario">
+    <main class="busq-contenedor">
+    <div class="busq-grid busq-2x2">
 
-    <form onsubmit="busc_id(event)" method="GET">
+    <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+        <div>
+            <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off" required>
+            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off" placeholder="Ej: 123" required>
+            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+        </div>
         </div>
         
        <div class="boton">
-        <input type="submit" value="BUSCAR">
+        <input type="submit" value="BUSCAR POR CLAVE">
         </div>
-</form>
-
+    </form>
     
-        <form onsubmit="busc_nom(event)" method="GET">
+        <form class="busq-item" onsubmit="busc_nom(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por nombre del odontologo</h2>
             <div class="campo">
                 <label>Apellido y Nombre:</label>
                 <input type="text" id="nombre" name="nombre" maxlength="20" autocomplete="off" required>
+            </div>
             </div>
 
             <div class="boton">
@@ -41,10 +48,14 @@
             </div>
         </form>
 
-        <form onsubmit="busc_cons(event)" method="GET">
+        <form class="busq-item" onsubmit="busc_cons(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por ID del consultorio</h2>
             <div class="campo">
                 <label>Id del Consultorio:</label>
-                <input type="text" id="cons" name="idCons" maxlength="3" autocomplete="off" required>
+                <input type="text" id="cons" name="idCons" maxlength="3" autocomplete="off" placeholder="Ej: 123" required>
+                <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+            </div>
             </div>
 
             <div class="boton">
@@ -53,11 +64,14 @@
         </form>
 
         
-        <form onsubmit="busc_espe(event)" method="GET">
+        <form class="busq-item" onsubmit="busc_espe(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por especialidad</h2>
             <div class="campo">
                 <label>Especialidad:</label>
                 <input type="text" id="espe" name="espe" maxlength="50" autocomplete="off" required>
                 <div id="listaEspecialidades" class="lista"></div>
+            </div>
             </div>
 
             <div class="boton">
@@ -65,6 +79,7 @@
             </div>
         </form>
 
+        </div>
     </main>
 
 <% if (cargadoid) { %>

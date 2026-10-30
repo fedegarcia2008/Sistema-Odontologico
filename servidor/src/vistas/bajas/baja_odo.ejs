@@ -14,33 +14,44 @@
 <%- include('../componentes/header') %>
 
     <h1>BAJA ODONTOLGO</h1>
- <main class="formulario">
 
-    <form onsubmit="busc_id(event)" method="GET">
+ <main class="busq-contenedor">
+    <div class="busq-grid">
+
+    <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+        <div>
+            <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
         <div class="campo">
             <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off" required>
+            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off" placeholder="Ej: 123" required>
+            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+        </div>
         </div>
         
        <div class="boton">
-        <input type="submit" value="BUSCAR">
+        <input type="submit" value="BUSCAR POR CLAVE">
         </div>
 
 </form>
 
-<form onsubmit="busc_nom(event)" method="GET">
+<form class="busq-item" onsubmit="busc_nom(event)" method="GET">
+    <div>
+        <h2><i class="fa-solid fa-id-card"></i> Buscar por nombre del odontologo</h2>
         <div class="campo">
             <label>Apellido y Nombre:</label>
             <input type="text" id="nom" name="nom" maxlength="20" autocomplete="off" required>
         </div>
+        </div>
         
        <div class="boton">
-        <input type="submit" value="BUSCAR">
+        <input type="submit" value="BUSCAR POR NOMBRE">
         </div>
 
 </form>
 
-    
+</div>
+</main>    
+
 <% if (cargado) { %>
 <% if (baja_registros.length > 0 &&  baja_registros.length == 1) { %>
 
