@@ -79,11 +79,35 @@ export const buschis_id = async (pet, resp)=>{
         let buscarsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE idtratamiento_realizado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('buscar/busc_his', { busc_registros, cargadoid: true, cargadotabla: false, });
-    }     catch (error) {
-        console.error('Error al buscar historia clinica:', error);
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_his', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'success',
+                msj: 'HISTORIA CLÍNICA ENCONTRADA',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_his', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUNA HISTORIA CLÍNICA CON ESE ID'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar historia clínica:', error);
+        resp.render('buscar/busc_his', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR LA HSITORIA CLÍNICA',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 
     export const buschis_fecha = async (pet, resp)=>{
@@ -93,11 +117,35 @@ export const buschis_id = async (pet, resp)=>{
             let buscarsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento,  afiliado_ci_afiliado , odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE fecha_inicio = '"+ fecha +"'" ;
             const [busc_registros] = await bdd.query(buscarsql);
             console.log(busc_registros)
-        resp.render('buscar/busc_his', { busc_registros, cargadoid: false, cargadotabla: true, });
-        }     catch (error) {
-            console.error('Error al buscar turno:', error);
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_his', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'success',
+                msj: 'HISTORIA CLÍNICA ENCONTRADA',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_his', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUNA HISTORIA CLÍNICA CON ESA FECHA'
+            });
         }
+    } catch (error) {
+        console.error('Error al buscar historia clínica:', error);
+        resp.render('buscar/busc_his', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR LA HSITORIA CLÍNICA',
+            tiempo: 2000,
+        });
     }
+};
 
         
         export const buschis_afi = async (pet, resp)=>{
@@ -106,11 +154,35 @@ export const buschis_id = async (pet, resp)=>{
                 let buscarsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE afiliado_ci_afiliado = '"+ afi +"'";
                 const [busc_registros] = await bdd.query(buscarsql);
                 console.log(busc_registros)
-            resp.render('buscar/busc_his', { busc_registros, cargadoid: true, cargadotabla: false, });
-            }     catch (error) {
-                console.error('Error al buscar la consulta:', error);
-            }
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_his', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'success',
+                msj: 'HISTORIA CLÍNICA ENCONTRADA',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_his', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUNA HISTORIA CLÍNICA CON ESE ID'
+            });
         }
+    } catch (error) {
+        console.error('Error al buscar historia clínica:', error);
+        resp.render('buscar/busc_his', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR LA HSITORIA CLÍNICA',
+            tiempo: 2000,
+        });
+    }
+};
 
         
         export const buschis_odo = async (pet, resp)=>{
@@ -119,11 +191,35 @@ export const buschis_id = async (pet, resp)=>{
                 let buscarsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE odontologo_idodontologo = '"+ odo +"'";
                 const [busc_registros] = await bdd.query(buscarsql);
                 console.log(busc_registros)
-            resp.render('buscar/busc_his', { busc_registros, cargadoid: false, cargadotabla: true, });
-            }     catch (error) {
-                console.error('Error al buscar la consulta:', error);
-            }
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_his', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'success',
+                msj: 'HISTORIA CLÍNICA ENCONTRADA',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_his', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUNA HISTORIA CLÍNICA CON ESE ID'
+            });
         }
+    } catch (error) {
+        console.error('Error al buscar historia clínica:', error);
+        resp.render('buscar/busc_his', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR LA HSITORIA CLÍNICA',
+            tiempo: 2000,
+        });
+    }
+};
 
         export const buschis_trat = async (pet, resp)=>{
               let trat = pet.params.trat_rea;
@@ -131,11 +227,35 @@ export const buschis_id = async (pet, resp)=>{
                 let buscarsql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE tratamiento_finalizado = '"+ trat +"'";
                 const [busc_registros] = await bdd.query(buscarsql);
                 console.log(busc_registros)
-            resp.render('buscar/busc_his', { busc_registros, cargadoid: false, cargadotabla: true,});
-            }     catch (error) {
-                console.error('Error al buscar la consulta:', error);
-            }
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_his', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'success',
+                msj: 'HISTORIA CLÍNICA ENCONTRADA',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_his', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUNA HISTORIA CLÍNICA CON ESE ESTADO'
+            });
         }
+    } catch (error) {
+        console.error('Error al buscar historia clínica:', error);
+        resp.render('buscar/busc_his', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR LA HSITORIA CLÍNICA',
+            tiempo: 2000,
+        });
+    }
+};
 
         
 
