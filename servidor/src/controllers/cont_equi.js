@@ -191,7 +191,7 @@ export const buscequi_id = async (pet, resp)=>{
                 cargadoid: true, cargadotabla: false,
                 alert: true,
                 icono: 'success',
-                msj: 'AFILIADO ENCONTRADO',
+                msj: 'EQUIPAMIENTO ENCONTRADO',
                 tiempo: 2000,
             });
         } else {
@@ -201,7 +201,7 @@ export const buscequi_id = async (pet, resp)=>{
                 alert: true,
                 icono: 'info',
                 tiempo: 2000,
-                msj: 'NO SE ENCONTRÓ NINGUN EQUIPAMIENTO CON ESE '
+                msj: 'NO SE ENCONTRÓ NINGUN EQUIPAMIENTO CON ESE NOMBRE'
             });
         }
     } catch (error) {
@@ -210,44 +210,6 @@ export const buscequi_id = async (pet, resp)=>{
             alert: true,
             icono: 'error',
             msj: 'ERROR AL BUSCAR EL EQUIPAMIENTO',
-            tiempo: 2000,
-        });
-    }
-};
-
-export const buscafi_nom = async (pet, resp)=>{
-      let nom_completo = pet.params.nombre;
-      
-      try {
-        let buscarsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";
-        const [busc_registros] = await bdd.query(buscarsql);
-        console.log(busc_registros)
-        if (busc_registros.length > 0) {
-            resp.render('buscar/busc_afi', {
-                busc_registros,
-                cargadoid: false, cargadotabla: true,
-                alert: true,
-                icono: 'success',
-                msj: 'AFILIADO ENCONTRADO',
-                tiempo: 2000,
-            });
-        } else {
-            resp.render('buscar/busc_afi', {
-                busc_registros,
-             
-                cargadoid: true, cargadotabla: false,
-                alert: true,
-                icono: 'info',
-                tiempo: 2000,
-                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESE NOMBRE'
-            });
-        }
-    } catch (error) {
-        console.error('Error al buscar afiliado:', error);
-        resp.render('buscar/busc_afi', {
-            alert: true,
-            icono: 'error',
-            msj: 'ERROR AL BUSCAR EL AFILIADO',
             tiempo: 2000,
         });
     }
