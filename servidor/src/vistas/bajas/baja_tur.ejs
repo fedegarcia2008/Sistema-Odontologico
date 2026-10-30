@@ -60,13 +60,13 @@
 
         <div class="campo">
             <label>Fecha</label>
-            <input type="date" name="fecha" 
+            <input type="date" name="fecha" readonly
                             value="<%= baja_registros[0].fecha %>">
         </div>
         
         <div class="campo">
             <label>Hora</label>
-            <input type="time" name="hora" 
+            <input type="time" name="hora" readonly
                             value="<%= baja_registros[0].horario %>">
         </div>
         
@@ -83,7 +83,7 @@
         </div>
 
         <div class="boton">
-            <input type="submit" value="GUARDAR CAMBIOS">
+            <input type="submit" value="ELIMINAR">
         </div>
 
     </form>
@@ -112,7 +112,7 @@
                         <td><%= tur.afiliado_ci_afiliado %></td>
                     </tr>
                 <% }); %>
-          <p>Mas de una coincidencia al buscar. Modifique por ID</p>
+          <p>Mas de una coincidencia al buscar. Elimine por ID</p>
 
         </tbody>
     </table>

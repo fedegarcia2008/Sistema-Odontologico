@@ -11,7 +11,7 @@ export const alta_tur = (pet, resp)=>{
 }
 
 export const baja_tur = (pet, resp)=>{
-    resp.render('bajas/baja_tur', {cargado: false})
+    resp.render('bajas/baja_tur', {alert: false, cargado: false})
 }
 
 export const mod_tur = (pet, resp)=>{
