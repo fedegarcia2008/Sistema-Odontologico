@@ -1,5 +1,5 @@
 import express from 'express';
-import { menu_afi, alta_afi, baja_afi, mod_afi, busc_afi, mos_afi, nuevo_afi, modafi_id, modafi_nom , mod_nom, buscafi_plan, mod_id, buscafi_id, buscafi_nom, bajafi_id, eliminar_afi, bajafi_nom, eliminar_nom} from '../controllers/cont_afi.js';
+import { menu_afi, alta_afi, baja_afi, mod_afi, busc_afi, mos_afi, nuevo_afi, modafi_id, modafi_nom , modificar_afi, buscafi_plan, buscafi_id, buscafi_nom, bajafi_id, eliminar_afi, bajafi_nom} from '../controllers/cont_afi.js';
 
 const rAfiliado = express.Router();
 
@@ -21,18 +21,17 @@ rAfiliado.get('/afiliado/buscartipoplan/:plan', buscafi_plan)
 
 //para modificar
 rAfiliado.get('/afiliado/modificarid/:clave', modafi_id)
-rAfiliado.post('/afiliado/modificar/:clave', mod_id)
-
 rAfiliado.get('/afiliado/modificarnombre/:nombre', modafi_nom)
-rAfiliado.post('/afiliado/modificar/:nombre', mod_nom)
+
+// rAfiliado.get('/afiliado/modificarnombre/:nombre', modafi_nom)
+rAfiliado.post('/afiliado/modificar/:clave', modificar_afi)
 
 
 
 // para borrar
 rAfiliado.get('/afiliado/bajaid/:clave', bajafi_id)
-rAfiliado.post('/afiliado/baja/:clave', eliminar_afi)
-
 rAfiliado.get('/afiliado/bajanombre/:nombre', bajafi_nom)
-rAfiliado.post('/afiliado/baja/:nombre', eliminar_nom)
+
+rAfiliado.post('/afiliado/baja/:clave', eliminar_afi)
 
 export {rAfiliado}

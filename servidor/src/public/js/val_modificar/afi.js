@@ -5,6 +5,14 @@
         document.getElementById('clave').value = "";   
         }
 
+
+    function busc_nom(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('nombre').value;
+        window.location.href = `/afiliado/modificarnombre/${idejs}`;
+        document.getElementById('nombre').value = "";   
+        }
+
     function mod_id(event) {
         event.preventDefault();
 
@@ -14,13 +22,6 @@
         formulario.action = `/afiliado/modificar/${idejs}`;  // ruta
         formulario.submit();  // envio de datos
     }
-
-    function busc_nom(event) {
-        event.preventDefault();
-        let idejs = document.getElementById('nombre').value;
-        window.location.href = `/afiliado/modificarnombre/${idejs}`;
-        document.getElementById('nombre').value = "";   
-        }
 
     function mod_nom(event) {
         event.preventDefault();

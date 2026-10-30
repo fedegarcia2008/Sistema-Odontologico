@@ -5,6 +5,13 @@ function busc_id(event) {
         document.getElementById('clave').value = "";   
         }
 
+    function busc_nom(event) {
+        event.preventDefault();
+        let idejs = document.getElementById('nombre').value;
+        window.location.href = `/afiliado/bajanombre/${idejs}`;
+        document.getElementById('nombre').value = "";   
+        }
+
     function baja_id(event) {
         event.preventDefault();
 
@@ -14,13 +21,6 @@ function busc_id(event) {
         formulario.action = `/afiliado/baja/${idejs}`;
         formulario.submit();
     }
-
-    function busc_nom(event) {
-        event.preventDefault();
-        let idejs = document.getElementById('nombre').value;
-        window.location.href = `/afiliado/bajanombre/${idejs}`;
-        document.getElementById('nombre').value = "";   
-        }
 
     function baja_nom(event) {
         event.preventDefault();

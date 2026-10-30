@@ -11,7 +11,7 @@ export const alta_afi = (pet, resp)=>{
 }
 
 export const baja_afi = (pet, resp)=>{
-    resp.render('bajas/baja_afi', {cargado: false})
+    resp.render('bajas/baja_afi', {alert: false, cargado: false})
 }
 
 export const mod_afi = (pet, resp)=>{
@@ -234,42 +234,6 @@ let id = pet.params.clave;
     }
 };
 
-export const mod_id = async (pet, resp)=>{ //este no tendria que ser modificar_afi???
-    let id, nombre, apellido, telCel, telFijo, plan;
-    id = pet.body.clave;
-    nombre = pet.body.nombre;
-    apellido = pet.body.apellido;
-    telCel = pet.body.telCelular;
-    telFijo = pet.body.telFijo;
-    plan = pet.body.tipo;
-      try {
-        let modificarsql = "UPDATE afiliado SET nombre = '"+ nombre +"', apellido = '"+ apellido +"', tel_cel = '"+ telCel +"', tel_fijo = '"+ telFijo +"', tipo_plan = '"+ plan +"' WHERE ci_afiliado = '"+ id +"'";
-        const [modificar_registros] = await bdd.query(modificarsql);
-        console.log(modificar_registros)
-      
-            resp.render('modificar/mod_afi', {
-                modificar_registros,
-                cargado: false,
-                alert: true,
-                icono: 'success',
-                msj: 'AFILIADO MODIFICADO',
-                tiempo: 2000,
-            });
-     
-    } catch (error) {
-        console.error('Error al modificar afiliado:', error);
-    
-        resp.render('modificar/mod_afi', {
-         
-            cargado: false,
-            alert: true,
-            icono: 'error',
-            msj: 'ERROR AL MODIFICAR EL AFILIADO',
-            tiempo: 2000,
-        });
-    }
-};
-
 
 export const  modafi_nom = async (pet, resp)=>{
 let nom_completo = pet.params.nombre;
@@ -307,9 +271,9 @@ let nom_completo = pet.params.nombre;
     }
 };
 
-export const mod_nom = async (pet, resp)=>{
-    let  nom, apellido, telCel, telFijo, plan;
-    
+export const modificar_afi = async (pet, resp)=>{
+    let  id, nom, apellido, telCel, telFijo, plan;
+      id = pet.body.clave;
     nom = pet.body.nombre;
     apellido = pet.body.apellido;
     telCel = pet.body.telCelular;
@@ -317,7 +281,7 @@ export const mod_nom = async (pet, resp)=>{
     plan = pet.body.tipo;
 
      try {
-        let modificarsql = "UPDATE afiliado SET nombre = '"+ nom +"', apellido= '"+ apellido+"', tel_cel= '"+ telCel+"', tel_fijo= '"+ telFijo+"', tipo_plan= '"+ plan+"'WHERE nombre  = '"+ nom +"'";
+        let modificarsql = "UPDATE afiliado SET nombre = '"+ nom +"', apellido= '"+ apellido+"', tel_cel= '"+ telCel+"', tel_fijo= '"+ telFijo+"', tipo_plan= '"+ plan+"'WHERE ci_afiliado  = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
             resp.render('modificar/mod_afi', {
@@ -351,23 +315,35 @@ let id = pet.params.clave;
         let bajasql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE ci_afiliado = '"+ id +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('bajas/baja_afi', { baja_registros, cargado: true });
-    }     catch (error) {
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_afi', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'AFILIADO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_afi', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESA CI'
+            });
+        }
+    } catch (error) {
         console.error('Error al buscar afiliado:', error);
+        resp.render('bajas/baja_afi', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL AFILIADO'
+        });
     }
-}
-
-export const eliminar_afi = async (pet, resp)=>{
-let id = pet.params.clave;
-      try {
-        let eliminarsql = "DELETE FROM afiliado WHERE ci_afiliado = '"+ id +"'";
-        const [baja_registros] = await bdd.query(eliminarsql);
-        console.log(baja_registros)
-    resp.render('bajas/baja_afi', { baja_registros, cargado: true});
-    }     catch (error) {
-        console.error('Error al eliminar afiliado:', error);
-    }
-}
+};
 
 
 export const  bajafi_nom = async (pet, resp)=>{
@@ -376,15 +352,40 @@ let nom_completo = pet.params.nombre;
         let bajasql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";;
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-resp.render('bajas/baja_afi', { baja_registros, cargado: true });
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_afi', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'AFILIADO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_afi', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESE NOMBRE'
+            });
+        }
     } catch (error) {
         console.error('Error al buscar afiliado:', error);
+        resp.render('bajas/baja_afi', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL AFILIADO'
+        });
     }
 };
-export const eliminar_nom = async (pet, resp)=>{
-let nom_completo = pet.params.nombre;
+
+export const eliminar_afi = async (pet, resp)=>{
+let id = pet.params.clave;
       try {
-        let eliminarsql = "DELETE FROM afiliado WHERE nombre = '"+ nom_completo +"'";
+        let eliminarsql = "DELETE FROM afiliado WHERE ci_afiliado = '"+ id +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
             resp.render('bajas/baja_afi', {

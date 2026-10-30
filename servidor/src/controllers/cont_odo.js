@@ -11,7 +11,7 @@ export const alta_odo = (pet, resp)=>{
 }
 
 export const baja_odo = (pet, resp)=>{
-    resp.render('bajas/baja_odo', {cargado: false})
+    resp.render('bajas/baja_odo', {alert: false, cargado: false})
 }
 
 export const mod_odo = (pet, resp)=>{
