@@ -1,4 +1,20 @@
-<main class="busq-contenedor">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="icon" href="/img/favicon.webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Baja Convenio - Secure Dental</title>
+</head>
+
+<body>
+<%- include('../componentes/header') %>
+
+<h1>BAJA CONVENIO</h1>
+
+  <main class="busq-contenedor">
     <div class="busq-grid">
 
         <form class="busq-item" onsubmit="busc_id(event)" method="GET">
@@ -66,3 +82,9 @@
 
     </div>
 </main>
+
+<%- include('../componentes/sweet_baja') %>
+<%- include('../componentes/footer') %>
+<script src="/js/val_bajas/conv.js"></script>
+</body>
+</html>
