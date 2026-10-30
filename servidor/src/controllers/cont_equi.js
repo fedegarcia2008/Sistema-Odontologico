@@ -19,7 +19,7 @@ export const mod_equi = (pet, resp)=>{
 }
 
 export const busc_equi = (pet, resp)=>{
-    resp.render('buscar/busc_equi' , {cargadoid: false, cargadotabla: false})
+    resp.render('buscar/busc_equi' , {alert: false, cargadoid: false, cargadotabla: false})
 }
 
 
@@ -74,12 +74,35 @@ export const buscequi_id = async (pet, resp)=>{
         let buscarsql = "SELECT nroserie, tipo, fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE nroserie= '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('buscar/busc_equi', { busc_registros, cargadoid: true, cargadotabla: false });
-    }     catch (error) {
-        console.error('Error al buscar el numero de serie:', error);
+         if (busc_registros.length > 0) {
+            resp.render('buscar/busc_equi', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'success',
+                msj: 'EQUIPAMIENTO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_equi', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN EQUIPAMIENTO CON ESE ID'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar equipamiento:', error);
+        resp.render('buscar/busc_equi', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL EQUIPAMIENTO',
+            tiempo: 2000,
+        });
     }
-}
-
+};
 
     export const buscequi_fecha = async (pet, resp)=>{
           let fecha = pet.params.fecha;
@@ -88,12 +111,36 @@ export const buscequi_id = async (pet, resp)=>{
             let buscarsql = "SELECT nroserie, tipo, fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE fecha_mantenimiento = '"+ fecha +"'" ;
             const [busc_registros] = await bdd.query(buscarsql);
             console.log(busc_registros)
-        resp.render('buscar/busc_equi', { busc_registros, cargadotabla: true, cargadoid: false });
-        }     catch (error) {
-            console.error('Error al buscar equipamiento:', error);
+         if (busc_registros.length > 0) {
+            resp.render('buscar/busc_equi', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'success',
+                msj: 'EQUIPAMIENTO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_equi', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN EQUIPAMIENTO PARA ESA FECHA'
+            });
         }
+    } catch (error) {
+        console.error('Error al buscar equipamiento:', error);
+        resp.render('buscar/busc_equi', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL EQUIPAMIENTO',
+            tiempo: 2000,
+        });
     }
-
+};
+    
      export const buscequi_cons = async (pet, resp)=>{
           let cons = pet.params.idCons;
           
@@ -101,11 +148,35 @@ export const buscequi_id = async (pet, resp)=>{
             let buscarsql = "SELECT nroserie, tipo, fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE consultorio_idconsultorio = '"+ cons +"'" ;
             const [busc_registros] = await bdd.query(buscarsql);
             console.log(busc_registros)
-        resp.render('buscar/busc_equi', { busc_registros, cargadotabla: true, cargadoid: false });
-        }     catch (error) {
-            console.error('Error al buscar consultorio:', error);
+         if (busc_registros.length > 0) {
+            resp.render('buscar/busc_equi', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'success',
+                msj: 'EQUIPAMIENTO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_equi', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN EQUIPAMIENTO PARA ESE CONSULTORIO'
+            });
         }
+    } catch (error) {
+        console.error('Error al buscar equipamiento:', error);
+        resp.render('buscar/busc_equi', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL EQUIPAMIENTO',
+            tiempo: 2000,
+        });
     }
+};
 
     export const buscequi_tipo = async (pet, resp)=>{
           let tipo = pet.params.tipo;
@@ -114,11 +185,73 @@ export const buscequi_id = async (pet, resp)=>{
             let buscarsql = "SELECT nroserie, tipo, fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE tipo = '"+ tipo +"'" ;
             const [busc_registros] = await bdd.query(buscarsql);
             console.log(busc_registros)
-        resp.render('buscar/busc_equi', { busc_registros, cargadotabla: true, cargadoid: false });
-        }     catch (error) {
-            console.error('Error al buscar tipo de equipamiento:', error);
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_equi', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'success',
+                msj: 'AFILIADO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_equi', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN EQUIPAMIENTO CON ESE '
+            });
         }
+    } catch (error) {
+        console.error('Error al buscar equipamiento:', error);
+        resp.render('buscar/busc_equi', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL EQUIPAMIENTO',
+            tiempo: 2000,
+        });
     }
+};
+
+export const buscafi_nom = async (pet, resp)=>{
+      let nom_completo = pet.params.nombre;
+      
+      try {
+        let buscarsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";
+        const [busc_registros] = await bdd.query(buscarsql);
+        console.log(busc_registros)
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_afi', {
+                busc_registros,
+                cargadoid: false, cargadotabla: true,
+                alert: true,
+                icono: 'success',
+                msj: 'AFILIADO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_afi', {
+                busc_registros,
+             
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESE NOMBRE'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar afiliado:', error);
+        resp.render('buscar/busc_afi', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL AFILIADO',
+            tiempo: 2000,
+        });
+    }
+};
 
 // para modificar
 export const  modequi_id = async (pet, resp)=>{

@@ -19,7 +19,7 @@ export const mod_cta = (pet, resp)=>{
 }
 
 export const busc_cta = (pet, resp)=>{
-    resp.render('buscar/busc_cta', {cargadoid: false, cargadotabla: false,})
+    resp.render('buscar/busc_cta', {alert: false, cargadoid: false, cargadotabla: false,})
 }
 
 
@@ -74,11 +74,35 @@ export const buscta_id = async (pet, resp)=>{
         let buscarsql = "SELECT afiliado_ci_afiliado, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte WHERE afiliado_ci_afiliado = '"+ id +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('buscar/busc_cta', { busc_registros, cargadoid: true, cargadotabla: false, });
-    }     catch (error) {
-        console.error('Error al buscar la cuenta corriente:', error);
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_cta', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'success',
+                msj: 'CUENTA CORRIENTE ENCONTRADA',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_cta', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESA CI'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar cta cte:', error);
+        resp.render('buscar/busc_cta', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR LA CUENTA CORRIENTE',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 export const buscta_his = async (pet, resp)=>{
       let idhis = pet.params.clavehis;
@@ -86,11 +110,35 @@ export const buscta_his = async (pet, resp)=>{
         let buscarsql = "SELECT afiliado_ci_afiliado, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte WHERE tratamiento_realizado_idtratamiento_realizado = '"+ idhis +"'";
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('buscar/busc_cta', { busc_registros, cargadoid: true, cargadotabla: false, });
-    }     catch (error) {
-        console.error('Error al buscar la historia clinica:', error);
+        if (busc_registros.length > 0) {
+            resp.render('buscar/busc_cta', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'success',
+                msj: 'CUENTA CORRIENTE ENCONTRADA',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('buscar/busc_cta', {
+                busc_registros,
+                cargadoid: true, cargadotabla: false,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUNA HISTORIA CLÍNICA CON ESE ID'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar cta cte:', error);
+        resp.render('buscar/busc_cta', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR LA CUENTA CORRIENTE',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 
 export const buscta_nom = async (pet, resp)=>{
@@ -100,28 +148,28 @@ export const buscta_nom = async (pet, resp)=>{
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
          if (busc_registros.length > 0) {
-            resp.render('buscar/busc_afi', {
+            resp.render('buscar/busc_cta', {
                 busc_registros,
                 cargadoid: false, cargadotabla: true,
                 alert: true,
                 icono: 'success',
-                msj: 'AFILIADO ENCONTRADO',
+                msj: 'CUENTA CORRIENTE ENCONTRADA',
                 tiempo: 2000,
             });
         } else {
-            resp.render('buscar/busc_afi', {
+            resp.render('buscar/busc_cta', {
                 busc_registros,
              
                 cargadoid: true, cargadotabla: false,
                 alert: true,
                 icono: 'info',
                 tiempo: 2000,
-                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESE NOMBRE'
+                msj: 'NO SE ENCONTRÓ NINGUNA CTA. CTE. CON ESE NOMBRE'
             });
         }
     } catch (error) {
-        console.error('Error al buscar afiliado:', error);
-        resp.render('buscar/busc_afi', {
+        console.error('Error al buscar cta cte:', error);
+        resp.render('buscar/busc_cta', {
             alert: true,
             icono: 'error',
             msj: 'ERROR AL BUSCAR LA CUENTA CORRIENTE',
