@@ -11,7 +11,7 @@ export const alta_hor = (pet, resp)=>{
 }
 
 export const baja_hor = (pet, resp)=>{
-    resp.render('bajas/baja_hor', {cargado: false})
+    resp.render('bajas/baja_hor', {alert: false, cargado: false})
 }
 
 export const mod_hor = (pet, resp)=>{
@@ -293,11 +293,35 @@ let id = pet.params.clave;
         let bajasql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM horario WHERE idhorario = '"+ id +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('bajas/baja_hor', { baja_registros, cargado: true });
-    }     catch (error) {
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_hor', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'HORARIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_hor', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN HORARIO CON ESE ID'
+            });
+        }
+    } catch (error) {
         console.error('Error al buscar horario:', error);
+        resp.render('bajas/baja_hor', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL HORARIO'
+        });
     }
-}
+};
 
 export const  bajahor_dia = async (pet, resp)=>{
 let dia = pet.params.dia;
@@ -305,11 +329,35 @@ let dia = pet.params.dia;
         let bajasql = "SELECT idhorario, dia, horario_comienzo, horario_final, odontologo_idodontologo FROM horario WHERE dia = '"+ dia +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('bajas/baja_hor', { baja_registros, cargado: true });
-    }     catch (error) {
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_hor', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'HORARIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_hor', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN HORARIO CON ESE DÍA'
+            });
+        }
+    } catch (error) {
         console.error('Error al buscar horario:', error);
+        resp.render('bajas/baja_hor', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL HORARIO'
+        });
     }
-}
+};
 
 export const eliminar_hor = async (pet, resp)=>{
 let id = pet.params.clave;
@@ -317,8 +365,25 @@ let id = pet.params.clave;
         let eliminarsql = "DELETE FROM horario WHERE idhorario = '"+ id +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('bajas/baja_hor', { baja_registros, cargado: true});
-    }     catch (error) {
-        console.error('Error al eliminar horario:', error);
+            resp.render('bajas/baja_hor', {
+                baja_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'HORARIO ELIMINADO',
+                tiempo: 2000,
+            });
+     
+    } catch (error) {
+        console.error('Error al eliminar convenio:', error);
+    
+        resp.render('bajas/baja_hor', {
+         
+            cargado: false,
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL ELIMINAR EL HORARIO',
+            tiempo: 2000,
+        });
     }
-}
+};

@@ -11,7 +11,7 @@ export const alta_equi = (pet, resp)=>{
 }
 
 export const baja_equi = (pet, resp)=>{
-    resp.render('bajas/baja_equi', {cargado: false})
+    resp.render('bajas/baja_equi', {alert: false, cargado: false})
 }
 
 export const mod_equi = (pet, resp)=>{
@@ -333,11 +333,35 @@ let id = pet.params.clave;
         let bajasql = "SELECT nroserie, tipo, DATE_FORMAT(fecha_mantenimiento, '%Y-%m-%d') AS fecha_mantenimiento, consultorio_idconsultorio FROM equipamiento WHERE nroserie= '"+ id +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('bajas/baja_equi', { baja_registros, cargado: true });
-    }     catch (error) {
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_equi', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'EQUIPAMIENTO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_equi', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN EQUIPAMIENTO CON ESE ID'
+            });
+        }
+    } catch (error) {
         console.error('Error al buscar equipamiento:', error);
+        resp.render('bajas/baja_equi', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL EQUIPAMIENTO'
+        });
     }
-}
+};
 
 export const  bajaequi_tipo = async (pet, resp)=>{
 let tipo = pet.params.tipo;
@@ -345,11 +369,35 @@ let tipo = pet.params.tipo;
         let bajasql = "SELECT nroserie, tipo, DATE_FORMAT(fecha_mantenimiento, '%Y-%m-%d') AS fecha_mantenimiento , consultorio_idconsultorio FROM equipamiento WHERE tipo= '"+ tipo +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('bajas/baja_equi', { baja_registros, cargado: true });
-    }     catch (error) {
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_equi', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'EQUIPAMIENTO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_equi', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN EQUIPAMIENTO CON ESE NOMBRE'
+            });
+        }
+    } catch (error) {
         console.error('Error al buscar equipamiento:', error);
+        resp.render('bajas/baja_equi', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL EQUIPAMIENTO'
+        });
     }
-}
+};
 
 export const eliminar_equi = async (pet, resp)=>{
 let id = pet.params.clave;
@@ -357,8 +405,25 @@ let id = pet.params.clave;
         let eliminarsql = "DELETE FROM equipamiento WHERE nroserie = '"+ id +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('bajas/baja_equi', { baja_registros, cargado: true});
-    }     catch (error) {
-        console.error('Error al eliminar equipaiento:', error);
+            resp.render('bajas/baja_equi', {
+                baja_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'EQUIPAMIENTO ELIMINADO',
+                tiempo: 2000,
+            });
+     
+    } catch (error) {
+        console.error('Error al eliminar equipamiento:', error);
+    
+        resp.render('bajas/baja_equi', {
+         
+            cargado: false,
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL ELIMINAR EL EQUIPAMIENTO',
+            tiempo: 2000,
+        });
     }
-}
+};

@@ -11,7 +11,7 @@ export const alta_ser = (pet, resp)=>{
 }
 
 export const baja_ser = (pet, resp)=>{
-    resp.render('bajas/baja_ser', {cargado: false})
+    resp.render('bajas/baja_ser', {alert: false, cargado: false})
 }
 
 export const mod_ser = (pet, resp)=>{
@@ -295,11 +295,35 @@ let id = pet.params.clave;
         let bajasql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento WHERE idtratamiento = '"+ id +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('bajas/baja_ser', { baja_registros, cargado: true });
-    }     catch (error) {
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_ser', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'SERVICIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_ser', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN SERVICIO CON ESE ID'
+            });
+        }
+    } catch (error) {
         console.error('Error al buscar servicio:', error);
+        resp.render('bajas/baja_ser', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL SERVICIO'
+        });
     }
-}
+};
 
 export const  bajaser_nom = async (pet, resp)=>{
 let nom = pet.params.nombre;
@@ -307,11 +331,35 @@ let nom = pet.params.nombre;
         let bajasql = "SELECT idtratamiento, nombre, costo, odontologo_idodontologo FROM tratamiento WHERE nombre = '"+ nom +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('bajas/baja_ser', { baja_registros, cargado: true });
-    }     catch (error) {
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_ser', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'SERVICIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_ser', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN SERVICIO CON ESE NOMBRE'
+            });
+        }
+    } catch (error) {
         console.error('Error al buscar servicio:', error);
+        resp.render('bajas/baja_ser', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL SERVICIO'
+        });
     }
-}
+};
 
 export const eliminar_ser = async (pet, resp)=>{
 let id = pet.params.clave;
@@ -319,8 +367,25 @@ let id = pet.params.clave;
         let eliminarsql = "DELETE FROM tratamiento WHERE idtratamiento = '"+ id +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('bajas/baja_ser', { baja_registros, cargado: true});
-    }     catch (error) {
+            resp.render('bajas/baja_ser', {
+                baja_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'SERVICIO ELIMINADO',
+                tiempo: 2000,
+            });
+     
+    } catch (error) {
         console.error('Error al eliminar servicio:', error);
+    
+        resp.render('bajas/baja_ser', {
+         
+            cargado: false,
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL ELIMINAR EL SERVICIO',
+            tiempo: 2000,
+        });
     }
-}
+};

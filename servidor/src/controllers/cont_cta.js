@@ -11,7 +11,7 @@ export const alta_cta = (pet, resp)=>{
 }
 
 export const baja_cta = (pet, resp)=>{
-    resp.render('bajas/baja_cta', {cargado: false})
+    resp.render('bajas/baja_cta', {alert: false, cargado: false})
 }
 
 export const mod_cta = (pet, resp)=>{
@@ -297,11 +297,35 @@ let id = pet.params.clave;
         let bajasql = "SELECT afiliado_ci_afiliado, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte WHERE afiliado_ci_afiliado = '"+ id +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('bajas/baja_cta', { baja_registros, cargado: true });
-    }     catch (error) {
-        console.error('Error al buscar la cuenta corriente:', error);
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_cta', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'CUENTA CORRIENTE ENCONTRADA',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_cta', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESA CI'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar cta cte:', error);
+        resp.render('bajas/baja_cta', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR LA CUENTA CORRIENTE'
+        });
     }
-}
+};
 
 export const bajacta_nom = async (pet, resp)=>{
 let nom_completo = pet.params.nombre;
@@ -309,11 +333,35 @@ let nom_completo = pet.params.nombre;
         let bajasql = "SELECT afiliado_ci_afiliado, nombre, apellido, saldo, tratamiento_realizado_idtratamiento_realizado FROM cta_cte INNER JOIN afiliado ON ci_afiliado = afiliado_ci_afiliado WHERE CONCAT(apellido, ' ', nombre) LIKE '%" + nom_completo + "%'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('bajas/baja_cta', { baja_registros, cargado: true });
-    }     catch (error) {
-        console.error('Error al buscar la cuenta corriente:', error);
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_cta', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'CUENTA CORRIENTE ENCONTRADA',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_cta', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESE NOMBRE'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar cta cte:', error);
+        resp.render('bajas/baja_cta', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR LA CUENTA CORRIENTE'
+        });
     }
-}
+};
 
 export const eliminar_cta = async (pet, resp)=>{
 let id = pet.params.clave;
@@ -321,8 +369,25 @@ let id = pet.params.clave;
         let eliminarsql = "DELETE FROM cta_cte WHERE afiliado_ci_afiliado = '"+ id +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('bajas/baja_cta', { baja_registros, cargado: true});
-    }     catch (error) {
-        console.error('Error al eliminar cuenta corriente:', error);
+            resp.render('bajas/baja_cta', {
+                baja_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'CUENTA CORRIENTE ELIMINADA',
+                tiempo: 2000,
+            });
+     
+    } catch (error) {
+        console.error('Error al eliminar cta cte:', error);
+    
+        resp.render('bajas/baja_con', {
+         
+            cargado: false,
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL ELIMINAR LA CUENTA CORRIENTE',
+            tiempo: 2000,
+        });
     }
-}
+};
