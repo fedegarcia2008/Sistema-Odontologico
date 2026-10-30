@@ -58,7 +58,7 @@
     <% if (baja_registros.length == 1) { %>
 
         <section class="res-contenedor">
-            <form class="res-card" onsubmit="baja_id(event)" method="POST">
+            <form class="res-card" onsubmit="baja_id(event)" onsubmit="baja_nom(event)" method="POST">
 
                 <div class="res-cabecera">
                     <i class="fa-solid fa-user-minus"></i>
@@ -150,6 +150,7 @@
 
 <% } %>
 
+<%- include('../componentes/sweet_baja') %>
 <%- include('../componentes/footer') %>
 <script src="/js/val_bajas/afi.js"></script>
 

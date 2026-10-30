@@ -12,11 +12,11 @@ export const cons1 = (pet, resp)=>{
 }
 
 export const cons3 = (pet, resp)=>{
-    resp.render('consultas/cons3', {cargado: false})
+    resp.render('consultas/cons3', {alert: false, cargado: false})
 }
 
 export const cons5 = (pet, resp)=>{
-    resp.render('consultas/cons5', {cargado: false})
+    resp.render('consultas/cons5', {alert: false, cargado: false})
 }
 
 export const cons1_id = async (pet, resp)=>{
@@ -27,28 +27,36 @@ export const cons1_id = async (pet, resp)=>{
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
     if (busc_registros.length > 0) {
-    resp.render('consultas/cons1', { busc_registros,
-        cargado: true,
-        buscoid: true, busconom: false,
-        alert: true,
-        guardado: true,
-        msj: 'Afiliado Encontrado',
-        tiempo: 1500,
-    });
+            resp.render('consultas/cons1', {
+                busc_registros,
+                buscoid: true, busconom: false,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'AFILIADO ENCONTRADO',
+                tiempo: 2000,
+            });
         } else {
-    resp.render('consultas/cons1', { busc_registros,
-        cargado:true,
-        buscoid: true, busconom: false,
-        alert: true,
-        guardado: false,
-        msj: 'Sin Resultados',
-        tiempo: 1500,
-    });
-}
+            resp.render('consultas/cons1', {
+                busc_registros,
+                buscoid: true, busconom: false,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESA CI'
+            });
+        }
     } catch (error) {
-        console.error('Error al buscar la consulta:', error);
+        console.error('Error al buscar afiliado:', error);
+        resp.render('consultas/cons1', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL AFILIADO',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 export const cons1_nom = async (pet, resp)=>{
       let nom_completo = pet.params.nombre;
@@ -57,29 +65,37 @@ export const cons1_nom = async (pet, resp)=>{
 
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-        if (busc_registros.length > 0) {
-    resp.render('consultas/cons1', { busc_registros,
-        cargado: true,
-        buscoid: false, busconom: true,
-        alert: true,
-        guardado: true,
-        msj: 'Afiliado Encontrado',
-        tiempo: 1500,
-    });
+    if (busc_registros.length > 0) {
+            resp.render('consultas/cons1', {
+                busc_registros,
+                buscoid: false, busconom: true,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'AFILIADO ENCONTRADO',
+                tiempo: 2000,
+            });
         } else {
-    resp.render('consultas/cons1', { busc_registros,
-        cargado: true,
-        buscoid: false, busconom: true,
-        alert: true,
-        guardado: false,
-        msj: 'Sin Resultados',
-        tiempo: 1500,
-    });
-}
-    }     catch (error) {
-        console.error('Error al buscar la consulta:', error);
+            resp.render('consultas/cons1', {
+                busc_registros,
+                buscoid: false, busconom: true,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESE NOMBRE'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar afiliado:', error);
+        resp.render('consultas/cons1', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL AFILIADO',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 export const cons2 = async (pet, resp) => {
     try {
@@ -100,11 +116,35 @@ export const busc_cons3 = async (pet, resp)=>{
 
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('consultas/cons3', { busc_registros, cargado: true});
-    }     catch (error) {
-        console.error('Error al buscar la consulta:', error);
+    if (busc_registros.length > 0) {
+            resp.render('consultas/cons3', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'TRATAMIENTOS ENCONTRADOS',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('consultas/cons3', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN TRATEMIENTO CON ESE PERÍODO'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar tratamiento:', error);
+        resp.render('consultas/cons3', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL PERÍODO',
+            tiempo: 2000,
+        });
     }
-}
+};
 
 export const cons4 = async (pet, resp) => {
     try {
@@ -124,8 +164,32 @@ export const busc_cons5 = async (pet, resp)=>{
         let buscarsql = "SELECT SUM(t.costo) AS monto_recaudado FROM tratamiento_realizado tr JOIN tratamiento t ON t.idtratamiento = tr.tratamiento_idtratamiento WHERE tr.fecha_inicio BETWEEN '" + fecha1 + "' AND '" + fecha2 + "';"
         const [busc_registros] = await bdd.query(buscarsql);
         console.log(busc_registros)
-    resp.render('consultas/cons5', { busc_registros, cargado: true});
-    }     catch (error) {
-        console.error('Error al buscar la consulta:', error);
+    if (busc_registros.length > 0) {
+            resp.render('consultas/cons5', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'MONTOS ENCONTRADOS',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('consultas/cons5', {
+                busc_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN MONTO CON ESE PERÍODO'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar monto:', error);
+        resp.render('consultas/cons5', {
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL BUSCAR EL PERÍODO',
+            tiempo: 2000,
+        });
     }
-}
+};

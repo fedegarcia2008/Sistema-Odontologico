@@ -11,7 +11,7 @@ export const alta_con = (pet, resp)=>{
 }
 
 export const baja_con = (pet, resp)=>{
-    resp.render('bajas/baja_con', {cargado: false})
+    resp.render('bajas/baja_con', {alert: false, cargado: false})
 }
 
 export const mod_con = (pet, resp)=>{
@@ -256,11 +256,35 @@ let id = pet.params.clave;
         let bajasql = "SELECT idconvenio, nombre, rebaja FROM convenio WHERE idconvenio = '"+ id +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('bajas/baja_con', { baja_registros, cargado: true });
-    }     catch (error) {
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_con', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'CONVENIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_con', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN CONVENIO CON ESE ID'
+            });
+        }
+    } catch (error) {
         console.error('Error al buscar convenio:', error);
+        resp.render('bajas/baja_con', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL CONVENIO'
+        });
     }
-}
+};
 
 export const bajacon_nom = async (pet, resp)=>{
 let nom = pet.params.nombre;
@@ -268,11 +292,35 @@ let nom = pet.params.nombre;
         let bajasql = "SELECT idconvenio, nombre, rebaja FROM convenio WHERE nombre = '"+ nom +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('bajas/baja_con', { baja_registros, cargado: true });
-    }     catch (error) {
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_con', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'CONVENIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_con', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN CONVENIO CON ESE NOMBRE'
+            });
+        }
+    } catch (error) {
         console.error('Error al buscar convenio:', error);
+        resp.render('bajas/baja_con', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL CONVENIO'
+        });
     }
-}
+};
 
 export const eliminar_con = async (pet, resp)=>{
 let id = pet.params.clave;
@@ -280,8 +328,25 @@ let id = pet.params.clave;
         let eliminarsql = "DELETE FROM convenio WHERE idconvenio = '"+ id +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('bajas/baja_con', { baja_registros, cargado: true});
-    }     catch (error) {
+            resp.render('bajas/baja_con', {
+                baja_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'CONVENIO ELIMINADO',
+                tiempo: 2000,
+            });
+     
+    } catch (error) {
         console.error('Error al eliminar convenio:', error);
+    
+        resp.render('bajas/baja_con', {
+         
+            cargado: false,
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL ELIMINAR EL CONVENIO',
+            tiempo: 2000,
+        });
     }
-}
+};

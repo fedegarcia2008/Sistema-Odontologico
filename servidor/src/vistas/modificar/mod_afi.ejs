@@ -38,7 +38,7 @@
                 <h2><i class="fa-solid fa-user"></i> Buscar por nombre</h2>
                 <div class="campo">
                     <label>Apellido y Nombre</label>
-                    <input type="text" id="nombre" name="nombre" maxlength="20"
+                    <input type="text"  name="nombre" id="nombre" maxlength="20"
                            autocomplete="off" required>
                 </div>
             </div>
@@ -55,7 +55,7 @@
     <% if (busc_registros.length == 1) { %>
 
         <section class="res-contenedor">
-            <form class="res-card" onsubmit="mod_id(event)" method="POST">
+            <form class="res-card" onsubmit="mod_id(event)" onsubmit="mod_nom(event)" method="POST">
 
                 <div class="res-cabecera">
                     <i class="fa-solid fa-user-pen"></i>

@@ -11,7 +11,7 @@ export const alta_tur = (pet, resp)=>{
 }
 
 export const baja_tur = (pet, resp)=>{
-    resp.render('bajas/baja_tur', {cargado: false})
+    resp.render('bajas/baja_tur', {alert: false, cargado: false})
 }
 
 export const mod_tur = (pet, resp)=>{
@@ -253,11 +253,35 @@ let id = pet.params.clave;
         let bajasql = "SELECT idconsulta, DATE_FORMAT(fecha, '%Y-%m-%d') AS fecha , horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE idconsulta = '"+ id +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('bajas/baja_tur', { baja_registros, cargado: true });
-    }     catch (error) {
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_tur', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'TURNO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_tur', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN TURNO CON ESE ID'
+            });
+        }
+    } catch (error) {
         console.error('Error al buscar turno:', error);
+        resp.render('bajas/baja_tur', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL TURNO'
+        });
     }
-}
+};
 
 export const  bajatur_fechas = async (pet, resp)=>{
             let fecha1 = pet.params.fecha1;
@@ -266,11 +290,35 @@ export const  bajatur_fechas = async (pet, resp)=>{
         let bajasql = "SELECT idconsulta, DATE_FORMAT(fecha, '%Y-%m-%d') AS fecha , horario, odontologo_idodontologo, afiliado_ci_afiliado FROM consulta WHERE fecha BETWEEN '" + fecha1 + "' AND '" + fecha2 + "' ORDER BY fecha, horario";;
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('bajas/baja_tur', { baja_registros, cargado: true });
-    }     catch (error) {
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_tur', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'TURNO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_tur', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN TURNO CON ESE PERÍODO'
+            });
+        }
+    } catch (error) {
         console.error('Error al buscar turno:', error);
+        resp.render('bajas/baja_tur', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL TURNO'
+        });
     }
-}
+};
 
 export const eliminar_tur = async (pet, resp)=>{
 let id = pet.params.clave;
@@ -278,8 +326,25 @@ let id = pet.params.clave;
         let eliminarsql = "DELETE FROM consulta WHERE idconsulta = '"+ id +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('bajas/baja_tur', { baja_registros, cargado: true});
-    }     catch (error) {
+            resp.render('bajas/baja_tur', {
+                baja_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'TURNO ELIMINADO',
+                tiempo: 2000,
+            });
+     
+    } catch (error) {
         console.error('Error al eliminar turno:', error);
+    
+        resp.render('bajas/baja_tur', {
+         
+            cargado: false,
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL ELIMINAR EL TURNO',
+            tiempo: 2000,
+        });
     }
-}
+};

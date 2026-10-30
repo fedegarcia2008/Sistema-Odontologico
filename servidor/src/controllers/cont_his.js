@@ -11,7 +11,7 @@ export const alta_his = (pet, resp)=>{
 }
 
 export const baja_his = (pet, resp)=>{
-    resp.render('bajas/baja_his', {cargado: false})
+    resp.render('bajas/baja_his', {alert: false, cargado: false})
 }
 
 export const mod_his = (pet, resp)=>{
@@ -381,11 +381,35 @@ let id = pet.params.clave;
         let bajasql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE idtratamiento_realizado = '"+ id +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('bajas/baja_his', { baja_registros, cargado: true });
-    }     catch (error) {
-        console.error('Error al buscar historia clinica:', error);
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_his', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'HISTORIA CLÍNICA ENCONTRADA',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_his', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUNA HISTORIA CLÍNICA CON ESE ID'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar historia clínica:', error);
+        resp.render('bajas/baja_his', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR LA HISTORIA CLÍNICA'
+        });
     }
-}
+};
 
 export const  bajahis_afi = async (pet, resp)=>{
 let afi = pet.params.idAfi;
@@ -393,11 +417,35 @@ let afi = pet.params.idAfi;
         let bajasql = "SELECT idtratamiento_realizado, fecha_inicio, tratamiento_finalizado, tratamiento_idtratamiento, afiliado_ci_afiliado, odontologo_idodontologo, consulta_idconsulta FROM tratamiento_realizado WHERE afiliado_ci_afiliado = '"+ afi +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('bajas/baja_his', { baja_registros, cargado: true });
-    }     catch (error) {
-        console.error('Error al buscar historia clinica:', error);
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_his', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'HISTORIA CLÍNICA ENCONTRADA',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_his', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN AFILIADO CON ESA CI'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar historia clínica:', error);
+        resp.render('bajas/baja_his', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR LA HISTORIA CLÍNICA'
+        });
     }
-}
+};
 
 export const eliminar_his = async (pet, resp)=>{
 let id = pet.params.clave;
@@ -405,8 +453,25 @@ let id = pet.params.clave;
         let eliminarsql = "DELETE FROM tratamiento_realizado WHERE idtratamiento_realizado = '"+ id +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('bajas/baja_his', { baja_registros, cargado: true});
-    }     catch (error) {
-        console.error('Error al eliminar historia clinica:', error);
+            resp.render('bajas/baja_his', {
+                baja_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'HISTORIA CLÍNICA ELIMINADA',
+                tiempo: 2000,
+            });
+     
+    } catch (error) {
+        console.error('Error al eliminar HISTORIA CLÍNICA:', error);
+    
+        resp.render('bajas/baja_his', {
+         
+            cargado: false,
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL ELIMINAR LA HISTORIA CLÍNICA',
+            tiempo: 2000,
+        });
     }
-}
+};

@@ -11,7 +11,7 @@ export const alta_cons = (pet, resp)=>{
 }
 
 export const baja_cons = (pet, resp)=>{
-    resp.render('bajas/baja_cons', {cargado: false})
+    resp.render('bajas/baja_cons', {alert: false, cargado: false})
 }
 
 export const mod_cons = (pet, resp)=>{
@@ -40,7 +40,7 @@ export const nuevo_cons = async (pet, resp) => {
             alert: true,
             icono: 'success',
             msj: 'CONSULTORIO GUARDADO',
-            tiempo: 1500,
+            tiempo: 2000,
         });
     } catch (error) {
         console.error('Error en la sentencia INSERT:', error);
@@ -48,7 +48,7 @@ export const nuevo_cons = async (pet, resp) => {
             alert: true,
             icono: 'error',
             msj: 'ERROR AL GUARDAR EL CONSULTORIO',
-            tiempo: 1500,
+            tiempo: 2000,
         });
     }
 };
@@ -229,11 +229,35 @@ let id = pet.params.clave;
         let bajasql = "SELECT idconsultorio, numero, local_idlocal FROM consultorio WHERE idconsultorio = '"+ id +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('bajas/baja_cons', { baja_registros, cargado: true });
-    }     catch (error) {
-        console.error('Error al buscar el consultorio:', error);
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_cons', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'CONSULTORIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_cons', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN CONSULTORIO CON ESE ID'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar consultorio:', error);
+        resp.render('bajas/baja_cons', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL CONSULTORIO'
+        });
     }
-}
+};
 
 export const  bajacons_num = async (pet, resp)=>{
 let num = pet.params.num;
@@ -241,11 +265,35 @@ let num = pet.params.num;
         let bajasql = "SELECT idconsultorio, numero, local_idlocal FROM consultorio WHERE numero = '"+ num +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('bajas/baja_cons', { baja_registros, cargado: true });
-    }     catch (error) {
-        console.error('Error al buscar el consultorio:', error);
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_cons', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'CONSULTORIO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_cons', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN CONSULTORIO CON ESE NÚMERO'
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar consultorio:', error);
+        resp.render('bajas/baja_cons', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL CONSULTORIO'
+        });
     }
-}
+};
 
 export const eliminar_cons = async (pet, resp)=>{
 let id = pet.params.clave;
@@ -253,9 +301,26 @@ let id = pet.params.clave;
         let eliminarsql = "DELETE FROM consultorio WHERE idconsultorio = '"+ id +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('bajas/baja_cons', { baja_registros, cargado: true});
-    }     catch (error) {
+            resp.render('bajas/baja_cons', {
+                baja_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'CONSULTORIO ELIMINADO',
+                tiempo: 2000,
+            });
+     
+    } catch (error) {
         console.error('Error al eliminar consultorio:', error);
+    
+        resp.render('bajas/baja_cons', {
+         
+            cargado: false,
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL ELIMINAR EL CONSULTORIO',
+            tiempo: 2000,
+        });
     }
-}
+};
   

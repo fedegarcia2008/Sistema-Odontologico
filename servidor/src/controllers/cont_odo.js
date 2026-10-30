@@ -11,7 +11,7 @@ export const alta_odo = (pet, resp)=>{
 }
 
 export const baja_odo = (pet, resp)=>{
-    resp.render('bajas/baja_odo', {cargado: false})
+    resp.render('bajas/baja_odo', {alert: false, cargado: false})
 }
 
 export const mod_odo = (pet, resp)=>{
@@ -304,11 +304,72 @@ let id = pet.params.clave;
         let bajasql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE idodontologo = '"+ id +"'";
         const [baja_registros] = await bdd.query(bajasql);
         console.log(baja_registros)
-    resp.render('bajas/baja_odo', { baja_registros, cargado: true });
-    }     catch (error) {
-        console.error('Error al buscar odontologo:', error);
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_odo', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'ODONTÓLOGO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_odo', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN ODONTÓLOGO CON ESE ID',
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar odontólogo:', error);
+        resp.render('bajas/baja_odo', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL ODONTÓLOGO'
+        });
     }
-}
+};
+
+export const bajaodo_nom = async (pet, resp)=>{
+let nom = pet.params.nombre;
+      try {
+        let bajasql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE CONCAT(apellido, ' ', nombre) = '"+ nom +"'";
+        const [baja_registros] = await bdd.query(bajasql);
+        console.log(baja_registros)
+        if (baja_registros.length > 0) {
+            resp.render('bajas/baja_odo', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'success',
+                msj: 'ODONTÓLOGO ENCONTRADO',
+                tiempo: 2000,
+            });
+        } else {
+            resp.render('bajas/baja_odo', {
+                baja_registros,
+                cargado: true,
+                alert: true,
+                icono: 'info',
+                tiempo: 2000,
+                msj: 'NO SE ENCONTRÓ NINGUN ODONTÓLOGO CON ESE NOMBRE',
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar odontólogo:', error);
+        resp.render('bajas/baja_odo', {
+            cargado: true,
+            alert: true,
+            icono: 'false',
+            msj: 'ERROR AL BUSCAR EL ODONTÓLOGO'
+        });
+    }
+};
+
 
 export const eliminar_odo = async (pet, resp)=>{
 let id = pet.params.clave;
@@ -316,33 +377,25 @@ let id = pet.params.clave;
         let eliminarsql = "DELETE FROM odontologo WHERE idodontologo = '"+ id +"'";
         const [baja_registros] = await bdd.query(eliminarsql);
         console.log(baja_registros)
-    resp.render('bajas/baja_odo', { baja_registros, cargado: true});
-    }     catch (error) {
-        console.error('Error al eliminar odontologo:', error);
+            resp.render('bajas/baja_odo', {
+                baja_registros,
+                cargado: false,
+                alert: true,
+                icono: 'success',
+                msj: 'ODONTÓLOGO ELIMINADO',
+                tiempo: 2000,
+            });
+     
+    } catch (error) {
+        console.error('Error al eliminar odontólogo:', error);
+    
+        resp.render('bajas/baja_odo', {
+         
+            cargado: false,
+            alert: true,
+            icono: 'error',
+            msj: 'ERROR AL ELIMINAR EL ODONTÓLOGO',
+            tiempo: 2000,
+        });
     }
-}
-
-export const bajaodo_nom = async (pet, resp)=>{
-let nom = pet.params.nom;
-      try {
-        let bajasql = "SELECT idodontologo, nombre, apellido, especialidad, consultorio_idconsultorio FROM odontologo WHERE CONCAT(apellido, ' ', nombre) = '"+ nom +"'";
-        const [baja_registros] = await bdd.query(bajasql);
-        console.log(baja_registros)
-    resp.render('bajas/baja_odo', { baja_registros, cargado: true });
-    }     catch (error) {
-        console.error('Error al buscar odontologo:', error);
-    }
-}
-
-
-export const eliminar_nom = async (pet, resp)=>{
-let nom = pet.params.nom;
-      try {
-        let eliminarsql = "DELETE FROM odontologo WHERE CONCAT(apellido, ' ', nombre) = '"+ nom +"'";
-        const [baja_registros] = await bdd.query(eliminarsql);
-        console.log(baja_registros)
-    resp.render('bajas/baja_odo', { baja_registros, cargado: true});
-    }     catch (error) {
-        console.error('Error al eliminar odontologo:', error);
-    }
-}
+};
