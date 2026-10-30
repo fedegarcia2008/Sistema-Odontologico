@@ -7,160 +7,195 @@
     <link rel="stylesheet" href="/css/mostrar.css">
     <link rel="icon" href="/img/favicon.webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Buscar Historia Clinica - Secure Dental</title>
+    <title>Buscar Historia Clínica - Secure Dental</title>
 </head>
 
 <body>
 <%- include('../componentes/header') %>
 
+<h1>BUSCAR HISTORIA CLÍNICA</h1>
 
-    <h1>BUSCAR HISTORIA CLINICA</h1>
-
-    <main class="busq-contenedor">
-    <div class="busq-grid">
+<main class="busq-contenedor">
+    <div class="busq-grid busq-5">
 
         <form class="busq-item" onsubmit="busc_id(event)" method="GET">
             <div>
                 <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
-        <div class="campo">
-            <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="3" placeholder="Ej: 123" autocomplete="off" required >
-        <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
-</form>
-    
-        <form class="busq-item" onsubmit="busc_fecha(event)" method="GET">
-             <div>
-                <h2><i class="fa-solid fa-id-card"></i> Buscar por fecha</h2>
-            <div class="campo">
-                <label>Fecha:</label>
-                <input type="date" id="fecha" name="fecha" required>
+                <div class="campo">
+                    <label>Clave de identificación</label>
+                    <input type="text" id="clave" name="clave" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
+                    <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+                </div>
             </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR C.I.">
             </div>
+        </form>
 
+        <form class="busq-item" onsubmit="busc_fecha(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-calendar-days"></i> Buscar por fecha</h2>
+                <div class="campo">
+                    <label>Fecha de inicio</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                </div>
+            </div>
             <div class="boton">
                 <input type="submit" value="BUSCAR POR FECHA">
             </div>
         </form>
 
-        
         <form class="busq-item" onsubmit="busc_afi(event)" method="GET">
-             <div>
-                <h2><i class="fa-solid fa-id-card"></i> Buscar por ID del afiliado</h2>
-            <div class="campo">
-                <label>Id afiliado</label>
-            <input type="text" name="idAfi" id="idAfi" minlength="8" maxlength="8"
-                   pattern="[0-9]{8}" autocomplete="off" placeholder="Ej: 12345678" required>
-                   <span class="ayuda">8 dígitos, sin puntos ni espacios</span>
+            <div>
+                <h2><i class="fa-solid fa-user"></i> Buscar por afiliado</h2>
+                <div class="campo">
+                    <label>ID afiliado</label>
+                    <input type="text" name="idAfi" id="idAfi" minlength="8" maxlength="8"
+                           pattern="[0-9]{8}" autocomplete="off" placeholder="Ej: 12345678" required>
+                    <span class="ayuda">8 dígitos, sin puntos ni espacios</span>
+                </div>
             </div>
-            </div>
-
             <div class="boton">
-                <input type="submit" value="BUSCAR POR ID AFILIADO">
+                <input type="submit" value="BUSCAR POR AFILIADO">
             </div>
         </form>
 
         <form class="busq-item" onsubmit="busc_odo(event)" method="GET">
-             <div>
-                <h2><i class="fa-solid fa-id-card"></i> Buscar por ID del odontologo</h2>
-            <div class="campo">
-                  <label>Id odontologo</label>
-            <input type="text" name="idOdo" id="idOdo" autocomplete="off" placeholder="Ej: 123" maxlength="3" required>
-            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+            <div>
+                <h2><i class="fa-solid fa-user-doctor"></i> Buscar por odontólogo</h2>
+                <div class="campo">
+                    <label>ID odontólogo</label>
+                    <input type="text" name="idOdo" id="idOdo" autocomplete="off" placeholder="Ej: 123" maxlength="3" required>
+                    <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+                </div>
             </div>
-            </div>
-
             <div class="boton">
-                <input type="submit" value="BUSCAR POR ID ODONTÓLOGO">
+                <input type="submit" value="BUSCAR POR ODONTÓLOGO">
             </div>
         </form>
 
-        
-    <form class="busq-item" onsubmit="busc_trat(event)" method="GET">
-         <div>
-            <h2><i class="fa-solid fa-id-card"></i> Buscar por estado de tratamiento</h2>
-        <div class="campo">
-            <label>Estado de Tratamiento </label>
-            <select name="trat_rea" id="trat_rea" required>
-                <option value="">Seleccione una opción</option>
-                <option value= 1>Finalizado</option>
-                <option value= 0>En curso</option>
-            </select>
+        <form class="busq-item" onsubmit="busc_trat(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-clipboard-check"></i> Buscar por estado</h2>
+                <div class="campo">
+                    <label>Estado del tratamiento</label>
+                    <select name="trat_rea" id="trat_rea" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="1">Finalizado</option>
+                        <option value="0">En curso</option>
+                    </select>
+                </div>
             </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR ESTADO">
             </div>
-            
-       <div class="boton">
-        <input type="submit" value="BUSCAR POR ESTADO DE TRAT.">
-        </div>
+        </form>
 
-    </form>
-
-        </div>
-    </main>
+    </div>
+</main>
 
 <% if (cargadoid) { %>
+    <section class="res-contenedor">
         <% if (busc_registros.length > 0) { %>
-      
-                <p>Clave:  <%= busc_registros[0].idtratamiento_realizado %></p>
-                <p>Fecha de inicio:  <%= new Date(busc_registros[0].fecha_inicio).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %></p>
-                <p>Tratamiento finalizado:  <%= busc_registros[0].tratamiento_finalizado ? "Finalizado" : "En curso" %></p>
-                <p>Tratamiento:  <%= busc_registros[0].tratamiento_idtratamiento %></p>
-                <p>Id del afiliado:  <%= busc_registros[0].afiliado_ci_afiliado %></p>
-                <p>Id del odontologo: <%= busc_registros[0].odontologo_idodontologo %></p>
-                <p>Id turno: <%= busc_registros[0].consulta_idconsulta %></p>
-      
-            <% } else { %>
 
-                    <p> No hay datos para mostrar</p>
+            <div class="res-card">
+                <div class="res-cabecera">
+                    <i class="fa-solid fa-notes-medical"></i>
+                    <div>
+                        <h2>Historia clínica</h2>
+                        <span class="res-id">ID <%= busc_registros[0].idtratamiento_realizado %></span>
+                    </div>
+                </div>
 
-            <% } %>
- <% } %>
+                <div class="res-campos">
+                    <div class="campo">
+                        <label>Identificador único</label>
+                        <input type="text" readonly value="<%= busc_registros[0].idtratamiento_realizado %>">
+                    </div>
+
+                    <div class="campo">
+                        <label>Fecha de inicio</label>
+                        <input type="text" readonly value="<%= new Date(busc_registros[0].fecha_inicio).toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' }) %>">
+                    </div>
+
+                    <div class="campo">
+                        <label>Tratamiento finalizado</label>
+                        <input type="text" readonly value="<%= busc_registros[0].tratamiento_finalizado ? 'Finalizado' : 'En curso' %>">
+                    </div>
+
+                    <div class="campo">
+                        <label>ID tratamiento</label>
+                        <input type="text" readonly value="<%= busc_registros[0].tratamiento_idtratamiento %>">
+                    </div>
+
+                    <div class="campo">
+                        <label>ID afiliado</label>
+                        <input type="text" readonly value="<%= busc_registros[0].afiliado_ci_afiliado %>">
+                    </div>
+
+                    <div class="campo">
+                        <label>ID odontólogo</label>
+                        <input type="text" readonly value="<%= busc_registros[0].odontologo_idodontologo %>">
+                    </div>
+
+                    <div class="campo" style="grid-column: 1 / -1;">
+                        <label>ID turno</label>
+                        <input type="text" readonly value="<%= busc_registros[0].consulta_idconsulta %>">
+                    </div>
+                </div>
+            </div>
+
+        <% } else { %>
+
+            <div class="res-card res-vacio">
+                <i class="fa-solid fa-circle-xmark"></i>
+                <p>No hay datos para mostrar</p>
+            </div>
+
+        <% } %>
+    </section>
+<% } %>
 
 <% if (cargadotabla) { %>
-<div class="tabla-contenedor">
-    <table class="tabla-datos">
-        <thead>
-            <tr>
-            <th >Id Tratamiento</th>
-            <th >Fecha</th>
-            <th >Tratamiento Realizado</th>
-            <th >Tipo de Tratamiento</th>
-            <th >id Afiliado</th>
-            <th >id Odontologo</th>
-            <th >id Turno</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <% if (busc_registros.length > 0) {
-                busc_registros.forEach(his => { %>
-                    <tr>
-                        <td><%= his.idtratamiento_realizado %></td>
-                        <td><%= new Date(his.fecha_inicio).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %></td>
-                        <td><%= his.tratamiento_finalizado ? "Finalizado" : "En curso" %></td>
-                        <td><%= his.tratamiento_idtratamiento %></td>
-                        <td><%= his.afiliado_ci_afiliado %></td>
-                        <td><%= his.odontologo_idodontologo %></td>
-                        <td><%= his.consulta_idconsulta %></td>
-                    </tr>
-                <% });
-            } else { %>
+    <div class="tabla-contenedor">
+        <table class="tabla-datos">
+            <thead>
                 <tr>
-                    <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                    <th>ID tratamiento</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Tipo de tratamiento</th>
+                    <th>ID afiliado</th>
+                    <th>ID odontólogo</th>
+                    <th>ID turno</th>
                 </tr>
-            <% } %>
+            </thead>
+            <tbody>
+                <% if (busc_registros.length > 0) {
+                    busc_registros.forEach(his => { %>
+                        <tr>
+                            <td><%= his.idtratamiento_realizado %></td>
+                            <td><%= new Date(his.fecha_inicio).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %></td>
+                            <td><%= his.tratamiento_finalizado ? "Finalizado" : "En curso" %></td>
+                            <td><%= his.tratamiento_idtratamiento %></td>
+                            <td><%= his.afiliado_ci_afiliado %></td>
+                            <td><%= his.odontologo_idodontologo %></td>
+                            <td><%= his.consulta_idconsulta %></td>
+                        </tr>
+                    <% });
+                } else { %>
+                    <tr>
+                        <td colspan="7" class="sin-datos">No hay datos para mostrar</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
 <% } %>
-        </tbody>
-    </table>
-</div>
 
 <%- include('../componentes/sweet_buscar') %>
 <%- include('../componentes/footer') %>
 <script src="/js/val_buscar/his.js"></script>
+
 </body>
 </html>

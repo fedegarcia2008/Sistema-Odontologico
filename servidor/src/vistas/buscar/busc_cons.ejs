@@ -13,93 +13,116 @@
 <body>
 <%- include('../componentes/header') %>
 
+<h1>BUSCAR CONSULTORIO</h1>
 
-    <h1>BUSCAR CONSULTORIO</h1>
-
-    <main class="busq-contenedor">
+<main class="busq-contenedor">
     <div class="busq-grid">
 
         <form class="busq-item" onsubmit="busc_id(event)" method="GET">
-        <div>
-        <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
-        <div class="campo">
-            <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" placeholder="Ej: 123" maxlength="3" autocomplete="off" required>
-        <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
-
-        </div> 
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
-        
+            <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
+                <div class="campo">
+                    <label>Clave de identificación</label>
+                    <input type="text" id="clave" name="clave" placeholder="Ej: 123" maxlength="3" autocomplete="off" required>
+                    <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR C.I.">
+            </div>
         </form>
-
 
         <form class="busq-item" onsubmit="busc_num(event)" method="GET">
-        <div>
-        <h2><i class="fa-solid fa-id-card"></i> Buscar por numero de consultorio</h2>
-        <div class="campo">
-            <label>Numero de Consultorio:</label>
-            <input type="text" id="cons" name="cons" placeholder="Ej: 123" maxlength="3" autocomplete="off" required>
-        <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
-        </div>
-         </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR por nro">
-        </div>
+            <div>
+                <h2><i class="fa-solid fa-hashtag"></i> Buscar por número</h2>
+                <div class="campo">
+                    <label>Número de consultorio</label>
+                    <input type="text" id="cons" name="cons" placeholder="Ej: 123" maxlength="3" autocomplete="off" required>
+                    <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR NÚMERO">
+            </div>
         </form>
-        
-</div>
+
+    </div>
 </main>
 
 <% if (cargadoid) { %>
+    <section class="res-contenedor">
         <% if (busc_registros.length > 0) { %>
-      
-                <p>Clave:  <%= busc_registros[0].idconsultorio %></p>
-                <p>Número:  <%= busc_registros[0].numero %></p>
-                <p>Nro. local:  <%= busc_registros[0].local_idlocal %></p>
-      
-            <% } else { %>
 
-                    <p> No hay datos para mostrar</p>
+            <div class="res-card">
+                <div class="res-cabecera">
+                    <i class="fa-solid fa-door-open"></i>
+                    <div>
+                        <h2>Consultorio <%= busc_registros[0].numero %></h2>
+                        <span class="res-id">ID <%= busc_registros[0].idconsultorio %></span>
+                    </div>
+                </div>
 
-            <% } %>
- <% } %>
+                <div class="res-campos">
+                    <div class="campo">
+                        <label>Clave de identificación</label>
+                        <input type="text" readonly value="<%= busc_registros[0].idconsultorio %>">
+                    </div>
 
+                    <div class="campo">
+                        <label>Número</label>
+                        <input type="text" readonly value="<%= busc_registros[0].numero %>">
+                    </div>
+
+                    <div class="campo" style="grid-column: 1 / -1;">
+                        <label>Nro. de local</label>
+                        <input type="text" readonly value="<%= busc_registros[0].local_idlocal %>">
+                    </div>
+                </div>
+            </div>
+
+        <% } else { %>
+
+            <div class="res-card res-vacio">
+                <i class="fa-solid fa-circle-xmark"></i>
+                <p>No hay datos para mostrar</p>
+            </div>
+
+        <% } %>
+    </section>
+<% } %>
 
 <% if (cargadotabla) { %>
-<div class="tabla-contenedor">
-    <table class="tabla-datos">
-        <thead>
-            <tr>
-                <th>id.</th>
-                <th>numero</th>
-                <th>id local</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% if (busc_registros.length > 0) {
-                busc_registros.forEach(cons => { %>
-                    <tr>
-                        <td><%= cons.idconsultorio %></td>
-                        <td><%= cons.numero %></td>
-                        <td><%= cons.local_idlocal %></td>
-                    </tr>
-                <% });
-            } else { %>
+    <div class="tabla-contenedor">
+        <table class="tabla-datos">
+            <thead>
                 <tr>
-                    <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                    <th>ID</th>
+                    <th>Número</th>
+                    <th>ID local</th>
                 </tr>
-            <% } %>
-                      <% } %>
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                <% if (busc_registros.length > 0) {
+                    busc_registros.forEach(cons => { %>
+                        <tr>
+                            <td><%= cons.idconsultorio %></td>
+                            <td><%= cons.numero %></td>
+                            <td><%= cons.local_idlocal %></td>
+                        </tr>
+                    <% });
+                } else { %>
+                    <tr>
+                        <td colspan="3" class="sin-datos">No hay datos para mostrar</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+<% } %>
+
 <%- include('../componentes/sweet_buscar') %>
 <%- include('../componentes/footer') %>
 <script src="/js/val_buscar/cons.js"></script>
+
 </body>
 </html>

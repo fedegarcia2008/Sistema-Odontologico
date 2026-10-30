@@ -4,32 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/menu.css">
-     <link rel="stylesheet" href="/css/mostrar.css">
+    <link rel="stylesheet" href="/css/mostrar.css">
     <link rel="icon" href="/img/favicon.webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Buscar Afiliado - Secure Dental</title>
+    <title>Buscar Convenio - Secure Dental</title>
 </head>
 
 <body>
 <%- include('../componentes/header') %>
 
+<h1>BUSCAR CONVENIO</h1>
 
-    <h1>BUSCAR AFILIADO</h1>
-
-    <main class="busq-contenedor">
+<main class="busq-contenedor">
     <div class="busq-grid">
 
         <form class="busq-item" onsubmit="busc_id(event)" method="GET">
             <div>
                 <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
                 <div class="campo">
-                    <label>Clave de Identificación <span class="asterisco">*</span></label>
-                    <input type="text" name="clave" id="clave" minlength="8" maxlength="8"
-                           pattern="[0-9]{8}" autocomplete="off" placeholder="Ej: 12345678" required>
-                    <span class="ayuda">8 dígitos, sin puntos ni espacios</span>
+                    <label>Clave de identificación</label>
+                    <input type="text" id="clave" name="clave" maxlength="2" autocomplete="off" placeholder="Ej: 01" required>
+                    <span class="ayuda">2 dígitos, sin puntos ni espacios</span>
                 </div>
             </div>
-
             <div class="boton">
                 <input type="submit" value="BUSCAR POR C.I.">
             </div>
@@ -39,32 +36,12 @@
             <div>
                 <h2><i class="fa-solid fa-user"></i> Buscar por nombre</h2>
                 <div class="campo">
-                    <label>Apellido y Nombre</label>
-                    <input type="text" id="nombre" name="nombre" maxlength="20"
-                           autocomplete="off" placeholder="Ej: Torres Ana" required>
+                    <label>Nombre</label>
+                    <input type="text" id="nombre" name="nombre" maxlength="20" autocomplete="off" placeholder="Ej: Convenio A" required>
                 </div>
             </div>
             <div class="boton">
                 <input type="submit" value="BUSCAR POR NOMBRE">
-            </div>
-        </form>
-
-        <form class="busq-item" onsubmit="busc_plan(event)" method="GET">
-            <div>
-                <h2><i class="fa-solid fa-file-contract"></i> Buscar por plan</h2>
-                <div class="campo">
-                    <label>Tipo de plan</label>
-                    <select name="plan" id="plan" required>
-                        <option value="">Seleccione un plan</option>
-                        <option value="Individual">Individual</option>
-                        <option value="Grupal">Grupal</option>
-                    </select>
-                    <span class="ayuda">Muestra todos los afiliados del plan</span>
-                </div>
-            </div>
-            
-            <div class="boton">
-                <input type="submit" value="BUSCAR POR PLAN">
             </div>
         </form>
 
@@ -77,42 +54,27 @@
 
             <div class="res-card">
                 <div class="res-cabecera">
-                    <i class="fa-solid fa-user"></i>
+                    <i class="fa-solid fa-handshake"></i>
                     <div>
-                        <h2><%= busc_registros[0].nombre %> <%= busc_registros[0].apellido %></h2>
-                        <span class="res-id">C.I. <%= busc_registros[0].ci_afiliado %></span>
+                        <h2><%= busc_registros[0].nombre %></h2>
+                        <span class="res-id">ID <%= busc_registros[0].idconvenio %></span>
                     </div>
                 </div>
 
                 <div class="res-campos">
                     <div class="campo">
-                        <label>Clave de identificación</label>
-                        <input type="text" readonly value="<%= busc_registros[0].ci_afiliado %>">
+                        <label>Identificador único</label>
+                        <input type="text" readonly value="<%= busc_registros[0].idconvenio %>">
                     </div>
 
                     <div class="campo">
-                        <label>Tipo de plan</label>
-                        <input type="text" readonly value="<%= busc_registros[0].tipo_plan %>">
+                        <label>Rebaja</label>
+                        <input type="text" readonly value="<%= busc_registros[0].rebaja %>">
                     </div>
 
-                    <div class="campo">
+                    <div class="campo" style="grid-column: 1 / -1;">
                         <label>Nombre</label>
                         <input type="text" readonly value="<%= busc_registros[0].nombre %>">
-                    </div>
-
-                    <div class="campo">
-                        <label>Apellido</label>
-                        <input type="text" readonly value="<%= busc_registros[0].apellido %>">
-                    </div>
-
-                    <div class="campo">
-                        <label>Celular</label>
-                        <input type="text" readonly value="<%= busc_registros[0].tel_cel ? busc_registros[0].tel_cel : 'Sin teléfono' %>">
-                    </div>
-
-                    <div class="campo">
-                        <label>Teléfono fijo</label>
-                        <input type="text" readonly value="<%= busc_registros[0].tel_fijo ? busc_registros[0].tel_fijo : 'Sin teléfono' %>">
                     </div>
                 </div>
             </div>
@@ -120,7 +82,7 @@
         <% } else { %>
 
             <div class="res-card res-vacio">
-                <i class="fa-solid fa-user-slash"></i>
+                <i class="fa-solid fa-circle-xmark"></i>
                 <p>No hay datos para mostrar</p>
             </div>
 
@@ -133,29 +95,23 @@
         <table class="tabla-datos">
             <thead>
                 <tr>
-                    <th>C.I.</th>
+                    <th>ID</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Teléfono Celular</th>
-                    <th>Teléfono Fijo</th>
-                    <th>Tipo de Plan</th>
+                    <th>Rebaja</th>
                 </tr>
             </thead>
             <tbody>
                 <% if (busc_registros.length > 0) {
-                    busc_registros.forEach(afi => { %>
+                    busc_registros.forEach(con => { %>
                         <tr>
-                            <td><%= afi.ci_afiliado %></td>
-                            <td><%= afi.nombre %></td>
-                            <td><%= afi.apellido %></td>
-                            <td><%= afi.tel_cel ? afi.tel_cel : "Sin teléfono" %></td>
-                            <td><%= afi.tel_fijo ? afi.tel_fijo : "Sin teléfono" %></td>
-                            <td><%= afi.tipo_plan %></td>
+                            <td><%= con.idconvenio %></td>
+                            <td><%= con.nombre %></td>
+                            <td><%= con.rebaja %></td>
                         </tr>
                     <% });
                 } else { %>
                     <tr>
-                        <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                        <td colspan="3" class="sin-datos">No hay datos para mostrar</td>
                     </tr>
                 <% } %>
             </tbody>
@@ -163,13 +119,9 @@
     </div>
 <% } %>
 
-
-
-
-
 <%- include('../componentes/sweet_buscar') %>
 <%- include('../componentes/footer') %>
-<script src="/js/val_buscar/afi.js"></script>
+<script src="/js/val_buscar/conv.js"></script>
 
 </body>
 </html>

@@ -551,7 +551,68 @@ footer {
     border-top: 1px solid #e6ecf2;
 }
 
+/* ===== Buscadores 3 + 2 (cinco formularios) ===== */
+.busq-grid.busq-5 {
+    grid-template-columns: repeat(6, 1fr);
+}
 
+.busq-5 .busq-item {
+    grid-column: span 2;
+    border-left: none;
+    background: transparent;
+}
+
+/* Fila de abajo: dos buscadores que se reparten el ancho */
+.busq-5 .busq-item:nth-child(4),
+.busq-5 .busq-item:nth-child(5) {
+    grid-column: span 3;
+    border-top: 1px solid #e6ecf2;
+}
+
+/* Divisores verticales */
+.busq-5 .busq-item:nth-child(2),
+.busq-5 .busq-item:nth-child(3),
+.busq-5 .busq-item:nth-child(5) {
+    border-left: 1px solid #e6ecf2;
+}
+
+/* Fondo suave alternado */
+.busq-5 .busq-item:nth-child(even) {
+    background: #fafcfe;
+}
+
+@media (max-width: 900px) {
+    .busq-grid.busq-5 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .busq-5 .busq-item,
+    .busq-5 .busq-item:nth-child(4),
+    .busq-5 .busq-item:nth-child(5) {
+        grid-column: span 1;
+        border-left: none;
+        border-top: 1px solid #e6ecf2;
+    }
+
+    .busq-5 .busq-item:nth-child(even) {
+        border-left: 1px solid #e6ecf2;
+    }
+
+    .busq-5 .busq-item:nth-child(5) {
+        grid-column: 1 / -1;
+        border-left: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .busq-grid.busq-5 {
+        grid-template-columns: 1fr;
+    }
+
+    .busq-5 .busq-item:nth-child(even) {
+        border-left: none;
+    }
+}
 
 @media (max-width: 700px) {
     .busq-item + .busq-item {

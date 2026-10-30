@@ -7,42 +7,39 @@
     <link rel="stylesheet" href="/css/mostrar.css">
     <link rel="icon" href="/img/favicon.webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Buscar Odontologos - Secure Dental</title>
+    <title>Buscar Odontólogo - Secure Dental</title>
 </head>
 
 <body>
 <%- include('../componentes/header') %>
 
+<h1>BUSCAR ODONTÓLOGO</h1>
 
-    <h1>BUSCAR ODONTOLOGO</h1>
-
-    <main class="busq-contenedor">
+<main class="busq-contenedor">
     <div class="busq-grid busq-2x2">
 
-    <form class="busq-item" onsubmit="busc_id(event)" method="GET">
-        <div>
-            <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
-        <div class="campo">
-            <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off" placeholder="Ej: 123" required>
-            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR POR CLAVE">
-        </div>
-    </form>
-    
+        <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
+                <div class="campo">
+                    <label>Clave de identificación</label>
+                    <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off" placeholder="Ej: 123" required>
+                    <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR CLAVE">
+            </div>
+        </form>
+
         <form class="busq-item" onsubmit="busc_nom(event)" method="GET">
             <div>
-                <h2><i class="fa-solid fa-id-card"></i> Buscar por nombre del odontologo</h2>
-            <div class="campo">
-                <label>Apellido y Nombre:</label>
-                <input type="text" id="nombre" name="nombre" maxlength="20" autocomplete="off" required>
+                <h2><i class="fa-solid fa-user-doctor"></i> Buscar por nombre</h2>
+                <div class="campo">
+                    <label>Apellido y Nombre</label>
+                    <input type="text" id="nombre" name="nombre" maxlength="20" autocomplete="off" placeholder="Ej: Torres Ana" required>
+                </div>
             </div>
-            </div>
-
             <div class="boton">
                 <input type="submit" value="BUSCAR POR NOMBRE">
             </div>
@@ -50,92 +47,123 @@
 
         <form class="busq-item" onsubmit="busc_cons(event)" method="GET">
             <div>
-                <h2><i class="fa-solid fa-id-card"></i> Buscar por ID del consultorio</h2>
-            <div class="campo">
-                <label>Id del Consultorio:</label>
-                <input type="text" id="cons" name="idCons" maxlength="3" autocomplete="off" placeholder="Ej: 123" required>
-                <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+                <h2><i class="fa-solid fa-door-open"></i> Buscar por consultorio</h2>
+                <div class="campo">
+                    <label>ID del consultorio</label>
+                    <input type="text" id="cons" name="idCons" maxlength="3" autocomplete="off" placeholder="Ej: 123" required>
+                    <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+                </div>
             </div>
-            </div>
-
             <div class="boton">
                 <input type="submit" value="BUSCAR POR CONSULTORIO">
             </div>
         </form>
 
-        
         <form class="busq-item" onsubmit="busc_espe(event)" method="GET">
             <div>
-                <h2><i class="fa-solid fa-id-card"></i> Buscar por especialidad</h2>
-            <div class="campo">
-                <label>Especialidad:</label>
-                <input type="text" id="espe" name="espe" maxlength="50" autocomplete="off" required>
-                <div id="listaEspecialidades" class="lista"></div>
+                <h2><i class="fa-solid fa-tooth"></i> Buscar por especialidad</h2>
+                <div class="campo">
+                    <label>Especialidad</label>
+                    <input type="text" id="espe" name="espe" maxlength="50" autocomplete="off" required>
+                    <div id="listaEspecialidades" class="lista"></div>
+                </div>
             </div>
-            </div>
-
             <div class="boton">
                 <input type="submit" value="BUSCAR POR ESPECIALIDAD">
             </div>
         </form>
 
-        </div>
-    </main>
+    </div>
+</main>
 
 <% if (cargadoid) { %>
+    <section class="res-contenedor">
         <% if (busc_registros.length > 0) { %>
-      
-                <p>Clave:  <%= busc_registros[0].idodontologo %></p>
-                <p>Nombre:  <%= busc_registros[0].nombre%></p>
-                <p>Apellido:  <%= busc_registros[0].apellido %></p>
-                <p>Especialidad:  <%= busc_registros[0].especialidad %></p>
-                <p>Id consultorio:  <%= busc_registros[0].consultorio_idconsultorio %></p>
-                
-      
-      
-            <% } else { %>
 
-                    <p> No hay datos para mostrar</p>
+            <div class="res-card">
+                <div class="res-cabecera">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <div>
+                        <h2><%= busc_registros[0].nombre %> <%= busc_registros[0].apellido %></h2>
+                        <span class="res-id">ID <%= busc_registros[0].idodontologo %></span>
+                    </div>
+                </div>
 
-            <% } %>
- <% } %>
+                <div class="res-campos">
+                    <div class="campo">
+                        <label>Clave de identificación</label>
+                        <input type="text" readonly value="<%= busc_registros[0].idodontologo %>">
+                    </div>
 
- 
+                    <div class="campo">
+                        <label>Especialidad</label>
+                        <input type="text" readonly value="<%= busc_registros[0].especialidad %>">
+                    </div>
+
+                    <div class="campo">
+                        <label>Nombre</label>
+                        <input type="text" readonly value="<%= busc_registros[0].nombre %>">
+                    </div>
+
+                    <div class="campo">
+                        <label>Apellido</label>
+                        <input type="text" readonly value="<%= busc_registros[0].apellido %>">
+                    </div>
+
+                    <div class="campo" style="grid-column: 1 / -1;">
+                        <label>ID consultorio</label>
+                        <input type="text" readonly value="<%= busc_registros[0].consultorio_idconsultorio %>">
+                    </div>
+                </div>
+            </div>
+
+        <% } else { %>
+
+            <div class="res-card res-vacio">
+                <i class="fa-solid fa-circle-xmark"></i>
+                <p>No hay datos para mostrar</p>
+            </div>
+
+        <% } %>
+    </section>
+<% } %>
+
 <% if (cargadotabla) { %>
-<div class="tabla-contenedor">
-    <table class="tabla-datos">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Especialidad</th>
-                <th>Id Consultorio</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% if (busc_registros.length > 0) {
-                busc_registros.forEach(odo => { %>
-                    <tr>
-                        <td><%= odo.idodontologo %></td>
-                        <td><%= odo.nombre %></td>
-                        <td><%= odo.apellido %></td>
-                        <td><%= odo.especialidad %></td>
-                        <td><%= odo.consultorio_idconsultorio %></td>
-                    </tr>
-                <% });
-            } else { %>
+    <div class="tabla-contenedor">
+        <table class="tabla-datos">
+            <thead>
                 <tr>
-                    <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Especialidad</th>
+                    <th>ID consultorio</th>
                 </tr>
-            <% } %>
-                      <% } %>
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                <% if (busc_registros.length > 0) {
+                    busc_registros.forEach(odo => { %>
+                        <tr>
+                            <td><%= odo.idodontologo %></td>
+                            <td><%= odo.nombre %></td>
+                            <td><%= odo.apellido %></td>
+                            <td><%= odo.especialidad %></td>
+                            <td><%= odo.consultorio_idconsultorio %></td>
+                        </tr>
+                    <% });
+                } else { %>
+                    <tr>
+                        <td colspan="5" class="sin-datos">No hay datos para mostrar</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+<% } %>
 
 <%- include('../componentes/sweet_buscar') %>
 <%- include('../componentes/footer') %>
 <script src="/js/val_buscar/odo.js"></script>
+
 </body>
 </html>

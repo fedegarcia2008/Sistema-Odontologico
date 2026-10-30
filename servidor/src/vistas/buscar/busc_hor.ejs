@@ -13,122 +13,151 @@
 <body>
 <%- include('../componentes/header') %>
 
+<h1>BUSCAR HORARIO</h1>
 
-    <h1>BUSCAR HORARIO</h1>
-
-   <main class="busq-contenedor">
+<main class="busq-contenedor">
     <div class="busq-grid">
 
-    <form class="busq-item" onsubmit="busc_id(event)" method="GET">
-        <div>
-            <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
-        <div class="campo">
-            <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
-        <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
-</form>
-
-<form class="busq-item" onsubmit="busc_dia(event)" method="GET">
-    <div>
-        <h2><i class="fa-solid fa-id-card"></i> Buscar por dia</h2>
-        <div class="campo">
-            <label>Dia</label>
-            <select name="dia" id="dia" required>
-                <option value="">Seleccione un dia</option>
-                <option value="Lunes">Lunes</option>
-                <option value="Martes">Martes</option>
-                <option value="Miercoles">Miercoles</option>
-                <option value="Jueves">Jueves</option>
-                <option value="Viernes">Viernes</option>
-                <option value="Sabado">Sabado</option>
-            </select>
-            </div>    
-            </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR POR DIA">
-        </div>
-    </form>
-
-        <form class="busq-item" onsubmit="busc_odo(event)" method="GET">
+        <form class="busq-item" onsubmit="busc_id(event)" method="GET">
             <div>
-                <h2><i class="fa-solid fa-id-card"></i> Buscar por ID del odontologo</h2>
-            <div class="campo">
-                <label>ID odontólogo:</label>
-                <input type="text" id="idOdo" name="idOdo" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
-            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
+                <div class="campo">
+                    <label>Clave de identificación</label>
+                    <input type="text" id="clave" name="clave" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
+                    <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+                </div>
             </div>
-            </div>
-
             <div class="boton">
-                <input type="submit" value="BUSCAR POR ID ODONTÓLOGO">
+                <input type="submit" value="BUSCAR POR C.I.">
             </div>
         </form>
 
-        </div>
-    </main>
+        <form class="busq-item" onsubmit="busc_dia(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-calendar-day"></i> Buscar por día</h2>
+                <div class="campo">
+                    <label>Día</label>
+                    <select name="dia" id="dia" required>
+                        <option value="">Seleccione un día</option>
+                        <option value="Lunes">Lunes</option>
+                        <option value="Martes">Martes</option>
+                        <option value="Miercoles">Miércoles</option>
+                        <option value="Jueves">Jueves</option>
+                        <option value="Viernes">Viernes</option>
+                        <option value="Sabado">Sábado</option>
+                    </select>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR DÍA">
+            </div>
+        </form>
+
+        <form class="busq-item" onsubmit="busc_odo(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-user-doctor"></i> Buscar por odontólogo</h2>
+                <div class="campo">
+                    <label>ID odontólogo</label>
+                    <input type="text" id="idOdo" name="idOdo" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
+                    <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR ODONTÓLOGO">
+            </div>
+        </form>
+
+    </div>
+</main>
 
 <% if (cargadoid) { %>
+    <section class="res-contenedor">
         <% if (busc_registros.length > 0) { %>
-      
-                <p>Clave:  <%= busc_registros[0].idhorario %></p>
-                <p>Dia:  <%= busc_registros[0].dia %></p>
-                <p>Horario comienzo:  <%= busc_registros[0].horario_comienzo.slice(0, 5) %></p>
-                <p>horario final:  <%= busc_registros[0].horario_final.slice(0, 5) %></p>
-                <p>id odontologo:  <%= busc_registros[0].odontologo_idodontologo %></p>
-      
-            <% } else { %>
 
-                    <p> No hay datos para mostrar</p>
+            <div class="res-card">
+                <div class="res-cabecera">
+                    <i class="fa-solid fa-clock"></i>
+                    <div>
+                        <h2><%= busc_registros[0].dia %></h2>
+                        <span class="res-id">ID <%= busc_registros[0].idhorario %></span>
+                    </div>
+                </div>
 
-            <% } %>
- <% } %>
+                <div class="res-campos">
+                    <div class="campo">
+                        <label>Identificador único</label>
+                        <input type="text" readonly value="<%= busc_registros[0].idhorario %>">
+                    </div>
 
+                    <div class="campo">
+                        <label>Día</label>
+                        <input type="text" readonly value="<%= busc_registros[0].dia %>">
+                    </div>
 
-                
+                    <div class="campo">
+                        <label>Horario de comienzo</label>
+                        <input type="text" readonly value="<%= busc_registros[0].horario_comienzo.slice(0, 5) %>">
+                    </div>
+
+                    <div class="campo">
+                        <label>Horario final</label>
+                        <input type="text" readonly value="<%= busc_registros[0].horario_final.slice(0, 5) %>">
+                    </div>
+
+                    <div class="campo" style="grid-column: 1 / -1;">
+                        <label>ID odontólogo</label>
+                        <input type="text" readonly value="<%= busc_registros[0].odontologo_idodontologo %>">
+                    </div>
+                </div>
+            </div>
+
+        <% } else { %>
+
+            <div class="res-card res-vacio">
+                <i class="fa-solid fa-circle-xmark"></i>
+                <p>No hay datos para mostrar</p>
+            </div>
+
+        <% } %>
+    </section>
+<% } %>
+
 <% if (cargadotabla) { %>
-<div class="tabla-contenedor">
-    <table class="tabla-datos">
-        <thead>
-            <tr>
-                <th >Id Horario</th>
-            <th >Dia</th>
-            <th >Hora inicio</th>
-            <th >Hora Final</th>
-            <th >Id Odontologo</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <% if (busc_registros.length > 0) {
-                busc_registros.forEach(hor => { %>
-                    <tr>
-                        <td><%= hor.idhorario %></td>
-                        <td><%= hor.dia %></td>
-                        <td><%= hor.horario_comienzo.slice(0, 5) %></td>
-                        <td><%= hor.horario_final.slice(0, 5) %></td>
-                        <td><%= hor.odontologo_idodontologo %></td>
-                    </tr>
-                <% });
-            } else { %>
+    <div class="tabla-contenedor">
+        <table class="tabla-datos">
+            <thead>
                 <tr>
-                    <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                    <th>ID horario</th>
+                    <th>Día</th>
+                    <th>Hora inicio</th>
+                    <th>Hora final</th>
+                    <th>ID odontólogo</th>
                 </tr>
-            <% } %>
-
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                <% if (busc_registros.length > 0) {
+                    busc_registros.forEach(hor => { %>
+                        <tr>
+                            <td><%= hor.idhorario %></td>
+                            <td><%= hor.dia %></td>
+                            <td><%= hor.horario_comienzo.slice(0, 5) %></td>
+                            <td><%= hor.horario_final.slice(0, 5) %></td>
+                            <td><%= hor.odontologo_idodontologo %></td>
+                        </tr>
+                    <% });
+                } else { %>
+                    <tr>
+                        <td colspan="5" class="sin-datos">No hay datos para mostrar</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
 <% } %>
 
 <%- include('../componentes/sweet_buscar') %>
 <%- include('../componentes/footer') %>
 <script src="/js/val_buscar/hor.js"></script>
+
 </body>
 </html>

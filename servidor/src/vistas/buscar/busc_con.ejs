@@ -11,92 +11,116 @@
 </head>
 
 <body>
- <%- include('../componentes/header') %>
+<%- include('../componentes/header') %>
 
+<h1>BUSCAR CONVENIO</h1>
 
-    <h1>BUSCAR CONVENIO</h1>
-
-    <main class="busq-contenedor">
+<main class="busq-contenedor">
     <div class="busq-grid">
 
         <form class="busq-item" onsubmit="busc_id(event)" method="GET">
             <div>
                 <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
-        <div class="campo">
-            <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="2" autocomplete="off" placeholder="Ej: 01" required>
-            <span class="ayuda">2 dígitos, sin puntos ni espacios</span>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR POR C.I">
-        </div>
-        
-</form>
+                <div class="campo">
+                    <label>Clave de identificación</label>
+                    <input type="text" id="clave" name="clave" maxlength="2" autocomplete="off" placeholder="Ej: 01" required>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR C.I.">
+            </div>
+        </form>
 
-         <form class="busq-item" onsubmit="busc_nom(event)" method="GET">
-             <div>
+        <form class="busq-item" onsubmit="busc_nom(event)" method="GET">
+            <div>
                 <h2><i class="fa-solid fa-user"></i> Buscar por nombre</h2>
-        <div class="campo">
-            <label>Nombre:</label>
-            <input type="text" id="nombre" name="nombre" maxlength="20" autocomplete="off" placeholder="Ej: Convenio A" required>
-        </div>
-        </div>
+                <div class="campo">
+                    <label>Nombre</label>
+                    <input type="text" id="nombre" name="nombre" maxlength="20" autocomplete="off" placeholder="Ej: Convenio A" required>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR NOMBRE">
+            </div>
+        </form>
 
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
-
-</form>
-</div>
-    </main>
+    </div>
+</main>
 
 <% if (cargadoid) { %>
+    <section class="res-contenedor">
         <% if (busc_registros.length > 0) { %>
-      
-                <p>Clave:  <%= busc_registros[0].idconvenio %></p>
-                <p>Nombre:  <%= busc_registros[0].nombre %></p>
-                <p>Rebaja:  <%= busc_registros[0].rebaja %></p>
-      
-            <% } else { %>
 
-                    <p> No hay datos para mostrar</p>
+            <div class="res-card">
+                <div class="res-cabecera">
+                    <i class="fa-solid fa-handshake"></i>
+                    <div>
+                        <h2><%= busc_registros[0].nombre %></h2>
+                        <span class="res-id">ID <%= busc_registros[0].idconvenio %></span>
+                    </div>
+                </div>
 
-            <% } %>
- <% } %>
+                <div class="res-campos">
+                    <div class="campo">
+                        <label>Identificador único</label>
+                        <input type="text" readonly value="<%= busc_registros[0].idconvenio %>">
+                    </div>
+
+                    <div class="campo">
+                        <label>Rebaja</label>
+                        <input type="text" readonly value="<%= busc_registros[0].rebaja %>">
+                    </div>
+
+                    <div class="campo" style="grid-column: 1 / -1;">
+                        <label>Nombre</label>
+                        <input type="text" readonly value="<%= busc_registros[0].nombre %>">
+                    </div>
+                </div>
+            </div>
+
+        <% } else { %>
+
+            <div class="res-card res-vacio">
+                <i class="fa-solid fa-circle-xmark"></i>
+                <p>No hay datos para mostrar</p>
+            </div>
+
+        <% } %>
+    </section>
+<% } %>
 
 <% if (cargadotabla) { %>
-<div class="tabla-contenedor">
-    <table class="tabla-datos">
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>nombre</th>
-                <th>rebaja</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% if (busc_registros.length > 0) {
-                busc_registros.forEach(con => { %>
-                    <tr>
-                        <td><%= con.idconvenio %></td>
-                        <td><%= con.nombre %></td>
-                        <td><%= con.rebaja %></td>
-                    </tr>
-                <% });
-            } else { %>
+    <div class="tabla-contenedor">
+        <table class="tabla-datos">
+            <thead>
                 <tr>
-                    <td colspan="6" class="sin-datos">No hay datos para mostrar</td>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Rebaja</th>
                 </tr>
-            <% } %>
-                      <% } %>
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                <% if (busc_registros.length > 0) {
+                    busc_registros.forEach(con => { %>
+                        <tr>
+                            <td><%= con.idconvenio %></td>
+                            <td><%= con.nombre %></td>
+                            <td><%= con.rebaja %></td>
+                        </tr>
+                    <% });
+                } else { %>
+                    <tr>
+                        <td colspan="3" class="sin-datos">No hay datos para mostrar</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+<% } %>
 
 <%- include('../componentes/sweet_buscar') %>
 <%- include('../componentes/footer') %>
 <script src="/js/val_buscar/conv.js"></script>
+
 </body>
 </html>
