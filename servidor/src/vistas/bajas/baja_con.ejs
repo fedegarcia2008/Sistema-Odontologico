@@ -1,96 +1,68 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/menu.css">
-    <link rel="icon" href="/img/favicon.webp">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Baja Convenio - Secure Dental</title>
-</head>
-
-<body>
-<%- include('../componentes/header') %>
-
-<h1>BAJA CONVENIO</h1>
-
-  <main class="busq-contenedor">
+<main class="busq-contenedor">
     <div class="busq-grid">
 
-    <form class="busq-item" onsubmit="busc_id(event)" method="GET">
-        <div class="campo">
-            <h2><i class="fa-solid fa-id-card"></i>Baja por C.I</h2>
-            <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="2" placeholder="Ej: 01" autocomplete="off" required>
-            <span class="ayuda">2 dígitos, sin puntos ni espacios</span>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
-
-</form>
-
-
-<form class="busq-item" onsubmit="busc_nom(event)" method="GET">
-        <div class="campo">
-            <h2><i class="fa-solid fa-id-card"></i>Baja por Nombre</h2>
-            <label>Nombre:</label>
-            <input type="text" id="nombre" name="nombre" maxlength="20" placeholder="Ej: Convenio A" autocomplete="off" required>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
-
-</form>
-
-    
-<% if (cargado) { %>
-<% if (baja_registros.length > 0) { %>
-
-<form class="formulario resultado" onsubmit="baja_id(event)" onsubmit="baja_nom(event)" method="POST">
-
-          <div class="campo">
-            <label>Clave de Identificacion:</label>
-        <input type="name" id="clave" name="clave" readonly value="<%= baja_registros[0].idconvenio %>">
-</div>
-
-    <div class="fila">
-        <div class="campo">
-            <label>Nombre:</label>
-            <input type="text" name="nombre"
-                   readonly value="<%= baja_registros[0].nombre %>" >
+        <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+            <div class="campo">
+                <h2><i class="fa-solid fa-id-card"></i>Baja por C.I</h2>
+                <label for="clave">Clave de identificación:</label>
+                <input type="text" id="clave" name="clave" maxlength="2" placeholder="Ej: 01" autocomplete="off" required>
+                <span class="ayuda">2 dígitos, sin puntos ni espacios</span>
             </div>
-        </div>
 
+            <div class="boton">
+                <input type="submit" value="BUSCAR">
+            </div>
+        </form>
 
-        <div class="fila">
-        <div class="campo">
+        <form class="busq-item" onsubmit="busc_nom(event)" method="GET">
+            <div class="campo">
+                <h2><i class="fa-solid fa-id-card"></i>Baja por Nombre</h2>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" maxlength="20" placeholder="Ej: Convenio A" autocomplete="off" required>
+            </div>
 
-            <label>Rebaja:</label>
-            <input type="text" name="rebaja"
-                   readonly value="<%= baja_registros[0].rebaja %>">
-        </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR">
+            </div>
+        </form>
 
-        <div class="boton">
-            <input type="submit" value="ELIMINAR">
-        </div>
+        <% if (locals.cargado) { %>
+            <% if (baja_registros.length > 0) { %>
 
-    </form>
+                <form class="formulario resultado" onsubmit="baja_id(event)" method="POST">
 
-<% } else { %>
-    <div class="formulario vacio">
-    <i class="fa-solid fa-user-slash"></i>
-    <p>No hay datos para mostrar.</p>
-</div>
-<% } %>
- <% } %>
+                    <div class="campo">
+                        <label for="clave_baja">Clave de identificación:</label>
+                        <input type="text" id="clave_baja" name="clave" readonly value="<%= baja_registros[0].idconvenio %>">
+                    </div>
 
+                    <div class="fila">
+                        <div class="campo">
+                            <label for="nombre_baja">Nombre:</label>
+                            <input type="text" id="nombre_baja" name="nombre" readonly value="<%= baja_registros[0].nombre %>">
+                        </div>
+                    </div>
+
+                    <div class="fila">
+                        <div class="campo">
+                            <label for="rebaja_baja">Rebaja:</label>
+                            <input type="text" id="rebaja_baja" name="rebaja" readonly value="<%= baja_registros[0].rebaja %>">
+                        </div>
+
+                        <div class="boton">
+                            <input type="submit" value="ELIMINAR">
+                        </div>
+                    </div>
+
+                </form>
+
+            <% } else { %>
+                <div class="formulario vacio">
+                    <i class="fa-solid fa-user-slash"></i>
+                    <p>No hay datos para mostrar.</p>
+                </div>
+            <% } %>
+        <% } %>
+
+    </div>
 </main>
-
-<%- include('../componentes/sweet_baja') %>
-<%- include('../componentes/footer') %>
-<script src="/js/val_bajas/conv.js"></script>
-</body>
-</html>
