@@ -198,7 +198,7 @@ export const buscafi_plan = async (pet, resp)=>{
 
 
 // buscar para modificar
-export const  modafi_id = async (pet, resp)=>{
+export const modafi_id = async (pet, resp)=>{
 let id = pet.params.clave;
       try {
         let buscsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE ci_afiliado = '"+ id +"'";
@@ -235,7 +235,7 @@ let id = pet.params.clave;
 };
 
 
-export const  modafi_nom = async (pet, resp)=>{
+export const modafi_nom = async (pet, resp)=>{
 let nom_completo = pet.params.nombre;
       try {
         let buscsql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";;
@@ -281,7 +281,7 @@ export const modificar_afi = async (pet, resp)=>{
     plan = pet.body.tipo;
 
      try {
-        let modificarsql = "UPDATE afiliado SET nombre = '"+ nom +"', apellido= '"+ apellido+"', tel_cel= '"+ telCel+"', tel_fijo= '"+ telFijo+"', tipo_plan= '"+ plan+"'WHERE ci_afiliado  = '"+ id +"'";
+        let modificarsql = "UPDATE afiliado SET nombre = '"+ nom +"', apellido= '"+ apellido+"', tel_cel= '"+ telCel+"', tel_fijo= '"+ telFijo+"', tipo_plan= '"+ plan+"' WHERE ci_afiliado  = '"+ id +"'";
         const [modificar_registros] = await bdd.query(modificarsql);
         console.log(modificar_registros)
             resp.render('modificar/mod_afi', {
@@ -346,7 +346,7 @@ let id = pet.params.clave;
 };
 
 
-export const  bajafi_nom = async (pet, resp)=>{
+export const bajafi_nom = async (pet, resp)=>{
 let nom_completo = pet.params.nombre;
       try {
         let bajasql = "SELECT ci_afiliado, nombre, apellido, tel_cel, tel_fijo, tipo_plan FROM afiliado WHERE CONCAT (apellido,' ', nombre) LIKE '%" + nom_completo + "%'";;
@@ -412,5 +412,5 @@ let id = pet.params.clave;
 };
 
 
-// // va todo tu select para buscar el afiliado que queres borrar
+// // va todo el select para buscar el afiliado que queres borrar
 // // DELETE FROM afiliado WHERE ci_afiliado = '"+ clave +"';
