@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="/css/menu.css">
     <link rel="stylesheet" href="/css/mostrar.css">
     <link rel="icon" href="/img/favicon.webp">
@@ -14,93 +13,122 @@
 <body>
 <%- include('../componentes/header') %>
 
+<h1>MODIFICAR CONVENIO</h1>
 
-   <h1>MODIFICAR CONVENIO</h1>
-
-     <main class="busq-contenedor">
+<main class="busq-contenedor">
     <div class="busq-grid">
 
         <form class="busq-item" onsubmit="busc_id(event)" method="GET">
             <div>
                 <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
-        <div class="campo">
-            <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="2" placeholder="Ej: 01" autocomplete="off" required>
-        <span class="ayuda">2 dígitos, sin puntos ni espacios</span>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
+                <div class="campo">
+                    <label>Clave de identificación</label>
+                    <input type="text" id="clave" name="clave" maxlength="2" placeholder="Ej: 01" autocomplete="off" required>
+                    <span class="ayuda">2 dígitos, sin puntos ni espacios</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR C.I.">
+            </div>
+        </form>
 
-</form>
+        <form class="busq-item" onsubmit="busc_nom(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-handshake"></i> Buscar por nombre</h2>
+                <div class="campo">
+                    <label>Nombre</label>
+                    <input type="text" id="nombre" name="nombre" maxlength="20" placeholder="Ej: Convenio A" autocomplete="off" required>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR NOMBRE">
+            </div>
+        </form>
 
+    </div>
+</main>
 
-<form class="busq-item" onsubmit="busc_nom(event)" method="GET">
-    <div>
-        <h2><i class="fa-solid fa-user"></i> Buscar por nombre</h2>
-        <div class="campo">
-            <label>Nombre:</label>
-            <input type="text" id="nombre" name="nombre" maxlength="20" placeholder="Ej: Convenio A" autocomplete="off" required>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
-
-</form>
-</div>
- </main>
-   
 <% if (cargado) { %>
-<% if (busc_registros.length > 0 &&  busc_registros.length == 1) { %>
 
-<form class="formulario resultado" onsubmit="mod_id(event)" onsubmit="mod_nom(event)" method="POST">
+    <% if (busc_registros.length == 1) { %>
 
-<div class="campo">
+        <section class="res-contenedor">
+            <form class="res-card" onsubmit="mod_id(event)" onsubmit="mod_nom(event)" method="POST">
 
-            <label>Identificador Único</label>
-            <input type="text" name="clave" readonly
-                            value="<%= busc_registros[0].idconvenio %>">
+                <div class="res-cabecera">
+                    <i class="fa-solid fa-handshake"></i>
+                    <div>
+                        <h2><%= busc_registros[0].nombre %></h2>
+                        <span class="res-id">ID <%= busc_registros[0].idconvenio %></span>
+                    </div>
+                </div>
+
+                <div class="res-campos">
+                    <div class="campo">
+                        <label>Identificador único</label>
+                        <input type="text" name="clave" readonly value="<%= busc_registros[0].idconvenio %>">
+                    </div>
+
+                    <div class="campo">
+                        <label>Rebaja</label>
+                        <input type="text" name="rebaja" maxlength="6" autocomplete="off"
+                               value="<%= busc_registros[0].rebaja %>">
+                    </div>
+
+                    <div class="campo" style="grid-column: 1 / -1;">
+                        <label>Nombre</label>
+                        <input type="text" name="nombre" maxlength="20" autocomplete="off"
+                               value="<%= busc_registros[0].nombre %>">
+                    </div>
+                </div>
+
+                <div class="boton">
+                    <input type="submit" value="GUARDAR CAMBIOS">
+                </div>
+            </form>
+        </section>
+
+    <% } else if (busc_registros.length >= 2) { %>
+
+        <p class="res-aviso">Hay más de una coincidencia. Buscá por C.I. para modificar.</p>
+
+        <div class="tabla-contenedor">
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Rebaja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% busc_registros.forEach(con => { %>
+                        <tr>
+                            <td><%= con.idconvenio %></td>
+                            <td><%= con.nombre %></td>
+                            <td><%= con.rebaja %></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
         </div>
 
-        <div class="campo">
-            <label>Nombre</label>
-            <input type="text" name="nombre" maxlength="20" autocomplete="off" 
-            value="<%= busc_registros[0].nombre %>">
-        </div>
-        
-        <div class="campo">
-            <label>Rebaja</label>
-            <input type="text" name="rebaja" maxlength="6" autocomplete="off" 
-            value="<%= busc_registros[0].rebaja %>">
-            
-        </div>
+    <% } else { %>
 
-        <div class="boton">
-            <input type="submit" value="GUARDAR CAMBIOS">
-        </div>
-
-    </form>
-
- <% } else if (busc_registros.length == 0) { %>
-
-        <div class="formulario vacio">
-            <i class="fa-solid fa-user-slash"></i>
-            <p>No hay datos para mostrar.</p>
-        </div>
+        <section class="res-contenedor">
+            <div class="res-card res-vacio">
+                <i class="fa-solid fa-circle-xmark"></i>
+                <p>No hay datos para mostrar.</p>
+            </div>
+        </section>
 
     <% } %>
+
 <% } %>
 
-
-
 <%- include('../componentes/sweet_modificar') %>
-
 <%- include('../componentes/footer') %>
 <script src="/js/val_modificar/conv.js"></script>
- 
+
 </body>
 </html>

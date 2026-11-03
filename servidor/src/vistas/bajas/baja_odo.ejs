@@ -7,101 +7,101 @@
     <link rel="stylesheet" href="/css/mostrar.css">
     <link rel="icon" href="/img/favicon.webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Baja Odontologo - Secure Dental</title>
+    <title>Baja Odontólogo - Secure Dental</title>
 </head>
 
 <body>
 <%- include('../componentes/header') %>
 
-    <h1>BAJA ODONTOLGO</h1>
+<h1>BAJA ODONTÓLOGO</h1>
 
- <main class="busq-contenedor">
+<main class="busq-contenedor">
     <div class="busq-grid">
 
-    <form class="busq-item" onsubmit="busc_id(event)" method="GET">
-        <div>
-            <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
-        <div class="campo">
-            <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off" placeholder="Ej: 123" required>
-            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR POR CLAVE">
-        </div>
+        <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
+                <div class="campo">
+                    <label>Clave de identificación</label>
+                    <input type="text" id="clave" name="clave" maxlength="3" autocomplete="off" placeholder="Ej: 123" required>
+                    <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+                </div>
+            </div>
 
-</form>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR CLAVE">
+            </div>
+        </form>
 
-<form class="busq-item" onsubmit="busc_nom(event)" method="GET">
-    <div>
-        <h2><i class="fa-solid fa-id-card"></i> Buscar por nombre del odontologo</h2>
-        <div class="campo">
-            <label>Apellido y Nombre:</label>
-            <input type="text" id="nombre" name="nombre" maxlength="20" placeholder="Ej: Lopez Ana" autocomplete="off" required>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR POR NOMBRE">
-        </div>
+        <form class="busq-item" onsubmit="busc_nom(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-user-doctor"></i> Buscar por nombre</h2>
+                <div class="campo">
+                    <label>Apellido y Nombre</label>
+                    <input type="text" id="nombre" name="nombre" maxlength="20" placeholder="Ej: Lopez Ana" autocomplete="off" required>
+                </div>
+            </div>
 
-</form>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR NOMBRE">
+            </div>
+        </form>
 
-</div>
-</main>    
+    </div>
+</main>
 
 <% if (cargado) { %>
-<% if (baja_registros.length > 0 &&  baja_registros.length == 1) { %>
 
-<form class="formulario resultado" onsubmit="baja_id(event)" onsubmit="baja_nom(event)" method="POST">
+    <% if (baja_registros.length == 1) { %>
 
-          <div class="campo">
-            <label>Clave de Identificacion:</label>
-        <input type="text" id="clave" name="clave" readonly value="<%= baja_registros[0].idodontologo %>">
-</div>
+        <section class="res-contenedor">
+            <form class="res-card" onsubmit="baja_id(event)" onsubmit="baja_nom(event)" method="POST">
 
-    <div class="fila">
-        <div class="campo">
-            <label>Nombre:</label>
-            <input type="text" name="nombre"
-                   readonly value="<%= baja_registros[0].nombre %>" >
-            </div>
-        </div>
+                <div class="res-cabecera">
+                    <i class="fa-solid fa-user-minus"></i>
+                    <div>
+                        <h2><%= baja_registros[0].nombre %> <%= baja_registros[0].apellido %></h2>
+                        <span class="res-id">ID <%= baja_registros[0].idodontologo %></span>
+                    </div>
+                </div>
 
+                <div class="res-campos">
+                    <div class="campo">
+                        <label>Clave de identificación</label>
+                        <input type="text" name="clave" readonly value="<%= baja_registros[0].idodontologo %>">
+                    </div>
 
-        <div class="fila">
-        <div class="campo">
+                    <div class="campo">
+                        <label>Especialidad</label>
+                        <input type="text" name="especialidad" readonly value="<%= baja_registros[0].especialidad %>">
+                    </div>
 
-            <label>Apellido:</label>
-            <input type="text" name="apellido"
-            
-                   readonly value="<%= baja_registros[0].apellido %>">
-        </div>
+                    <div class="campo">
+                        <label>Nombre</label>
+                        <input type="text" name="nombre" readonly value="<%= baja_registros[0].nombre %>">
+                    </div>
 
-        <div class="fila">
-        <div class="campo">
-            <label>Especialidad:</label>
-            <input type="text" name="especialidad"
-                   readonly value="<%= baja_registros[0].especialidad %>">
-        </div>
-    </div>
+                    <div class="campo">
+                        <label>Apellido</label>
+                        <input type="text" name="apellido" readonly value="<%= baja_registros[0].apellido %>">
+                    </div>
 
-        <div class="campo">
-            <label>Id Consultorio:</label>
-            <input type="text" name="consultorio"
-                   readonly value="<%= baja_registros[0].consultorio_idconsultorio %>">
-        </div>
-</div>
+                    <div class="campo" style="grid-column: 1 / -1;">
+                        <label>ID consultorio</label>
+                        <input type="text" name="consultorio" readonly value="<%= baja_registros[0].consultorio_idconsultorio %>">
+                    </div>
+                </div>
 
-    <div class="boton">
-            <input type="submit" value="ELIMINAR ODONTOLGO">
-        </div>
-    </form>
+                <div class="boton peligro">
+                    <input type="submit" value="ELIMINAR ODONTÓLOGO">
+                </div>
+            </form>
+        </section>
 
-<% } else if (baja_registros.length >= 2) { %>
-    <form>
+    <% } else if (baja_registros.length >= 2) { %>
+
+        <p class="res-aviso">Hay más de una coincidencia. Buscá por C.I. para eliminar.</p>
+
         <div class="tabla-contenedor">
             <table class="tabla-datos">
                 <thead>
@@ -109,11 +109,10 @@
                         <th>C.I.</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
-                        <th>Tipo de Especialidad</th>
-                        <th>ID del consultorio</th>
+                        <th>Especialidad</th>
+                        <th>ID consultorio</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <% baja_registros.forEach(odo => { %>
                         <tr>
@@ -123,31 +122,27 @@
                             <td><%= odo.especialidad %></td>
                             <td><%= odo.consultorio_idconsultorio %></td>
                         </tr>
-
-                        
                     <% }); %>
-                    <p>Mas de una coincidencia al buscar. Modifique por ID</p>
                 </tbody>
             </table>
         </div>
 
-    </form>
+    <% } else { %>
 
-
- <% } else if (baja_registros.length == 0) { %>
-        <div class="formulario vacio">
-            <i class="fa-solid fa-user-slash"></i>
-            <p>No hay datos para mostrar.</p>
-        </div>
+        <section class="res-contenedor">
+            <div class="res-card res-vacio">
+                <i class="fa-solid fa-user-slash"></i>
+                <p>No hay datos para mostrar.</p>
+            </div>
+        </section>
 
     <% } %>
-<% } %>
-</main>
 
+<% } %>
 
 <%- include('../componentes/sweet_baja') %>
-        <%- include('../componentes/footer') %>
+<%- include('../componentes/footer') %>
 <script src="/js/val_bajas/odo.js"></script>
- 
+
 </body>
 </html>
