@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="/css/menu.css">
     <link rel="stylesheet" href="/css/mostrar.css">
     <link rel="icon" href="/img/favicon.webp">
@@ -14,98 +13,113 @@
 <body>
 <%- include('../componentes/header') %>
 
+<h1>MODIFICAR TURNO</h1>
 
-   <h1>MODIFICAR TURNO</h1>
-
-    <main class="busq-contenedor">
+<main class="busq-contenedor">
     <div class="busq-grid">
 
-    <form class="busq-item" onsubmit="busc_id(event)" method="GET">
-        <div class="campo">
-            <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
-        <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
-    </form>
-
+        <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
+                <div class="campo">
+                    <label>Clave de identificación</label>
+                    <input type="text" id="clave" name="clave" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
+                    <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR C.I.">
+            </div>
+        </form>
 
         <form class="busq-item" onsubmit="busc_fechas(event)" method="GET">
-            <div class="campo">
-                <label>Desde:</label>
-                <input type="date" id="fecha1" name="fecha1" required>
-                <label>Hasta:</label>
-                <input type="date" id="fecha2" name="fecha2" required>
+            <div>
+                <h2><i class="fa-solid fa-calendar-week"></i> Buscar por período</h2>
+                <div class="campo">
+                    <label>Desde</label>
+                    <input type="date" id="fecha1" name="fecha1" required>
+                </div>
+                <div class="campo" style="margin-top: 12px;">
+                    <label>Hasta</label>
+                    <input type="date" id="fecha2" name="fecha2" required>
+                </div>
             </div>
-
             <div class="boton">
-                <input type="submit" value="BUSCAR POR PERIODO">
+                <input type="submit" value="BUSCAR POR PERÍODO">
             </div>
         </form>
 
     </div>
-    </main>
+</main>
 
 <% if (cargado) { %>
 <% if (busc_registros.length > 0 &&  busc_registros.length == 1) { %>
 
-<form onsubmit="mod_id(event)"  onsubmit="mod_fechas(event)"  method="POST">
+    <section class="res-contenedor">
+        <form class="res-card" onsubmit="mod_id(event)" onsubmit="mod_fechas(event)" method="POST">
 
-<div class="campo">
+            <div class="res-cabecera">
+                <i class="fa-solid fa-calendar-check"></i>
+                <div>
+                    <h2>Turno</h2>
+                    <span class="res-id">ID <%= busc_registros[0].idconsulta %></span>
+                </div>
+            </div>
 
-            <label>Identificador Único</label>
-            <input type="text" name="clave" readonly
-                            value="<%= busc_registros[0].idconsulta %>">
-        </div>
+            <div class="res-campos">
+                <div class="campo">
+                    <label>Identificador único</label>
+                    <input type="text" name="clave" readonly
+                           value="<%= busc_registros[0].idconsulta %>">
+                </div>
 
-        <div class="campo">
-            <label>Fecha</label>
-            <input type="date" name="fecha" 
-                            value="<%= busc_registros[0].fecha %>">
-        </div>
-        
-        <div class="campo">
-            <label>Hora</label>
-            <input type="time" name="hora" 
-                            value="<%= busc_registros[0].horario %>">
-        </div>
-        
-        <div class="campo">
-            <label>id Odontólogo</label>
-            <input type="text" name="idOdo" readonly
-                            value="<%= busc_registros[0].odontologo_idodontologo %>">
-        </div>
+                <div class="campo">
+                    <label>Fecha</label>
+                    <input type="date" name="fecha"
+                           value="<%= busc_registros[0].fecha %>">
+                </div>
 
-         <div class="campo">
-            <label>id afiliado</label>
-            <input type="text" name="idAfi" readonly
-                            value="<%= busc_registros[0].afiliado_ci_afiliado %>">
-        </div>
+                <div class="campo">
+                    <label>Hora</label>
+                    <input type="time" name="hora"
+                           value="<%= busc_registros[0].horario %>">
+                </div>
 
-        <div class="boton">
-            <input type="submit" value="GUARDAR CAMBIOS">
-        </div>
+                <div class="campo">
+                    <label>ID odontólogo</label>
+                    <input type="text" name="idOdo" readonly
+                           value="<%= busc_registros[0].odontologo_idodontologo %>">
+                </div>
 
-    </form>
+                <div class="campo" style="grid-column: 1 / -1;">
+                    <label>ID afiliado</label>
+                    <input type="text" name="idAfi" readonly
+                           value="<%= busc_registros[0].afiliado_ci_afiliado %>">
+                </div>
+            </div>
 
-    
+            <div class="boton">
+                <input type="submit" value="GUARDAR CAMBIOS">
+            </div>
+        </form>
+    </section>
+
 <% } else if (busc_registros.length >= 2) { %>
-    <div class="tabla-contenedor">
-    <table class="tabla-datos">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Id Odontologo</th>
-                <th>Id Afiliado</th>
 
-            </tr>
-        </thead>
-        <tbody>
+    <p class="res-aviso">Hay más de una coincidencia. Buscá por C.I. para modificar.</p>
+
+    <div class="tabla-contenedor">
+        <table class="tabla-datos">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Id Odontólogo</th>
+                    <th>Id Afiliado</th>
+                </tr>
+            </thead>
+            <tbody>
                 <% busc_registros.forEach(tur => { %>
                     <tr>
                         <td><%= tur.idconsulta %></td>
@@ -115,25 +129,25 @@
                         <td><%= tur.afiliado_ci_afiliado %></td>
                     </tr>
                 <% }); %>
-          <p>Mas de una coincidencia al buscar. Modifique por ID</p>
+            </tbody>
+        </table>
+    </div>
 
-        </tbody>
-    </table>
-</div>
- <% } else if (busc_registros.length == 0) { %>
+<% } else if (busc_registros.length == 0) { %>
 
-        <div class="formulario vacio">
+    <section class="res-contenedor">
+        <div class="res-card res-vacio">
             <i class="fa-solid fa-user-slash"></i>
             <p>No hay datos para mostrar.</p>
         </div>
+    </section>
 
-    <% } %>
 <% } %>
-
+<% } %>
 
 <%- include('../componentes/sweet_modificar') %>
 <%- include('../componentes/footer') %>
 <script src="/js/val_modificar/tur.js"></script>
- 
+
 </body>
 </html>

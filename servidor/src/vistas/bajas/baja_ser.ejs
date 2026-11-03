@@ -4,129 +4,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/mostrar.css">
     <link rel="icon" href="/img/favicon.webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Baja Servicio- Secure Dental</title>
+    <title>Baja Servicio - Secure Dental</title>
 </head>
 
 <body>
 <%- include('../componentes/header') %>
 
-    <h1>BAJA SERVICIO</h1>
+<h1>BAJA SERVICIO</h1>
 
-    <main class="busq-contenedor">
+<main class="busq-contenedor">
     <div class="busq-grid">
 
-    <form class="busq-item" onsubmit="busc_id(event)" method="GET">
-        <div>
-            <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
-        <div class="campo">
-            <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" maxlength="2" placeholder="Ej: 01" autocomplete="off" required>
-        <span class="ayuda">2 dígitos, sin puntos ni espacios</span>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR POR CLAVE">
-        </div>
-</form>
+        <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
+                <div class="campo">
+                    <label>Clave de identificación</label>
+                    <input type="text" id="clave" name="clave" maxlength="2" placeholder="Ej: 01" autocomplete="off" required>
+                    <span class="ayuda">2 dígitos, sin puntos ni espacios</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR CLAVE">
+            </div>
+        </form>
 
-<form class="busq-item" onsubmit="busc_ser(event)" method="GET">
-    <div>
-        <h2><i class="fa-solid fa-id-card"></i> Buscar por servicio</h2>
-        <div class="campo">
-            <label>Tipo de Servicio:</label>
-            <input type="text" id="nom" name="nom" autocomplete="off" required>
-        <div id="listaServicios" class="lista"></div>
-    </div>
-    </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR POR SERVICIO">
-        </div>
-    </form>
+        <form class="busq-item" onsubmit="busc_ser(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-tooth"></i> Buscar por servicio</h2>
+                <div class="campo">
+                    <label>Tipo de servicio</label>
+                    <input type="text" id="nom" name="nom" autocomplete="off" required>
+                    <div id="listaServicios" class="lista"></div>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR SERVICIO">
+            </div>
+        </form>
 
     </div>
 </main>
-    
+
 <% if (cargado) { %>
 <% if (baja_registros.length > 0 &&  baja_registros.length == 1) { %>
 
-<form class="formulario resultado" onsubmit="baja_id(event)" onsubmit="baja_ser(event)" method="POST">
+    <section class="res-contenedor">
+        <form class="res-card" onsubmit="baja_id(event)" onsubmit="baja_ser(event)" method="POST">
 
-<div class="campo">
+            <div class="res-cabecera">
+                <i class="fa-solid fa-tooth"></i>
+                <div>
+                    <h2><%= baja_registros[0].nombre %></h2>
+                    <span class="res-id">ID <%= baja_registros[0].idtratamiento %></span>
+                </div>
+            </div>
 
-            <label>ID Servicio</label>
-            <input type="text" name="clave" readonly
-                            value="<%= baja_registros[0].idtratamiento %>">
-        </div>
-        
-<div class="campo">
-    <label>Tipo de Servicio</label>
+            <div class="res-campos">
+                <div class="campo">
+                    <label>ID servicio</label>
+                    <input type="text" name="clave" readonly
+                           value="<%= baja_registros[0].idtratamiento %>">
+                </div>
 
-    <input type="text" name="nombre" autocomplete="off" readonly value="<%= baja_registros[0].nombre %>">
-</div>
-        <div class="campo">
-            <label>Costo</label>
-            <input type="text" name="costo" readonly
-                            value="<%= baja_registros[0].costo %>">
-        </div>
+                <div class="campo">
+                    <label>Costo</label>
+                    <input type="text" name="costo" readonly
+                           value="<%= baja_registros[0].costo %>">
+                </div>
 
-        <div class="campo">
-            <label>id Odontólogo</label>
-            <input type="text" name="idOdo" readonly
-                            value="<%= baja_registros[0].odontologo_idodontologo %>">
-        </div>
+                <div class="campo" style="grid-column: 1 / -1;">
+                    <label>Tipo de servicio</label>
+                    <input type="text" name="nombre" autocomplete="off" readonly value="<%= baja_registros[0].nombre %>">
+                </div>
 
-        <div class="boton">
-            <input type="submit" value="Eliminar">
-        </div>
+                <div class="campo" style="grid-column: 1 / -1;">
+                    <label>ID odontólogo</label>
+                    <input type="text" name="idOdo" readonly
+                           value="<%= baja_registros[0].odontologo_idodontologo %>">
+                </div>
+            </div>
 
-    </form>
+            <div class="boton peligro">
+                <input type="submit" value="ELIMINAR">
+            </div>
+        </form>
+    </section>
 
 <% } else if (baja_registros.length >= 2) { %>
 
-        <div class="tabla-contenedor">
-            <table class="tabla-datos">
-                <thead>
+    <p class="res-aviso">Hay más de una coincidencia. Buscá por C.I. para eliminar.</p>
+
+    <div class="tabla-contenedor">
+        <table class="tabla-datos">
+            <thead>
+                <tr>
+                    <th>C.I.</th>
+                    <th>Nombre</th>
+                    <th>Costo</th>
+                    <th>ID del odontólogo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% baja_registros.forEach(ser => { %>
                     <tr>
-                        <th>C.I.</th>
-                        <th>Nombre</th>
-                        <th>Costo</th>
-                        <th>ID del odontologo</th>
+                        <td><%= ser.idtratamiento %></td>
+                        <td><%= ser.nombre %></td>
+                        <td><%= ser.costo %></td>
+                        <td><%= ser.odontologo_idodontologo %></td>
                     </tr>
-                </thead>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
 
-                <tbody>
-                    <% baja_registros.forEach(ser => { %>
-                        <tr>
-                            <td><%= ser.idtratamiento %></td>
-                            <td><%= ser.nombre %></td>
-                            <td><%= ser.costo %></td>
-                            <td><%= ser.odontologo_idodontologo %></td>
-                        </tr>
+<% } else if (baja_registros.length == 0) { %>
 
-                    <% }); %>
-                    <p>Mas de una coincidencia al buscar. Modifique por ID</p>
-                </tbody>
-            </table>
-        </div>
-
-
- <% } else if (baja_registros.length == 0) { %>
-
-        <div class="formulario vacio">
+    <section class="res-contenedor">
+        <div class="res-card res-vacio">
             <i class="fa-solid fa-user-slash"></i>
             <p>No hay datos para mostrar.</p>
         </div>
+    </section>
 
-    <% } %>
+<% } %>
 <% } %>
 
 <%- include('../componentes/sweet_baja') %>
-        <%- include('../componentes/footer') %>
+<%- include('../componentes/footer') %>
 <script src="/js/val_bajas/ser.js"></script>
- 
+
 </body>
 </html>

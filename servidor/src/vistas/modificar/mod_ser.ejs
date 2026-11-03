@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="/css/menu.css">
     <link rel="stylesheet" href="/css/mostrar.css">
     <link rel="icon" href="/img/favicon.webp">
@@ -12,43 +11,40 @@
 </head>
 
 <body>
-   <%- include('../componentes/header') %>
+<%- include('../componentes/header') %>
 
+<h1>MODIFICAR SERVICIO</h1>
 
-   <h1>MODIFICAR SERVICIO</h1>
-
-    <main class="busq-contenedor">
+<main class="busq-contenedor">
     <div class="busq-grid">
 
-    <form class="busq-item" onsubmit="busc_id(event)" method="GET">
-        <div>
-            <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
-        <div class="campo">
-            <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" autocomplete="off" placeholder="Ej: 01" maxlength="2" required>
-        <span class="ayuda">2 dígitos, sin puntos ni espacios</span>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR POR CLAVE">
-        </div>
-    </form>
+        <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
+                <div class="campo">
+                    <label>Clave de identificación</label>
+                    <input type="text" id="clave" name="clave" autocomplete="off" placeholder="Ej: 01" maxlength="2" required>
+                    <span class="ayuda">2 dígitos, sin puntos ni espacios</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR CLAVE">
+            </div>
+        </form>
 
-<form class="busq-item" onsubmit="busc_ser(event)" method="GET">
-    <div>
-        <h2><i class="fa-solid fa-id-card"></i> Buscar por nombre</h2>
-        <div class="campo">
-             <label>Nombre del Servicio</label>
-            <input type="text" id="nombre" name="nombre" maxlength="30" autocomplete="off" required> 
-     <div id="listaServicios" class="lista"></div>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR POR SERVICIO">
-        </div>
-    </form>
+        <form class="busq-item" onsubmit="busc_ser(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-tooth"></i> Buscar por nombre</h2>
+                <div class="campo">
+                    <label>Nombre del servicio</label>
+                    <input type="text" id="nombre" name="nombre" maxlength="30" autocomplete="off" required>
+                    <div id="listaServicios" class="lista"></div>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR SERVICIO">
+            </div>
+        </form>
 
     </div>
 </main>
@@ -56,88 +52,91 @@
 <% if (cargado) { %>
 <% if (busc_registros.length > 0 &&  busc_registros.length == 1) { %>
 
-<form class="formulario resultado" onsubmit="mod_id(event)" onsubmit="mod_ser(event)" method="POST">
+    <section class="res-contenedor">
+        <form class="res-card" onsubmit="mod_id(event)" onsubmit="mod_ser(event)" method="POST">
 
-<div class="campo">
+            <div class="res-cabecera">
+                <i class="fa-solid fa-tooth"></i>
+                <div>
+                    <h2><%= busc_registros[0].nombre %></h2>
+                    <span class="res-id">ID <%= busc_registros[0].idtratamiento %></span>
+                </div>
+            </div>
 
-            <label>Id</label>
-            <input type="text" name="clave" readonly
-                            value="<%= busc_registros[0].idtratamiento %>">
-        </div>
-        
-<div class="campo">
-    <label>Tipo de Servicio</label>
+            <div class="res-campos">
+                <div class="campo">
+                    <label>Id</label>
+                    <input type="text" name="clave" readonly
+                           value="<%= busc_registros[0].idtratamiento %>">
+                </div>
 
-    <input type="text" name="nombre" autocomplete="off" maxlength="30"  value="<%= busc_registros[0].nombre %>">
+                <div class="campo">
+                    <label>Costo</label>
+                    <input type="text" name="costo" maxlength="8" autocomplete="off"
+                           value="<%= busc_registros[0].costo %>">
+                </div>
 
-    <div id="listaServicios" class="lista-servicios"></div>
-</div>
+                <div class="campo" style="grid-column: 1 / -1;">
+                    <label>Tipo de servicio</label>
+                    <input type="text" name="nombre" autocomplete="off" maxlength="30" value="<%= busc_registros[0].nombre %>">
+                    <div id="listaServicios" class="lista-servicios"></div>
+                </div>
 
+                <div class="campo" style="grid-column: 1 / -1;">
+                    <label>ID odontólogo</label>
+                    <input type="text" name="idOdo" readonly
+                           value="<%= busc_registros[0].odontologo_idodontologo %>">
+                </div>
+            </div>
 
-        <div class="campo">
-            <label>Costo</label>
-            <input type="text" name="costo" maxlength="8" autocomplete="off"
-                            value="<%= busc_registros[0].costo %>">
-        </div>
-
-        <div class="campo">
-            <label>id Odontólogo</label>
-            <input type="text" name="idOdo" readonly
-                            value="<%= busc_registros[0].odontologo_idodontologo %>">
-        </div>
-
-        <div class="boton">
-            <input type="submit" value="GUARDAR CAMBIOS">
-        </div>
-
-    </form>
+            <div class="boton">
+                <input type="submit" value="GUARDAR CAMBIOS">
+            </div>
+        </form>
+    </section>
 
 <% } else if (busc_registros.length >= 2) { %>
 
-        <div class="tabla-contenedor">
-            <table class="tabla-datos">
-                <thead>
+    <p class="res-aviso">Hay más de una coincidencia. Buscá por C.I. para modificar.</p>
+
+    <div class="tabla-contenedor">
+        <table class="tabla-datos">
+            <thead>
+                <tr>
+                    <th>C.I.</th>
+                    <th>Nombre</th>
+                    <th>Costo</th>
+                    <th>ID del odontólogo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% busc_registros.forEach(ser => { %>
                     <tr>
-                        <th>C.I.</th>
-                        <th>Nombre</th>
-                        <th>Costo</th>
-                        <th>ID del odontologo</th>
+                        <td><%= ser.idtratamiento %></td>
+                        <td><%= ser.nombre %></td>
+                        <td><%= ser.costo %></td>
+                        <td><%= ser.odontologo_idodontologo %></td>
                     </tr>
-                </thead>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
 
-                <tbody>
-                    <% busc_registros.forEach(ser => { %>
-                        <tr>
-                            <td><%= ser.idtratamiento %></td>
-                            <td><%= ser.nombre %></td>
-                            <td><%= ser.costo %></td>
-                            <td><%= ser.odontologo_idodontologo %></td>
-                        </tr>
+<% } else if (busc_registros.length == 0) { %>
 
-                    <% }); %>
-                    <p>Mas de una coincidencia al buscar. Modifique por ID</p>
-                </tbody>
-            </table>
-        </div>
-
-
- <% } else if (busc_registros.length == 0) { %>
-
-        <div class="formulario vacio">
+    <section class="res-contenedor">
+        <div class="res-card res-vacio">
             <i class="fa-solid fa-user-slash"></i>
             <p>No hay datos para mostrar.</p>
         </div>
+    </section>
 
-    <% } %>
+<% } %>
 <% } %>
 
- </main>
-
-
 <%- include('../componentes/sweet_modificar') %>
-
 <%- include('../componentes/footer') %>
 <script src="/js/val_modificar/ser.js"></script>
- 
+
 </body>
 </html>

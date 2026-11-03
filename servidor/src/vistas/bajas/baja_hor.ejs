@@ -13,147 +13,143 @@
 <body>
 <%- include('../componentes/header') %>
 
-    <h1>BAJA HORARIO</h1>
+<h1>BAJA HORARIO</h1>
 
- <main class="busq-contenedor">
+<main class="busq-contenedor">
     <div class="busq-grid">
 
-    <form class="busq-item" onsubmit="busc_id(event)" method="GET">
-        <div>
-            <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
-        <div class="campo">
-            <label>Clave de Identificacion:</label>
-            <input type="text" id="clave" name="clave" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
-        <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
-</form>
+        <form class="busq-item" onsubmit="busc_id(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
+                <div class="campo">
+                    <label>Clave de identificación</label>
+                    <input type="text" id="clave" name="clave" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
+                    <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR C.I.">
+            </div>
+        </form>
 
+        <form class="busq-item" onsubmit="busc_dia(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-calendar-day"></i> Buscar por día</h2>
+                <div class="campo">
+                    <label>Día</label>
+                    <select id="dia" name="dia" autocomplete="off" required>
+                        <option value="">Seleccione un día</option>
+                        <option value="Lunes">Lunes</option>
+                        <option value="Martes">Martes</option>
+                        <option value="Miércoles">Miércoles</option>
+                        <option value="Jueves">Jueves</option>
+                        <option value="Viernes">Viernes</option>
+                        <option value="Sábado">Sábado</option>
+                    </select>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR DÍA">
+            </div>
+        </form>
 
-<form class="busq-item" onsubmit="busc_dia(event)" method="GET">
-    <div>
-        <h2><i class="fa-solid fa-id-card"></i> Buscar por dia</h2>
-        <div class="campo">
-             <label>Día </label>
-            <select id="dia" name="dia" autocomplete="off" required>
-                <option value="">Seleccione un día</option>
-                <option value="Lunes">Lunes</option>
-                <option value="Martes">Martes</option>
-                <option value="Miércoles">Miércoles</option>
-                <option value="Jueves">Jueves</option>
-                <option value="Viernes">Viernes</option>
-                <option value="Sábado">Sábado</option>
-            </select>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
-</form>
-
-</div>
+    </div>
 </main>
 
-    
 <% if (cargado) { %>
 <% if (baja_registros.length > 0 &&  baja_registros.length == 1) { %>
 
-<form onsubmit="baja_id(event)" onsubmit="baja_dia(event)" method="POST">
+    <section class="res-contenedor">
+        <form class="res-card" onsubmit="baja_id(event)" onsubmit="baja_dia(event)" method="POST">
 
-          <div class="campo">
-            <label>Clave de Identificacion:</label>
-        <input type="name" id="clave" name="clave" readonly value="<%= baja_registros[0].idhorario %>">
-</div>
-
-    <div class="fila">
-        <div class="campo">
-            <label>Dia:</label>
-            <input type="text" name="dia"
-                   readonly value="<%=  baja_registros[0].dia%>" >
+            <div class="res-cabecera">
+                <i class="fa-solid fa-clock"></i>
+                <div>
+                    <h2><%= baja_registros[0].dia %></h2>
+                    <span class="res-id">ID <%= baja_registros[0].idhorario %></span>
+                </div>
             </div>
-        </div>
 
+            <div class="res-campos">
+                <div class="campo">
+                    <label>Clave de identificación</label>
+                    <input type="text" name="clave" readonly value="<%= baja_registros[0].idhorario %>">
+                </div>
 
-        <div class="fila">
-        <div class="campo">
+                <div class="campo">
+                    <label>Día</label>
+                    <input type="text" name="dia"
+                           readonly value="<%=  baja_registros[0].dia%>">
+                </div>
 
-            <label>Horario de Entrada:</label>
-            <input type="text" name="horario_comienzo"
-                   readonly value="<%= baja_registros[0].horario_comienzo.slice(0, 5)%>">
-        </div>
+                <div class="campo">
+                    <label>Horario de entrada</label>
+                    <input type="text" name="horario_comienzo"
+                           readonly value="<%= baja_registros[0].horario_comienzo.slice(0, 5)%>">
+                </div>
 
-        
+                <div class="campo">
+                    <label>Horario de salida</label>
+                    <input type="text" name=" horario_final"
+                           readonly value="<%= baja_registros[0].horario_final.slice(0, 5)%>">
+                </div>
 
-        <div class="fila">
-        <div class="campo">
-            <label>Horario de Salida:</label>
-            <input type="text" name=" horario_final"
-                   readonly value="<%= baja_registros[0].horario_final.slice(0, 5)%>">
-        </div>
-    </div>
+                <div class="campo" style="grid-column: 1 / -1;">
+                    <label>ID odontólogo</label>
+                    <input type="text" name="odontologo_idodontologo" readonly value="<%= baja_registros[0].odontologo_idodontologo %>">
+                </div>
+            </div>
 
-        <div class="fila">
-        <div class="campo">
-            <label>Id odontologo:</label>
-            <input type="text" name="odontologo_idodontologo" readonly value="<%= baja_registros[0].odontologo_idodontologo %>" >
-
-        </div>
-</div>
-
-
-        <div class="boton">
-            <input type="submit" value="ELIMINAR">
-        </div>
-
-    </form>
+            <div class="boton peligro">
+                <input type="submit" value="ELIMINAR">
+            </div>
+        </form>
+    </section>
 
 <% } else if (baja_registros.length >= 2) { %>
-        
-        <div class="tabla-contenedor">
-            <table class="tabla-datos">
-                  <thead>
-                    <tr>
-                    <th >Id Horario</th>
-                    <th >Dia</th>
-                    <th >Hora inicio</th>
-                    <th >Hora Final</th>
-                    <th >Id Odontologo</th>
-            </tr>
-        </thead>
-        <tbody>
-                    <% baja_registros.forEach(hor => { %>
+
+    <p class="res-aviso">Hay más de una coincidencia. Buscá por C.I. para eliminar.</p>
+
+    <div class="tabla-contenedor">
+        <table class="tabla-datos">
+            <thead>
+                <tr>
+                    <th>Id Horario</th>
+                    <th>Día</th>
+                    <th>Hora inicio</th>
+                    <th>Hora final</th>
+                    <th>Id Odontólogo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% baja_registros.forEach(hor => { %>
                     <tr>
                         <td><%= hor.idhorario %></td>
                         <td><%= hor.dia %></td>
                         <td><%= hor.horario_comienzo.slice(0, 5) %></td>
                         <td><%= hor.horario_final.slice(0, 5) %></td>
-                        <td><%= hor.odontologo_idodontologo %></td> 
-                    </tr>   
+                        <td><%= hor.odontologo_idodontologo %></td>
+                    </tr>
                 <% }); %>
-                    <p>Mas de una coincidencia al buscar. Modifique por ID</p>
-                </tbody>
-            </table>
-        </div>
+            </tbody>
+        </table>
+    </div>
 
 <% } else if (baja_registros.length == 0) { %>
-    <div class="formulario vacio">
-    <i class="fa-solid fa-user-slash"></i>
-    <p>No hay datos para mostrar.</p>
-</div>
+
+    <section class="res-contenedor">
+        <div class="res-card res-vacio">
+            <i class="fa-solid fa-user-slash"></i>
+            <p>No hay datos para mostrar.</p>
+        </div>
+    </section>
+
 <% } %>
- <% } %>
-</main>
-
-
+<% } %>
 
 <%- include('../componentes/sweet_baja') %>
-        <%- include('../componentes/footer') %>
+<%- include('../componentes/footer') %>
 <script src="/js/val_bajas/hor.js"></script>
- 
+
 </body>
 </html>

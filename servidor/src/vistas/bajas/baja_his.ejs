@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/mostrar.css">
     <link rel="icon" href="/img/favicon.webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Baja Historia clinica - Secure Dental</title>
+    <title>Baja Historia Clínica - Secure Dental</title>
 </head>
 
 <body>
 <%- include('../componentes/header') %>
 
-    <h1>BAJA HISTORIA CLINICA</h1>
+<h1>BAJA HISTORIA CLÍNICA</h1>
 
 <main class="busq-contenedor">
     <div class="busq-grid">
@@ -20,114 +21,110 @@
         <form class="busq-item" onsubmit="busc_id(event)" method="GET">
             <div>
                 <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
-        <div class="campo">
-            <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" placeholder="Ej: 123" autocomplete="off" required>
-            <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
-
-</form>
-
-    <form class="busq-item" onsubmit="busc_afi(event)" method="GET">
-        <div>
-            <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
-        <div class="campo">
-            <label>id afiliado:</label>
-            <input type="text" id="idAfi" name="idAfi" maxlength="8" placeholder="Ej: 12345678" autocomplete="off" required>
-            <span class="ayuda">8 dígitos, sin puntos ni espacios</span>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
+                <div class="campo">
+                    <label>Clave de identificación</label>
+                    <input type="text" id="clave" name="clave" placeholder="Ej: 123" autocomplete="off" required>
+                    <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR C.I.">
+            </div>
         </form>
-    
+
+        <form class="busq-item" onsubmit="busc_afi(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-user"></i> Buscar por afiliado</h2>
+                <div class="campo">
+                    <label>ID afiliado</label>
+                    <input type="text" id="idAfi" name="idAfi" maxlength="8" placeholder="Ej: 12345678" autocomplete="off" required>
+                    <span class="ayuda">8 dígitos, sin puntos ni espacios</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR AFILIADO">
+            </div>
+        </form>
+
     </div>
 </main>
 
-    
 <% if (cargado) { %>
 <% if (baja_registros.length > 0) { %>
 
-<form class="formulario resultado" onsubmit="baja_id(event)" onsubmit="baja_afi(event)"  method="POST">
+    <section class="res-contenedor">
+        <form class="res-card" onsubmit="baja_id(event)" onsubmit="baja_afi(event)" method="POST">
 
-          <div class="campo">
-            <label>Clave de Identificacion:</label>
-        <input type="name" id="clave" name="clave" readonly value="<%= baja_registros[0].idtratamiento_realizado %>">
-</div>
-
-    <div class="fila">
-        <div class="campo">
-            <label>Fecha Inicio:</label>
-            <input type="text" name="fecha_inicio"
-                   readonly value="<%= new Date(baja_registros[0].fecha_inicio).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" })  %>" >
+            <div class="res-cabecera">
+                <i class="fa-solid fa-notes-medical"></i>
+                <div>
+                    <h2>Historia clínica</h2>
+                    <span class="res-id">ID <%= baja_registros[0].idtratamiento_realizado %></span>
+                </div>
             </div>
-        </div>
 
+            <div class="res-campos">
+                <div class="campo">
+                    <label>Clave de identificación</label>
+                    <input type="text" name="clave" readonly value="<%= baja_registros[0].idtratamiento_realizado %>">
+                </div>
 
-        <div class="fila">
-        <div class="campo">
+                <div class="campo">
+                    <label>Fecha de inicio</label>
+                    <input type="text" name="fecha_inicio"
+                           readonly value="<%= new Date(baja_registros[0].fecha_inicio).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" })  %>">
+                </div>
 
-            <label>Tratamiento Finalizado:</label>
-            <input type="text" name="tratamiento_finalizado"
-                   readonly value="<%= baja_registros[0].tratamiento_finalizado%>">
-        </div>
-        </div>
+                <div class="campo">
+                    <label>Tratamiento finalizado</label>
+                    <input type="text" name="tratamiento_finalizado"
+                           readonly value="<%= baja_registros[0].tratamiento_finalizado%>">
+                </div>
 
-        <div class="fila">
-        <div class="campo">
-            <label>Id Tratamiento:</label>
-            <input type="text" name=" tratamiento_idtratamiento"
-                   readonly value="<%= baja_registros[0]. tratamiento_idtratamiento %>">
-        </div>
-    </div>
+                <div class="campo">
+                    <label>ID tratamiento</label>
+                    <input type="text" name=" tratamiento_idtratamiento"
+                           readonly value="<%= baja_registros[0]. tratamiento_idtratamiento %>">
+                </div>
 
-        <div class="campo">
-            <label>Ci afiliado:</label>
-            <input type="text" name="telFijo"
-                   readonly value="<%= baja_registros[0].afiliado_ci_afiliado %>">
-        </div>
+                <div class="campo">
+                    <label>C.I. afiliado</label>
+                    <input type="text" name="telFijo"
+                           readonly value="<%= baja_registros[0].afiliado_ci_afiliado %>">
+                </div>
 
-        <div class="fila">
-        <div class="campo">
-            <label>Id odontologo</label>
-            <input type="text" name="odontologo_idodontologo" readonly value="<%= baja_registros[0].odontologo_idodontologo %>" >
+                <div class="campo">
+                    <label>ID odontólogo</label>
+                    <input type="text" name="odontologo_idodontologo" readonly value="<%= baja_registros[0].odontologo_idodontologo %>">
+                </div>
 
-        </div>
-        
-        <div class="fila">
-        <div class="campo">
-            <label>Id consulta</label>
-            <input type="text" name="consulta_idconsulta" readonly value="<%= baja_registros[0].consulta_idconsulta %>" >
+                <div class="campo" style="grid-column: 1 / -1;">
+                    <label>ID consulta</label>
+                    <input type="text" name="consulta_idconsulta" readonly value="<%= baja_registros[0].consulta_idconsulta %>">
+                </div>
+            </div>
 
-        </div>
-</div>
-
-
-        <div class="boton">
-            <input type="submit" value="ELIMINAR">
-        </div>
-
-    </form>
+            <div class="boton peligro">
+                <input type="submit" value="ELIMINAR">
+            </div>
+        </form>
+    </section>
 
 <% } else { %>
-    <div class="formulario vacio">
-    <i class="fa-solid fa-user-slash"></i>
-    <p>No hay datos para mostrar.</p>
-</div>
-<% } %>
- <% } %>
 
+    <section class="res-contenedor">
+        <div class="res-card res-vacio">
+            <i class="fa-solid fa-user-slash"></i>
+            <p>No hay datos para mostrar.</p>
+        </div>
+    </section>
+
+<% } %>
+<% } %>
 
 <%- include('../componentes/sweet_baja') %>
-        <%- include('../componentes/footer') %>
+<%- include('../componentes/footer') %>
 <script src="/js/val_bajas/his.js"></script>
- 
+
 </body>
 </html>
