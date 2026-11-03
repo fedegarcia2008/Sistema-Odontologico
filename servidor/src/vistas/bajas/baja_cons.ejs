@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/mostrar.css">
     <link rel="icon" href="/img/favicon.webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <title>Baja Consultorio - Secure Dental</title>
@@ -12,89 +13,96 @@
 <body>
 <%- include('../componentes/header') %>
 
-    <h1>BAJA CONSULTORIO</h1>
+<h1>BAJA CONSULTORIO</h1>
+
 <main class="busq-contenedor">
     <div class="busq-grid">
 
         <form class="busq-item" onsubmit="busc_id(event)" method="GET">
             <div>
-            <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
-        <div class="campo">
-            <label>Identificador unico:</label>
-            <input type="text" id="clave" name="clave" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
-        <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
-</form>
+                <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
+                <div class="campo">
+                    <label>Identificador único</label>
+                    <input type="text" id="clave" name="clave" maxlength="3" placeholder="Ej: 123" autocomplete="off" required>
+                    <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR C.I.">
+            </div>
+        </form>
 
-    
- <form class="busq-item" onsubmit="busc_num(event)" method="GET">
-    <div>
-        <h2><i class="fa-solid fa-id-card"></i> Buscar por numero de consultorio</h2>
-        <div class="campo">
-            <label>Numero de Consultorio</label>
-            <input type="text" id="num" name="num" autocomplete="off" placeholder="Ej: 123" required>
-             <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
-        </div>
-         </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
-</form>
+        <form class="busq-item" onsubmit="busc_num(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-hashtag"></i> Buscar por número</h2>
+                <div class="campo">
+                    <label>Número de consultorio</label>
+                    <input type="text" id="num" name="num" autocomplete="off" placeholder="Ej: 123" required>
+                    <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR NÚMERO">
+            </div>
+        </form>
+
     </div>
 </main>
-    
+
 <% if (cargado) { %>
 <% if (baja_registros.length > 0) { %>
 
-<form class="formulario resultado" onsubmit="baja_id(event)" onsubmit="baja_num(event)" method="POST">
+    <section class="res-contenedor">
+        <form class="res-card" onsubmit="baja_id(event)" onsubmit="baja_num(event)" method="POST">
 
-          <div class="campo">
-            <label>Clave de Identificacion:</label>
-        <input type="text" id="clave" name="clave" readonly value="<%= baja_registros[0].idconsultorio %>">
-</div>
-
-    <div class="fila">
-        <div class="campo">
-            <label>Numero:</label>
-            <input type="text" name="numero"
-                   readonly value="<%= baja_registros[0].numero %>" >
+            <div class="res-cabecera">
+                <i class="fa-solid fa-door-open"></i>
+                <div>
+                    <h2>Consultorio <%= baja_registros[0].numero %></h2>
+                    <span class="res-id">ID <%= baja_registros[0].idconsultorio %></span>
+                </div>
             </div>
-        </div>
 
+            <div class="res-campos">
+                <div class="campo">
+                    <label>Clave de identificación</label>
+                    <input type="text" name="clave" readonly value="<%= baja_registros[0].idconsultorio %>">
+                </div>
 
-        <div class="fila">
-        <div class="campo">
+                <div class="campo">
+                    <label>Número</label>
+                    <input type="text" name="numero"
+                           readonly value="<%= baja_registros[0].numero %>">
+                </div>
 
-            <label>Id Local:</label>
-            <input type="text" name="idLocal"
-                   readonly value="<%= baja_registros[0].local_idlocal %>">
-        </div>
+                <div class="campo" style="grid-column: 1 / -1;">
+                    <label>ID local</label>
+                    <input type="text" name="idLocal"
+                           readonly value="<%= baja_registros[0].local_idlocal %>">
+                </div>
+            </div>
 
-
-        <div class="boton">
-            <input type="submit" value="ELIMINAR">
-        </div>
-
-    </form>
+            <div class="boton peligro">
+                <input type="submit" value="ELIMINAR">
+            </div>
+        </form>
+    </section>
 
 <% } else { %>
-    <div class="formulario vacio">
-    <i class="fa-solid fa-user-slash"></i>
-    <p>No hay datos para mostrar.</p>
-</div>
+
+    <section class="res-contenedor">
+        <div class="res-card res-vacio">
+            <i class="fa-solid fa-user-slash"></i>
+            <p>No hay datos para mostrar.</p>
+        </div>
+    </section>
+
 <% } %>
- <% } %>
-</main>
+<% } %>
 
 <%- include('../componentes/sweet_baja') %>
-   <%- include('../componentes/footer') %>
+<%- include('../componentes/footer') %>
 <script src="/js/val_bajas/cons.js"></script>
- 
+
 </body>
 </html>

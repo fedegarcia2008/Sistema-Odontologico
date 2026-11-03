@@ -4,126 +4,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/mostrar.css">
     <link rel="icon" href="/img/favicon.webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Baja Cuenta Corriente - Secure Dental</title>
+    <title>Baja Equipamiento - Secure Dental</title>
 </head>
 
 <body>
 <%- include('../componentes/header') %>
 
-    <h1>BAJA CUENTA CORRIENTE</h1>
-    
+<h1>BAJA EQUIPAMIENTO</h1>
+
 <main class="busq-contenedor">
     <div class="busq-grid">
 
         <form class="busq-item" onsubmit="busc_id(event)" method="GET">
             <div>
-                <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I. del afiliado</h2>
-        <div class="campo">
-            <label>Ci Afiliado:</label>
-            <input type="text" id="clave" name="clave" maxlength="8" placeholder="Ej: 12345678" autocomplete="off" required>
-            <span class="ayuda">8 dígitos, sin puntos ni espacios</span>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
+                <h2><i class="fa-solid fa-barcode"></i> Buscar por N° de serie</h2>
+                <div class="campo">
+                    <label>Nro. de serie</label>
+                    <input type="text" id="clave" name="clave" maxlength="10" placeholder="Ej: AB-1234" autocomplete="off" required>
+                    <span class="ayuda">2 letras y 4 dígitos</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR N° DE SERIE">
+            </div>
+        </form>
 
-</form>
+        <form class="busq-item" onsubmit="busc_tipo(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-screwdriver-wrench"></i> Buscar por tipo</h2>
+                <div class="campo">
+                    <label>Tipo de equipamiento</label>
+                    <input type="text" id="tipo" name="tipo" maxlength="30" autocomplete="off" required>
+                    <div id="listaEquipamiento" class="lista"></div>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR TIPO">
+            </div>
+        </form>
 
-<form class="busq-item" onsubmit="busc_nom(event)" method="GET">
-    <div>
-        <h2><i class="fa-solid fa-id-card"></i> Buscar por nombre del afiliado</h2>
-        <div class="campo">
-            <label>Apellido y nombre del afiliado:</label>
-            <input type="text" id="nombre" name="nombre" maxlength="20" placeholder="Ej: 12345678" autocomplete="off" required>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
-</form>
-
-</div>
+    </div>
 </main>
-    
+
 <% if (cargado) { %>
 <% if (baja_registros.length > 0 &&  baja_registros.length == 1) { %>
 
-<form class="formulario resultado" onsubmit="baja_id(event)" onsubmit="baja_nom(event)" method="POST">
+    <section class="res-contenedor">
+        <form class="res-card" onsubmit="baja_id(event)" onsubmit="baja_tipo(event)" method="POST">
 
-          <div class="campo">
-            <label>Ci Afiliado:</label>
-        <input type="text" id="clave" name="clave" readonly value="<%= baja_registros[0].afiliado_ci_afiliado %>">
-</div>
-
-    <div class="fila">
-        <div class="campo">
-            <label>Saldo:</label>
-            <input type="text" name="saldo"
-                   readonly value="<%= baja_registros[0].saldo %>" >
+            <div class="res-cabecera">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <div>
+                    <h2><%= baja_registros[0].tipo %></h2>
+                    <span class="res-id">N° <%= baja_registros[0].nroserie %></span>
+                </div>
             </div>
-        </div>
 
+            <div class="res-campos">
+                <div class="campo">
+                    <label>Nro. de serie</label>
+                    <input type="text" name="clave" readonly
+                           value="<%= baja_registros[0].nroserie %>">
+                </div>
 
-        <div class="fila">
-        <div class="campo">
+                <div class="campo">
+                    <label>Tipo</label>
+                    <input type="text" name="tipo"
+                           value="<%= baja_registros[0].tipo %>">
+                </div>
 
-            <label>Id Historia Clinica:</label>
-            <input type="text" name="apellido"
-                   readonly value="<%= baja_registros[0].tratamiento_realizado_idtratamiento_realizado %>">
-        </div>
+                <div class="campo">
+                    <label>Fecha mantenimiento</label>
+                    <input type="date" name="fecha"
+                           value="<%= baja_registros[0].fecha_mantenimiento %>">
+                </div>
 
-        <div class="boton">
-            <input type="submit" value="ELIMINAR">
-        </div>
-        </div>
-    </form>
+                <div class="campo">
+                    <label>ID consultorio</label>
+                    <input type="text" name="idCons" readonly
+                           value="<%= baja_registros[0].consultorio_idconsultorio %>">
+                </div>
+            </div>
 
- <% } else if (baja_registros.length >= 2) { %>
+            <div class="boton peligro">
+                <input type="submit" value="ELIMINAR">
+            </div>
+        </form>
+    </section>
 
-        <div class="tabla-contenedor">
-            <table class="tabla-datos">
-                <thead>
+<% } else if (baja_registros.length >= 2) { %>
+
+    <p class="res-aviso">Hay más de una coincidencia. Buscá por N° de serie para eliminar.</p>
+
+    <div class="tabla-contenedor">
+        <table class="tabla-datos">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Tipo</th>
+                    <th>Fecha</th>
+                    <th>ID consultorio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% baja_registros.forEach(equi => { %>
                     <tr>
-                        <th>C.I. Afiliado</th>
-                        <th>Saldo</th>
-                        <th>ID Historia Clínica</th>
+                        <td><%= equi.nroserie %></td>
+                        <td><%= equi.tipo %></td>
+                        <td><%= new Date(equi.fecha_mantenimiento).toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }) %></td>
+                        <td><%= equi.consultorio_idconsultorio %></td>
                     </tr>
-                </thead>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
 
-                <tbody>
-                    <% baja_registros.forEach(cta => { %>
-                        <tr>
-                            <td><%= cta.afiliado_ci_afiliado %></td>
-                            <td><%= cta.saldo %></td>
-                            <td><%= cta.tratamiento_realizado_idtratamiento_realizado %></td>
-                        </tr>
-                        
-                    <% }); %>
-                    <p>Mas de una coincidencia al buscar. Haga la baja por ID</p>
-                </tbody>
-            </table>
-        </div>
+<% } else if (baja_registros.length == 0) { %>
 
-    <% } else if (baja_registros.length == 0) { %>
-
-        <div class="formulario vacio">
+    <section class="res-contenedor">
+        <div class="res-card res-vacio">
             <i class="fa-solid fa-user-slash"></i>
             <p>No hay datos para mostrar.</p>
         </div>
+    </section>
 
-    <% } %>
+<% } %>
 <% } %>
 
-</main>
-
 <%- include('../componentes/sweet_baja') %>
-    <%- include('../componentes/footer') %>
-<script src="/js/val_bajas/cta.js"></script>
- 
+<%- include('../componentes/footer') %>
+<script src="/js/val_bajas/equi.js"></script>
+
 </body>
 </html>

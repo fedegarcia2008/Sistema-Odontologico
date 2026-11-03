@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="/css/menu.css">
     <link rel="stylesheet" href="/css/mostrar.css">
     <link rel="icon" href="/img/favicon.webp">
@@ -14,42 +13,38 @@
 <body>
 <%- include('../componentes/header') %>
 
+<h1>MODIFICAR CUENTA CORRIENTE</h1>
 
-   <h1>MODIFICAR CUENTA CORRIENTE</h1>
-
-    <main class="busq-contenedor">
+<main class="busq-contenedor">
     <div class="busq-grid">
 
         <form class="busq-item" onsubmit="busc_id(event)" method="GET">
             <div>
                 <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
-        <div class="campo">
-            <label>C.I del afiliado</label>
-            <input type="text" name="clave" id="clave" minlength="8" placeholder="Ej: 12345678" maxlength="8"
-                   pattern="[0-9]{8}" autocomplete="off" required>
-                   <span class="ayuda">8 dígitos, sin puntos ni espacios</span>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
+                <div class="campo">
+                    <label>C.I del afiliado</label>
+                    <input type="text" name="clave" id="clave" minlength="8" placeholder="Ej: 12345678" maxlength="8"
+                           pattern="[0-9]{8}" autocomplete="off" required>
+                    <span class="ayuda">8 dígitos, sin puntos ni espacios</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR C.I.">
+            </div>
+        </form>
 
-</form>
-
-<form class="busq-item" onsubmit="busc_nom(event)" method="GET">
-    <div>
-        <h2><i class="fa-solid fa-id-card"></i> Buscar por Nombre del afiliado</h2>
-        <div class="campo">
-            <label>Apellido y Nombre del afiliado:</label>
-            <input type="text" id="nombre" name="nombre" maxlength="20" placeholder="Ej: Lopez Ana" autocomplete="off" required>
-        </div>
-        </div>
-
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
-    </form>
+        <form class="busq-item" onsubmit="busc_nom(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-user"></i> Buscar por nombre</h2>
+                <div class="campo">
+                    <label>Apellido y Nombre del afiliado</label>
+                    <input type="text" id="nombre" name="nombre" maxlength="20" placeholder="Ej: Lopez Ana" autocomplete="off" required>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR NOMBRE">
+            </div>
+        </form>
 
     </div>
 </main>
@@ -57,73 +52,83 @@
 <% if (cargado) { %>
 <% if (busc_registros.length > 0 &&  busc_registros.length == 1) { %>
 
-<form class="formulario resultado" onsubmit="mod_id(event)" onsubmit="mod_nom(event)" method="POST">
+    <section class="res-contenedor">
+        <form class="res-card" onsubmit="mod_id(event)" onsubmit="mod_nom(event)" method="POST">
 
-<div class="campo">
-            <label>C.I. Afiliado</label>
-            <input type="text" name="clave" readonly
-                            value="<%= busc_registros[0].afiliado_ci_afiliado %>">
-        </div>
+            <div class="res-cabecera">
+                <i class="fa-solid fa-wallet"></i>
+                <div>
+                    <h2>Cuenta corriente</h2>
+                    <span class="res-id">C.I. <%= busc_registros[0].afiliado_ci_afiliado %></span>
+                </div>
+            </div>
 
-        <div class="campo">
-            <label>Saldo</label>
-            <input type="text" name="saldo" maxlength="10" autocomplete="off" 
-                            value="<%= busc_registros[0].saldo %>">
-        </div>
-        
-        <div class="campo">
-            <label>ID Historia Clínica</label>
-            <input type="text" name="idTrat" readonly
-                            value="<%= busc_registros[0].tratamiento_realizado_idtratamiento_realizado %>">
-        </div>
+            <div class="res-campos">
+                <div class="campo">
+                    <label>C.I. Afiliado</label>
+                    <input type="text" name="clave" readonly
+                           value="<%= busc_registros[0].afiliado_ci_afiliado %>">
+                </div>
 
-        <div class="boton">
-            <input type="submit" value="GUARDAR CAMBIOS">
-        </div>
+                <div class="campo">
+                    <label>Saldo</label>
+                    <input type="text" name="saldo" maxlength="10" autocomplete="off"
+                           value="<%= busc_registros[0].saldo %>">
+                </div>
 
-    </form>
+                <div class="campo" style="grid-column: 1 / -1;">
+                    <label>ID Historia Clínica</label>
+                    <input type="text" name="idTrat" readonly
+                           value="<%= busc_registros[0].tratamiento_realizado_idtratamiento_realizado %>">
+                </div>
+            </div>
 
- <% } else if (busc_registros.length >= 2) { %>
+            <div class="boton">
+                <input type="submit" value="GUARDAR CAMBIOS">
+            </div>
+        </form>
+    </section>
 
-        <div class="tabla-contenedor">
-            <table class="tabla-datos">
-                <thead>
+<% } else if (busc_registros.length >= 2) { %>
+
+    <p class="res-aviso">Hay más de una coincidencia. Buscá por C.I. para modificar.</p>
+
+    <div class="tabla-contenedor">
+        <table class="tabla-datos">
+            <thead>
+                <tr>
+                    <th>C.I. Afiliado</th>
+                    <th>Saldo</th>
+                    <th>ID Historia Clínica</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% busc_registros.forEach(cta => { %>
                     <tr>
-                        <th>C.I. Afiliado</th>
-                        <th>Saldo</th>
-                        <th>ID Historia Clínica</th>
+                        <td><%= cta.afiliado_ci_afiliado %></td>
+                        <td><%= cta.saldo %></td>
+                        <td><%= cta.tratamiento_realizado_idtratamiento_realizado %></td>
                     </tr>
-                </thead>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
 
-                <tbody>
-                    <% busc_registros.forEach(cta => { %>
-                        <tr>
-                            <td><%= cta.afiliado_ci_afiliado %></td>
-                            <td><%= cta.saldo %></td>
-                            <td><%= cta.tratamiento_realizado_idtratamiento_realizado %></td>
-                        </tr>
-                        
-                    <% }); %>
-                    <p>Mas de una coincidencia al buscar. Modifique por ID</p>
-                </tbody>
-            </table>
-        </div>
+<% } else if (busc_registros.length == 0) { %>
 
-    <% } else if (busc_registros.length == 0) { %>
-
-        <div class="formulario vacio">
+    <section class="res-contenedor">
+        <div class="res-card res-vacio">
             <i class="fa-solid fa-user-slash"></i>
             <p>No hay datos para mostrar.</p>
         </div>
+    </section>
 
-    <% } %>
+<% } %>
 <% } %>
 
-
 <%- include('../componentes/sweet_modificar') %>
-
 <%- include('../componentes/footer') %>
 <script src="/js/val_modificar/cta.js"></script>
- 
+
 </body>
 </html>

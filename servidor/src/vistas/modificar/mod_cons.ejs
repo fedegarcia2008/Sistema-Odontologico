@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="/css/menu.css">
     <link rel="stylesheet" href="/css/mostrar.css">
     <link rel="icon" href="/img/favicon.webp">
@@ -14,8 +13,7 @@
 <body>
 <%- include('../componentes/header') %>
 
-
-   <h1>MODIFICAR CONSULTORIO</h1>
+<h1>MODIFICAR CONSULTORIO</h1>
 
 <main class="busq-contenedor">
     <div class="busq-grid">
@@ -23,79 +21,89 @@
         <form class="busq-item" onsubmit="busc_id(event)" method="GET">
             <div>
                 <h2><i class="fa-solid fa-id-card"></i> Buscar por C.I.</h2>
-        <div class="campo">
-            <label>Clave de identificación:</label>
-            <input type="text" id="clave" name="clave" placeholder="Ej: 123" maxlength="3" autocomplete="off" required>
-        <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
-</form>
+                <div class="campo">
+                    <label>Clave de identificación</label>
+                    <input type="text" id="clave" name="clave" placeholder="Ej: 123" maxlength="3" autocomplete="off" required>
+                    <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR C.I.">
+            </div>
+        </form>
 
- <form class="busq-item" onsubmit="busc_num(event)" method="GET">
-    <div>
-        <h2><i class="fa-solid fa-id-card"></i> Buscar por numero de consultorio</h2>
-        <div class="campo">
-           <label>Numero de Consultorio:</label>
-            <input type="text" id="num" name="num" placeholder="Ej: 123" maxlength="3" autocomplete="off" required>
-        <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
-        </div>
-        </div>
-        
-       <div class="boton">
-        <input type="submit" value="BUSCAR">
-        </div>
-</form>
+        <form class="busq-item" onsubmit="busc_num(event)" method="GET">
+            <div>
+                <h2><i class="fa-solid fa-hashtag"></i> Buscar por número</h2>
+                <div class="campo">
+                    <label>Número de consultorio</label>
+                    <input type="text" id="num" name="num" placeholder="Ej: 123" maxlength="3" autocomplete="off" required>
+                    <span class="ayuda">3 dígitos, sin puntos ni espacios</span>
+                </div>
+            </div>
+            <div class="boton">
+                <input type="submit" value="BUSCAR POR NÚMERO">
+            </div>
+        </form>
 
- </div>
+    </div>
 </main>
-
 
 <% if (cargado) { %>
 <% if (busc_registros.length > 0) { %>
 
-<form onsubmit="mod_id(event)" onsubmit="mod_num(event)" method="POST">
+    <section class="res-contenedor">
+        <form class="res-card" onsubmit="mod_id(event)" onsubmit="mod_num(event)" method="POST">
 
-<div class="campo">
-            <label>Identificador Único</label>
-            <input type="text" name="clave" readonly
-                            value="<%= busc_registros[0].idconsultorio %>">
-        </div>
-        
-        <div class="campo">
-            <label>Nro. de consultorio</label>
-            <input type="text" name="nCons"  maxlength="3" autocomplete="off"
-                            value="<%= busc_registros[0].numero %>">
-        </div>
+            <div class="res-cabecera">
+                <i class="fa-solid fa-door-open"></i>
+                <div>
+                    <h2>Consultorio <%= busc_registros[0].numero %></h2>
+                    <span class="res-id">ID <%= busc_registros[0].idconsultorio %></span>
+                </div>
+            </div>
+
+            <div class="res-campos">
+                <div class="campo">
+                    <label>Identificador único</label>
+                    <input type="text" name="clave" readonly
+                           value="<%= busc_registros[0].idconsultorio %>">
+                </div>
 
                 <div class="campo">
-            <label>ID Local</label>
-            <input type="text" name="idLocal" readonly 
-                            value="<%= busc_registros[0].local_idlocal %>">
-        </div>
+                    <label>Nro. de consultorio</label>
+                    <input type="text" name="nCons" maxlength="3" autocomplete="off"
+                           value="<%= busc_registros[0].numero %>">
+                </div>
 
-        <div class="boton">
-            <input type="submit" value="GUARDAR CAMBIOS">
-        </div>
-<BR></BR>
-    </form>
+                <div class="campo" style="grid-column: 1 / -1;">
+                    <label>ID local</label>
+                    <input type="text" name="idLocal" readonly
+                           value="<%= busc_registros[0].local_idlocal %>">
+                </div>
+            </div>
+
+            <div class="boton">
+                <input type="submit" value="GUARDAR CAMBIOS">
+            </div>
+        </form>
+    </section>
 
 <% } else { %>
 
-    <p>No hay datos para mostrar.</p>
+    <section class="res-contenedor">
+        <div class="res-card res-vacio">
+            <i class="fa-solid fa-user-slash"></i>
+            <p>No hay datos para mostrar.</p>
+        </div>
+    </section>
 
 <% } %>
- <% } %>
-
-
+<% } %>
 
 <%- include('../componentes/sweet_modificar') %>
-
 <%- include('../componentes/footer') %>
 <script src="/js/val_modificar/cons.js"></script>
- 
+
 </body>
 </html>
